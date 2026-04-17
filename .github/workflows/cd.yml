@@ -1,0 +1,60 @@
+name: CD - Build and Deploy Landing to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: estospaces-landing-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      SERVICE_NAME: estospaces-landing
+      REGION: europe-west2
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      TARGET_ENV: prod
+      LANDING_APP_BASE_URL: ${{ vars.APP_BASE_URL }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+
+      - name: Build and Push
+        run: |
+          APP_BASE_URL="${LANDING_APP_BASE_URL:-https://app.estospaces.com}"
+          IMAGE_BASE="${REGION}-docker.pkg.dev/${PROJECT_ID}/estospaces/${SERVICE_NAME}"
+          docker build --build-arg VITE_APP_BASE_URL="$APP_BASE_URL" -t "${IMAGE_BASE}:${GITHUB_SHA}" -t "${IMAGE_BASE}:latest" .
+          docker push "${IMAGE_BASE}:${GITHUB_SHA}"
+          docker push "${IMAGE_BASE}:latest"
+
+      - name: Deploy to Cloud Run
+        run: |
+          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/estospaces/${SERVICE_NAME}:${GITHUB_SHA}"
+          SERVICE_TARGET="${SERVICE_NAME}-${TARGET_ENV}"
+          gcloud run services update "$SERVICE_TARGET" \
+            --image="$IMAGE" \
+            --region="${REGION}" \
+            --project="${PROJECT_ID}"
+
+      - name: Health check
+        run: |
+          SERVICE_TARGET="${SERVICE_NAME}-${TARGET_ENV}"
+          READY_REVISION="$(gcloud run services describe "$SERVICE_TARGET" --region="${REGION}" --project="${PROJECT_ID}" --format='value(status.latestReadyRevisionName)')"
+          test -n "$READY_REVISION"

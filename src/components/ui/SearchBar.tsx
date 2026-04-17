@@ -184,7 +184,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
     // Navigate to search results page
     if (navigateOnSearch) {
-      navigate(`${searchPath}?${params.toString()}`);
+      const destination = params.toString() ? `${searchPath}?${params.toString()}` : searchPath;
+      if (/^https?:\/\//.test(searchPath)) {
+        window.location.assign(destination);
+        return;
+      }
+      navigate(destination);
     }
   };
 

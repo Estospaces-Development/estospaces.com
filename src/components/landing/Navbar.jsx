@@ -7,6 +7,7 @@ const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { closeChat } = useChat();
+    const appBaseUrl = import.meta.env.VITE_APP_BASE_URL || 'https://app.estospaces.com';
 
     useEffect(() => {
         let ticking = false;
@@ -76,11 +77,11 @@ const Navbar = () => {
                             FAQ
                         </a>
                         <a 
-                            href="/about" 
+                            href={`${appBaseUrl}/contact`} 
                             onClick={handleNavClick}
                             className={`hover:text-primary transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-300' : 'text-white'}`}
                         >
-                            About
+                            Contact
                         </a>
                         
                         <button
@@ -129,11 +130,11 @@ const Navbar = () => {
                             FAQ
                         </a>
                         <a 
-                            href="/about" 
+                            href={`${appBaseUrl}/contact`} 
                             onClick={handleNavClick}
                             className="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                         >
-                            About
+                            Contact
                         </a>
                         <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
                             <button

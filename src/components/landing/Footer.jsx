@@ -6,6 +6,7 @@ import { useChat } from '../../contexts/ChatContext';
 
 const Footer = () => {
     const { closeChat } = useChat();
+    const appBaseUrl = import.meta.env.VITE_APP_BASE_URL || 'https://app.estospaces.com';
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -134,7 +135,7 @@ const Footer = () => {
                                 { name: 'Features', link: '#features' },
                                 { name: 'Reviews', link: '#reviews' },
                                 { name: 'Waitlist', link: '#join-waitlist' },
-                                { name: 'About Us', link: '/about' },
+                                { name: 'Contact Us', link: `${appBaseUrl}/contact` },
                                 { name: 'Contact', link: '#contact' }
                             ].map((item) => (
                                 <li key={item.name}>
@@ -158,7 +159,7 @@ const Footer = () => {
                                 <a href="#faq" onClick={closeChat} className="text-gray-400 hover:text-primary transition-colors">FAQ</a>
                             </li>
                             <li>
-                                <a href="/terms" onClick={closeChat} className="text-gray-400 hover:text-primary transition-colors">
+                                <a href={`${appBaseUrl}/terms`} onClick={closeChat} className="text-gray-400 hover:text-primary transition-colors">
                                     Terms & Conditions
                                 </a>
                             </li>
@@ -211,9 +212,9 @@ const Footer = () => {
                             © 2025 Estospaces. All rights reserved.
                         </p>
                         <div className="flex gap-6 text-sm">
-                            <a href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a>
-                            <a href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms of Service</a>
-                            <a href="/cookies" className="text-gray-400 hover:text-primary transition-colors">Cookie Policy</a>
+                            <a href={`${appBaseUrl}/privacy`} className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a>
+                            <a href={`${appBaseUrl}/terms`} className="text-gray-400 hover:text-primary transition-colors">Terms of Service</a>
+                            <a href={`${appBaseUrl}/cookies`} className="text-gray-400 hover:text-primary transition-colors">Cookie Policy</a>
                         </div>
                     </div>
                 </div>
