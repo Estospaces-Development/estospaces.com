@@ -8,7 +8,8 @@
     "dev:api": "node dev-server.js",
     "dev:vercel": "vercel dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.89.0",

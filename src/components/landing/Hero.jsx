@@ -5,6 +5,7 @@ import backgroundVideo from '../../assets/hero-section-video.mp4';
 
 const Hero = () => {
     const offset = useParallax(0.5);
+    const appSearchUrl = `${import.meta.env.VITE_APP_BASE_URL || 'https://app.estospaces.com'}/search`;
 
     return (
         <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
@@ -45,7 +46,7 @@ const Hero = () => {
                         variant="hero" 
                         showAdvanced={true}
                         navigateOnSearch={true}
-                        searchPath="/properties/search"
+                        searchPath={appSearchUrl}
                     />
                 </div>
             </div>
