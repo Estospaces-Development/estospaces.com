@@ -4,7 +4,6 @@
  */
 
 import express from 'express';
-import cors from 'cors';
 import { createServer as createViteServer } from 'vite';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
@@ -168,8 +167,39 @@ This email was sent from the Estospaces landing page reservation form.
 async function startServer() {
     const app = express();
 
-    // Middleware
-    app.use(cors());
+    app.disable('x-powered-by');
+    const corsAllowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || '')
+        .split(',')
+        .map((origin) => origin.trim())
+        .filter(Boolean);
+
+    const optionalCors = (req, res, next) => {
+        const origin = req.headers.origin;
+
+        if (!origin || corsAllowedOrigins.length === 0) {
+            next();
+            return;
+        }
+
+        if (!corsAllowedOrigins.includes(origin)) {
+            next();
+            return;
+        }
+
+        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Vary', 'Origin');
+        res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+        if (req.method === 'OPTIONS') {
+            res.sendStatus(204);
+            return;
+        }
+
+        next();
+    };
+
+    app.use('/api/send-reservation-email', optionalCors);
     app.use(express.json());
 
     // API route for sending reservation emails
