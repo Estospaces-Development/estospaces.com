@@ -28,7 +28,7 @@ npm run build
 - `src/pages/Home.jsx` - Main landing page
 - `src/contexts/ChatContext.jsx` - Chat widget context
 - `src/hooks/` - Custom hooks (useParallax, useWaitlist, useLiveChat)
-- `src/lib/supabase.js` - Supabase client (for newsletter)
+- `src/lib/landingApi.js` - GCP/Cloud Run landing API client for newsletter, waitlist, and chat paths
 - `src/components/ui/` - Shared UI components
 
 ## Deployment
@@ -43,4 +43,4 @@ This project is configured for Vercel deployment. See `VERCEL_CONFIG.md` for det
 
 ## Reservation Form
 
-The "Reserve Your Spot" form sends emails to `contact@estospaces.com` instead of saving to Supabase. See `EMAIL_SETUP.md` for email service configuration.
+The "Reserve Your Spot" form sends emails to `contact@estospaces.com` through the landing API. See `EMAIL_SETUP.md` for email service configuration.

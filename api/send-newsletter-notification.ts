@@ -124,7 +124,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         // Check for Resend API key
         if (!process.env.RESEND_API_KEY) {
-            console.log('[Newsletter] RESEND_API_KEY not configured');
+            console.warn('[Newsletter] Email notification provider is not configured');
             return res.status(200).json({
                 success: true,
                 message: 'Subscription received (email notification not configured)',
@@ -140,7 +140,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
             },
             body: JSON.stringify({
-                from: process.env.RESEND_FROM_EMAIL || 'Estospaces <onboarding@resend.dev>',
+                from: process.env.RESEND_FROM_EMAIL || 'Estospaces <contact@estospaces.com>',
                 to: [recipientEmail],
                 subject: `📬 New Newsletter Subscriber: ${email}`,
                 html: getEmailHTML(email, source || 'unknown'),
