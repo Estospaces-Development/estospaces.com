@@ -174,21 +174,12 @@ export default async function handler(req, res) {
 
     // Validate required fields
     if (!formData.name || !formData.email || !formData.location || !formData.lookingFor || !formData.userType) {
-      console.log('⚠️ Missing required fields:', {
-        name: !!formData.name,
-        email: !!formData.email,
-        location: !!formData.location,
-        lookingFor: !!formData.lookingFor,
-        userType: !!formData.userType
-      });
+      console.warn('Reservation request missing required fields');
       return res.status(400).json({
         error: 'Missing required fields',
         required: ['name', 'email', 'location', 'lookingFor', 'userType']
       });
     }
-
-    console.log('📬 Processing reservation for:', formData.email);
-
     // Email configuration
     // Option 1: Using Resend (recommended - add to env: RESEND_API_KEY)
     // Option 2: Using SendGrid (add to env: SENDGRID_API_KEY)
@@ -210,7 +201,7 @@ export default async function handler(req, res) {
             'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
           },
           body: JSON.stringify({
-            from: process.env.RESEND_FROM_EMAIL || 'Estospaces <noreply@estospaces.com>',
+            from: process.env.RESEND_FROM_EMAIL || 'Estospaces <contact@estospaces.com>',
             to: [recipientEmail],
             subject: 'New Reserve Your Spot Lead',
             html: getEmailHTML(formData),
@@ -219,7 +210,6 @@ export default async function handler(req, res) {
         });
 
         if (resendResponse.ok) {
-          console.log('✅ Email sent successfully via Resend');
           emailSent = true;
         } else {
           const errorData = await resendResponse.json();
@@ -246,7 +236,7 @@ export default async function handler(req, res) {
               to: [{ email: recipientEmail }]
             }],
             from: {
-              email: process.env.SENDGRID_FROM_EMAIL || 'noreply@estospaces.com',
+              email: process.env.SENDGRID_FROM_EMAIL || 'contact@estospaces.com',
               name: 'Estospaces'
             },
             subject: 'New Reserve Your Spot Lead',
@@ -277,10 +267,8 @@ export default async function handler(req, res) {
     // Fallback: Use mailto link approach (client-side will handle)
     // This is a fallback if no email service is configured
     if (!emailSent) {
-      // In development, we can log the email content
       if (process.env.NODE_ENV === 'development') {
-        console.log('📧 Email would be sent to:', recipientEmail);
-        console.log('📧 Email content:', getEmailText(formData));
+        console.warn('Reservation email provider is not configured');
       }
 
       // Return success but indicate email service not configured

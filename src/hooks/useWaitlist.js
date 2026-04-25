@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { postJson } from '../lib/landingApi';
 
 export const useWaitlist = () => {
     const [loading, setLoading] = useState(false);
@@ -11,43 +12,14 @@ export const useWaitlist = () => {
         setSuccess(false);
 
         try {
-            // Send email via API route
-            const response = await fetch('/api/send-reservation-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userType: data.userType,
-                    name: data.name,
-                    email: data.email,
-                    phone: data.phone || '',
-                    location: data.location,
-                    lookingFor: data.lookingFor,
-                }),
+            await postJson('/api/send-reservation-email', {
+                userType: data.userType,
+                name: data.name,
+                email: data.email,
+                phone: data.phone || '',
+                location: data.location,
+                lookingFor: data.lookingFor,
             });
-
-
-            console.log('[useWaitlist] Response status:', response.status);
-
-            // Check if response is JSON before parsing
-            const contentType = response.headers.get('content-type');
-            let result;
-
-            if (contentType && contentType.includes('application/json')) {
-                result = await response.json();
-            } else {
-                // Non-JSON response (likely HTML error page)
-                if (response.status === 404) {
-                    throw new Error('API route not found. Please use "vercel dev" to test locally, or deploy to Vercel for production.');
-                }
-                const text = await response.text();
-                throw new Error(`Server error: ${response.status}. ${text.substring(0, 100)}`);
-            }
-
-            if (!response.ok) {
-                throw new Error(result.error || 'Failed to send reservation. Please try again.');
-            }
 
             setSuccess(true);
             return { success: true };

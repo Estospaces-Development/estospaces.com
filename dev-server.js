@@ -241,7 +241,7 @@ async function startServer() {
                     'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
                 },
                 body: JSON.stringify({
-                    from: process.env.RESEND_FROM_EMAIL || 'Estospaces <onboarding@resend.dev>',
+                    from: process.env.RESEND_FROM_EMAIL || 'Estospaces <contact@estospaces.com>',
                     to: [recipientEmail],
                     subject: 'New Reserve Your Spot Lead',
                     html: getEmailHTML(formData),
@@ -295,7 +295,7 @@ async function startServer() {
             console.log(`- From: ${process.env.RESEND_FROM_EMAIL}`);
             console.log(`- API Key Configured: ${!!process.env.RESEND_API_KEY}`);
 
-            // Try to save to Supabase if configured (skipping for now to focus on email)
+            // Persist newsletter interest through the configured landing API/email workflow.
 
             // Send notification email
             const resendResponse = await fetch('https://api.resend.com/emails', {
@@ -305,7 +305,7 @@ async function startServer() {
                     'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
                 },
                 body: JSON.stringify({
-                    from: process.env.RESEND_FROM_EMAIL || 'Estospaces <onboarding@resend.dev>',
+                    from: process.env.RESEND_FROM_EMAIL || 'Estospaces <contact@estospaces.com>',
                     to: [recipientEmail],
                     subject: `📬 New Newsletter Subscriber: ${email}`,
                     html: `

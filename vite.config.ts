@@ -14,8 +14,6 @@ export default defineConfig({
       configureServer(server) {
         server.middlewares.use(async (req, res, next) => {
           if (req.url === '/api/send-reservation-email' && req.method === 'POST') {
-            console.log('[Local API] Handling POST /api/send-reservation-email')
-
             // Parse JSON body
             let body = ''
             for await (const chunk of req) {
@@ -24,7 +22,6 @@ export default defineConfig({
 
             try {
               const formData = JSON.parse(body)
-              console.log('[Local API] Received form data:', formData)
 
               // Dynamically import the handler
               const handlerPath = path.resolve(__dirname, 'api/send-reservation-email.js')
@@ -43,7 +40,6 @@ export default defineConfig({
               }
 
               let statusCode = 200
-              let responseData = null
 
               const resShim = {
                 setHeader: (name: string, value: string) => {
@@ -55,7 +51,6 @@ export default defineConfig({
                   return resShim
                 },
                 json: (data: any) => {
-                  responseData = data
                   res.statusCode = statusCode
                   res.setHeader('Content-Type', 'application/json')
                   res.end(JSON.stringify(data))
@@ -69,7 +64,6 @@ export default defineConfig({
               }
 
               await handler(reqShim, resShim)
-              console.log('[Local API] Response:', statusCode, responseData)
 
             } catch (error: any) {
               console.error('[Local API] Error:', error)

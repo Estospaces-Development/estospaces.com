@@ -15,7 +15,7 @@ From `src/components/landing/LiveChat/` to `src/`:
 ### Components in `landing/` folder:
 - **Hooks**: `../../hooks/useWaitlist`, `../../hooks/useParallax`
 - **Contexts**: `../../contexts/ChatContext`
-- **Lib**: `../../lib/supabase`
+- **Lib**: `../../lib/landingApi`
 - **Assets**: `../../assets/*.png`, `../../assets/*.mp4`
 - **UI Components**: `../ui/Toast`, `../ui/SearchBar`, `../ui/TestimonialsColumn`
 

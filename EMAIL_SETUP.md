@@ -1,95 +1,68 @@
-# Email Setup for Reservation Form
+# Email Setup for Landing API
 
-The reservation form now sends emails to `contact@estospaces.com` instead of saving to Supabase.
+The landing API sends reservation, newsletter, and chat emails to `contact@estospaces.com`.
 
-## Email Service Configuration
+## Production Provider
 
-The API route (`api/send-reservation-email.js`) supports multiple email providers. Choose one:
+Production is configured for Resend through the GCP Cloud Run service `estospaces-landing-prod`.
 
-### Option 1: Resend (Recommended)
+Required Cloud Run environment variables:
 
-1. Sign up at [resend.com](https://resend.com)
-2. Get your API key
-3. Add to Vercel environment variables:
-   - `RESEND_API_KEY` - Your Resend API key
-   - `RESEND_FROM_EMAIL` - Sender email (e.g., `Estospaces <noreply@estospaces.com>`)
-   - `RESERVATION_EMAIL` - Recipient email (defaults to `contact@estospaces.com`)
-   - `EMAIL_SERVICE` - Set to `resend`
+- `RESEND_API_KEY` - Resend API key stored in GCP Secret Manager.
+- `RESEND_FROM_EMAIL` - Sender email, currently `Estospaces <contact@estospaces.com>`.
+- `RESERVATION_EMAIL` - Recipient email, currently `contact@estospaces.com`.
+- `CORS_ALLOWED_ORIGINS` or `ALLOWED_ORIGINS` - Comma-separated allowed landing origins.
 
-### Option 2: SendGrid
+Before launch, the `estospaces.com` domain must be verified in Resend for `contact@estospaces.com` sending. Resend generates account-specific DNS records, so do not guess these values.
 
-1. Sign up at [sendgrid.com](https://sendgrid.com)
-2. Get your API key
-3. Add to Vercel environment variables:
-   - `SENDGRID_API_KEY` - Your SendGrid API key
-   - `SENDGRID_FROM_EMAIL` - Sender email (e.g., `noreply@estospaces.com`)
-   - `RESERVATION_EMAIL` - Recipient email (defaults to `contact@estospaces.com`)
-   - `EMAIL_SERVICE` - Set to `sendgrid`
+## Required Resend Domain Verification
 
-### Option 3: SMTP (Custom)
+1. Open the Resend dashboard.
+2. Add or open the `estospaces.com` domain.
+3. Copy the generated DNS records for verification and DKIM signing.
+4. Add those records to the GCP Cloud DNS public zone `estospaces-com`.
+5. Wait for DNS propagation.
+6. Click verify in Resend.
+7. Submit one safe production smoke test through `/api/send-reservation-email`.
 
-For custom SMTP servers, you'll need to modify the API route to use a library like `nodemailer`.
+If the current API key is send-only, use the Resend dashboard or an unrestricted Resend API key to retrieve the generated DNS records.
 
-## Vercel Environment Variables
+## Local Development
 
-Add these in your Vercel project settings:
+Run the landing API locally with:
 
-1. Go to your Vercel project dashboard
-2. Navigate to Settings → Environment Variables
-3. Add the variables listed above based on your chosen email service
+```bash
+npm run server
+```
 
-## Testing
+Run the API regression tests with:
 
-### Local Development
+```bash
+npm run test:api
+```
 
-For local development, you have two options:
+## API Endpoints
 
-1. **Use Vercel CLI** (Recommended for testing API routes):
-   ```bash
-   npm install -g vercel
-   vercel dev
-   ```
-   This will run your project with API route support and will automatically load your `.env` file.
+- `POST /api/send-reservation-email`
+- `POST /api/send-newsletter-notification`
+- `POST /api/live-chat/start`
+- `POST /api/live-chat/message`
 
-2. **Standard Vite Dev Server** (Frontend only):
-   ```bash
-   npm run dev
-   ```
-   Note: API routes won't work with this method. Use `vercel dev` to test the email functionality locally.
+Reservation request example:
 
-3. **Production Testing**: Deploy to Vercel and test the API route in production.
-
-### Development Mode Behavior
-
-In development mode, if no email service is configured, the API will log the email content to the console instead of sending it. This allows you to test the form submission flow without setting up email credentials.
-
-## Email Template
-
-The email template includes:
-- Professional HTML formatting
-- All form fields (user type, name, email, phone, location, preferences)
-- Timestamp of submission
-- Clean, scannable layout
-
-## API Endpoint
-
-- **Path**: `/api/send-reservation-email`
-- **Method**: `POST`
-- **Content-Type**: `application/json`
-
-### Request Body:
 ```json
 {
   "userType": "buyer",
-  "name": "John Doe",
-  "email": "john@example.com",
-  "phone": "+1234567890",
-  "location": "New York, NY",
-  "lookingFor": "Looking for a 2-bedroom apartment..."
+  "name": "Example User",
+  "email": "example.user@example.com",
+  "phone": "+15551234567",
+  "location": "London",
+  "lookingFor": "Looking for a private office."
 }
 ```
 
-### Response:
+Successful response example:
+
 ```json
 {
   "success": true,

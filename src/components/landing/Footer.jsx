@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Twitter, Instagram, Linkedin, Send, Loader2 } from 'lucide-react';
 import logoIcon from '../../assets/logo-icon.png';
-import { supabase } from '../../lib/supabase';
+import { postJson } from '../../lib/landingApi';
 import { useChat } from '../../contexts/ChatContext';
 
 const Footer = () => {
@@ -23,55 +23,11 @@ const Footer = () => {
 
         try {
             const subscriberEmail = email.trim().toLowerCase();
-            
-            // Try to save to Supabase if configured
-            if (supabase) {
-                try {
-                    const { error: supabaseError } = await supabase
-                        .from('newsletter_subscribers')
-                        .insert([
-                            {
-                                email: subscriberEmail,
-                                subscribed_at: new Date().toISOString(),
-                                source: 'footer'
-                            }
-                        ]);
 
-                    if (supabaseError) {
-                        // Check for duplicate email
-                        if (supabaseError.code === '23505') {
-                            throw new Error('This email is already subscribed!');
-                        }
-                        console.warn('[Newsletter] Supabase save failed:', supabaseError);
-                    } else {
-                        console.log('[Newsletter] Email saved to Supabase:', subscriberEmail);
-                    }
-                } catch (dbErr) {
-                    // If it's a duplicate error, rethrow it
-                    if (dbErr.message?.includes('already subscribed')) {
-                        throw dbErr;
-                    }
-                    console.warn('[Newsletter] Supabase not available:', dbErr);
-                }
-            }
-
-            // Send email notification about new subscriber (works regardless of Supabase)
-            const response = await fetch('/api/send-newsletter-notification', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: subscriberEmail,
-                    source: 'footer'
-                })
+            await postJson('/api/send-newsletter-notification', {
+                email: subscriberEmail,
+                source: 'footer',
             });
-            
-            const result = await response.json();
-            console.log('[Newsletter] Notification response:', result);
-            
-            if (!response.ok && response.status === 404) {
-                // API not available - show helpful message
-                throw new Error('Newsletter service is temporarily unavailable. Please try again later.');
-            }
 
             setSubmitted(true);
             setEmail('');
