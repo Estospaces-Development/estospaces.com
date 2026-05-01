@@ -1,6 +1,6 @@
 # Estospaces Landing Page
 
-Standalone landing page for Estospaces.
+Standalone Next.js landing page for Estospaces.
 
 ## Setup
 
@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 
-The server will start on `http://localhost:5173`
+The server will start on `http://localhost:3000`
 
 ## Build
 
@@ -24,11 +24,13 @@ npm run build
 
 ## Structure
 
+- `src/app/` - Next.js App Router pages, metadata, sitemap, robots, and API routes
 - `src/components/landing/` - All landing page components
-- `src/pages/Home.jsx` - Main landing page
+- `src/components/landing/Home.jsx` - Main landing page composition
 - `src/contexts/ChatContext.jsx` - Chat widget context
 - `src/hooks/` - Custom hooks (useParallax, useWaitlist, useLiveChat)
 - `src/lib/landingApi.js` - GCP/Cloud Run landing API client for newsletter, waitlist, and chat paths
+- `src/lib/server/landingApi.js` - Next.js route-handler logic for reservation, newsletter, and chat APIs
 - `src/components/ui/` - Shared UI components
 
 ## Deployment

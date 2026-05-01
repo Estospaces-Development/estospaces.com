@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      VITE_APP_BASE_URL: https://app.estospaces.com
+      NEXT_PUBLIC_APP_BASE_URL: https://app.estospaces.com
 
     steps:
       - uses: actions/checkout@v4
@@ -22,3 +22,4 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+      - run: npm run test:api

@@ -4,38 +4,32 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "dev:api": "node dev-server.js",
-    "dev:vercel": "vercel dev",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "next dev -H 0.0.0.0 -p 3000",
+    "build": "next build",
     "test:api": "node --test server.api.test.js",
-    "start": "node server.js"
+    "start": "next start -H 0.0.0.0"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1",
     "framer-motion": "^12.24.7",
     "lucide-react": "^0.554.0",
+    "next": "^16.2.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.6",
     "uuid": "^14.0.0"
   },
   "devDependencies": {
-    "@types/body-parser": "^1.19.6",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.3",
+    "@types/node": "25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.20",
-    "body-parser": "^2.2.2",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.13",
     "tailwindcss": "^3.4.15",
-    "vite": "^5.4.10"
+    "typescript": "6.0.3"
   },
   "overrides": {
+    "postcss": "^8.5.13",
     "path-to-regexp": "^8.4.2",
     "qs": "^6.15.1"
   }

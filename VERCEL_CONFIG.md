@@ -1,59 +1,20 @@
 # Vercel Configuration
 
-## Files Created
+This landing repo now uses Next.js App Router.
 
-### `vercel.json`
-Configuration file for Vercel deployment:
-- **Rewrites**: All routes redirect to `index.html` for SPA routing (React Router)
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist` (Vite's default output)
-- **Framework**: `vite` (for optimized builds)
+## Build Settings
 
-### `public/_redirects`
-Netlify-style redirects file (also works for Vercel):
-- `/* /index.html 200` - All routes redirect to index.html with 200 status
+- Framework Preset: Next.js
+- Build Command: `npm run build`
+- Install Command: `npm install`
 
-## Deployment
-
-### Prerequisites
-- Vercel account
-- Project connected to Git repository
-
-### Deployment Steps
-
-1. **Connect Repository**
-   ```bash
-   vercel login
-   vercel link
-   ```
-
-2. **Deploy**
-   ```bash
-   vercel --prod
-   ```
-
-Or deploy directly from Vercel dashboard by connecting your Git repository.
-
-### Build Settings (Auto-detected by Vercel)
-
-- **Framework Preset**: Vite
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- **Install Command**: `npm install`
-
-## Route Handling
-
-The landing page is a Single Page Application (SPA) using React Router. Both `vercel.json` and `_redirects` ensure all routes are handled correctly:
-
-- Direct URL access (e.g., `/about`)
-- Browser refresh on any route
-- Deep linking to sections
+`vercel.json` keeps the framework selection explicit. Routing, API endpoints, sitemap, robots, and SEO metadata are handled by Next.js.
 
 ## Verification
 
-After deployment, test:
-1. Root URL: `https://your-domain.com/`
-2. Direct route access: `https://your-domain.com/about` (if added)
-3. Browser refresh on any route
+After deployment, check:
 
-All routes should serve `index.html` and React Router will handle client-side routing.
+- `/` renders the landing page.
+- `/health` returns `{ "ok": true }`.
+- `/robots.txt` and `/sitemap.xml` are served.
+- `/api/send-reservation-email` accepts valid reservation POST requests.

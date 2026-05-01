@@ -1,5 +1,13 @@
 node_modules
+.next
 dist
+test-results
+.npm-vercel-cache
+coverage
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 .git
 .gitignore
 README.md
@@ -7,5 +15,3 @@ VERCEL_CONFIG.md
 PR_INSTRUCTIONS.md
 EMAIL_SETUP.md
 IMPORT_PATHS_FIXED.md
-dev-server.js
-api

@@ -47,7 +47,7 @@ gh pr create --title "Add Standalone Landing Page" --body "Standalone landing pa
      - ✅ Added required dependencies (`date-fns`, `uuid`)
      - ✅ Configured Vercel deployment (`vercel.json`, `public/_redirects`)
      - ✅ Created documentation (`IMPORT_PATHS_FIXED.md`, `VERCEL_CONFIG.md`)
-     - ✅ Landing page fully functional at `http://localhost:5173`
+- ✅ Landing page fully functional at `http://localhost:3000`
 
      ## Testing
      - ✅ All import paths verified and corrected

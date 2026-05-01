@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, UserPlus } from 'lucide-react';
-import logoIcon from '../../assets/logo-icon.png';
 import { useChat } from '../../contexts/ChatContext';
+
+const logoIcon = '/assets/logo-icon.png';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { closeChat } = useChat();
-    const appBaseUrl = import.meta.env.VITE_APP_BASE_URL || 'https://app.estospaces.com';
 
     useEffect(() => {
         let ticking = false;
@@ -26,6 +26,7 @@ const Navbar = () => {
             }
         };
 
+        handleScroll();
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -40,15 +41,15 @@ const Navbar = () => {
             isScrolled ? 'bg-white dark:bg-gray-900 shadow-md' : 'bg-transparent'
         }`}>
             <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
+                <div className="flex items-center justify-between h-16 sm:h-20">
                     {/* Logo */}
                     <a 
                         href="/" 
                         onClick={handleNavClick}
                         className="flex items-center gap-2 hover:opacity-80 transition-opacity"
                     >
-                        <img src={logoIcon} alt="Estospaces" className="w-10 h-10 object-contain" />
-                        <span className={`font-bold text-xl ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
+                        <img src={logoIcon} alt="Estospaces" className="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+                        <span className={`font-bold text-lg sm:text-xl ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
                             Estospaces
                         </span>
                     </a>
@@ -96,7 +97,7 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className={`md:hidden p-2 ${isScrolled ? 'text-gray-700 dark:text-gray-300' : 'text-white'}`}
+                        className={`md:hidden p-2 rounded-lg ${isScrolled ? 'text-gray-700 dark:text-gray-300' : 'text-white'}`}
                         aria-label="Toggle menu"
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

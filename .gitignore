@@ -5,10 +5,12 @@ node_modules/
 
 # Testing
 /coverage
+/test-results
 
 # Production
 /dist
 /build
+/.next
 
 # Misc
 .DS_Store
@@ -33,7 +35,7 @@ lerna-debug.log*
 
 # Vercel
 .vercel
+.npm-vercel-cache
 
 # TypeScript
 *.tsbuildinfo
-.vite/

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Eye, Shield, Zap, Bell, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
-import modernApartment from '../../assets/modern-apartment.png';
 import WaitlistModal from './WaitlistModal';
+
+const modernApartment = '/assets/modern-apartment.png';
 
 const WhyJoin = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +54,7 @@ const WhyJoin = () => {
     };
 
     return (
-        <section id="join-waitlist" className="relative py-32 overflow-hidden min-h-[800px] flex items-center">
+        <section id="join-waitlist" className="relative py-16 sm:py-20 lg:py-32 overflow-hidden min-h-[620px] sm:min-h-[700px] lg:min-h-[800px] flex items-center">
             {/* Parallax Background - Fixed Attachment for Robust Visibility */}
             <div
                 className="absolute inset-0 z-0"
@@ -72,7 +73,7 @@ const WhyJoin = () => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] z-10 pointer-events-none"></div>
 
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 1, scale: 1 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
@@ -81,13 +82,13 @@ const WhyJoin = () => {
                 <div className="max-w-5xl mx-auto text-center">
 
                     {/* Header with 3D Text Shadow */}
-                    <div className="mb-20 animate-fade-in-up">
+                    <div className="mb-10 sm:mb-14 lg:mb-20 animate-fade-in-up">
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 1, y: 0 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1.0, ease: [0.2, 0.8, 0.2, 1] }}
-                            className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]"
+                            className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 text-white tracking-normal drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] leading-tight"
                         >
                             Join the <span className="text-primary relative inline-block">
                                 Waitlist
@@ -95,11 +96,11 @@ const WhyJoin = () => {
                             </span>
                         </motion.h2>
                         <motion.p
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 1, y: 0 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1.0, delay: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-                            className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light drop-shadow-md"
+                            className="text-base sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto font-light drop-shadow-md leading-relaxed"
                         >
                             Be among the first to experience the future of real estate with exclusive access to virtual tours and verified listings.
                         </motion.p>
@@ -108,16 +109,16 @@ const WhyJoin = () => {
                     {/* Glassmorphism Benefits Grid with 3D Hover Effects */}
                     <motion.div
                         variants={containerVariants}
-                        initial="hidden"
+                        initial="visible"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 perspective-1000"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-14 lg:mb-20 perspective-1000"
                     >
                         {benefits.slice(0, 3).map((benefit, index) => (
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-3xl hover:bg-white/10 transition-all duration-500 group hover:-translate-y-4 hover:shadow-[0_10px_25px_-10px_rgba(249,115,22,0.2)] relative overflow-hidden"
+                                className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl hover:bg-white/10 transition-all duration-500 group hover:-translate-y-4 hover:shadow-[0_10px_25px_-10px_rgba(249,115,22,0.2)] relative overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 <motion.div
@@ -128,11 +129,11 @@ const WhyJoin = () => {
                                         ease: "easeInOut",
                                         delay: index * 0.5
                                     }}
-                                    className="w-16 h-16 bg-gradient-to-br from-primary to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
+                                    className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-500"
                                 >
                                     {React.cloneElement(benefit.icon, { className: "text-white w-8 h-8" })}
                                 </motion.div>
-                                <p className="text-xl font-medium text-white relative z-10">
+                                <p className="text-base sm:text-xl font-medium text-white relative z-10">
                                     {benefit.text}
                                 </p>
                             </motion.div>
@@ -144,12 +145,12 @@ const WhyJoin = () => {
                         <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full transform scale-150 opacity-0 hover:opacity-100 transition-opacity duration-700"></div>
                         <button
                             onClick={() => setIsModalOpen(true)}
-                            className="relative bg-gradient-to-r from-primary to-orange-600 text-white px-12 py-6 rounded-full font-bold text-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto border border-white/20"
+                            className="relative bg-gradient-to-r from-primary to-orange-600 text-white px-8 sm:px-12 py-4 sm:py-6 rounded-full font-bold text-base sm:text-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto border border-white/20"
                         >
                             Reserve Your Spot
                             <Zap size={24} className="fill-current animate-pulse" />
                         </button>
-                        <p className="mt-8 text-gray-400 text-sm tracking-[0.2em] uppercase font-medium">
+                        <p className="mt-5 sm:mt-8 text-gray-400 text-xs sm:text-sm tracking-normal uppercase font-medium">
                             Limited Spots Available • No Commitment
                         </p>
                     </div>

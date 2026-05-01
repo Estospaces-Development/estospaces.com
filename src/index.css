@@ -122,7 +122,7 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-size: 14px;
     line-height: 1.5;
-    letter-spacing: -0.011em;
+    letter-spacing: 0;
     font-weight: 400;
   }
   
@@ -131,77 +131,77 @@
     font-size: 24px;
     line-height: 1.35;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
   
   h2 {
     font-size: 20px;
     line-height: 1.4;
     font-weight: 600;
-    letter-spacing: -0.018em;
+    letter-spacing: 0;
   }
   
   h3 {
     font-size: 18px;
     line-height: 1.45;
     font-weight: 600;
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
   }
   
   h4 {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 600;
-    letter-spacing: -0.012em;
+    letter-spacing: 0;
   }
   
   h5 {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
   
   h6 {
     font-size: 12px;
     line-height: 1.5;
     font-weight: 600;
-    letter-spacing: -0.008em;
+    letter-spacing: 0;
   }
   
   p {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
-    letter-spacing: -0.011em;
+    letter-spacing: 0;
   }
   
   small, .text-xs {
     font-size: 12px;
     line-height: 1.5;
     font-weight: 400;
-    letter-spacing: -0.008em;
+    letter-spacing: 0;
   }
   
   button {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 500;
-    letter-spacing: -0.011em;
+    letter-spacing: 0;
   }
   
   input, textarea, select {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
-    letter-spacing: -0.011em;
+    letter-spacing: 0;
   }
   
   label {
     font-size: 12px;
     line-height: 1.5;
     font-weight: 500;
-    letter-spacing: -0.008em;
+    letter-spacing: 0;
   }
 }
 

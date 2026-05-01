@@ -1,0 +1,16 @@
+{
+  "name": "Estospaces",
+  "short_name": "Estospaces",
+  "description": "Verified property listings and immersive virtual tours.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#FF6B35",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
