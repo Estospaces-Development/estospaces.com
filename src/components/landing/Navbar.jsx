@@ -76,8 +76,8 @@ const Navbar = () => {
                         >
                             FAQ
                         </a>
-                        <a 
-                            href={`${appBaseUrl}/contact`} 
+                        <a
+                            href="#contact"
                             onClick={handleNavClick}
                             className={`hover:text-primary transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-300' : 'text-white'}`}
                         >
@@ -129,8 +129,8 @@ const Navbar = () => {
                         >
                             FAQ
                         </a>
-                        <a 
-                            href={`${appBaseUrl}/contact`} 
+                        <a
+                            href="#contact"
                             onClick={handleNavClick}
                             className="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
                         >

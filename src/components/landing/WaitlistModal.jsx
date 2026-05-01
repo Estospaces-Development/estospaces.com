@@ -123,6 +123,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                         {/* Close Button */}
                         <button
                             onClick={onClose}
+                            aria-label="Close reservation form"
                             className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
                         >
                             <X size={24} className="text-gray-500 dark:text-gray-400" />

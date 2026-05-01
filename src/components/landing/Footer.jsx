@@ -70,13 +70,13 @@ const Footer = () => {
                             A virtual-first real estate platform connecting buyers and renters with verified brokers through immersive 3D property tours.
                         </p>
                         <div className="flex gap-3">
-                            <a href="https://x.com/ESTOSPACES" className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-primary transition-colors">
+                            <a href="https://x.com/ESTOSPACES" aria-label="Estospaces on X" className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-primary transition-colors">
                                 <Twitter size={18} />
                             </a>
-                            <a href="https://www.instagram.com/estospaces/" className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-primary transition-colors">
+                            <a href="https://www.instagram.com/estospaces/" aria-label="Estospaces on Instagram" className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-primary transition-colors">
                                 <Instagram size={18} />
                             </a>
-                            <a href="https://www.linkedin.com/company/estospaces-solutions-private-limited" className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-primary transition-colors">
+                            <a href="https://www.linkedin.com/company/estospaces-solutions-private-limited" aria-label="Estospaces on LinkedIn" className="bg-white bg-opacity-10 p-2 rounded-full hover:bg-primary transition-colors">
                                 <Linkedin size={18} />
                             </a>
                         </div>
@@ -91,7 +91,7 @@ const Footer = () => {
                                 { name: 'Features', link: '#features' },
                                 { name: 'Reviews', link: '#reviews' },
                                 { name: 'Waitlist', link: '#join-waitlist' },
-                                { name: 'Contact Us', link: `${appBaseUrl}/contact` },
+                                { name: 'Contact Us', link: '#contact' },
                                 { name: 'Contact', link: '#contact' }
                             ].map((item) => (
                                 <li key={item.name}>
@@ -131,6 +131,7 @@ const Footer = () => {
                         <div className="flex gap-2">
                             <input
                                 type="email"
+                                aria-label="Email address for launch updates"
                                 placeholder="Your email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -141,6 +142,7 @@ const Footer = () => {
                             <button
                                 onClick={handleSubmit}
                                 disabled={loading}
+                                aria-label={loading ? 'Subscribing to updates' : 'Subscribe to updates'}
                                 className="bg-primary p-2 rounded hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
