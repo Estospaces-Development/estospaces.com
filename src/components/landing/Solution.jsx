@@ -14,7 +14,7 @@ const Solution = () => {
             icon: <Eye className="text-white" size={32} />,
             number: '02',
             title: 'You Explore Virtually',
-            description: 'Discover and tour properties from anywhere—no travel required.'
+            description: 'Discover and tour properties from anywhere - no travel required.'
         },
         {
             icon: <Users className="text-white" size={32} />,
@@ -144,7 +144,7 @@ const Solution = () => {
                         className="text-center mt-10 sm:mt-16"
                     >
                         <p className="text-gray-500 dark:text-gray-400 text-sm tracking-normal uppercase mb-4">
-                            Simple • Transparent • Effective
+                            Simple / Transparent / Effective
                         </p>
                         <div className="flex justify-center gap-2">
                             <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>

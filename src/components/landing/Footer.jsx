@@ -150,12 +150,12 @@ const Footer = () => {
                         </div>
                         {submitted && (
                             <p className="text-green-400 text-sm mt-2 animate-fade-in">
-                                ✓ Subscribed! We'll keep you updated.
+                                Subscribed. We'll keep you updated.
                             </p>
                         )}
                         {error && (
                             <p className="text-red-400 text-sm mt-2 animate-fade-in">
-                                ✗ {error}
+                                Error: {error}
                             </p>
                         )}
                     </div>
@@ -167,7 +167,7 @@ const Footer = () => {
                 <div className="container mx-auto px-4 py-6">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <p className="text-gray-400 text-sm">
-                            © 2025 Estospaces. All rights reserved.
+                            Copyright 2026 Estospaces. All rights reserved.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm">
                             <a href={`${appBaseUrl}/privacy`} className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a>

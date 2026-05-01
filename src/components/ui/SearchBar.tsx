@@ -52,20 +52,20 @@ const propertyTypes = [
 
 const priceRanges = {
   rent: [
-    { min: null, max: 500, label: 'Under £500' },
-    { min: 500, max: 1000, label: '£500 - £1,000' },
-    { min: 1000, max: 1500, label: '£1,000 - £1,500' },
-    { min: 1500, max: 2000, label: '£1,500 - £2,000' },
-    { min: 2000, max: 3000, label: '£2,000 - £3,000' },
-    { min: 3000, max: null, label: '£3,000+' },
+    { min: null, max: 500, label: 'Under GBP 500' },
+    { min: 500, max: 1000, label: 'GBP 500 - GBP 1,000' },
+    { min: 1000, max: 1500, label: 'GBP 1,000 - GBP 1,500' },
+    { min: 1500, max: 2000, label: 'GBP 1,500 - GBP 2,000' },
+    { min: 2000, max: 3000, label: 'GBP 2,000 - GBP 3,000' },
+    { min: 3000, max: null, label: 'GBP 3,000+' },
   ],
   sale: [
-    { min: null, max: 100000, label: 'Under £100k' },
-    { min: 100000, max: 250000, label: '£100k - £250k' },
-    { min: 250000, max: 500000, label: '£250k - £500k' },
-    { min: 500000, max: 750000, label: '£500k - £750k' },
-    { min: 750000, max: 1000000, label: '£750k - £1M' },
-    { min: 1000000, max: null, label: '£1M+' },
+    { min: null, max: 100000, label: 'Under GBP 100k' },
+    { min: 100000, max: 250000, label: 'GBP 100k - GBP 250k' },
+    { min: 250000, max: 500000, label: 'GBP 250k - GBP 500k' },
+    { min: 500000, max: 750000, label: 'GBP 500k - GBP 750k' },
+    { min: 750000, max: 1000000, label: 'GBP 750k - GBP 1M' },
+    { min: 1000000, max: null, label: 'GBP 1M+' },
   ],
 };
 
@@ -339,7 +339,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   type="number"
                   value={filters.minPrice || ''}
                   onChange={(e) => handleInputChange('minPrice', e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="Min £"
+                  placeholder="Min GBP"
                   className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent"
                 />
               </div>
@@ -354,7 +354,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   type="number"
                   value={filters.maxPrice || ''}
                   onChange={(e) => handleInputChange('maxPrice', e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="Max £"
+                  placeholder="Max GBP"
                   className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent"
                 />
               </div>
@@ -519,7 +519,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 type="number"
                 value={filters.minPrice || ''}
                 onChange={(e) => handleInputChange('minPrice', e.target.value ? parseInt(e.target.value) : null)}
-                placeholder="Min £"
+                placeholder="Min GBP"
                 className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>
@@ -529,7 +529,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 type="number"
                 value={filters.maxPrice || ''}
                 onChange={(e) => handleInputChange('maxPrice', e.target.value ? parseInt(e.target.value) : null)}
-                placeholder="Max £"
+                placeholder="Max GBP"
                 className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>

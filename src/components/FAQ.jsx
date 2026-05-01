@@ -7,7 +7,7 @@ const FAQ = () => {
     const faqs = [
         {
             question: 'What is Estospaces?',
-            answer: 'Estospaces is a virtual-first real estate platform that lets you explore properties through immersive 3D tours, connect with verified brokers, and complete your property journey—all online.'
+            answer: 'Estospaces is a virtual-first real estate platform that lets you explore properties through immersive 3D tours, connect with verified brokers, and complete your property journey online.'
         },
         {
             question: 'When will Estospaces launch?',

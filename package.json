@@ -6,17 +6,28 @@
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000",
     "build": "next build",
+    "postbuild": "node scripts/prepare-standalone.mjs",
+    "test": "node --test server.api.test.js blog.system.test.js",
     "test:api": "node --test server.api.test.js",
-    "start": "next start -H 0.0.0.0"
+    "test:blog": "node --test blog.system.test.js",
+    "blogs:seed": "node scripts/seed-blogs.mjs",
+    "blogs:update": "node scripts/update-blog-posts.mjs",
+    "blogs:audit": "node scripts/audit-blog-seo.mjs",
+    "blogs:validate": "node scripts/validate-blogs.mjs",
+    "start": "node .next/standalone/server.js"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^8.5.0",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.24.7",
+    "google-auth-library": "^10.6.2",
     "lucide-react": "^0.554.0",
     "next": "^16.2.4",
+    "pdf-parse": "^2.4.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "sharp": "^0.34.5",
     "uuid": "^14.0.0"
   },
   "devDependencies": {

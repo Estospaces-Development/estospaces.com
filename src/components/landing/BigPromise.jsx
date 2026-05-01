@@ -27,7 +27,7 @@ const BigPromise = () => {
                 {
                     icon: <Zap size={28} />,
                     title: '24-Hour Fast Track',
-                    description: 'From inquiry to site visit scheduled—all within a single day.'
+                    description: 'From inquiry to site visit scheduled - all within a single day.'
                 },
                 {
                     icon: <Clock size={28} />,
@@ -42,13 +42,13 @@ const BigPromise = () => {
             features: [
                 {
                     icon: <Sparkles size={28} />,
-                    title: 'AI Lakshmi — Your Property Guide',
+                    title: 'AI Lakshmi - Your Property Guide',
                     description: 'Ask questions, get recommendations, and navigate listings effortlessly with AI.'
                 },
                 {
                     icon: <View size={28} />,
-                    title: '360° Virtual Tours',
-                    description: 'Walk through any property from your couch—immersive, realistic, and convenient.'
+                    title: '360-degree Virtual Tours',
+                    description: 'Walk through any property from your couch - immersive, realistic, and convenient.'
                 },
                 {
                     icon: <MapPin size={28} />,
@@ -74,7 +74,7 @@ const BigPromise = () => {
                 {
                     icon: <MessageSquareMore size={28} />,
                     title: 'Built-In CRM',
-                    description: 'Manage leads, follow-ups, and client communication—all in one place.'
+                    description: 'Manage leads, follow-ups, and client communication - all in one place.'
                 },
                 {
                     icon: <Users2 size={28} />,
@@ -153,7 +153,7 @@ const BigPromise = () => {
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                         className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto"
                     >
-                        A seamless experience for buyers and brokers—from discovery to deal closure.
+                        A seamless experience for buyers and brokers - from discovery to deal closure.
                     </motion.p>
                 </div>
 

@@ -64,7 +64,7 @@ const FinalCTA = () => {
 
                     {/* Microcopy */}
                     <p className="text-xs sm:text-sm text-gray-400 mb-8 sm:mb-12">
-                        🔒 No spam. Unsubscribe anytime. We respect your privacy.
+                        Secure. No spam. Unsubscribe anytime. We respect your privacy.
                     </p>
 
                     {/* Divider */}

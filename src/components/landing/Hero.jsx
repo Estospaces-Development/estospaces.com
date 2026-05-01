@@ -20,6 +20,9 @@ const Hero = () => {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
+                    poster="/assets/modern-apartment.png"
+                    aria-hidden="true"
                     className="w-full h-full object-cover"
                 >
                     <source src={backgroundVideo} type="video/mp4" />

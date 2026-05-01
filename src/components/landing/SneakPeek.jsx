@@ -75,7 +75,7 @@ const SneakPeek = () => {
 
                     {/* Supporting Text */}
                     <p className="mt-6 sm:mt-8 text-gray-500 dark:text-gray-400 text-xs sm:text-sm tracking-normal uppercase">
-                        Be among the first • No commitment required
+                        Be among the first - no commitment required
                     </p>
                 </div>
             </div>

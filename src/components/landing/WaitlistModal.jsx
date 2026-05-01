@@ -72,7 +72,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             
             // Show success toast after modal closes
             setTimeout(() => {
-                showToast('🎉 Thank you! Your spot has been reserved. We\'ll be in touch soon!', 'success');
+                showToast('Thank you. Your spot has been reserved. We\'ll be in touch soon!', 'success');
             }, 300);
         } else if (result.error) {
             // Show error toast

@@ -151,7 +151,7 @@ const WhyJoin = () => {
                             <Zap size={24} className="fill-current animate-pulse" />
                         </button>
                         <p className="mt-5 sm:mt-8 text-gray-400 text-xs sm:text-sm tracking-normal uppercase font-medium">
-                            Limited Spots Available • No Commitment
+                            Limited spots available - no commitment
                         </p>
                     </div>
 
