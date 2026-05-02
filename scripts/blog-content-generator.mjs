@@ -1103,7 +1103,8 @@ function buildPracticeGuidance(topic) {
     'Local Guides': 'For local searches, save the areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes.',
     'Tools and Templates': 'For templates, the value comes from keeping them current. Add dates, links and reasons so the document stays useful after the first decision.',
   };
-  return focus.practice || guidance[topic.category] || guidance.Buying;
+  const baseGuidance = focus.practice || guidance[topic.category] || guidance.Buying;
+  return `${baseGuidance} Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes.`;
 }
 
 function buildSummary(topic) {

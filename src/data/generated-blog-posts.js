@@ -168,7 +168,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -304,7 +304,7 @@ const posts = [
       "articleSection": "Renters Rights",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 969,
+      "wordCount": 993,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -555,7 +555,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -685,7 +685,7 @@ const posts = [
       "articleSection": "Renters Rights",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 966,
+      "wordCount": 990,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -935,7 +935,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Before paying, ask for the fee purpose and refund condition in writing. A legitimate process should be able to explain both plainly."
+            "Before paying, ask for the fee purpose and refund condition in writing. A legitimate process should be able to explain both plainly. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -1071,7 +1071,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 959,
+      "wordCount": 983,
       "citation": [
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
         "https://www.gov.uk/tenancy-deposit-protection",
@@ -1322,7 +1322,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the check log separate from casual tenant correspondence so audit evidence is easy to locate."
+            "Keep the check log separate from casual tenant correspondence so audit evidence is easy to locate. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -1452,7 +1452,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 923,
+      "wordCount": 947,
       "citation": [
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
@@ -1701,7 +1701,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later."
+            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -1831,7 +1831,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 908,
+      "wordCount": 932,
       "citation": [
         "https://www.gov.uk/tenancy-deposit-protection",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -2080,7 +2080,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later."
+            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -2210,7 +2210,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 912,
+      "wordCount": 936,
       "citation": [
         "https://www.gov.uk/tenancy-deposit-protection",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -2459,7 +2459,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready."
+            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -2589,7 +2589,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 981,
+      "wordCount": 1005,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -2838,7 +2838,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready."
+            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -2968,7 +2968,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 991,
+      "wordCount": 1015,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -3217,7 +3217,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again."
+            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -3347,7 +3347,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 928,
+      "wordCount": 952,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -3596,7 +3596,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the calculation date and assumptions with the budget so a broker, solicitor or adviser can review them quickly."
+            "Keep the calculation date and assumptions with the budget so a broker, solicitor or adviser can review them quickly. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -3726,7 +3726,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 912,
+      "wordCount": 936,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -3975,7 +3975,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep valuation notes, fee terms, document status and viewing feedback in one place so the sale can be adjusted calmly when new evidence arrives."
+            "Keep valuation notes, fee terms, document status and viewing feedback in one place so the sale can be adjusted calmly when new evidence arrives. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -4105,7 +4105,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 1039,
+      "wordCount": 1063,
       "citation": [
         "https://www.gov.uk/report-and-pay-your-capital-gains-tax/if-you-sold-a-property-in-the-uk-on-or-after-6-april-2020",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -4354,7 +4354,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -4484,7 +4484,7 @@ const posts = [
       "articleSection": "Renters Rights",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 954,
+      "wordCount": 978,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -4734,7 +4734,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep messages factual: what is affected, when it was noticed, what action is requested and when you will review the response."
+            "Keep messages factual: what is affected, when it was noticed, what action is requested and when you will review the response. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -4870,7 +4870,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 933,
+      "wordCount": 957,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
@@ -5121,7 +5121,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -5245,7 +5245,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 936,
+      "wordCount": 960,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -5489,7 +5489,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again."
+            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -5613,7 +5613,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 926,
+      "wordCount": 950,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -5857,7 +5857,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -5987,7 +5987,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 926,
+      "wordCount": 950,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -6236,7 +6236,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -6366,7 +6366,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 978,
+      "wordCount": 1002,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -6480,7 +6480,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-01-27T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/leasehold-flat-buying-checklist-service-charges-ground-rent-and-major-works-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Leasehold flat buying checklist: service charges, ground rent and major works",
@@ -6615,7 +6615,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the leasehold file separate from the general sale file so service-charge and management questions are easy to find."
+            "Keep the leasehold file separate from the general sale file so service-charge and management questions are easy to find. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -6745,7 +6745,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 899,
+      "wordCount": 923,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -6994,7 +6994,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again."
+            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -7124,7 +7124,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 934,
+      "wordCount": 958,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -7374,7 +7374,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the London areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the London areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -7510,7 +7510,7 @@ const posts = [
       "articleSection": "Market Data",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 991,
+      "wordCount": 1015,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -7761,7 +7761,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -7897,7 +7897,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 983,
+      "wordCount": 1007,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -8148,7 +8148,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -8278,7 +8278,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 960,
+      "wordCount": 984,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -8527,7 +8527,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -8657,7 +8657,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 972,
+      "wordCount": 996,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -8906,7 +8906,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -9036,7 +9036,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 964,
+      "wordCount": 988,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -9285,7 +9285,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -9415,7 +9415,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 948,
+      "wordCount": 972,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -9664,7 +9664,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -9794,7 +9794,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 960,
+      "wordCount": 984,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -10043,7 +10043,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready."
+            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -10173,7 +10173,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 980,
+      "wordCount": 1004,
       "citation": [
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -10422,7 +10422,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -10552,7 +10552,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 909,
+      "wordCount": 933,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -10801,7 +10801,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready."
+            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -10931,7 +10931,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 978,
+      "wordCount": 1002,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -11180,7 +11180,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready."
+            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -11310,7 +11310,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 975,
+      "wordCount": 999,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -11561,7 +11561,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready."
+            "Use the habit source, proof, owner, review date. If one of those is missing, the file is not ready. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -11703,7 +11703,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 984,
+      "wordCount": 1008,
       "citation": [
         "https://www.gov.uk/tenancy-deposit-protection",
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
@@ -11956,7 +11956,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -12086,7 +12086,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 956,
+      "wordCount": 980,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -12335,7 +12335,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action."
+            "Keep the discussion narrow: quote the document, state the date and ask for the specific correction, explanation or next action. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -12465,7 +12465,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 960,
+      "wordCount": 984,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -12714,7 +12714,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep messages factual: what is affected, when it was noticed, what action is requested and when you will review the response."
+            "Keep messages factual: what is affected, when it was noticed, what action is requested and when you will review the response. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -12844,7 +12844,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 927,
+      "wordCount": 951,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
@@ -13094,7 +13094,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep messages factual: what is affected, when it was noticed, what action is requested and when you will review the response."
+            "Keep messages factual: what is affected, when it was noticed, what action is requested and when you will review the response. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -13230,7 +13230,7 @@ const posts = [
       "articleSection": "Compliance",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 940,
+      "wordCount": 964,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
@@ -13482,7 +13482,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep a simple affordability note beside the shortlist so every viewing is judged against the real monthly number."
+            "Keep a simple affordability note beside the shortlist so every viewing is judged against the real monthly number. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -13618,7 +13618,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 916,
+      "wordCount": 940,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -13869,7 +13869,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep a simple affordability note beside the shortlist so every viewing is judged against the real monthly number."
+            "Keep a simple affordability note beside the shortlist so every viewing is judged against the real monthly number. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -13999,7 +13999,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 908,
+      "wordCount": 932,
       "citation": [
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -14248,7 +14248,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep a simple affordability note beside the shortlist so every viewing is judged against the real monthly number."
+            "Keep a simple affordability note beside the shortlist so every viewing is judged against the real monthly number. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -14378,7 +14378,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 904,
+      "wordCount": 928,
       "citation": [
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -14627,7 +14627,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -14757,7 +14757,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 970,
+      "wordCount": 994,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -15006,7 +15006,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -15136,7 +15136,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 918,
+      "wordCount": 942,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -15385,7 +15385,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -15515,7 +15515,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 917,
+      "wordCount": 941,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -15764,7 +15764,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -15894,7 +15894,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 902,
+      "wordCount": 926,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -16143,7 +16143,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -16273,7 +16273,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 970,
+      "wordCount": 994,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -16522,7 +16522,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -16652,7 +16652,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 906,
+      "wordCount": 930,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -16901,7 +16901,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -17031,7 +17031,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 914,
+      "wordCount": 938,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -17280,7 +17280,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -17410,7 +17410,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 966,
+      "wordCount": 990,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -17659,7 +17659,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -17789,7 +17789,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 947,
+      "wordCount": 971,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -18038,7 +18038,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -18168,7 +18168,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 962,
+      "wordCount": 986,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
@@ -18417,7 +18417,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain."
+            "Save the shortlist, viewing notes, photos and questions before the second viewing so the offer decision is calmer and easier to explain. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -18547,7 +18547,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 962,
+      "wordCount": 986,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -18796,7 +18796,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away?"
+            "Ask one clear question for every concern: what evidence would let me proceed, renegotiate or walk away? Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -18926,7 +18926,7 @@ const posts = [
       "articleSection": "Buying",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 916,
+      "wordCount": 940,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -19176,7 +19176,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -19312,7 +19312,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 953,
+      "wordCount": 977,
       "citation": [
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
@@ -19563,7 +19563,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later."
+            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -19693,7 +19693,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 904,
+      "wordCount": 928,
       "citation": [
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
         "https://www.gov.uk/tenancy-deposit-protection",
@@ -19942,7 +19942,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -20072,7 +20072,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 952,
+      "wordCount": 976,
       "citation": [
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
         "https://www.gov.uk/tenancy-deposit-protection",
@@ -20322,7 +20322,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -20458,7 +20458,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 905,
+      "wordCount": 929,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/tenancy-deposit-protection",
@@ -20575,7 +20575,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-05T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/house-share-checklist-licences-bills-deposits-and-room-inspections-hero-photo-v8.webp",
       "alt": "Editorial UK property image for House share checklist: licences, bills, deposits and room inspections",
@@ -20710,7 +20710,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later."
+            "Label photos by room and date. Small organisation at move-in can make a dispute much easier later. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -20846,7 +20846,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 890,
+      "wordCount": 914,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.gov.uk/tenancy-deposit-protection",
@@ -21097,7 +21097,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -21227,7 +21227,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 945,
+      "wordCount": 969,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -21476,7 +21476,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -21606,7 +21606,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 957,
+      "wordCount": 981,
       "citation": [
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
         "https://www.gov.uk/tenancy-deposit-protection",
@@ -21855,7 +21855,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -21985,7 +21985,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 953,
+      "wordCount": 977,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -22234,7 +22234,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -22364,7 +22364,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 945,
+      "wordCount": 969,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -22613,7 +22613,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised."
+            "Keep the listing, fees, deposit terms, documents and messages together so you can move quickly without losing track of what was promised. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -22743,7 +22743,7 @@ const posts = [
       "articleSection": "Renting",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 961,
+      "wordCount": 985,
       "citation": [
         "https://www.gov.uk/check-tenant-right-to-rent-documents",
         "https://www.gov.uk/guidance/tenant-fees-act-2019-guidance-for-tenants",
@@ -22993,7 +22993,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again."
+            "Add a short note beside every calculated result: what assumption matters most and when it should be checked again. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -23129,7 +23129,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 910,
+      "wordCount": 934,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -23246,7 +23246,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-12T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/limited-company-buy-to-let-what-investors-should-compare-before-choosing-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Limited company buy-to-let: what investors should compare before choosing",
@@ -23381,7 +23381,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -23517,7 +23517,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 894,
+      "wordCount": 918,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.gov.uk/report-and-pay-your-capital-gains-tax/if-you-sold-a-property-in-the-uk-on-or-after-6-april-2020",
@@ -23633,7 +23633,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-13T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/mees-and-epc-planning-how-landlords-should-budget-for-upgrades-hero-photo-v8.webp",
       "alt": "Editorial UK property image for MEES and EPC planning: how landlords should budget for upgrades",
@@ -23768,7 +23768,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -23898,7 +23898,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 898,
+      "wordCount": 922,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -24012,7 +24012,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-14T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/hmo-vs-single-let-yield-compliance-and-management-trade-offs-hero-photo-v8.webp",
       "alt": "Editorial UK property image for HMO vs single let: yield, compliance and management trade-offs",
@@ -24147,7 +24147,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -24277,7 +24277,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 886,
+      "wordCount": 910,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -24391,7 +24391,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-15T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/purpose-built-student-accommodation-investor-checklist-for-uk-cities-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Purpose-built student accommodation: investor checklist for UK cities",
@@ -24526,7 +24526,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -24656,7 +24656,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 889,
+      "wordCount": 913,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -24906,7 +24906,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -25042,7 +25042,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 907,
+      "wordCount": 931,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -25158,7 +25158,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-17T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/short-term-lets-vs-long-term-lets-income-regulation-and-void-risk-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Short-term lets vs long-term lets: income, regulation and void risk",
@@ -25293,7 +25293,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -25423,7 +25423,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 897,
+      "wordCount": 921,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -25537,7 +25537,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-18T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/regeneration-hotspots-how-investors-should-validate-growth-claims-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Regeneration hotspots: how investors should validate growth claims",
@@ -25672,7 +25672,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -25802,7 +25802,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 889,
+      "wordCount": 913,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -25916,7 +25916,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-19T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/portfolio-stress-test-interest-rates-voids-and-repair-reserve-checklist-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Portfolio stress test: interest rates, voids and repair reserve checklist",
@@ -26051,7 +26051,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -26181,7 +26181,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 893,
+      "wordCount": 917,
       "citation": [
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -26431,7 +26431,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -26567,7 +26567,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 905,
+      "wordCount": 929,
       "citation": [
         "https://www.gov.uk/report-and-pay-your-capital-gains-tax/if-you-sold-a-property-in-the-uk-on-or-after-6-april-2020",
         "https://www.bankofengland.co.uk/monetary-policy/the-interest-rate-bank-rate",
@@ -26683,7 +26683,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-21T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/green-rental-upgrades-which-improvements-help-tenants-and-yields-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Green rental upgrades: which improvements help tenants and yields",
@@ -26818,7 +26818,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -26948,7 +26948,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 894,
+      "wordCount": 918,
       "citation": [
         "https://www.gov.uk/private-renting/your-landlords-safety-responsibilities",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -27063,7 +27063,7 @@ const posts = [
     "status": "published",
     "publishedAt": "2026-03-22T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
-    "readingTime": 5,
+    "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/investor-due-diligence-pack-documents-to-review-before-exchange-hero-photo-v8.webp",
       "alt": "Editorial UK property image for Investor due diligence pack: documents to review before exchange",
@@ -27198,7 +27198,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision."
+            "Keep one page for the investment case and one page for the failure case. The gap between them is the real decision. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -27334,7 +27334,7 @@ const posts = [
       "articleSection": "Investing",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 894,
+      "wordCount": 918,
       "citation": [
         "https://www.gov.uk/stamp-duty-land-tax/residential-property-rates",
         "https://www.gov.uk/report-and-pay-your-capital-gains-tax/if-you-sold-a-property-in-the-uk-on-or-after-6-april-2020",
@@ -27585,7 +27585,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -27709,7 +27709,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 920,
+      "wordCount": 944,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -27953,7 +27953,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Make the next action visible in the CRM or workspace: owner, deadline, evidence and client update. The tool matters less than whether the team can see what changed today."
+            "Make the next action visible in the CRM or workspace: owner, deadline, evidence and client update. The tool matters less than whether the team can see what changed today. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -28083,7 +28083,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 944,
+      "wordCount": 968,
       "citation": [
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
@@ -28332,7 +28332,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -28456,7 +28456,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 928,
+      "wordCount": 952,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -28700,7 +28700,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Make the next action visible in the CRM or workspace: owner, deadline, evidence and client update. The tool matters less than whether the team can see what changed today."
+            "Make the next action visible in the CRM or workspace: owner, deadline, evidence and client update. The tool matters less than whether the team can see what changed today. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -28824,7 +28824,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 956,
+      "wordCount": 980,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -29068,7 +29068,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -29192,7 +29192,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 924,
+      "wordCount": 948,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -29436,7 +29436,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -29560,7 +29560,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 920,
+      "wordCount": 944,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -29804,7 +29804,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -29928,7 +29928,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 916,
+      "wordCount": 940,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -30172,7 +30172,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -30296,7 +30296,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 916,
+      "wordCount": 940,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -30540,7 +30540,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Write the valuation as a range with assumptions. That makes later price conversations calmer and more credible."
+            "Write the valuation as a range with assumptions. That makes later price conversations calmer and more credible. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -30664,7 +30664,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 903,
+      "wordCount": 927,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
@@ -30908,7 +30908,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -31032,7 +31032,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 906,
+      "wordCount": 930,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
@@ -31276,7 +31276,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -31400,7 +31400,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 916,
+      "wordCount": 940,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -31644,7 +31644,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update."
+            "Review the workflow weekly and remove the bottleneck that slows the next action: response, qualification, documents or client update. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -31768,7 +31768,7 @@ const posts = [
       "articleSection": "Agents",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 916,
+      "wordCount": 940,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -32012,7 +32012,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Ask for a plain-English contract summary before signing: fee, VAT, tie-in, termination, marketing inclusions and what happens if you find the buyer yourself."
+            "Ask for a plain-English contract summary before signing: fee, VAT, tie-in, termination, marketing inclusions and what happens if you find the buyer yourself. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -32142,7 +32142,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 983,
+      "wordCount": 1007,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -32391,7 +32391,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Before instructing, ask the preferred agent to summarise the first 14 days of marketing, the review point and what evidence would trigger a price or messaging change."
+            "Before instructing, ask the preferred agent to summarise the first 14 days of marketing, the review point and what evidence would trigger a price or messaging change. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -32521,7 +32521,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 1003,
+      "wordCount": 1027,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -32770,7 +32770,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Use a short review cycle: what enquiries came in, what buyers asked, what objections repeated and what action follows."
+            "Use a short review cycle: what enquiries came in, what buyers asked, what objections repeated and what action follows. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -32900,7 +32900,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 971,
+      "wordCount": 995,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -33149,7 +33149,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Set the first review date before launch so timing decisions do not drift into hope."
+            "Set the first review date before launch so timing decisions do not drift into hope. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -33279,7 +33279,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 914,
+      "wordCount": 938,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -33528,7 +33528,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Write the valuation as a range with assumptions. That makes later price conversations calmer and more credible."
+            "Write the valuation as a range with assumptions. That makes later price conversations calmer and more credible. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -33658,7 +33658,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 927,
+      "wordCount": 951,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -33907,7 +33907,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Create a room note for every space: purpose, best angle, repair issue, document answer and likely buyer question."
+            "Create a room note for every space: purpose, best angle, repair issue, document answer and likely buyer question. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -34037,7 +34037,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 965,
+      "wordCount": 989,
       "citation": [
         "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -34286,7 +34286,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep a short explanation for every missing item: what is missing, who has been asked and when it will be reviewed."
+            "Keep a short explanation for every missing item: what is missing, who has been asked and when it will be reviewed. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -34416,7 +34416,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 921,
+      "wordCount": 945,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -34665,7 +34665,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Pair every price change with a message change and a review date, otherwise you only change the number."
+            "Pair every price change with a message change and a review date, otherwise you only change the number. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -34795,7 +34795,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 957,
+      "wordCount": 981,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -35044,7 +35044,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep the leasehold file separate from the general sale file so service-charge and management questions are easy to find."
+            "Keep the leasehold file separate from the general sale file so service-charge and management questions are easy to find. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -35174,7 +35174,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 903,
+      "wordCount": 927,
       "citation": [
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
@@ -35424,7 +35424,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Keep valuation notes, fee terms, document status and viewing feedback in one place so the sale can be adjusted calmly when new evidence arrives."
+            "Keep valuation notes, fee terms, document status and viewing feedback in one place so the sale can be adjusted calmly when new evidence arrives. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -35560,7 +35560,7 @@ const posts = [
       "articleSection": "Selling",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 1024,
+      "wordCount": 1048,
       "citation": [
         "https://www.gov.uk/report-and-pay-your-capital-gains-tax/if-you-sold-a-property-in-the-uk-on-or-after-6-april-2020",
         "https://www.gov.uk/government/publications/renters-rights-act-2025-implementation-roadmap",
@@ -35811,7 +35811,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the London areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the London areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -35935,7 +35935,7 @@ const posts = [
       "articleSection": "Local Guides",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 994,
+      "wordCount": 1018,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -36179,7 +36179,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the London areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the London areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -36303,7 +36303,7 @@ const posts = [
       "articleSection": "Local Guides",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 986,
+      "wordCount": 1010,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -36547,7 +36547,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the Manchester areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the Manchester areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -36671,7 +36671,7 @@ const posts = [
       "articleSection": "Local Guides",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 994,
+      "wordCount": 1018,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -36915,7 +36915,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the Manchester areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the Manchester areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -37039,7 +37039,7 @@ const posts = [
       "articleSection": "Local Guides",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 986,
+      "wordCount": 1010,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -37283,7 +37283,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the Birmingham areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the Birmingham areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -37407,7 +37407,7 @@ const posts = [
       "articleSection": "Local Guides",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 994,
+      "wordCount": 1018,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",
@@ -37651,7 +37651,7 @@ const posts = [
         {
           "heading": "Put This Into Practice",
           "body": [
-            "Save the Birmingham areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes."
+            "Save the Birmingham areas you reject as well as the areas you like. Rejection notes make the next search sharper and prevent repeating the same viewing mistakes. Estospaces can support this by keeping shortlists, evidence, messages and next actions connected, so the decision stays practical instead of turning into scattered notes."
           ]
         },
         {
@@ -37775,7 +37775,7 @@ const posts = [
       "articleSection": "Local Guides",
       "inLanguage": "en-GB",
       "isAccessibleForFree": true,
-      "wordCount": 986,
+      "wordCount": 1010,
       "citation": [
         "https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/ukhousepriceindexmonthlypricestatistics",
         "https://www.rics.org/profession-standards/rics-standards-and-guidance/sector-standards/building-surveying-standards/home-surveys",

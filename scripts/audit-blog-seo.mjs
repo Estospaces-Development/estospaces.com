@@ -68,6 +68,7 @@ for (const post of posts) {
   const definitions = post.content.sections.find((section) => section.heading === 'Important Terms');
   const steps = post.content.sections.find((section) => section.heading === 'Step-by-Step Plan');
   const checklist = post.content.sections.find((section) => section.heading === 'Practical Checklist');
+  const practice = post.content.sections.find((section) => section.heading === 'Put This Into Practice');
   const heroPath = resolve(process.cwd(), 'public/blog-images', post.heroImage.url.replace('/blog-images/', ''));
 
   requireCheck(label, 'canonical URL matches slug', post.canonicalUrl === `${SITE_URL}/blogs/${post.slug}`);
@@ -86,6 +87,7 @@ for (const post of posts) {
   requireCheck(label, 'important terms are present', definitions?.definitions?.length >= 3);
   requireCheck(label, 'step plan is substantial', steps?.steps?.length >= 5);
   requireCheck(label, 'practical checklist is substantial', checklist?.bullets?.length >= 5);
+  requireCheck(label, 'practice section includes a useful Estospaces workflow cue', practice?.body?.join(' ').includes('Estospaces can support this by keeping shortlists'));
   requireCheck(label, 'FAQ has 4 entries', post.faq.length === 4);
   requireCheck(label, 'sources are HTTPS', post.externalLinks.every((link) => link.url.startsWith('https://')));
   requireCheck(label, 'internal links point to blog surfaces', post.internalLinks.every((link) => link.href.startsWith('/blogs')));

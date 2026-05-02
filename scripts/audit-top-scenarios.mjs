@@ -135,37 +135,38 @@ function buildGlobalCandidates() {
     check('global:blog-card-no-md-split', 9974, 'Featured blog card avoids cramped md split', () => assert.ok(!source.blogCard.includes('md:grid-cols'))),
     check('global:featured-grid-spans', 9973, 'Featured blog grid reserves space for first card', () => assert.ok(source.blogIndex.includes('lg:grid-cols-4') && source.blogIndex.includes('lg:col-span-2'))),
     check('global:external-links-noopener', 9972, 'External source links include noopener', () => assert.match(source.blogArticle, /rel="noopener noreferrer"/)),
-    check('global:hero-video-metadata', 9971, 'Hero video does not preload full media', () => assert.match(source.hero, /preload="metadata"/)),
-    check('global:font-display-swap', 9970, 'Google fonts use display swap', () => assert.match(source.layout, /display:\s*'swap'/)),
-    check('global:readme-blog-docs', 9969, 'README documents blog seeding', () => assert.match(source.readme, /npm run blogs:seed/)),
-    liveCheck('live:health', 9968, 'Production health endpoint returns ok', '/health', async (response, body) => {
+    check('global:blog-pagination-jsonld-visible-only', 9971, 'Paginated blog JSON-LD only lists visible posts', () => assert.ok(source.blogIndex.includes('...(showFeatured ? featuredPosts : [])'))),
+    check('global:hero-video-metadata', 9970, 'Hero video does not preload full media', () => assert.match(source.hero, /preload="metadata"/)),
+    check('global:font-display-swap', 9969, 'Google fonts use display swap', () => assert.match(source.layout, /display:\s*'swap'/)),
+    check('global:readme-blog-docs', 9968, 'README documents blog seeding', () => assert.match(source.readme, /npm run blogs:seed/)),
+    liveCheck('live:health', 9967, 'Production health endpoint returns ok', '/health', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /"ok":true/);
     }),
-    liveCheck('live:home', 9967, 'Production home page is reachable', '/', async (response, body) => {
+    liveCheck('live:home', 9966, 'Production home page is reachable', '/', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Estospaces/);
       assert.match(body, /Virtual Property Tours|Discover your/);
     }),
-    liveCheck('live:blogs', 9966, 'Production blog index is reachable', '/blogs', async (response, body) => {
+    liveCheck('live:blogs', 9965, 'Production blog index is reachable', '/blogs', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /UK property guides built for clear decisions/);
       assert.match(body, /application\/ld\+json/);
     }),
-    liveCheck('live:blog-detail', 9965, 'Production blog detail is reachable', '/blogs/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents', async (response, body) => {
+    liveCheck('live:blog-detail', 9964, 'Production blog detail is reachable', '/blogs/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Preparing a home for virtual tours/);
       assert.match(body, /Official Sources and References/);
     }),
-    liveCheck('live:sitemap', 9964, 'Production sitemap includes blog URLs', '/sitemap.xml', async (response, body) => {
+    liveCheck('live:sitemap', 9963, 'Production sitemap includes blog URLs', '/sitemap.xml', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /\/blogs\/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents/);
     }),
-    liveCheck('live:robots', 9963, 'Production robots references sitemap', '/robots.txt', async (response, body) => {
+    liveCheck('live:robots', 9962, 'Production robots references sitemap', '/robots.txt', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Sitemap: https:\/\/estospaces\.com\/sitemap\.xml/);
     }),
-    liveCheck('live:about', 9962, 'Production about route is reachable', '/about', async (response, body) => {
+    liveCheck('live:about', 9961, 'Production about route is reachable', '/about', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Editorial Standards/);
     }),
