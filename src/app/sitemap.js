@@ -21,6 +21,12 @@ export default async function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: 'https://estospaces.com/properties-coming-soon',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     ...posts.map((post) => ({
       url: post.canonicalUrl,
       lastModified: new Date(post.updatedAt),

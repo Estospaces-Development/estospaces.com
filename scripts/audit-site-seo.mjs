@@ -22,6 +22,14 @@ await check('OG image is 1200x630', async () => {
   return image.width === 1200 && image.height === 630 && image.format === 'webp';
 });
 await check('home page has semantic main content', () => readFileSync('src/components/landing/Home.jsx', 'utf8').includes('<main id="main-content">'));
+await check('property coming-soon page exists for landing searches', () => existsSync('src/app/properties-coming-soon/page.jsx'));
+await check('landing search stays on estospaces.com', () => {
+  const heroSource = readFileSync('src/components/landing/Hero.jsx', 'utf8');
+  const pageSource = readFileSync('src/app/page.jsx', 'utf8');
+  return heroSource.includes("searchUrl = '/properties-coming-soon'") &&
+    pageSource.includes('https://estospaces.com/properties-coming-soon?q={search_term_string}') &&
+    !heroSource.includes('app.estospaces.com/search');
+});
 await check('detail pages have semantic main content', () => readFileSync('src/app/blogs/[slug]/page.jsx', 'utf8').includes('<main>'));
 await check('blog index emits structured data', () => readFileSync('src/app/blogs/page.jsx', 'utf8').includes('buildBlogIndexJsonLd'));
 await check('about page exists for author trust URL', () => existsSync('src/app/about/page.jsx'));
@@ -32,6 +40,7 @@ const sitemapEntries = await sitemap();
 const sitemapUrls = sitemapEntries.map((entry) => entry.url);
 const robotsConfig = robots();
 await check('sitemap includes about page', () => sitemapUrls.includes('https://estospaces.com/about'));
+await check('sitemap includes property coming-soon page', () => sitemapUrls.includes('https://estospaces.com/properties-coming-soon'));
 await check('sitemap includes blog index', () => sitemapUrls.includes('https://estospaces.com/blogs'));
 await check('robots exposes sitemap', () => robotsConfig.sitemap === 'https://estospaces.com/sitemap.xml');
 

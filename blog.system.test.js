@@ -100,6 +100,25 @@ test('site-level SEO trust surfaces exist for home, blog index, and author pages
   assert.doesNotMatch(tailwindSource, /letterSpacing:\s*'-/);
 });
 
+test('landing property search routes to the development-phase coming-soon page', async () => {
+  const heroSource = await readFile('./src/components/landing/Hero.jsx', 'utf8');
+  const searchBarSource = await readFile('./src/components/ui/SearchBar.tsx', 'utf8');
+  const homePageSource = await readFile('./src/app/page.jsx', 'utf8');
+  const comingSoonSource = await readFile('./src/app/properties-coming-soon/page.jsx', 'utf8');
+  const searchRedirectSource = await readFile('./src/app/search/page.jsx', 'utf8');
+  const entries = await sitemap();
+  const urls = entries.map((entry) => entry.url);
+
+  assert.match(heroSource, /searchUrl = '\/properties-coming-soon'/);
+  assert.match(searchBarSource, /searchPath = '\/properties-coming-soon'/);
+  assert.match(homePageSource, /https:\/\/estospaces\.com\/properties-coming-soon\?q=\{search_term_string\}/);
+  assert.doesNotMatch(heroSource, /app\.estospaces\.com\/search/);
+  assert.match(comingSoonSource, /Property listings are coming soon/);
+  assert.match(comingSoonSource, /Your search was received/);
+  assert.match(searchRedirectSource, /redirect\(`\/properties-coming-soon/);
+  assert.ok(urls.includes('https://estospaces.com/properties-coming-soon'));
+});
+
 test('seeded blog hero images exist as crawlable WebP assets', async () => {
   const files = await readdir('./public/blog-images');
   const imageFiles = generatedPosts.map((post) => post.heroImage.url.replace('/blog-images/', ''));

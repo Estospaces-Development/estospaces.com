@@ -30,7 +30,7 @@ const jsonLd = {
       },
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://app.estospaces.com/search?q={search_term_string}',
+        target: 'https://estospaces.com/properties-coming-soon?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },

@@ -6,7 +6,7 @@ const backgroundVideo = '/assets/hero-section-video.mp4';
 
 const Hero = () => {
     const offset = useParallax(0.5);
-    const appSearchUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL || 'https://app.estospaces.com'}/search`;
+    const searchUrl = '/properties-coming-soon';
 
     return (
         <div className="relative min-h-[620px] sm:min-h-[680px] lg:min-h-[760px] flex items-center justify-center overflow-hidden">
@@ -50,7 +50,7 @@ const Hero = () => {
                         variant="hero" 
                         showAdvanced={true}
                         navigateOnSearch={true}
-                        searchPath={appSearchUrl}
+                        searchPath={searchUrl}
                     />
                 </div>
             </div>

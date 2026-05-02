@@ -23,6 +23,9 @@ const source = {
   navbar: read('src/components/landing/Navbar.jsx'),
   home: read('src/components/landing/Home.jsx'),
   hero: read('src/components/landing/Hero.jsx'),
+  searchBar: read('src/components/ui/SearchBar.tsx'),
+  comingSoon: read('src/app/properties-coming-soon/page.jsx'),
+  searchRedirect: read('src/app/search/page.jsx'),
   nextConfig: read('next.config.mjs'),
   middleware: read('middleware.js'),
   dockerfile: read('Dockerfile'),
@@ -136,39 +139,52 @@ function buildGlobalCandidates() {
     check('global:featured-grid-spans', 9973, 'Featured blog grid reserves space for first card', () => assert.ok(source.blogIndex.includes('lg:grid-cols-4') && source.blogIndex.includes('lg:col-span-2'))),
     check('global:external-links-noopener', 9972, 'External source links include noopener', () => assert.match(source.blogArticle, /rel="noopener noreferrer"/)),
     check('global:blog-pagination-jsonld-visible-only', 9971, 'Paginated blog JSON-LD only lists visible posts', () => assert.ok(source.blogIndex.includes('...(showFeatured ? featuredPosts : [])'))),
-    check('global:hero-video-metadata', 9970, 'Hero video does not preload full media', () => assert.match(source.hero, /preload="metadata"/)),
-    check('global:font-display-swap', 9969, 'Google fonts use display swap', () => assert.match(source.layout, /display:\s*'swap'/)),
-    check('global:readme-blog-docs', 9968, 'README documents blog seeding', () => assert.match(source.readme, /npm run blogs:seed/)),
-    liveCheck('live:health', 9967, 'Production health endpoint returns ok', '/health', async (response, body) => {
+    check('global:landing-search-coming-soon-route', 9970, 'Landing search routes to local coming-soon listings page', () => {
+      assert.match(source.hero, /searchUrl = '\/properties-coming-soon'/);
+      assert.match(source.searchBar, /searchPath = '\/properties-coming-soon'/);
+      assert.match(source.comingSoon, /Property listings are coming soon/);
+      assert.match(source.searchRedirect, /redirect\(`\/properties-coming-soon/);
+      assert.ok(!source.hero.includes('app.estospaces.com/search'));
+    }),
+    check('global:sitemap-coming-soon', 9969, 'Sitemap includes coming-soon listings page', () => assert.ok(sitemapUrls.has(`${siteUrl}/properties-coming-soon`))),
+    check('global:hero-video-metadata', 9968, 'Hero video does not preload full media', () => assert.match(source.hero, /preload="metadata"/)),
+    check('global:font-display-swap', 9967, 'Google fonts use display swap', () => assert.match(source.layout, /display:\s*'swap'/)),
+    check('global:readme-blog-docs', 9966, 'README documents blog seeding', () => assert.match(source.readme, /npm run blogs:seed/)),
+    liveCheck('live:health', 9965, 'Production health endpoint returns ok', '/health', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /"ok":true/);
     }),
-    liveCheck('live:home', 9966, 'Production home page is reachable', '/', async (response, body) => {
+    liveCheck('live:home', 9964, 'Production home page is reachable', '/', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Estospaces/);
       assert.match(body, /Virtual Property Tours|Discover your/);
     }),
-    liveCheck('live:blogs', 9965, 'Production blog index is reachable', '/blogs', async (response, body) => {
+    liveCheck('live:blogs', 9963, 'Production blog index is reachable', '/blogs', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /UK property guides built for clear decisions/);
       assert.match(body, /application\/ld\+json/);
     }),
-    liveCheck('live:blog-detail', 9964, 'Production blog detail is reachable', '/blogs/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents', async (response, body) => {
+    liveCheck('live:blog-detail', 9962, 'Production blog detail is reachable', '/blogs/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Preparing a home for virtual tours/);
       assert.match(body, /Official Sources and References/);
     }),
-    liveCheck('live:sitemap', 9963, 'Production sitemap includes blog URLs', '/sitemap.xml', async (response, body) => {
+    liveCheck('live:sitemap', 9961, 'Production sitemap includes blog URLs', '/sitemap.xml', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /\/blogs\/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents/);
     }),
-    liveCheck('live:robots', 9962, 'Production robots references sitemap', '/robots.txt', async (response, body) => {
+    liveCheck('live:robots', 9960, 'Production robots references sitemap', '/robots.txt', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Sitemap: https:\/\/estospaces\.com\/sitemap\.xml/);
     }),
-    liveCheck('live:about', 9961, 'Production about route is reachable', '/about', async (response, body) => {
+    liveCheck('live:about', 9959, 'Production about route is reachable', '/about', async (response, body) => {
       assert.equal(response.status, 200);
       assert.match(body, /Editorial Standards/);
+    }),
+    liveCheck('live:properties-coming-soon', 9958, 'Production coming-soon listings page is reachable', '/properties-coming-soon?q=apartment&location=London&type=rent', async (response, body) => {
+      assert.equal(response.status, 200);
+      assert.match(body, /Property listings are coming soon/);
+      assert.match(body, /Your search was received/);
     }),
     liveCheck('live:og-image', 9961, 'Production OG image is reachable as WebP', '/assets/estospaces-og.webp', async (response) => {
       assert.equal(response.status, 200);
