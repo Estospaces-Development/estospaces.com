@@ -1,14 +1,15 @@
 import React from 'react';
 import useParallax from '../../hooks/useParallax';
 import SearchBar from '../ui/SearchBar';
-import backgroundVideo from '../../assets/hero-section-video.mp4';
+
+const backgroundVideo = '/assets/hero-section-video.mp4';
 
 const Hero = () => {
     const offset = useParallax(0.5);
-    const appSearchUrl = `${import.meta.env.VITE_APP_BASE_URL || 'https://app.estospaces.com'}/search`;
+    const appSearchUrl = `${process.env.NEXT_PUBLIC_APP_BASE_URL || 'https://app.estospaces.com'}/search`;
 
     return (
-        <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <div className="relative min-h-[620px] sm:min-h-[680px] lg:min-h-[760px] flex items-center justify-center overflow-hidden">
             {/* Background Video */}
             <div
                 className="absolute inset-0 z-0 will-change-transform"
@@ -19,6 +20,9 @@ const Hero = () => {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
+                    poster="/assets/modern-apartment.png"
+                    aria-hidden="true"
                     className="w-full h-full object-cover"
                 >
                     <source src={backgroundVideo} type="video/mp4" />
@@ -27,21 +31,21 @@ const Hero = () => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto px-4 pt-20">
-                <div className="text-center text-white mb-12">
-                    <h1 className="text-6xl md:text-8xl font-medium mb-6 animate-fade-in-up leading-none font-serif tracking-tighter">
+            <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-16 sm:pt-20">
+                <div className="text-center text-white mb-7 sm:mb-10 lg:mb-12">
+                    <h1 className="text-4xl min-[360px]:text-5xl sm:text-6xl md:text-8xl font-medium mb-4 sm:mb-6 animate-fade-in-up leading-[0.95] font-serif tracking-normal">
                         <span className="text-white drop-shadow-lg">Discover your</span>
-                        <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-400 to-orange-600 font-bold italic pr-4 pb-2">
+                        <span className="block mt-1 sm:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-primary via-amber-400 to-orange-600 font-bold italic sm:pr-4 pb-2">
                             Dream Home
                         </span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto animate-fade-in-up delay-100 font-light leading-relaxed drop-shadow-lg">
+                    <p className="px-1 text-base sm:text-xl md:text-2xl text-white max-w-[19rem] sm:max-w-3xl mx-auto animate-fade-in-up delay-100 font-light leading-relaxed drop-shadow-lg">
                         Experience properties like never before with immersive virtual tours and verified listings
                     </p>
                 </div>
 
                 {/* Search Form */}
-                <div className="max-w-5xl mx-auto bg-white bg-opacity-10 backdrop-blur-md rounded-lg p-1 animate-fade-in-up delay-200">
+                <div className="w-full max-w-5xl mx-auto bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-1 animate-fade-in-up delay-200 overflow-visible">
                     <SearchBar 
                         variant="hero" 
                         showAdvanced={true}

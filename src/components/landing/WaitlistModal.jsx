@@ -72,7 +72,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             
             // Show success toast after modal closes
             setTimeout(() => {
-                showToast('🎉 Thank you! Your spot has been reserved. We\'ll be in touch soon!', 'success');
+                showToast('Thank you. Your spot has been reserved. We\'ll be in touch soon!', 'success');
             }, 300);
         } else if (result.error) {
             // Show error toast
@@ -123,6 +123,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                         {/* Close Button */}
                         <button
                             onClick={onClose}
+                            aria-label="Close reservation form"
                             className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors z-10"
                         >
                             <X size={24} className="text-gray-500 dark:text-gray-400" />

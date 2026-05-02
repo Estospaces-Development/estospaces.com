@@ -1,39 +1,22 @@
-# Landing Page - Import Paths Fixed
+# Landing Page Import Paths
 
-All import paths have been corrected and verified.
+The landing page now runs through Next.js App Router.
 
-## Path Structure
+## Current Structure
 
-From `src/components/landing/` to `src/`:
-- `../../` to reach `src/` (two levels up)
+- `src/app/` contains the route, metadata, sitemap, robots, health route, and API route handlers.
+- `src/components/landing/` contains the preserved landing page sections.
+- `src/components/landing/Home.jsx` composes the visible landing page.
+- `src/lib/landingApi.js` is the browser API client.
+- `src/lib/server/landingApi.js` contains shared server route-handler logic.
+- `public/assets/` contains landing images and video served by Next.js.
 
-From `src/components/landing/LiveChat/` to `src/`:
-- `../../../` to reach `src/` (three levels up)
+## Local URL
 
-## Fixed Import Paths
-
-### Components in `landing/` folder:
-- **Hooks**: `../../hooks/useWaitlist`, `../../hooks/useParallax`
-- **Contexts**: `../../contexts/ChatContext`
-- **Lib**: `../../lib/landingApi`
-- **Assets**: `../../assets/*.png`, `../../assets/*.mp4`
-- **UI Components**: `../ui/Toast`, `../ui/SearchBar`, `../ui/TestimonialsColumn`
-
-### Components in `landing/LiveChat/` folder:
-- **Hooks**: `../../../hooks/useLiveChat` (one extra `../` because of subdirectory)
-
-## Server Status
-
-✅ Server running on `http://localhost:5173`
-✅ All files exist and are accessible
-✅ All import paths verified and corrected
-✅ No errors in HTML response
-
-## Test the Landing Page
+Run:
 
 ```bash
-cd /Users/itsmine/Documents/repos/estospaces.com
 npm run dev
 ```
 
-Then open: `http://localhost:5173`
+Open `http://localhost:3000`.

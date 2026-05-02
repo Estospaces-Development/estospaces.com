@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Search, MapPin, Home, DollarSign, Bed, Bath, X, SlidersHorizontal, ChevronDown } from 'lucide-react';
 
 export interface SearchFilters {
@@ -53,20 +52,20 @@ const propertyTypes = [
 
 const priceRanges = {
   rent: [
-    { min: null, max: 500, label: 'Under £500' },
-    { min: 500, max: 1000, label: '£500 - £1,000' },
-    { min: 1000, max: 1500, label: '£1,000 - £1,500' },
-    { min: 1500, max: 2000, label: '£1,500 - £2,000' },
-    { min: 2000, max: 3000, label: '£2,000 - £3,000' },
-    { min: 3000, max: null, label: '£3,000+' },
+    { min: null, max: 500, label: 'Under GBP 500' },
+    { min: 500, max: 1000, label: 'GBP 500 - GBP 1,000' },
+    { min: 1000, max: 1500, label: 'GBP 1,000 - GBP 1,500' },
+    { min: 1500, max: 2000, label: 'GBP 1,500 - GBP 2,000' },
+    { min: 2000, max: 3000, label: 'GBP 2,000 - GBP 3,000' },
+    { min: 3000, max: null, label: 'GBP 3,000+' },
   ],
   sale: [
-    { min: null, max: 100000, label: 'Under £100k' },
-    { min: 100000, max: 250000, label: '£100k - £250k' },
-    { min: 250000, max: 500000, label: '£250k - £500k' },
-    { min: 500000, max: 750000, label: '£500k - £750k' },
-    { min: 750000, max: 1000000, label: '£750k - £1M' },
-    { min: 1000000, max: null, label: '£1M+' },
+    { min: null, max: 100000, label: 'Under GBP 100k' },
+    { min: 100000, max: 250000, label: 'GBP 100k - GBP 250k' },
+    { min: 250000, max: 500000, label: 'GBP 250k - GBP 500k' },
+    { min: 500000, max: 750000, label: 'GBP 500k - GBP 750k' },
+    { min: 750000, max: 1000000, label: 'GBP 750k - GBP 1M' },
+    { min: 1000000, max: null, label: 'GBP 1M+' },
   ],
 };
 
@@ -79,8 +78,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
   navigateOnSearch = true,
   searchPath = '/properties/search',
 }) => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   const [filters, setFilters] = useState<SearchFilters>({ ...defaultFilters, ...initialFilters });
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [locationSuggestions, setLocationSuggestions] = useState<string[]>([]);
@@ -88,6 +85,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   // Initialize from URL params
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const searchParams = new URLSearchParams(window.location.search);
     const urlFilters: Partial<SearchFilters> = {};
     
     const keyword = searchParams.get('q') || searchParams.get('keyword');
@@ -119,7 +121,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     if (Object.keys(urlFilters).length > 0) {
       setFilters(prev => ({ ...prev, ...urlFilters }));
     }
-  }, [searchParams]);
+  }, []);
 
   // Location autocomplete
   const fetchLocationSuggestions = useCallback(async (query: string) => {
@@ -189,7 +191,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         window.location.assign(destination);
         return;
       }
-      navigate(destination);
+      window.location.assign(destination);
     }
   };
 
@@ -213,12 +215,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
     return (
       <form onSubmit={handleSearch} className={`w-full ${className}`}>
         {/* Listing Type Tabs */}
-        <div className="inline-flex p-1 bg-white/10 backdrop-blur-sm rounded-t-xl border border-white/20 border-b-0">
+        <div className="inline-flex w-full sm:w-auto p-1 bg-white/10 backdrop-blur-sm rounded-t-xl border border-white/20 border-b-0">
           {['buy', 'rent'].map((type) => (
             <button
               key={type}
               type="button"
-              className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm tracking-wide transition-all duration-300 ${
+              className={`flex flex-1 sm:flex-none items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold text-sm tracking-normal transition-all duration-300 ${
                 filters.listingType === (type === 'buy' ? 'sale' : type)
                   ? 'bg-primary text-white shadow-lg shadow-primary/30 scale-[1.02]'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
@@ -231,7 +233,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         </div>
 
         {/* Search Fields */}
-        <div className="bg-white dark:bg-gray-900 p-6 rounded-b-xl rounded-tr-xl shadow-2xl grid grid-cols-1 md:grid-cols-4 gap-4 border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-900 p-4 sm:p-5 md:p-6 rounded-b-xl sm:rounded-tr-xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 border border-gray-100 dark:border-gray-700">
           {/* Keyword */}
           <div className="relative">
             <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Keyword</label>
@@ -242,7 +244,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 value={filters.keyword}
                 onChange={(e) => handleInputChange('keyword', e.target.value)}
                 placeholder="Enter Keyword..."
-                className="w-full outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent"
+                className="w-full min-w-0 outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent"
               />
             </div>
           </div>
@@ -262,7 +264,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 onFocus={() => setShowSuggestions(true)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                 placeholder="City, Postcode..."
-                className="w-full outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent"
+                className="w-full min-w-0 outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent"
               />
             </div>
             {/* Location Suggestions */}
@@ -294,7 +296,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               <select
                 value={filters.propertyType}
                 onChange={(e) => handleInputChange('propertyType', e.target.value)}
-                className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent cursor-pointer"
+                className="w-full min-w-0 outline-none text-gray-900 dark:text-gray-100 bg-transparent cursor-pointer"
               >
                 {propertyTypes.map((type) => (
                   <option key={type.value} value={type.value}>{type.label}</option>
@@ -304,12 +306,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
           </div>
 
           {/* Search Button */}
-          <div className="flex items-end gap-2">
+          <div className="flex items-end gap-2 sm:col-span-2 lg:col-span-1">
             {showAdvanced && (
               <button
                 type="button"
                 onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-                className="p-3 border border-gray-200 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors"
+                className="h-12 w-12 flex-shrink-0 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors inline-flex items-center justify-center"
                 title="Advanced Search"
               >
                 <SlidersHorizontal size={20} />
@@ -317,7 +319,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             )}
             <button
               type="submit"
-              className="flex-1 bg-primary text-white py-3 rounded font-bold hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+              className="flex-1 h-12 bg-primary text-white rounded-lg font-bold hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
             >
               <Search size={20} />
               Search
@@ -327,7 +329,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
         {/* Advanced Filters */}
         {showAdvancedFilters && (
-          <div className="bg-white dark:bg-gray-900 p-4 rounded-b-xl shadow-lg border border-t-0 border-gray-100 dark:border-gray-700 grid grid-cols-1 md:grid-cols-4 gap-4 mt-[-1px]">
+          <div className="bg-white dark:bg-gray-900 p-4 rounded-b-xl shadow-lg border border-t-0 border-gray-100 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-[-1px]">
             {/* Min Price */}
             <div>
               <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Min Price</label>
@@ -337,7 +339,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   type="number"
                   value={filters.minPrice || ''}
                   onChange={(e) => handleInputChange('minPrice', e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="Min £"
+                  placeholder="Min GBP"
                   className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent"
                 />
               </div>
@@ -352,7 +354,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   type="number"
                   value={filters.maxPrice || ''}
                   onChange={(e) => handleInputChange('maxPrice', e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="Max £"
+                  placeholder="Max GBP"
                   className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent"
                 />
               </div>
@@ -517,7 +519,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 type="number"
                 value={filters.minPrice || ''}
                 onChange={(e) => handleInputChange('minPrice', e.target.value ? parseInt(e.target.value) : null)}
-                placeholder="Min £"
+                placeholder="Min GBP"
                 className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>
@@ -527,7 +529,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 type="number"
                 value={filters.maxPrice || ''}
                 onChange={(e) => handleInputChange('maxPrice', e.target.value ? parseInt(e.target.value) : null)}
-                placeholder="Max £"
+                placeholder="Max GBP"
                 className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>

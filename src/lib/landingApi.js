@@ -1,4 +1,4 @@
-const apiBaseUrl = (import.meta.env.VITE_LANDING_API_BASE_URL || '').replace(/\/+$/, '');
+const apiBaseUrl = (process.env.NEXT_PUBLIC_LANDING_API_BASE_URL || '').replace(/\/+$/, '');
 
 export const buildApiUrl = (path) => {
     const normalizedPath = path.startsWith('/') ? path : `/${path}`;

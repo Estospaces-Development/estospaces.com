@@ -27,7 +27,7 @@ const BigPromise = () => {
                 {
                     icon: <Zap size={28} />,
                     title: '24-Hour Fast Track',
-                    description: 'From inquiry to site visit scheduled—all within a single day.'
+                    description: 'From inquiry to site visit scheduled - all within a single day.'
                 },
                 {
                     icon: <Clock size={28} />,
@@ -42,13 +42,13 @@ const BigPromise = () => {
             features: [
                 {
                     icon: <Sparkles size={28} />,
-                    title: 'AI Lakshmi — Your Property Guide',
+                    title: 'AI Lakshmi - Your Property Guide',
                     description: 'Ask questions, get recommendations, and navigate listings effortlessly with AI.'
                 },
                 {
                     icon: <View size={28} />,
-                    title: '360° Virtual Tours',
-                    description: 'Walk through any property from your couch—immersive, realistic, and convenient.'
+                    title: '360-degree Virtual Tours',
+                    description: 'Walk through any property from your couch - immersive, realistic, and convenient.'
                 },
                 {
                     icon: <MapPin size={28} />,
@@ -74,7 +74,7 @@ const BigPromise = () => {
                 {
                     icon: <MessageSquareMore size={28} />,
                     title: 'Built-In CRM',
-                    description: 'Manage leads, follow-ups, and client communication—all in one place.'
+                    description: 'Manage leads, follow-ups, and client communication - all in one place.'
                 },
                 {
                     icon: <Users2 size={28} />,
@@ -108,7 +108,7 @@ const BigPromise = () => {
     };
 
     return (
-        <section id="features" className="py-28 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+        <section id="features" className="py-16 sm:py-20 lg:py-28 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
             {/* Decorative Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
                 <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
@@ -117,29 +117,29 @@ const BigPromise = () => {
             </div>
 
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 1, scale: 1 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
                 className="container mx-auto px-4 relative z-10"
             >
                 {/* Section Header */}
-                <div className="text-center mb-20 max-w-3xl mx-auto">
+                <div className="text-center mb-12 sm:mb-16 lg:mb-20 max-w-3xl mx-auto">
                     <motion.span
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 1, y: 0 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                        className="inline-block text-primary font-semibold text-sm tracking-widest uppercase mb-4"
+                        className="inline-block text-primary font-semibold text-sm tracking-normal uppercase mb-3 sm:mb-4"
                     >
                         Platform Features
                     </motion.span>
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 1, y: 0 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6 tracking-normal leading-tight"
                     >
                         Everything You Need,{' '}
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-600">
@@ -147,29 +147,29 @@ const BigPromise = () => {
                         </span>
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 1, y: 0 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-                        className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed"
+                        className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto"
                     >
-                        A seamless experience for buyers and brokers—from discovery to deal closure.
+                        A seamless experience for buyers and brokers - from discovery to deal closure.
                     </motion.p>
                 </div>
 
                 {/* Feature Groups */}
-                <div className="space-y-20">
+                <div className="space-y-14 sm:space-y-16 lg:space-y-20">
                     {featureGroups.map((group, groupIndex) => (
                         <motion.div
                             key={groupIndex}
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 1, y: 0 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.8, delay: groupIndex * 0.1 }}
                         >
                             {/* Group Header */}
-                            <div className="text-center mb-12">
-                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                            <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+                                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2 tracking-normal">
                                     {group.groupTitle}
                                 </h3>
                                 <p className="text-gray-500 dark:text-gray-400 text-base">
@@ -180,10 +180,10 @@ const BigPromise = () => {
                             {/* Features Grid */}
                             <motion.div
                                 variants={containerVariants}
-                                initial="hidden"
+                                initial="visible"
                                 whileInView="visible"
                                 viewport={{ once: true }}
-                                className={`grid gap-6 ${
+                                className={`grid gap-4 sm:gap-6 ${
                                     group.features.length === 4 
                                         ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' 
                                         : 'grid-cols-1 md:grid-cols-3'
@@ -193,7 +193,7 @@ const BigPromise = () => {
                                     <motion.div
                                         key={index}
                                         variants={itemVariants}
-                                        className="bg-white dark:bg-gray-800 p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700 relative overflow-hidden"
+                                        className="bg-white dark:bg-gray-800 p-6 sm:p-7 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group transform hover:-translate-y-1 border border-gray-100 dark:border-gray-700 relative overflow-hidden"
                                     >
                                         {/* Hover accent line */}
                                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -230,13 +230,13 @@ const BigPromise = () => {
 
                 {/* Bottom Trust Indicators */}
                 <motion.div
-                    initial={{ opacity: 0 }}
+                    initial={{ opacity: 1 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.5, duration: 0.8 }}
-                    className="mt-20 text-center"
+                    className="mt-14 sm:mt-20 text-center"
                 >
-                    <div className="inline-flex items-center gap-8 text-gray-400 dark:text-gray-500 text-sm">
+                    <div className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-8 text-gray-400 dark:text-gray-500 text-sm">
                         <span className="flex items-center gap-2">
                             <ShieldCheck size={18} className="text-green-500" />
                             100% Verified

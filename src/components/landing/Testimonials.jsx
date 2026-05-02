@@ -65,14 +65,14 @@ const thirdColumn = testimonials.slice(6, 9);
 
 const Testimonials = () => {
     return (
-        <section id="reviews" className="bg-gray-50 dark:bg-gray-900 py-24 relative overflow-hidden">
+        <section id="reviews" className="bg-gray-50 dark:bg-gray-900 py-16 sm:py-20 lg:py-24 relative overflow-hidden">
             <div className="container z-10 mx-auto px-4">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 1, y: 0 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                     viewport={{ once: true }}
-                    className="flex flex-col items-center justify-center max-w-3xl mx-auto mb-16"
+                    className="flex flex-col items-center justify-center max-w-3xl mx-auto mb-10 sm:mb-16"
                 >
                     <div className="flex justify-center mb-4">
                         <div className="border border-primary/30 bg-primary/5 text-primary py-1 px-4 rounded-full text-sm font-medium">
@@ -80,15 +80,15 @@ const Testimonials = () => {
                         </div>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-serif text-center">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-serif text-center tracking-normal">
                         Loved by <span className="text-primary">Thousands</span>
                     </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 text-center max-w-2xl">
+                    <p className="text-base sm:text-lg xl:text-xl text-gray-600 dark:text-gray-300 text-center max-w-2xl">
                         See what buyers, renters, and brokers are saying about their experience with Estospaces.
                     </p>
                 </motion.div>
 
-                <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] max-h-[400px] overflow-hidden">
+                <div className="flex justify-center gap-4 sm:gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] max-h-[360px] sm:max-h-[400px] overflow-hidden">
                     <TestimonialsColumn testimonials={firstColumn} duration={40} />
                     <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={50} />
                     <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={45} />

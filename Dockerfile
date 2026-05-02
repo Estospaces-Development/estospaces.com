@@ -6,23 +6,24 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-ARG VITE_APP_BASE_URL=https://app.estospaces.com
-ENV VITE_APP_BASE_URL=$VITE_APP_BASE_URL
+ARG NEXT_PUBLIC_APP_BASE_URL=https://app.estospaces.com
+ARG NEXT_PUBLIC_LANDING_API_BASE_URL=
+ENV NEXT_PUBLIC_APP_BASE_URL=$NEXT_PUBLIC_APP_BASE_URL
+ENV NEXT_PUBLIC_LANDING_API_BASE_URL=$NEXT_PUBLIC_LANDING_API_BASE_URL
 RUN npm run build
 
 FROM node:20-bookworm-slim AS runtime
 
 ENV NODE_ENV=production
 ENV PORT=8080
+ENV HOSTNAME=0.0.0.0
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm ci --omit=dev
-
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/server.js ./server.js
+COPY --from=build /app/public ./public
+COPY --from=build /app/.next/standalone ./
+COPY --from=build /app/.next/static ./.next/static
 
 EXPOSE 8080
 
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]
