@@ -16,7 +16,7 @@ import {
 } from './src/lib/blogs.js';
 import sitemap from './src/app/sitemap.js';
 
-const sourcePath = '../docs/blog-posts-to-do';
+const sourcePath = 'docs/blog-posts-to-do';
 
 test('blog generator creates exactly 100 unique SEO-ready drafts from the canonical topic docs', async () => {
   const posts = await buildBlogPostDrafts({ sourcePath });

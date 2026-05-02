@@ -31,11 +31,11 @@ Required blog environment variables:
 ```bash
 GCP_PROJECT_ID=your-gcp-project-id
 GCP_CLIENT_EMAIL=blog-writer-service-account@your-gcp-project-id.iam.gserviceaccount.com
-GCP_PRIVATE_KEY="replace_with_service_account_private_key_using_escaped_newlines"
+GCP_PRIVATE_KEY=
 GCP_BUCKET_NAME=your-public-blog-assets-bucket
 FIRESTORE_BLOG_COLLECTION=blogPosts
 BLOG_USE_LOCAL_DATA=true
-BLOG_TOPIC_SOURCE_PATH=../docs/blog-posts-to-do
+BLOG_TOPIC_SOURCE_PATH=docs/blog-posts-to-do
 ```
 
 Generate and validate the 100-post content set:
@@ -46,9 +46,11 @@ npm run blogs:validate
 npm run test:blog
 ```
 
-`npm run blogs:seed` reads `../docs/blog-posts-to-do`, generates 100 source-backed blog records, writes the local fallback data file, creates 100 WebP hero images in `public/blog-images` from single-photo editorial base images, and syncs records plus image bytes to Firestore and Cloud Storage when GCP credentials are present. Each post also keeps a unique image prompt for future editorial image generation.
+`npm run blogs:seed` reads `docs/blog-posts-to-do`, generates 100 source-backed blog records, writes the local fallback data file, creates 100 WebP hero images in `public/blog-images` from single-photo editorial base images, and syncs records plus image bytes to Firestore and Cloud Storage when GCP credentials are present. Each post also keeps a unique image prompt for future editorial image generation.
 
-To add a new topic, update the canonical docs in `../docs/blog-posts-to-do`, then rerun the seed and validation commands. Follow `docs/blog-ranking-protocol.md` before publishing or promoting a post.
+Set `GCP_PRIVATE_KEY` only in your deployment or local secret environment. Do not commit a real service account key.
+
+To add a new topic, update the canonical docs in `docs/blog-posts-to-do`, then rerun the seed and validation commands. Follow `docs/blog-ranking-protocol.md` before publishing or promoting a post.
 
 ## Build
 

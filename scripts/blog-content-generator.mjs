@@ -201,7 +201,7 @@ const TOOL_TOPICS = [
   ['AI property search prompts: how to brief Estospaces for better shortlists', 'AI property search prompts better shortlists', 'Buyers and renters', ['googleHelpful']],
 ];
 
-export async function buildBlogPostDrafts({ sourcePath = '../docs/blog-posts-to-do' } = {}) {
+export async function buildBlogPostDrafts({ sourcePath = 'docs/blog-posts-to-do' } = {}) {
   const source = await readCanonicalSource(sourcePath);
   const blueprints = buildBlueprints(source.text);
   const posts = blueprints.slice(0, 100).map((topic, index) => buildPost(topic, index, blueprints));
