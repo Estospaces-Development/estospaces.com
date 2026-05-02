@@ -5,7 +5,7 @@ const posts = [
     "id": "blog-001",
     "slug": "renters-rights-act-what-changes-from-1-may-2026-for-renters-in-england",
     "title": "Renters Rights Act: what changes from 1 May 2026 for renters in England",
-    "metaTitle": "Renters Rights Act Guide",
+    "metaTitle": "Renters Rights Act Guide | UK Property Guide",
     "metaDescription": "Renters Rights Act: what changes from 1 May 2026 for renters in England. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "Renters Rights Act: what changes from 1 May 2026 for renters in England. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Renters Rights",
@@ -31,7 +31,7 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-01T08:00:00.000Z",
+    "publishedAt": "2026-01-10T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
@@ -293,7 +293,7 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-01T08:00:00.000Z",
+      "datePublished": "2026-01-10T08:00:00.000Z",
       "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/renters-rights-act-what-changes-from-1-may-2026-for-renters-in-england",
       "isPartOf": {
@@ -393,7 +393,7 @@ const posts = [
     "id": "blog-002",
     "slug": "section-21-ending-1-may-2026-landlord-and-letting-agent-checklist-for-england",
     "title": "Section 21 ending 1 May 2026: landlord and letting agent checklist for England",
-    "metaTitle": "Section 21 ending 1 May 2026",
+    "metaTitle": "Section 21 ending 1 May 2026 | UK Property Guide",
     "metaDescription": "Section 21 ending 1 May 2026: landlord and letting agent checklist for. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "Section 21 ending 1 May 2026: landlord and letting agent checklist for. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Renters Rights",
@@ -418,7 +418,7 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-01T08:00:00.000Z",
+    "publishedAt": "2026-01-11T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
@@ -674,7 +674,7 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-01T08:00:00.000Z",
+      "datePublished": "2026-01-11T08:00:00.000Z",
       "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/section-21-ending-1-may-2026-landlord-and-letting-agent-checklist-for-england",
       "isPartOf": {
@@ -772,7 +772,7 @@ const posts = [
     "id": "blog-003",
     "slug": "tenant-fees-act-in-england-what-renters-landlords-and-agents-can-charge-in-2026",
     "title": "Tenant Fees Act in England: what renters, landlords and agents can charge in 2026",
-    "metaTitle": "Tenant Fees Act in England",
+    "metaTitle": "Tenant Fees Act in England | UK Property Guide",
     "metaDescription": "Tenant Fees Act in England: what renters, landlords and agents can. Tenant fee and holding deposit guide with allowed-fee checks, refund evidence.",
     "excerpt": "Tenant Fees Act in England: what renters, landlords and agents can. Tenant fee and holding deposit guide with allowed-fee checks, refund evidence.",
     "category": "Compliance",
@@ -798,7 +798,7 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-01T08:00:00.000Z",
+    "publishedAt": "2026-01-12T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
@@ -1060,7 +1060,7 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-01T08:00:00.000Z",
+      "datePublished": "2026-01-12T08:00:00.000Z",
       "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/tenant-fees-act-in-england-what-renters-landlords-and-agents-can-charge-in-2026",
       "isPartOf": {
@@ -1160,7 +1160,7 @@ const posts = [
     "id": "blog-004",
     "slug": "right-to-rent-checks-a-step-by-step-workflow-for-letting-agencies-in-england",
     "title": "Right to Rent checks: a step-by-step workflow for letting agencies in England",
-    "metaTitle": "Right to Rent checks",
+    "metaTitle": "Right to Rent checks | UK Property Guide",
     "metaDescription": "Right to Rent checks: a step-by-step workflow for letting agencies in. Right to Rent guide with check route, audit trail, document handling and letting.",
     "excerpt": "Right to Rent checks: a step-by-step workflow for letting agencies in. Right to Rent guide with check route, audit trail, document handling and letting.",
     "category": "Compliance",
@@ -1185,7 +1185,7 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-01T08:00:00.000Z",
+    "publishedAt": "2026-01-13T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
@@ -1441,7 +1441,7 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-01T08:00:00.000Z",
+      "datePublished": "2026-01-13T08:00:00.000Z",
       "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/right-to-rent-checks-a-step-by-step-workflow-for-letting-agencies-in-england",
       "isPartOf": {
@@ -1539,7 +1539,7 @@ const posts = [
     "id": "blog-005",
     "slug": "tenancy-deposit-protection-how-to-check-your-deposit-and-what-to-do-next",
     "title": "Tenancy deposit protection: how to check your deposit and what to do next",
-    "metaTitle": "Tenancy deposit protection",
+    "metaTitle": "Tenancy deposit protection | UK Property Guide",
     "metaDescription": "Tenancy deposit protection: how to check your deposit and what to do. Tenancy deposit guide with protection checks, evidence pack, dispute steps and renter.",
     "excerpt": "Tenancy deposit protection: how to check your deposit and what to do. Tenancy deposit guide with protection checks, evidence pack, dispute steps and renter.",
     "category": "Renting",
@@ -1564,7 +1564,7 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-02T08:00:00.000Z",
+    "publishedAt": "2026-01-14T08:00:00.000Z",
     "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
@@ -1820,7 +1820,7 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-02T08:00:00.000Z",
+      "datePublished": "2026-01-14T08:00:00.000Z",
       "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/tenancy-deposit-protection-how-to-check-your-deposit-and-what-to-do-next",
       "isPartOf": {
@@ -1918,7 +1918,7 @@ const posts = [
     "id": "blog-006",
     "slug": "get-your-deposit-back-end-of-tenancy-evidence-pack-and-dispute-steps",
     "title": "Get your deposit back: end-of-tenancy evidence pack and dispute steps",
-    "metaTitle": "Get your deposit back",
+    "metaTitle": "Get your deposit back | UK Property Guide",
     "metaDescription": "Get your deposit back: end-of-tenancy evidence pack and dispute steps. Tenancy deposit guide with protection checks, evidence pack, dispute steps.",
     "excerpt": "Get your deposit back: end-of-tenancy evidence pack and dispute steps. Tenancy deposit guide with protection checks, evidence pack, dispute steps.",
     "category": "Renting",
@@ -1943,8 +1943,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-02T08:00:00.000Z",
-    "updatedAt": "2026-05-02T12:00:00.000Z",
+    "publishedAt": "2026-01-15T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/get-your-deposit-back-end-of-tenancy-evidence-pack-and-dispute-steps-hero-photo-v8.webp",
@@ -2199,8 +2199,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-02T08:00:00.000Z",
-      "dateModified": "2026-05-02T12:00:00.000Z",
+      "datePublished": "2026-01-15T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/get-your-deposit-back-end-of-tenancy-evidence-pack-and-dispute-steps",
       "isPartOf": {
         "@type": "Blog",
@@ -2297,7 +2297,7 @@ const posts = [
     "id": "blog-007",
     "slug": "landlord-safety-responsibilities-gas-electrical-smoke-and-carbon-monoxide-checklist",
     "title": "Landlord safety responsibilities: gas, electrical, smoke and carbon monoxide checklist",
-    "metaTitle": "Landlord safety responsibilities",
+    "metaTitle": "Landlord safety responsibilities | UK Property Guide",
     "metaDescription": "Landlord safety responsibilities: gas, electrical, smoke and carbon. Compliance guide with source checks, document workflow, file-risk warnings and next.",
     "excerpt": "Landlord safety responsibilities: gas, electrical, smoke and carbon. Compliance guide with source checks, document workflow, file-risk warnings and next.",
     "category": "Compliance",
@@ -2322,8 +2322,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-02T08:00:00.000Z",
-    "updatedAt": "2026-05-02T12:00:00.000Z",
+    "publishedAt": "2026-01-16T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/landlord-safety-responsibilities-gas-electrical-smoke-and-carbon-monoxide-checklist-hero-photo-v8.webp",
@@ -2578,8 +2578,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-02T08:00:00.000Z",
-      "dateModified": "2026-05-02T12:00:00.000Z",
+      "datePublished": "2026-01-16T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/landlord-safety-responsibilities-gas-electrical-smoke-and-carbon-monoxide-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -2701,8 +2701,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-02T08:00:00.000Z",
-    "updatedAt": "2026-05-02T12:00:00.000Z",
+    "publishedAt": "2026-01-17T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/electrical-safety-certificates-in-england-what-agents-and-landlords-need-before-marketing-hero-photo-v8.webp",
@@ -2957,8 +2957,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-02T08:00:00.000Z",
-      "dateModified": "2026-05-02T12:00:00.000Z",
+      "datePublished": "2026-01-17T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/electrical-safety-certificates-in-england-what-agents-and-landlords-need-before-marketing",
       "isPartOf": {
         "@type": "Blog",
@@ -3055,7 +3055,7 @@ const posts = [
     "id": "blog-009",
     "slug": "stamp-duty-calculator-guide-2026-first-time-buyer-home-mover-and-additional-property-examples",
     "title": "Stamp Duty calculator guide 2026: first-time buyer, home mover and additional property examples",
-    "metaTitle": "Stamp Duty calculator Guide 2026",
+    "metaTitle": "Stamp Duty calculator Guide 2026 | UK Property Guide",
     "metaDescription": "Stamp Duty calculator guide 2026: first-time buyer, home mover and. Property tool guide with input checks, decision log, examples, templates and next steps.",
     "excerpt": "Stamp Duty calculator guide 2026: first-time buyer, home mover and. Property tool guide with input checks, decision log, examples, templates and next steps.",
     "category": "Buying",
@@ -3080,8 +3080,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-03T08:00:00.000Z",
-    "updatedAt": "2026-05-02T12:00:00.000Z",
+    "publishedAt": "2026-01-18T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/stamp-duty-calculator-guide-2026-first-time-buyer-home-mover-and-additional-property-examples-hero-photo-v8.webp",
@@ -3336,8 +3336,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-03T08:00:00.000Z",
-      "dateModified": "2026-05-02T12:00:00.000Z",
+      "datePublished": "2026-01-18T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/stamp-duty-calculator-guide-2026-first-time-buyer-home-mover-and-additional-property-examples",
       "isPartOf": {
         "@type": "Blog",
@@ -3434,7 +3434,7 @@ const posts = [
     "id": "blog-010",
     "slug": "higher-rate-sdlt-when-it-applies-and-when-buyers-can-claim-a-refund",
     "title": "Higher-rate SDLT: when it applies and when buyers can claim a refund",
-    "metaTitle": "Higher-rate SDLT Guide",
+    "metaTitle": "Higher-rate SDLT Guide | UK Property Guide",
     "metaDescription": "Higher-rate SDLT: when it applies and when buyers can claim a refund. Stamp Duty guide with SDLT assumptions, buyer examples, refund checks and budget next.",
     "excerpt": "Higher-rate SDLT: when it applies and when buyers can claim a refund. Stamp Duty guide with SDLT assumptions, buyer examples, refund checks and budget next.",
     "category": "Investing",
@@ -3459,8 +3459,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-03T08:00:00.000Z",
-    "updatedAt": "2026-05-02T12:00:00.000Z",
+    "publishedAt": "2026-01-19T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/higher-rate-sdlt-when-it-applies-and-when-buyers-can-claim-a-refund-hero-photo-v8.webp",
@@ -3715,8 +3715,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-03T08:00:00.000Z",
-      "dateModified": "2026-05-02T12:00:00.000Z",
+      "datePublished": "2026-01-19T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/higher-rate-sdlt-when-it-applies-and-when-buyers-can-claim-a-refund",
       "isPartOf": {
         "@type": "Blog",
@@ -3813,7 +3813,7 @@ const posts = [
     "id": "blog-011",
     "slug": "cgt-property-sale-60-day-rule-a-checklist-for-uk-residential-property-sellers",
     "title": "CGT property sale 60-day rule: a checklist for UK residential property sellers",
-    "metaTitle": "CGT property sale 60-day rule",
+    "metaTitle": "CGT property sale 60-day rule | UK Property Guide",
     "metaDescription": "CGT property sale 60-day rule: a checklist for UK residential property. Practical seller guide with evidence checks, contract points, common risks.",
     "excerpt": "CGT property sale 60-day rule: a checklist for UK residential property. Practical seller guide with evidence checks, contract points, common risks.",
     "category": "Selling",
@@ -3838,8 +3838,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-03T08:00:00.000Z",
-    "updatedAt": "2026-05-03T12:00:00.000Z",
+    "publishedAt": "2026-01-20T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/cgt-property-sale-60-day-rule-a-checklist-for-uk-residential-property-sellers-hero-photo-v8.webp",
@@ -4094,8 +4094,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-03T08:00:00.000Z",
-      "dateModified": "2026-05-03T12:00:00.000Z",
+      "datePublished": "2026-01-20T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/cgt-property-sale-60-day-rule-a-checklist-for-uk-residential-property-sellers",
       "isPartOf": {
         "@type": "Blog",
@@ -4217,8 +4217,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-03T08:00:00.000Z",
-    "updatedAt": "2026-05-03T12:00:00.000Z",
+    "publishedAt": "2026-01-21T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/assured-periodic-tenancies-from-1-may-2026-what-changes-operationally-for-agents-hero-photo-v8.webp",
@@ -4473,8 +4473,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-03T08:00:00.000Z",
-      "dateModified": "2026-05-03T12:00:00.000Z",
+      "datePublished": "2026-01-21T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/assured-periodic-tenancies-from-1-may-2026-what-changes-operationally-for-agents",
       "isPartOf": {
         "@type": "Blog",
@@ -4571,7 +4571,7 @@ const posts = [
     "id": "blog-013",
     "slug": "damp-and-mould-in-rentals-reporting-process-and-evidence-checklist-for-tenants",
     "title": "Damp and mould in rentals: reporting process and evidence checklist for tenants",
-    "metaTitle": "Damp and mould in rentals",
+    "metaTitle": "Damp and mould in rentals | UK Property Guide",
     "metaDescription": "Damp and mould in rentals: reporting process and evidence checklist for. Damp, mould and repair guide with evidence log, reporting workflow, safety checks.",
     "excerpt": "Damp and mould in rentals: reporting process and evidence checklist for. Damp, mould and repair guide with evidence log, reporting workflow, safety checks.",
     "category": "Renting",
@@ -4597,8 +4597,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-04T08:00:00.000Z",
-    "updatedAt": "2026-05-03T12:00:00.000Z",
+    "publishedAt": "2026-01-22T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/damp-and-mould-in-rentals-reporting-process-and-evidence-checklist-for-tenants-hero-photo-v8.webp",
@@ -4859,8 +4859,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-04T08:00:00.000Z",
-      "dateModified": "2026-05-03T12:00:00.000Z",
+      "datePublished": "2026-01-22T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/damp-and-mould-in-rentals-reporting-process-and-evidence-checklist-for-tenants",
       "isPartOf": {
         "@type": "Blog",
@@ -4959,7 +4959,7 @@ const posts = [
     "id": "blog-014",
     "slug": "local-seo-for-estate-agents-google-business-profile-service-pages-and-review-engine",
     "title": "Local SEO for estate agents: Google Business Profile, service pages and review engine",
-    "metaTitle": "Local SEO for estate agents",
+    "metaTitle": "Local SEO for estate agents | UK Property Guide",
     "metaDescription": "Local SEO for estate agents: Google Business Profile, service pages and. Estate agency growth guide with lead-quality workflow, response standards.",
     "excerpt": "Local SEO for estate agents: Google Business Profile, service pages and. Estate agency growth guide with lead-quality workflow, response standards.",
     "category": "Agents",
@@ -4984,8 +4984,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-04T08:00:00.000Z",
-    "updatedAt": "2026-05-03T12:00:00.000Z",
+    "publishedAt": "2026-01-23T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/local-seo-for-estate-agents-google-business-profile-service-pages-and-review-engine-hero-photo-v8.webp",
@@ -5234,8 +5234,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-04T08:00:00.000Z",
-      "dateModified": "2026-05-03T12:00:00.000Z",
+      "datePublished": "2026-01-23T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/local-seo-for-estate-agents-google-business-profile-service-pages-and-review-engine",
       "isPartOf": {
         "@type": "Blog",
@@ -5352,8 +5352,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-04T08:00:00.000Z",
-    "updatedAt": "2026-05-03T12:00:00.000Z",
+    "publishedAt": "2026-01-24T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/best-property-portals-for-estate-agents-lead-quality-scorecard-and-spreadsheet-hero-photo-v8.webp",
@@ -5602,8 +5602,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-04T08:00:00.000Z",
-      "dateModified": "2026-05-03T12:00:00.000Z",
+      "datePublished": "2026-01-24T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/best-property-portals-for-estate-agents-lead-quality-scorecard-and-spreadsheet",
       "isPartOf": {
         "@type": "Blog",
@@ -5695,7 +5695,7 @@ const posts = [
     "id": "blog-016",
     "slug": "rics-survey-level-2-vs-level-3-what-uk-buyers-actually-need",
     "title": "RICS survey Level 2 vs Level 3: what UK buyers actually need",
-    "metaTitle": "RICS survey Level 2 vs Level 3",
+    "metaTitle": "RICS survey Level 2 vs Level 3 | UK Property Guide",
     "metaDescription": "RICS survey Level 2 vs Level 3: what UK buyers actually need. Property condition guide with viewing checks, survey questions, risk log and buyer next steps.",
     "excerpt": "RICS survey Level 2 vs Level 3: what UK buyers actually need. Property condition guide with viewing checks, survey questions, risk log and buyer next steps.",
     "category": "Buying",
@@ -5720,8 +5720,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-04T08:00:00.000Z",
-    "updatedAt": "2026-05-04T12:00:00.000Z",
+    "publishedAt": "2026-01-25T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/rics-survey-level-2-vs-level-3-what-uk-buyers-actually-need-hero-photo-v8.webp",
@@ -5976,8 +5976,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-04T08:00:00.000Z",
-      "dateModified": "2026-05-04T12:00:00.000Z",
+      "datePublished": "2026-01-25T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/rics-survey-level-2-vs-level-3-what-uk-buyers-actually-need",
       "isPartOf": {
         "@type": "Blog",
@@ -6074,7 +6074,7 @@ const posts = [
     "id": "blog-017",
     "slug": "conveyancing-timeline-how-long-it-takes-and-how-to-prevent-fall-through",
     "title": "Conveyancing timeline: how long it takes and how to prevent fall-through",
-    "metaTitle": "Conveyancing timeline",
+    "metaTitle": "Conveyancing timeline | UK Property Guide",
     "metaDescription": "Conveyancing timeline: how long it takes and how to prevent fall-through. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "excerpt": "Conveyancing timeline: how long it takes and how to prevent fall-through. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "category": "Buying",
@@ -6099,8 +6099,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-05T08:00:00.000Z",
-    "updatedAt": "2026-05-04T12:00:00.000Z",
+    "publishedAt": "2026-01-26T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/conveyancing-timeline-how-long-it-takes-and-how-to-prevent-fall-through-hero-photo-v8.webp",
@@ -6355,8 +6355,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-05T08:00:00.000Z",
-      "dateModified": "2026-05-04T12:00:00.000Z",
+      "datePublished": "2026-01-26T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/conveyancing-timeline-how-long-it-takes-and-how-to-prevent-fall-through",
       "isPartOf": {
         "@type": "Blog",
@@ -6453,7 +6453,7 @@ const posts = [
     "id": "blog-018",
     "slug": "leasehold-flat-buying-checklist-service-charges-ground-rent-and-major-works",
     "title": "Leasehold flat buying checklist: service charges, ground rent and major works",
-    "metaTitle": "Leasehold flat buying Checklist",
+    "metaTitle": "Leasehold flat buying Checklist | UK Property Guide",
     "metaDescription": "Leasehold flat buying checklist: service charges, ground rent and major. Leasehold flat guide with management pack, service charge, ground rent, major.",
     "excerpt": "Leasehold flat buying checklist: service charges, ground rent and major. Leasehold flat guide with management pack, service charge, ground rent, major.",
     "category": "Buying",
@@ -6478,8 +6478,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-05T08:00:00.000Z",
-    "updatedAt": "2026-05-04T12:00:00.000Z",
+    "publishedAt": "2026-01-27T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/leasehold-flat-buying-checklist-service-charges-ground-rent-and-major-works-hero-photo-v8.webp",
@@ -6734,8 +6734,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-05T08:00:00.000Z",
-      "dateModified": "2026-05-04T12:00:00.000Z",
+      "datePublished": "2026-01-27T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/leasehold-flat-buying-checklist-service-charges-ground-rent-and-major-works",
       "isPartOf": {
         "@type": "Blog",
@@ -6832,7 +6832,7 @@ const posts = [
     "id": "blog-019",
     "slug": "rent-affordability-calculator-what-you-can-rent-on-your-salary-and-postcode",
     "title": "Rent affordability calculator: what you can rent on your salary and postcode",
-    "metaTitle": "Rent affordability calculator",
+    "metaTitle": "Rent affordability calculator | UK Property Guide",
     "metaDescription": "Rent affordability calculator: what you can rent on your salary and. Property tool guide with input checks, decision log, examples, templates and next.",
     "excerpt": "Rent affordability calculator: what you can rent on your salary and. Property tool guide with input checks, decision log, examples, templates and next.",
     "category": "Renting",
@@ -6857,8 +6857,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-05T08:00:00.000Z",
-    "updatedAt": "2026-05-04T12:00:00.000Z",
+    "publishedAt": "2026-01-28T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/rent-affordability-calculator-what-you-can-rent-on-your-salary-and-postcode-hero-photo-v8.webp",
@@ -7113,8 +7113,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-05T08:00:00.000Z",
-      "dateModified": "2026-05-04T12:00:00.000Z",
+      "datePublished": "2026-01-28T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/rent-affordability-calculator-what-you-can-rent-on-your-salary-and-postcode",
       "isPartOf": {
         "@type": "Blog",
@@ -7237,8 +7237,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-05T08:00:00.000Z",
-    "updatedAt": "2026-05-04T12:00:00.000Z",
+    "publishedAt": "2026-01-29T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/london-vs-manchester-vs-birmingham-rent-affordability-using-uk-hpi-signals-hero-photo-v8.webp",
@@ -7499,8 +7499,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-05T08:00:00.000Z",
-      "dateModified": "2026-05-04T12:00:00.000Z",
+      "datePublished": "2026-01-29T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/london-vs-manchester-vs-birmingham-rent-affordability-using-uk-hpi-signals",
       "isPartOf": {
         "@type": "Blog",
@@ -7598,7 +7598,7 @@ const posts = [
     "id": "blog-021",
     "slug": "from-2026-rent-in-advance-rules-in-england-what-landlords-can-ask-for-from-may-2026",
     "title": "From 2026: Rent in advance rules in England: what landlords can ask for from May 2026",
-    "metaTitle": "Rent in advance rules in England",
+    "metaTitle": "Rent in advance rules in England | UK Property Guide",
     "metaDescription": "From 2026: Rent in advance rules in England: what landlords can ask for. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "From 2026: Rent in advance rules in England: what landlords can ask for. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Compliance",
@@ -7624,8 +7624,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-06T08:00:00.000Z",
-    "updatedAt": "2026-05-05T12:00:00.000Z",
+    "publishedAt": "2026-01-30T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-rent-in-advance-rules-in-england-what-landlords-can-ask-for-from-may-2026-hero-photo-v8.webp",
@@ -7886,8 +7886,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-06T08:00:00.000Z",
-      "dateModified": "2026-05-05T12:00:00.000Z",
+      "datePublished": "2026-01-30T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-rent-in-advance-rules-in-england-what-landlords-can-ask-for-from-may-2026",
       "isPartOf": {
         "@type": "Blog",
@@ -7986,7 +7986,7 @@ const posts = [
     "id": "blog-022",
     "slug": "from-2026-rental-bidding-ban-in-england-how-agents-should-write-compliant-listings",
     "title": "From 2026: Rental bidding ban in England: how agents should write compliant listings",
-    "metaTitle": "Rental bidding ban in England",
+    "metaTitle": "Rental bidding ban in England | UK Property Guide",
     "metaDescription": "From 2026: Rental bidding ban in England: how agents should write. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "From 2026: Rental bidding ban in England: how agents should write. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Compliance",
@@ -8011,8 +8011,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-06T08:00:00.000Z",
-    "updatedAt": "2026-05-05T12:00:00.000Z",
+    "publishedAt": "2026-01-31T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-rental-bidding-ban-in-england-how-agents-should-write-compliant-listings-hero-photo-v8.webp",
@@ -8267,8 +8267,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-06T08:00:00.000Z",
-      "dateModified": "2026-05-05T12:00:00.000Z",
+      "datePublished": "2026-01-31T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-rental-bidding-ban-in-england-how-agents-should-write-compliant-listings",
       "isPartOf": {
         "@type": "Blog",
@@ -8390,8 +8390,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-06T08:00:00.000Z",
-    "updatedAt": "2026-05-05T12:00:00.000Z",
+    "publishedAt": "2026-02-01T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-pet-requests-under-the-renters-rights-act-fair-process-for-landlords-and-tenants-hero-photo-v8.webp",
@@ -8646,8 +8646,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-06T08:00:00.000Z",
-      "dateModified": "2026-05-05T12:00:00.000Z",
+      "datePublished": "2026-02-01T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-pet-requests-under-the-renters-rights-act-fair-process-for-landlords-and-tenants",
       "isPartOf": {
         "@type": "Blog",
@@ -8769,8 +8769,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-06T08:00:00.000Z",
-    "updatedAt": "2026-05-05T12:00:00.000Z",
+    "publishedAt": "2026-02-02T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-discrimination-rules-for-renters-with-children-or-benefits-what-agents-must-change-hero-photo-v8.webp",
@@ -9025,8 +9025,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-06T08:00:00.000Z",
-      "dateModified": "2026-05-05T12:00:00.000Z",
+      "datePublished": "2026-02-02T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-discrimination-rules-for-renters-with-children-or-benefits-what-agents-must-change",
       "isPartOf": {
         "@type": "Blog",
@@ -9123,7 +9123,7 @@ const posts = [
     "id": "blog-025",
     "slug": "from-2026-prs-landlord-database-what-landlords-should-prepare-before-registration",
     "title": "From 2026: PRS landlord database: what landlords should prepare before registration",
-    "metaTitle": "PRS landlord database",
+    "metaTitle": "PRS landlord database | UK Property Guide",
     "metaDescription": "From 2026: PRS landlord database: what landlords should prepare before. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "From 2026: PRS landlord database: what landlords should prepare before. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Compliance",
@@ -9148,8 +9148,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-07T08:00:00.000Z",
-    "updatedAt": "2026-05-05T12:00:00.000Z",
+    "publishedAt": "2026-02-03T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-prs-landlord-database-what-landlords-should-prepare-before-registration-hero-photo-v8.webp",
@@ -9404,8 +9404,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-07T08:00:00.000Z",
-      "dateModified": "2026-05-05T12:00:00.000Z",
+      "datePublished": "2026-02-03T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-prs-landlord-database-what-landlords-should-prepare-before-registration",
       "isPartOf": {
         "@type": "Blog",
@@ -9502,7 +9502,7 @@ const posts = [
     "id": "blog-026",
     "slug": "from-2026-private-rented-sector-ombudsman-what-landlords-and-tenants-should-expect",
     "title": "From 2026: Private rented sector ombudsman: what landlords and tenants should expect",
-    "metaTitle": "Private rented sector ombudsman",
+    "metaTitle": "Private rented sector ombudsman | UK Property Guide",
     "metaDescription": "From 2026: Private rented sector ombudsman: what landlords and tenants. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "From 2026: Private rented sector ombudsman: what landlords and tenants. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Compliance",
@@ -9527,8 +9527,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-07T08:00:00.000Z",
-    "updatedAt": "2026-05-06T12:00:00.000Z",
+    "publishedAt": "2026-02-04T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-private-rented-sector-ombudsman-what-landlords-and-tenants-should-expect-hero-photo-v8.webp",
@@ -9783,8 +9783,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-07T08:00:00.000Z",
-      "dateModified": "2026-05-06T12:00:00.000Z",
+      "datePublished": "2026-02-04T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-private-rented-sector-ombudsman-what-landlords-and-tenants-should-expect",
       "isPartOf": {
         "@type": "Blog",
@@ -9906,8 +9906,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-07T08:00:00.000Z",
-    "updatedAt": "2026-05-06T12:00:00.000Z",
+    "publishedAt": "2026-02-05T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-client-money-protection-for-property-agents-a-plain-english-compliance-checklist-hero-photo-v8.webp",
@@ -10162,8 +10162,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-07T08:00:00.000Z",
-      "dateModified": "2026-05-06T12:00:00.000Z",
+      "datePublished": "2026-02-05T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-client-money-protection-for-property-agents-a-plain-english-compliance-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -10260,7 +10260,7 @@ const posts = [
     "id": "blog-028",
     "slug": "from-2026-hmo-licensing-checklist-safety-amenities-and-local-authority-checks",
     "title": "From 2026: HMO licensing checklist: safety, amenities and local authority checks",
-    "metaTitle": "HMO licensing Checklist",
+    "metaTitle": "HMO licensing Checklist | UK Property Guide",
     "metaDescription": "From 2026: HMO licensing checklist: safety, amenities and local. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "From 2026: HMO licensing checklist: safety, amenities and local. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Compliance",
@@ -10285,8 +10285,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-07T08:00:00.000Z",
-    "updatedAt": "2026-05-06T12:00:00.000Z",
+    "publishedAt": "2026-02-06T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-hmo-licensing-checklist-safety-amenities-and-local-authority-checks-hero-photo-v8.webp",
@@ -10541,8 +10541,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-07T08:00:00.000Z",
-      "dateModified": "2026-05-06T12:00:00.000Z",
+      "datePublished": "2026-02-06T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-hmo-licensing-checklist-safety-amenities-and-local-authority-checks",
       "isPartOf": {
         "@type": "Blog",
@@ -10664,8 +10664,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-08T08:00:00.000Z",
-    "updatedAt": "2026-05-06T12:00:00.000Z",
+    "publishedAt": "2026-02-07T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-gas-safety-certificate-checklist-for-landlords-and-letting-agents-hero-photo-v8.webp",
@@ -10920,8 +10920,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-08T08:00:00.000Z",
-      "dateModified": "2026-05-06T12:00:00.000Z",
+      "datePublished": "2026-02-07T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-gas-safety-certificate-checklist-for-landlords-and-letting-agents",
       "isPartOf": {
         "@type": "Blog",
@@ -11043,8 +11043,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-08T08:00:00.000Z",
-    "updatedAt": "2026-05-06T12:00:00.000Z",
+    "publishedAt": "2026-02-08T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-smoke-and-carbon-monoxide-alarm-rules-landlord-checklist-for-england-hero-photo-v8.webp",
@@ -11299,8 +11299,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-08T08:00:00.000Z",
-      "dateModified": "2026-05-06T12:00:00.000Z",
+      "datePublished": "2026-02-08T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-smoke-and-carbon-monoxide-alarm-rules-landlord-checklist-for-england",
       "isPartOf": {
         "@type": "Blog",
@@ -11397,7 +11397,7 @@ const posts = [
     "id": "blog-031",
     "slug": "from-2026-move-in-compliance-pack-documents-every-renter-should-receive-before-keys",
     "title": "From 2026: Move-in compliance pack: documents every renter should receive before keys",
-    "metaTitle": "Move-in compliance pack",
+    "metaTitle": "Move-in compliance pack | UK Property Guide",
     "metaDescription": "From 2026: Move-in compliance pack: documents every renter should. Compliance guide with source checks, document workflow, file-risk warnings and next.",
     "excerpt": "From 2026: Move-in compliance pack: documents every renter should. Compliance guide with source checks, document workflow, file-risk warnings and next.",
     "category": "Compliance",
@@ -11424,8 +11424,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-08T08:00:00.000Z",
-    "updatedAt": "2026-05-07T12:00:00.000Z",
+    "publishedAt": "2026-02-09T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-move-in-compliance-pack-documents-every-renter-should-receive-before-keys-hero-photo-v8.webp",
@@ -11692,8 +11692,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-08T08:00:00.000Z",
-      "dateModified": "2026-05-07T12:00:00.000Z",
+      "datePublished": "2026-02-09T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-move-in-compliance-pack-documents-every-renter-should-receive-before-keys",
       "isPartOf": {
         "@type": "Blog",
@@ -11819,8 +11819,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-08T08:00:00.000Z",
-    "updatedAt": "2026-05-07T12:00:00.000Z",
+    "publishedAt": "2026-02-10T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-end-of-tenancy-notice-checklist-after-the-renters-rights-act-reforms-hero-photo-v8.webp",
@@ -12075,8 +12075,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-08T08:00:00.000Z",
-      "dateModified": "2026-05-07T12:00:00.000Z",
+      "datePublished": "2026-02-10T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-end-of-tenancy-notice-checklist-after-the-renters-rights-act-reforms",
       "isPartOf": {
         "@type": "Blog",
@@ -12173,7 +12173,7 @@ const posts = [
     "id": "blog-033",
     "slug": "from-2026-rent-review-notices-in-england-annual-process-and-evidence-checklist",
     "title": "From 2026: Rent review notices in England: annual process and evidence checklist",
-    "metaTitle": "Rent review notices in England",
+    "metaTitle": "Rent review notices in England | UK Property Guide",
     "metaDescription": "From 2026: Rent review notices in England: annual process and evidence. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "excerpt": "From 2026: Rent review notices in England: annual process and evidence. Renters Rights Act guide with implementation timing, notice checks, evidence pack.",
     "category": "Compliance",
@@ -12198,8 +12198,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-09T08:00:00.000Z",
-    "updatedAt": "2026-05-07T12:00:00.000Z",
+    "publishedAt": "2026-02-11T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-rent-review-notices-in-england-annual-process-and-evidence-checklist-hero-photo-v8.webp",
@@ -12454,8 +12454,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-09T08:00:00.000Z",
-      "dateModified": "2026-05-07T12:00:00.000Z",
+      "datePublished": "2026-02-11T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-rent-review-notices-in-england-annual-process-and-evidence-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -12552,7 +12552,7 @@ const posts = [
     "id": "blog-034",
     "slug": "from-2026-how-to-document-repairs-quickly-tenant-and-landlord-communication-workflow",
     "title": "From 2026: How to document repairs quickly: tenant and landlord communication workflow",
-    "metaTitle": "How to document repairs quickly",
+    "metaTitle": "How to document repairs quickly | UK Property Guide",
     "metaDescription": "From 2026: How to document repairs quickly: tenant and landlord. Damp, mould and repair guide with evidence log, reporting workflow, safety checks and next.",
     "excerpt": "From 2026: How to document repairs quickly: tenant and landlord. Damp, mould and repair guide with evidence log, reporting workflow, safety checks and next.",
     "category": "Compliance",
@@ -12577,8 +12577,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-09T08:00:00.000Z",
-    "updatedAt": "2026-05-07T12:00:00.000Z",
+    "publishedAt": "2026-02-12T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-how-to-document-repairs-quickly-tenant-and-landlord-communication-workflow-hero-photo-v8.webp",
@@ -12833,8 +12833,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-09T08:00:00.000Z",
-      "dateModified": "2026-05-07T12:00:00.000Z",
+      "datePublished": "2026-02-12T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-how-to-document-repairs-quickly-tenant-and-landlord-communication-workflow",
       "isPartOf": {
         "@type": "Blog",
@@ -12931,7 +12931,7 @@ const posts = [
     "id": "blog-035",
     "slug": "from-2026-awaabs-law-in-private-rentals-what-damp-and-mould-timelines-mean-for-agents",
     "title": "From 2026: Awaabs Law in private rentals: what damp and mould timelines mean for agents",
-    "metaTitle": "Awaabs Law in private rentals",
+    "metaTitle": "Awaabs Law in private rentals | UK Property Guide",
     "metaDescription": "From 2026: Awaabs Law in private rentals: what damp and mould timelines. Damp, mould and repair guide with evidence log, reporting workflow, safety checks.",
     "excerpt": "From 2026: Awaabs Law in private rentals: what damp and mould timelines. Damp, mould and repair guide with evidence log, reporting workflow, safety checks.",
     "category": "Compliance",
@@ -12957,8 +12957,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-09T08:00:00.000Z",
-    "updatedAt": "2026-05-07T12:00:00.000Z",
+    "publishedAt": "2026-02-13T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/from-2026-awaabs-law-in-private-rentals-what-damp-and-mould-timelines-mean-for-agents-hero-photo-v8.webp",
@@ -13219,8 +13219,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-09T08:00:00.000Z",
-      "dateModified": "2026-05-07T12:00:00.000Z",
+      "datePublished": "2026-02-13T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/from-2026-awaabs-law-in-private-rentals-what-damp-and-mould-timelines-mean-for-agents",
       "isPartOf": {
         "@type": "Blog",
@@ -13319,7 +13319,7 @@ const posts = [
     "id": "blog-036",
     "slug": "first-time-buyer-checklist-2026-deposit-mortgage-viewing-and-offer-steps",
     "title": "First-time buyer checklist 2026: deposit, mortgage, viewing and offer steps",
-    "metaTitle": "First-time buyer Checklist 2026",
+    "metaTitle": "First-time buyer Checklist 2026 | UK Property Guide",
     "metaDescription": "First-time buyer checklist 2026: deposit, mortgage, viewing and offer. Property affordability guide with mortgage checks, budget stress test, buyer.",
     "excerpt": "First-time buyer checklist 2026: deposit, mortgage, viewing and offer. Property affordability guide with mortgage checks, budget stress test, buyer.",
     "category": "Buying",
@@ -13345,8 +13345,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-09T08:00:00.000Z",
-    "updatedAt": "2026-05-08T12:00:00.000Z",
+    "publishedAt": "2026-02-14T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/first-time-buyer-checklist-2026-deposit-mortgage-viewing-and-offer-steps-hero-photo-v8.webp",
@@ -13607,8 +13607,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-09T08:00:00.000Z",
-      "dateModified": "2026-05-08T12:00:00.000Z",
+      "datePublished": "2026-02-14T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/first-time-buyer-checklist-2026-deposit-mortgage-viewing-and-offer-steps",
       "isPartOf": {
         "@type": "Blog",
@@ -13707,7 +13707,7 @@ const posts = [
     "id": "blog-037",
     "slug": "agreement-in-principle-how-buyers-should-use-it-before-viewing-homes",
     "title": "Agreement in Principle: how buyers should use it before viewing homes",
-    "metaTitle": "Agreement in Principle",
+    "metaTitle": "Agreement in Principle | UK Property Guide",
     "metaDescription": "Agreement in Principle: how buyers should use it before viewing homes. Property affordability guide with mortgage checks, budget stress test, buyer.",
     "excerpt": "Agreement in Principle: how buyers should use it before viewing homes. Property affordability guide with mortgage checks, budget stress test, buyer.",
     "category": "Buying",
@@ -13732,8 +13732,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-10T08:00:00.000Z",
-    "updatedAt": "2026-05-08T12:00:00.000Z",
+    "publishedAt": "2026-02-15T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/agreement-in-principle-how-buyers-should-use-it-before-viewing-homes-hero-photo-v8.webp",
@@ -13988,8 +13988,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-10T08:00:00.000Z",
-      "dateModified": "2026-05-08T12:00:00.000Z",
+      "datePublished": "2026-02-15T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/agreement-in-principle-how-buyers-should-use-it-before-viewing-homes",
       "isPartOf": {
         "@type": "Blog",
@@ -14086,7 +14086,7 @@ const posts = [
     "id": "blog-038",
     "slug": "fixed-vs-tracker-mortgage-in-2026-what-buyers-should-compare",
     "title": "Fixed vs tracker mortgage in 2026: what buyers should compare",
-    "metaTitle": "Fixed vs tracker mortgage in 2026",
+    "metaTitle": "Fixed vs tracker mortgage in 2026 | UK Property Guide",
     "metaDescription": "Fixed vs tracker mortgage in 2026: what buyers should compare. Property affordability guide with mortgage checks, budget stress test, buyer examples.",
     "excerpt": "Fixed vs tracker mortgage in 2026: what buyers should compare. Property affordability guide with mortgage checks, budget stress test, buyer examples.",
     "category": "Buying",
@@ -14111,8 +14111,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-10T08:00:00.000Z",
-    "updatedAt": "2026-05-08T12:00:00.000Z",
+    "publishedAt": "2026-02-16T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/fixed-vs-tracker-mortgage-in-2026-what-buyers-should-compare-hero-photo-v8.webp",
@@ -14367,8 +14367,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-10T08:00:00.000Z",
-      "dateModified": "2026-05-08T12:00:00.000Z",
+      "datePublished": "2026-02-16T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/fixed-vs-tracker-mortgage-in-2026-what-buyers-should-compare",
       "isPartOf": {
         "@type": "Blog",
@@ -14490,8 +14490,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-10T08:00:00.000Z",
-    "updatedAt": "2026-05-08T12:00:00.000Z",
+    "publishedAt": "2026-02-17T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/viewing-checklist-for-virtual-property-tours-what-to-inspect-before-visiting-hero-photo-v8.webp",
@@ -14746,8 +14746,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-10T08:00:00.000Z",
-      "dateModified": "2026-05-08T12:00:00.000Z",
+      "datePublished": "2026-02-17T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/viewing-checklist-for-virtual-property-tours-what-to-inspect-before-visiting",
       "isPartOf": {
         "@type": "Blog",
@@ -14869,8 +14869,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-10T08:00:00.000Z",
-    "updatedAt": "2026-05-08T12:00:00.000Z",
+    "publishedAt": "2026-02-18T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/flood-risk-checks-before-buying-a-uk-home-maps-insurance-and-questions-hero-photo-v8.webp",
@@ -15125,8 +15125,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-10T08:00:00.000Z",
-      "dateModified": "2026-05-08T12:00:00.000Z",
+      "datePublished": "2026-02-18T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/flood-risk-checks-before-buying-a-uk-home-maps-insurance-and-questions",
       "isPartOf": {
         "@type": "Blog",
@@ -15223,7 +15223,7 @@ const posts = [
     "id": "blog-041",
     "slug": "epc-rating-when-buying-a-home-costs-upgrades-and-negotiation-questions",
     "title": "EPC rating when buying a home: costs, upgrades and negotiation questions",
-    "metaTitle": "EPC rating when buying a home",
+    "metaTitle": "EPC rating when buying a home | UK Property Guide",
     "metaDescription": "EPC rating when buying a home: costs, upgrades and negotiation questions. Property condition guide with viewing checks, survey questions, risk log.",
     "excerpt": "EPC rating when buying a home: costs, upgrades and negotiation questions. Property condition guide with viewing checks, survey questions, risk log.",
     "category": "Buying",
@@ -15248,8 +15248,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-11T08:00:00.000Z",
-    "updatedAt": "2026-05-09T12:00:00.000Z",
+    "publishedAt": "2026-02-19T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/epc-rating-when-buying-a-home-costs-upgrades-and-negotiation-questions-hero-photo-v8.webp",
@@ -15504,8 +15504,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-11T08:00:00.000Z",
-      "dateModified": "2026-05-09T12:00:00.000Z",
+      "datePublished": "2026-02-19T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/epc-rating-when-buying-a-home-costs-upgrades-and-negotiation-questions",
       "isPartOf": {
         "@type": "Blog",
@@ -15602,7 +15602,7 @@ const posts = [
     "id": "blog-042",
     "slug": "new-build-snagging-checklist-what-to-inspect-before-completion",
     "title": "New-build snagging checklist: what to inspect before completion",
-    "metaTitle": "New-build snagging Checklist",
+    "metaTitle": "New-build snagging Checklist | UK Property Guide",
     "metaDescription": "New-build snagging checklist: what to inspect before completion. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "excerpt": "New-build snagging checklist: what to inspect before completion. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "category": "Buying",
@@ -15627,8 +15627,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-11T08:00:00.000Z",
-    "updatedAt": "2026-05-09T12:00:00.000Z",
+    "publishedAt": "2026-02-20T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/new-build-snagging-checklist-what-to-inspect-before-completion-hero-photo-v8.webp",
@@ -15883,8 +15883,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-11T08:00:00.000Z",
-      "dateModified": "2026-05-09T12:00:00.000Z",
+      "datePublished": "2026-02-20T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/new-build-snagging-checklist-what-to-inspect-before-completion",
       "isPartOf": {
         "@type": "Blog",
@@ -15981,7 +15981,7 @@ const posts = [
     "id": "blog-043",
     "slug": "shared-ownership-pros-and-cons-a-practical-decision-checklist-for-buyers",
     "title": "Shared ownership pros and cons: a practical decision checklist for buyers",
-    "metaTitle": "Shared ownership pros and cons",
+    "metaTitle": "Shared ownership pros and cons | UK Property Guide",
     "metaDescription": "Shared ownership pros and cons: a practical decision checklist for. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "excerpt": "Shared ownership pros and cons: a practical decision checklist for. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "category": "Buying",
@@ -16006,8 +16006,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-11T08:00:00.000Z",
-    "updatedAt": "2026-05-09T12:00:00.000Z",
+    "publishedAt": "2026-02-21T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/shared-ownership-pros-and-cons-a-practical-decision-checklist-for-buyers-hero-photo-v8.webp",
@@ -16262,8 +16262,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-11T08:00:00.000Z",
-      "dateModified": "2026-05-09T12:00:00.000Z",
+      "datePublished": "2026-02-21T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/shared-ownership-pros-and-cons-a-practical-decision-checklist-for-buyers",
       "isPartOf": {
         "@type": "Blog",
@@ -16360,7 +16360,7 @@ const posts = [
     "id": "blog-044",
     "slug": "buying-a-period-home-survey-maintenance-and-energy-questions",
     "title": "Buying a period home: survey, maintenance and energy questions",
-    "metaTitle": "Buying a period home",
+    "metaTitle": "Buying a period home | UK Property Guide",
     "metaDescription": "Buying a period home: survey, maintenance and energy questions. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "excerpt": "Buying a period home: survey, maintenance and energy questions. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "category": "Buying",
@@ -16385,8 +16385,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-11T08:00:00.000Z",
-    "updatedAt": "2026-05-09T12:00:00.000Z",
+    "publishedAt": "2026-02-22T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/buying-a-period-home-survey-maintenance-and-energy-questions-hero-photo-v8.webp",
@@ -16641,8 +16641,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-11T08:00:00.000Z",
-      "dateModified": "2026-05-09T12:00:00.000Z",
+      "datePublished": "2026-02-22T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/buying-a-period-home-survey-maintenance-and-energy-questions",
       "isPartOf": {
         "@type": "Blog",
@@ -16739,7 +16739,7 @@ const posts = [
     "id": "blog-045",
     "slug": "buying-a-home-with-a-garden-office-remote-work-viewing-checklist",
     "title": "Buying a home with a garden office: remote work viewing checklist",
-    "metaTitle": "Buying a home with a garden office",
+    "metaTitle": "Buying a home with a garden office | UK Property Guide",
     "metaDescription": "Buying a home with a garden office: remote work viewing checklist. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "excerpt": "Buying a home with a garden office: remote work viewing checklist. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "category": "Buying",
@@ -16764,8 +16764,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-12T08:00:00.000Z",
-    "updatedAt": "2026-05-09T12:00:00.000Z",
+    "publishedAt": "2026-02-23T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/buying-a-home-with-a-garden-office-remote-work-viewing-checklist-hero-photo-v8.webp",
@@ -17020,8 +17020,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-12T08:00:00.000Z",
-      "dateModified": "2026-05-09T12:00:00.000Z",
+      "datePublished": "2026-02-23T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/buying-a-home-with-a-garden-office-remote-work-viewing-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -17143,8 +17143,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-12T08:00:00.000Z",
-    "updatedAt": "2026-05-10T12:00:00.000Z",
+    "publishedAt": "2026-02-24T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/council-tax-bands-and-service-charges-hidden-costs-buyers-should-compare-hero-photo-v8.webp",
@@ -17399,8 +17399,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-12T08:00:00.000Z",
-      "dateModified": "2026-05-10T12:00:00.000Z",
+      "datePublished": "2026-02-24T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/council-tax-bands-and-service-charges-hidden-costs-buyers-should-compare",
       "isPartOf": {
         "@type": "Blog",
@@ -17497,7 +17497,7 @@ const posts = [
     "id": "blog-047",
     "slug": "chain-free-buying-how-to-reduce-delay-without-overpaying",
     "title": "Chain-free buying: how to reduce delay without overpaying",
-    "metaTitle": "Chain-free buying Guide",
+    "metaTitle": "Chain-free buying Guide | UK Property Guide",
     "metaDescription": "Chain-free buying: how to reduce delay without overpaying. Buyer guide with decision checks, risk signals, evidence pack, practical examples and next steps.",
     "excerpt": "Chain-free buying: how to reduce delay without overpaying. Buyer guide with decision checks, risk signals, evidence pack, practical examples and next steps.",
     "category": "Buying",
@@ -17522,8 +17522,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-12T08:00:00.000Z",
-    "updatedAt": "2026-05-10T12:00:00.000Z",
+    "publishedAt": "2026-02-25T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/chain-free-buying-how-to-reduce-delay-without-overpaying-hero-photo-v8.webp",
@@ -17778,8 +17778,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-12T08:00:00.000Z",
-      "dateModified": "2026-05-10T12:00:00.000Z",
+      "datePublished": "2026-02-25T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/chain-free-buying-how-to-reduce-delay-without-overpaying",
       "isPartOf": {
         "@type": "Blog",
@@ -17876,7 +17876,7 @@ const posts = [
     "id": "blog-048",
     "slug": "gazumping-in-england-and-wales-practical-ways-buyers-can-reduce-risk",
     "title": "Gazumping in England and Wales: practical ways buyers can reduce risk",
-    "metaTitle": "Gazumping in England and Wales",
+    "metaTitle": "Gazumping in England and Wales | UK Property Guide",
     "metaDescription": "Gazumping in England and Wales: practical ways buyers can reduce risk. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "excerpt": "Gazumping in England and Wales: practical ways buyers can reduce risk. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "category": "Buying",
@@ -17901,8 +17901,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-12T08:00:00.000Z",
-    "updatedAt": "2026-05-10T12:00:00.000Z",
+    "publishedAt": "2026-02-26T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/gazumping-in-england-and-wales-practical-ways-buyers-can-reduce-risk-hero-photo-v8.webp",
@@ -18157,8 +18157,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-12T08:00:00.000Z",
-      "dateModified": "2026-05-10T12:00:00.000Z",
+      "datePublished": "2026-02-26T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/gazumping-in-england-and-wales-practical-ways-buyers-can-reduce-risk",
       "isPartOf": {
         "@type": "Blog",
@@ -18255,7 +18255,7 @@ const posts = [
     "id": "blog-049",
     "slug": "school-catchment-property-search-how-families-should-compare-locations",
     "title": "School catchment property search: how families should compare locations",
-    "metaTitle": "School catchment property search",
+    "metaTitle": "School catchment property search | UK Property Guide",
     "metaDescription": "School catchment property search: how families should compare locations. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "excerpt": "School catchment property search: how families should compare locations. Buyer guide with decision checks, risk signals, evidence pack, practical examples.",
     "category": "Buying",
@@ -18280,8 +18280,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-13T08:00:00.000Z",
-    "updatedAt": "2026-05-10T12:00:00.000Z",
+    "publishedAt": "2026-02-27T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/school-catchment-property-search-how-families-should-compare-locations-hero-photo-v8.webp",
@@ -18536,8 +18536,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-13T08:00:00.000Z",
-      "dateModified": "2026-05-10T12:00:00.000Z",
+      "datePublished": "2026-02-27T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/school-catchment-property-search-how-families-should-compare-locations",
       "isPartOf": {
         "@type": "Blog",
@@ -18634,7 +18634,7 @@ const posts = [
     "id": "blog-050",
     "slug": "accessible-homes-checklist-step-free-access-layouts-and-local-transport",
     "title": "Accessible homes checklist: step-free access, layouts and local transport",
-    "metaTitle": "Accessible homes Checklist",
+    "metaTitle": "Accessible homes Checklist | UK Property Guide",
     "metaDescription": "Accessible homes checklist: step-free access, layouts and local. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "excerpt": "Accessible homes checklist: step-free access, layouts and local. Property condition guide with viewing checks, survey questions, risk log and buyer next.",
     "category": "Buying",
@@ -18659,8 +18659,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-13T08:00:00.000Z",
-    "updatedAt": "2026-05-10T12:00:00.000Z",
+    "publishedAt": "2026-02-28T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/accessible-homes-checklist-step-free-access-layouts-and-local-transport-hero-photo-v8.webp",
@@ -18915,8 +18915,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-13T08:00:00.000Z",
-      "dateModified": "2026-05-10T12:00:00.000Z",
+      "datePublished": "2026-02-28T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/accessible-homes-checklist-step-free-access-layouts-and-local-transport",
       "isPartOf": {
         "@type": "Blog",
@@ -19013,7 +19013,7 @@ const posts = [
     "id": "blog-051",
     "slug": "rental-viewing-checklist-30-questions-to-ask-before-applying",
     "title": "Rental viewing checklist: 30 questions to ask before applying",
-    "metaTitle": "Rental viewing Checklist",
+    "metaTitle": "Rental viewing Checklist | UK Property Guide",
     "metaDescription": "Rental viewing checklist: 30 questions to ask before applying. Rental guide with affordability checks, application evidence, tenant-risk warnings and next.",
     "excerpt": "Rental viewing checklist: 30 questions to ask before applying. Rental guide with affordability checks, application evidence, tenant-risk warnings and next.",
     "category": "Renting",
@@ -19039,8 +19039,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-13T08:00:00.000Z",
-    "updatedAt": "2026-05-11T12:00:00.000Z",
+    "publishedAt": "2026-03-01T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/rental-viewing-checklist-30-questions-to-ask-before-applying-hero-photo-v8.webp",
@@ -19301,8 +19301,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-13T08:00:00.000Z",
-      "dateModified": "2026-05-11T12:00:00.000Z",
+      "datePublished": "2026-03-01T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/rental-viewing-checklist-30-questions-to-ask-before-applying",
       "isPartOf": {
         "@type": "Blog",
@@ -19401,7 +19401,7 @@ const posts = [
     "id": "blog-052",
     "slug": "holding-deposit-rules-when-renters-get-it-back-and-when-they-do-not",
     "title": "Holding deposit rules: when renters get it back and when they do not",
-    "metaTitle": "Holding deposit rules",
+    "metaTitle": "Holding deposit rules | UK Property Guide",
     "metaDescription": "Holding deposit rules: when renters get it back and when they do not. Tenancy deposit guide with protection checks, evidence pack, dispute steps and renter.",
     "excerpt": "Holding deposit rules: when renters get it back and when they do not. Tenancy deposit guide with protection checks, evidence pack, dispute steps and renter.",
     "category": "Renting",
@@ -19426,8 +19426,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-13T08:00:00.000Z",
-    "updatedAt": "2026-05-11T12:00:00.000Z",
+    "publishedAt": "2026-03-02T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/holding-deposit-rules-when-renters-get-it-back-and-when-they-do-not-hero-photo-v8.webp",
@@ -19682,8 +19682,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-13T08:00:00.000Z",
-      "dateModified": "2026-05-11T12:00:00.000Z",
+      "datePublished": "2026-03-02T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/holding-deposit-rules-when-renters-get-it-back-and-when-they-do-not",
       "isPartOf": {
         "@type": "Blog",
@@ -19805,8 +19805,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-14T08:00:00.000Z",
-    "updatedAt": "2026-05-11T12:00:00.000Z",
+    "publishedAt": "2026-03-03T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/how-to-compare-furnished-vs-unfurnished-rentals-in-the-uk-hero-photo-v8.webp",
@@ -20061,8 +20061,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-14T08:00:00.000Z",
-      "dateModified": "2026-05-11T12:00:00.000Z",
+      "datePublished": "2026-03-03T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/how-to-compare-furnished-vs-unfurnished-rentals-in-the-uk",
       "isPartOf": {
         "@type": "Blog",
@@ -20159,7 +20159,7 @@ const posts = [
     "id": "blog-054",
     "slug": "student-rental-checklist-guarantors-hmos-and-bills-before-signing",
     "title": "Student rental checklist: guarantors, HMOs and bills before signing",
-    "metaTitle": "Student rental Checklist",
+    "metaTitle": "Student rental Checklist | UK Property Guide",
     "metaDescription": "Student rental checklist: guarantors, HMOs and bills before signing. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Student rental checklist: guarantors, HMOs and bills before signing. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Renting",
@@ -20185,8 +20185,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-14T08:00:00.000Z",
-    "updatedAt": "2026-05-11T12:00:00.000Z",
+    "publishedAt": "2026-03-04T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/student-rental-checklist-guarantors-hmos-and-bills-before-signing-hero-photo-v8.webp",
@@ -20447,8 +20447,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-14T08:00:00.000Z",
-      "dateModified": "2026-05-11T12:00:00.000Z",
+      "datePublished": "2026-03-04T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/student-rental-checklist-guarantors-hmos-and-bills-before-signing",
       "isPartOf": {
         "@type": "Blog",
@@ -20547,7 +20547,7 @@ const posts = [
     "id": "blog-055",
     "slug": "house-share-checklist-licences-bills-deposits-and-room-inspections",
     "title": "House share checklist: licences, bills, deposits and room inspections",
-    "metaTitle": "House share Checklist",
+    "metaTitle": "House share Checklist | UK Property Guide",
     "metaDescription": "House share checklist: licences, bills, deposits and room inspections. Tenancy deposit guide with protection checks, evidence pack, dispute steps.",
     "excerpt": "House share checklist: licences, bills, deposits and room inspections. Tenancy deposit guide with protection checks, evidence pack, dispute steps.",
     "category": "Renting",
@@ -20573,8 +20573,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-14T08:00:00.000Z",
-    "updatedAt": "2026-05-11T12:00:00.000Z",
+    "publishedAt": "2026-03-05T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/house-share-checklist-licences-bills-deposits-and-room-inspections-hero-photo-v8.webp",
@@ -20835,8 +20835,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-14T08:00:00.000Z",
-      "dateModified": "2026-05-11T12:00:00.000Z",
+      "datePublished": "2026-03-05T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/house-share-checklist-licences-bills-deposits-and-room-inspections",
       "isPartOf": {
         "@type": "Blog",
@@ -20935,7 +20935,7 @@ const posts = [
     "id": "blog-056",
     "slug": "pet-friendly-rental-search-how-to-prepare-a-stronger-application",
     "title": "Pet-friendly rental search: how to prepare a stronger application",
-    "metaTitle": "Pet-friendly rental search",
+    "metaTitle": "Pet-friendly rental search | UK Property Guide",
     "metaDescription": "Pet-friendly rental search: how to prepare a stronger application. Rental guide with affordability checks, application evidence, tenant-risk warnings.",
     "excerpt": "Pet-friendly rental search: how to prepare a stronger application. Rental guide with affordability checks, application evidence, tenant-risk warnings.",
     "category": "Renting",
@@ -20960,8 +20960,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-14T08:00:00.000Z",
-    "updatedAt": "2026-05-12T12:00:00.000Z",
+    "publishedAt": "2026-03-06T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/pet-friendly-rental-search-how-to-prepare-a-stronger-application-hero-photo-v8.webp",
@@ -21216,8 +21216,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-14T08:00:00.000Z",
-      "dateModified": "2026-05-12T12:00:00.000Z",
+      "datePublished": "2026-03-06T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/pet-friendly-rental-search-how-to-prepare-a-stronger-application",
       "isPartOf": {
         "@type": "Blog",
@@ -21314,7 +21314,7 @@ const posts = [
     "id": "blog-057",
     "slug": "rental-scams-checklist-how-to-spot-fake-listings-before-sending-money",
     "title": "Rental scams checklist: how to spot fake listings before sending money",
-    "metaTitle": "Rental scams Checklist",
+    "metaTitle": "Rental scams Checklist | UK Property Guide",
     "metaDescription": "Rental scams checklist: how to spot fake listings before sending money. Rental guide with affordability checks, application evidence, tenant-risk warnings.",
     "excerpt": "Rental scams checklist: how to spot fake listings before sending money. Rental guide with affordability checks, application evidence, tenant-risk warnings.",
     "category": "Renting",
@@ -21339,8 +21339,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-15T08:00:00.000Z",
-    "updatedAt": "2026-05-12T12:00:00.000Z",
+    "publishedAt": "2026-03-07T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/rental-scams-checklist-how-to-spot-fake-listings-before-sending-money-hero-photo-v8.webp",
@@ -21595,8 +21595,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-15T08:00:00.000Z",
-      "dateModified": "2026-05-12T12:00:00.000Z",
+      "datePublished": "2026-03-07T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/rental-scams-checklist-how-to-spot-fake-listings-before-sending-money",
       "isPartOf": {
         "@type": "Blog",
@@ -21693,7 +21693,7 @@ const posts = [
     "id": "blog-058",
     "slug": "rent-to-buy-vs-renting-how-to-compare-costs-and-flexibility",
     "title": "Rent-to-buy vs renting: how to compare costs and flexibility",
-    "metaTitle": "Rent-to-buy vs renting",
+    "metaTitle": "Rent-to-buy vs renting | UK Property Guide",
     "metaDescription": "Rent-to-buy vs renting: how to compare costs and flexibility. Rental guide with affordability checks, application evidence, tenant-risk warnings and next.",
     "excerpt": "Rent-to-buy vs renting: how to compare costs and flexibility. Rental guide with affordability checks, application evidence, tenant-risk warnings and next.",
     "category": "Renting",
@@ -21718,8 +21718,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-15T08:00:00.000Z",
-    "updatedAt": "2026-05-12T12:00:00.000Z",
+    "publishedAt": "2026-03-08T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/rent-to-buy-vs-renting-how-to-compare-costs-and-flexibility-hero-photo-v8.webp",
@@ -21974,8 +21974,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-15T08:00:00.000Z",
-      "dateModified": "2026-05-12T12:00:00.000Z",
+      "datePublished": "2026-03-08T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/rent-to-buy-vs-renting-how-to-compare-costs-and-flexibility",
       "isPartOf": {
         "@type": "Blog",
@@ -22072,7 +22072,7 @@ const posts = [
     "id": "blog-059",
     "slug": "social-housing-vs-private-renting-timelines-rights-and-trade-offs",
     "title": "Social housing vs private renting: timelines, rights and trade-offs",
-    "metaTitle": "Social housing vs private renting",
+    "metaTitle": "Social housing vs private renting | UK Property Guide",
     "metaDescription": "Social housing vs private renting: timelines, rights and trade-offs. Rental guide with affordability checks, application evidence, tenant-risk warnings.",
     "excerpt": "Social housing vs private renting: timelines, rights and trade-offs. Rental guide with affordability checks, application evidence, tenant-risk warnings.",
     "category": "Renting",
@@ -22097,8 +22097,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-15T08:00:00.000Z",
-    "updatedAt": "2026-05-12T12:00:00.000Z",
+    "publishedAt": "2026-03-09T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/social-housing-vs-private-renting-timelines-rights-and-trade-offs-hero-photo-v8.webp",
@@ -22353,8 +22353,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-15T08:00:00.000Z",
-      "dateModified": "2026-05-12T12:00:00.000Z",
+      "datePublished": "2026-03-09T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/social-housing-vs-private-renting-timelines-rights-and-trade-offs",
       "isPartOf": {
         "@type": "Blog",
@@ -22476,8 +22476,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-15T08:00:00.000Z",
-    "updatedAt": "2026-05-12T12:00:00.000Z",
+    "publishedAt": "2026-03-10T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/how-to-build-a-renter-document-pack-before-applying-for-a-home-hero-photo-v8.webp",
@@ -22732,8 +22732,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-15T08:00:00.000Z",
-      "dateModified": "2026-05-12T12:00:00.000Z",
+      "datePublished": "2026-03-10T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/how-to-build-a-renter-document-pack-before-applying-for-a-home",
       "isPartOf": {
         "@type": "Blog",
@@ -22830,7 +22830,7 @@ const posts = [
     "id": "blog-061",
     "slug": "buy-to-let-yield-calculator-net-yield-after-voids-fees-and-repairs",
     "title": "Buy-to-let yield calculator: net yield after voids, fees and repairs",
-    "metaTitle": "Buy-to-let yield calculator",
+    "metaTitle": "Buy-to-let yield calculator | UK Property Guide",
     "metaDescription": "Buy-to-let yield calculator: net yield after voids, fees and repairs. Property tool guide with input checks, decision log, examples, templates and next.",
     "excerpt": "Buy-to-let yield calculator: net yield after voids, fees and repairs. Property tool guide with input checks, decision log, examples, templates and next.",
     "category": "Investing",
@@ -22856,8 +22856,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-16T08:00:00.000Z",
-    "updatedAt": "2026-05-13T12:00:00.000Z",
+    "publishedAt": "2026-03-11T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/buy-to-let-yield-calculator-net-yield-after-voids-fees-and-repairs-hero-photo-v8.webp",
@@ -23118,8 +23118,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-16T08:00:00.000Z",
-      "dateModified": "2026-05-13T12:00:00.000Z",
+      "datePublished": "2026-03-11T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/buy-to-let-yield-calculator-net-yield-after-voids-fees-and-repairs",
       "isPartOf": {
         "@type": "Blog",
@@ -23218,7 +23218,7 @@ const posts = [
     "id": "blog-062",
     "slug": "limited-company-buy-to-let-what-investors-should-compare-before-choosing",
     "title": "Limited company buy-to-let: what investors should compare before choosing",
-    "metaTitle": "Limited company buy-to-let",
+    "metaTitle": "Limited company buy-to-let | UK Property Guide",
     "metaDescription": "Limited company buy-to-let: what investors should compare before. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Limited company buy-to-let: what investors should compare before. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -23244,8 +23244,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-16T08:00:00.000Z",
-    "updatedAt": "2026-05-13T12:00:00.000Z",
+    "publishedAt": "2026-03-12T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/limited-company-buy-to-let-what-investors-should-compare-before-choosing-hero-photo-v8.webp",
@@ -23506,8 +23506,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-16T08:00:00.000Z",
-      "dateModified": "2026-05-13T12:00:00.000Z",
+      "datePublished": "2026-03-12T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/limited-company-buy-to-let-what-investors-should-compare-before-choosing",
       "isPartOf": {
         "@type": "Blog",
@@ -23606,7 +23606,7 @@ const posts = [
     "id": "blog-063",
     "slug": "mees-and-epc-planning-how-landlords-should-budget-for-upgrades",
     "title": "MEES and EPC planning: how landlords should budget for upgrades",
-    "metaTitle": "MEES and EPC planning",
+    "metaTitle": "MEES and EPC planning | UK Property Guide",
     "metaDescription": "MEES and EPC planning: how landlords should budget for upgrades. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "MEES and EPC planning: how landlords should budget for upgrades. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -23631,8 +23631,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-16T08:00:00.000Z",
-    "updatedAt": "2026-05-13T12:00:00.000Z",
+    "publishedAt": "2026-03-13T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/mees-and-epc-planning-how-landlords-should-budget-for-upgrades-hero-photo-v8.webp",
@@ -23887,8 +23887,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-16T08:00:00.000Z",
-      "dateModified": "2026-05-13T12:00:00.000Z",
+      "datePublished": "2026-03-13T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/mees-and-epc-planning-how-landlords-should-budget-for-upgrades",
       "isPartOf": {
         "@type": "Blog",
@@ -23985,7 +23985,7 @@ const posts = [
     "id": "blog-064",
     "slug": "hmo-vs-single-let-yield-compliance-and-management-trade-offs",
     "title": "HMO vs single let: yield, compliance and management trade-offs",
-    "metaTitle": "HMO vs single let Guide",
+    "metaTitle": "HMO vs single let Guide | UK Property Guide",
     "metaDescription": "HMO vs single let: yield, compliance and management trade-offs. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "HMO vs single let: yield, compliance and management trade-offs. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -24010,8 +24010,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-16T08:00:00.000Z",
-    "updatedAt": "2026-05-13T12:00:00.000Z",
+    "publishedAt": "2026-03-14T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/hmo-vs-single-let-yield-compliance-and-management-trade-offs-hero-photo-v8.webp",
@@ -24266,8 +24266,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-16T08:00:00.000Z",
-      "dateModified": "2026-05-13T12:00:00.000Z",
+      "datePublished": "2026-03-14T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/hmo-vs-single-let-yield-compliance-and-management-trade-offs",
       "isPartOf": {
         "@type": "Blog",
@@ -24389,8 +24389,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-17T08:00:00.000Z",
-    "updatedAt": "2026-05-13T12:00:00.000Z",
+    "publishedAt": "2026-03-15T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/purpose-built-student-accommodation-investor-checklist-for-uk-cities-hero-photo-v8.webp",
@@ -24645,8 +24645,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-17T08:00:00.000Z",
-      "dateModified": "2026-05-13T12:00:00.000Z",
+      "datePublished": "2026-03-15T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/purpose-built-student-accommodation-investor-checklist-for-uk-cities",
       "isPartOf": {
         "@type": "Blog",
@@ -24743,7 +24743,7 @@ const posts = [
     "id": "blog-066",
     "slug": "build-to-rent-investment-outlook-what-stable-rental-income-means-in-2026",
     "title": "Build-to-rent investment outlook: what stable rental income means in 2026",
-    "metaTitle": "Build-to-rent investment outlook",
+    "metaTitle": "Build-to-rent investment outlook | UK Property Guide",
     "metaDescription": "Build-to-rent investment outlook: what stable rental income means in. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Build-to-rent investment outlook: what stable rental income means in. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -24769,8 +24769,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-17T08:00:00.000Z",
-    "updatedAt": "2026-05-14T12:00:00.000Z",
+    "publishedAt": "2026-03-16T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/build-to-rent-investment-outlook-what-stable-rental-income-means-in-2026-hero-photo-v8.webp",
@@ -25031,8 +25031,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-17T08:00:00.000Z",
-      "dateModified": "2026-05-14T12:00:00.000Z",
+      "datePublished": "2026-03-16T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/build-to-rent-investment-outlook-what-stable-rental-income-means-in-2026",
       "isPartOf": {
         "@type": "Blog",
@@ -25131,7 +25131,7 @@ const posts = [
     "id": "blog-067",
     "slug": "short-term-lets-vs-long-term-lets-income-regulation-and-void-risk",
     "title": "Short-term lets vs long-term lets: income, regulation and void risk",
-    "metaTitle": "Short-term lets vs long-term lets",
+    "metaTitle": "Short-term lets vs long-term lets | UK Property Guide",
     "metaDescription": "Short-term lets vs long-term lets: income, regulation and void risk. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Short-term lets vs long-term lets: income, regulation and void risk. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -25156,8 +25156,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-17T08:00:00.000Z",
-    "updatedAt": "2026-05-14T12:00:00.000Z",
+    "publishedAt": "2026-03-17T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/short-term-lets-vs-long-term-lets-income-regulation-and-void-risk-hero-photo-v8.webp",
@@ -25412,8 +25412,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-17T08:00:00.000Z",
-      "dateModified": "2026-05-14T12:00:00.000Z",
+      "datePublished": "2026-03-17T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/short-term-lets-vs-long-term-lets-income-regulation-and-void-risk",
       "isPartOf": {
         "@type": "Blog",
@@ -25510,7 +25510,7 @@ const posts = [
     "id": "blog-068",
     "slug": "regeneration-hotspots-how-investors-should-validate-growth-claims",
     "title": "Regeneration hotspots: how investors should validate growth claims",
-    "metaTitle": "Regeneration hotspots",
+    "metaTitle": "Regeneration hotspots | UK Property Guide",
     "metaDescription": "Regeneration hotspots: how investors should validate growth claims. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Regeneration hotspots: how investors should validate growth claims. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -25535,8 +25535,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-17T08:00:00.000Z",
-    "updatedAt": "2026-05-14T12:00:00.000Z",
+    "publishedAt": "2026-03-18T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/regeneration-hotspots-how-investors-should-validate-growth-claims-hero-photo-v8.webp",
@@ -25791,8 +25791,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-17T08:00:00.000Z",
-      "dateModified": "2026-05-14T12:00:00.000Z",
+      "datePublished": "2026-03-18T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/regeneration-hotspots-how-investors-should-validate-growth-claims",
       "isPartOf": {
         "@type": "Blog",
@@ -25889,7 +25889,7 @@ const posts = [
     "id": "blog-069",
     "slug": "portfolio-stress-test-interest-rates-voids-and-repair-reserve-checklist",
     "title": "Portfolio stress test: interest rates, voids and repair reserve checklist",
-    "metaTitle": "Portfolio stress test",
+    "metaTitle": "Portfolio stress test | UK Property Guide",
     "metaDescription": "Portfolio stress test: interest rates, voids and repair reserve. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Portfolio stress test: interest rates, voids and repair reserve. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -25914,8 +25914,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-18T08:00:00.000Z",
-    "updatedAt": "2026-05-14T12:00:00.000Z",
+    "publishedAt": "2026-03-19T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/portfolio-stress-test-interest-rates-voids-and-repair-reserve-checklist-hero-photo-v8.webp",
@@ -26170,8 +26170,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-18T08:00:00.000Z",
-      "dateModified": "2026-05-14T12:00:00.000Z",
+      "datePublished": "2026-03-19T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/portfolio-stress-test-interest-rates-voids-and-repair-reserve-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -26268,7 +26268,7 @@ const posts = [
     "id": "blog-070",
     "slug": "landlord-exit-strategy-sell-refinance-or-hold-in-a-slower-market",
     "title": "Landlord exit strategy: sell, refinance or hold in a slower market",
-    "metaTitle": "Landlord exit strategy",
+    "metaTitle": "Landlord exit strategy | UK Property Guide",
     "metaDescription": "Landlord exit strategy: sell, refinance or hold in a slower market. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Landlord exit strategy: sell, refinance or hold in a slower market. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -26294,8 +26294,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-18T08:00:00.000Z",
-    "updatedAt": "2026-05-14T12:00:00.000Z",
+    "publishedAt": "2026-03-20T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/landlord-exit-strategy-sell-refinance-or-hold-in-a-slower-market-hero-photo-v8.webp",
@@ -26556,8 +26556,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-18T08:00:00.000Z",
-      "dateModified": "2026-05-14T12:00:00.000Z",
+      "datePublished": "2026-03-20T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/landlord-exit-strategy-sell-refinance-or-hold-in-a-slower-market",
       "isPartOf": {
         "@type": "Blog",
@@ -26656,7 +26656,7 @@ const posts = [
     "id": "blog-071",
     "slug": "green-rental-upgrades-which-improvements-help-tenants-and-yields",
     "title": "Green rental upgrades: which improvements help tenants and yields",
-    "metaTitle": "Green rental upgrades",
+    "metaTitle": "Green rental upgrades | UK Property Guide",
     "metaDescription": "Green rental upgrades: which improvements help tenants and yields. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Green rental upgrades: which improvements help tenants and yields. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -26681,8 +26681,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-18T08:00:00.000Z",
-    "updatedAt": "2026-05-15T12:00:00.000Z",
+    "publishedAt": "2026-03-21T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/green-rental-upgrades-which-improvements-help-tenants-and-yields-hero-photo-v8.webp",
@@ -26937,8 +26937,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-18T08:00:00.000Z",
-      "dateModified": "2026-05-15T12:00:00.000Z",
+      "datePublished": "2026-03-21T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/green-rental-upgrades-which-improvements-help-tenants-and-yields",
       "isPartOf": {
         "@type": "Blog",
@@ -27035,7 +27035,7 @@ const posts = [
     "id": "blog-072",
     "slug": "investor-due-diligence-pack-documents-to-review-before-exchange",
     "title": "Investor due diligence pack: documents to review before exchange",
-    "metaTitle": "Investor due diligence pack",
+    "metaTitle": "Investor due diligence pack | UK Property Guide",
     "metaDescription": "Investor due diligence pack: documents to review before exchange. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "excerpt": "Investor due diligence pack: documents to review before exchange. Property investment guide with downside modelling, compliance checks, yield evidence.",
     "category": "Investing",
@@ -27061,8 +27061,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-18T08:00:00.000Z",
-    "updatedAt": "2026-05-15T12:00:00.000Z",
+    "publishedAt": "2026-03-22T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 5,
     "heroImage": {
       "url": "/blog-images/investor-due-diligence-pack-documents-to-review-before-exchange-hero-photo-v8.webp",
@@ -27323,8 +27323,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-18T08:00:00.000Z",
-      "dateModified": "2026-05-15T12:00:00.000Z",
+      "datePublished": "2026-03-22T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/investor-due-diligence-pack-documents-to-review-before-exchange",
       "isPartOf": {
         "@type": "Blog",
@@ -27448,8 +27448,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-19T08:00:00.000Z",
-    "updatedAt": "2026-05-15T12:00:00.000Z",
+    "publishedAt": "2026-03-23T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/estate-agent-lead-generation-in-2026-pages-reviews-and-follow-up-scripts-hero-photo-v8.webp",
@@ -27698,8 +27698,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-19T08:00:00.000Z",
-      "dateModified": "2026-05-15T12:00:00.000Z",
+      "datePublished": "2026-03-23T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/estate-agent-lead-generation-in-2026-pages-reviews-and-follow-up-scripts",
       "isPartOf": {
         "@type": "Blog",
@@ -27816,8 +27816,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-19T08:00:00.000Z",
-    "updatedAt": "2026-05-15T12:00:00.000Z",
+    "publishedAt": "2026-03-24T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/letting-agency-compliance-dashboard-what-to-track-weekly-hero-photo-v8.webp",
@@ -28072,8 +28072,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-19T08:00:00.000Z",
-      "dateModified": "2026-05-15T12:00:00.000Z",
+      "datePublished": "2026-03-24T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/letting-agency-compliance-dashboard-what-to-track-weekly",
       "isPartOf": {
         "@type": "Blog",
@@ -28170,7 +28170,7 @@ const posts = [
     "id": "blog-075",
     "slug": "virtual-tours-for-estate-agents-how-to-turn-remote-views-into-qualified-leads",
     "title": "Virtual tours for estate agents: how to turn remote views into qualified leads",
-    "metaTitle": "Virtual tours for estate agents",
+    "metaTitle": "Virtual tours for estate agents | UK Property Guide",
     "metaDescription": "Virtual tours for estate agents: how to turn remote views into qualified. Estate agency growth guide with lead-quality workflow, response standards.",
     "excerpt": "Virtual tours for estate agents: how to turn remote views into qualified. Estate agency growth guide with lead-quality workflow, response standards.",
     "category": "Agents",
@@ -28195,8 +28195,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-19T08:00:00.000Z",
-    "updatedAt": "2026-05-15T12:00:00.000Z",
+    "publishedAt": "2026-03-25T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/virtual-tours-for-estate-agents-how-to-turn-remote-views-into-qualified-leads-hero-photo-v8.webp",
@@ -28445,8 +28445,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-19T08:00:00.000Z",
-      "dateModified": "2026-05-15T12:00:00.000Z",
+      "datePublished": "2026-03-25T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/virtual-tours-for-estate-agents-how-to-turn-remote-views-into-qualified-leads",
       "isPartOf": {
         "@type": "Blog",
@@ -28538,7 +28538,7 @@ const posts = [
     "id": "blog-076",
     "slug": "property-listing-quality-score-how-agents-can-reduce-wasted-enquiries",
     "title": "Property listing quality score: how agents can reduce wasted enquiries",
-    "metaTitle": "Property listing quality score",
+    "metaTitle": "Property listing quality score | UK Property Guide",
     "metaDescription": "Property listing quality score: how agents can reduce wasted enquiries. Operational estate agency guide with workflow checks, lead-quality signals, client.",
     "excerpt": "Property listing quality score: how agents can reduce wasted enquiries. Operational estate agency guide with workflow checks, lead-quality signals, client.",
     "category": "Agents",
@@ -28563,8 +28563,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-19T08:00:00.000Z",
-    "updatedAt": "2026-05-16T12:00:00.000Z",
+    "publishedAt": "2026-03-26T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/property-listing-quality-score-how-agents-can-reduce-wasted-enquiries-hero-photo-v8.webp",
@@ -28813,8 +28813,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-19T08:00:00.000Z",
-      "dateModified": "2026-05-16T12:00:00.000Z",
+      "datePublished": "2026-03-26T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/property-listing-quality-score-how-agents-can-reduce-wasted-enquiries",
       "isPartOf": {
         "@type": "Blog",
@@ -28906,7 +28906,7 @@ const posts = [
     "id": "blog-077",
     "slug": "lead-response-time-in-property-why-the-first-10-minutes-matter-operationally",
     "title": "Lead response time in property: why the first 10 minutes matter operationally",
-    "metaTitle": "Lead response time in property",
+    "metaTitle": "Lead response time in property | UK Property Guide",
     "metaDescription": "Lead response time in property: why the first 10 minutes matter. Estate agency growth guide with lead-quality workflow, response standards, conversion.",
     "excerpt": "Lead response time in property: why the first 10 minutes matter. Estate agency growth guide with lead-quality workflow, response standards, conversion.",
     "category": "Agents",
@@ -28931,8 +28931,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-20T08:00:00.000Z",
-    "updatedAt": "2026-05-16T12:00:00.000Z",
+    "publishedAt": "2026-03-27T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/lead-response-time-in-property-why-the-first-10-minutes-matter-operationally-hero-photo-v8.webp",
@@ -29181,8 +29181,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-20T08:00:00.000Z",
-      "dateModified": "2026-05-16T12:00:00.000Z",
+      "datePublished": "2026-03-27T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/lead-response-time-in-property-why-the-first-10-minutes-matter-operationally",
       "isPartOf": {
         "@type": "Blog",
@@ -29274,7 +29274,7 @@ const posts = [
     "id": "blog-078",
     "slug": "agency-review-engine-how-to-ask-for-reviews-without-breaching-trust",
     "title": "Agency review engine: how to ask for reviews without breaching trust",
-    "metaTitle": "Agency review engine",
+    "metaTitle": "Agency review engine | UK Property Guide",
     "metaDescription": "Agency review engine: how to ask for reviews without breaching trust. Estate agency growth guide with lead-quality workflow, response standards, conversion.",
     "excerpt": "Agency review engine: how to ask for reviews without breaching trust. Estate agency growth guide with lead-quality workflow, response standards, conversion.",
     "category": "Agents",
@@ -29299,8 +29299,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-20T08:00:00.000Z",
-    "updatedAt": "2026-05-16T12:00:00.000Z",
+    "publishedAt": "2026-03-28T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/agency-review-engine-how-to-ask-for-reviews-without-breaching-trust-hero-photo-v8.webp",
@@ -29549,8 +29549,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-20T08:00:00.000Z",
-      "dateModified": "2026-05-16T12:00:00.000Z",
+      "datePublished": "2026-03-28T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/agency-review-engine-how-to-ask-for-reviews-without-breaching-trust",
       "isPartOf": {
         "@type": "Blog",
@@ -29642,7 +29642,7 @@ const posts = [
     "id": "blog-079",
     "slug": "listing-descriptions-that-convert-structure-for-uk-sales-and-lettings",
     "title": "Listing descriptions that convert: structure for UK sales and lettings",
-    "metaTitle": "Listing descriptions that convert",
+    "metaTitle": "Listing descriptions that convert | UK Property Guide",
     "metaDescription": "Listing descriptions that convert: structure for UK sales and lettings. Estate agency growth guide with lead-quality workflow, response standards.",
     "excerpt": "Listing descriptions that convert: structure for UK sales and lettings. Estate agency growth guide with lead-quality workflow, response standards.",
     "category": "Agents",
@@ -29667,8 +29667,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-20T08:00:00.000Z",
-    "updatedAt": "2026-05-16T12:00:00.000Z",
+    "publishedAt": "2026-03-29T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/listing-descriptions-that-convert-structure-for-uk-sales-and-lettings-hero-photo-v8.webp",
@@ -29917,8 +29917,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-20T08:00:00.000Z",
-      "dateModified": "2026-05-16T12:00:00.000Z",
+      "datePublished": "2026-03-29T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/listing-descriptions-that-convert-structure-for-uk-sales-and-lettings",
       "isPartOf": {
         "@type": "Blog",
@@ -30010,7 +30010,7 @@ const posts = [
     "id": "blog-080",
     "slug": "agent-crm-checklist-pipeline-stages-for-viewings-offers-and-compliance",
     "title": "Agent CRM checklist: pipeline stages for viewings, offers and compliance",
-    "metaTitle": "Agent CRM Checklist Guide",
+    "metaTitle": "Agent CRM Checklist Guide | UK Property Guide",
     "metaDescription": "Agent CRM checklist: pipeline stages for viewings, offers and compliance. Estate agency growth guide with lead-quality workflow, response standards.",
     "excerpt": "Agent CRM checklist: pipeline stages for viewings, offers and compliance. Estate agency growth guide with lead-quality workflow, response standards.",
     "category": "Agents",
@@ -30035,8 +30035,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-20T08:00:00.000Z",
-    "updatedAt": "2026-05-16T12:00:00.000Z",
+    "publishedAt": "2026-03-30T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/agent-crm-checklist-pipeline-stages-for-viewings-offers-and-compliance-hero-photo-v8.webp",
@@ -30285,8 +30285,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-20T08:00:00.000Z",
-      "dateModified": "2026-05-16T12:00:00.000Z",
+      "datePublished": "2026-03-30T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/agent-crm-checklist-pipeline-stages-for-viewings-offers-and-compliance",
       "isPartOf": {
         "@type": "Blog",
@@ -30378,7 +30378,7 @@ const posts = [
     "id": "blog-081",
     "slug": "data-led-valuations-how-agents-should-explain-evidence-to-sellers",
     "title": "Data-led valuations: how agents should explain evidence to sellers",
-    "metaTitle": "Data-led valuations Guide",
+    "metaTitle": "Data-led valuations Guide | UK Property Guide",
     "metaDescription": "Data-led valuations: how agents should explain evidence to sellers. Property valuation guide with comparable evidence, pricing range, demand signals.",
     "excerpt": "Data-led valuations: how agents should explain evidence to sellers. Property valuation guide with comparable evidence, pricing range, demand signals.",
     "category": "Agents",
@@ -30403,8 +30403,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-21T08:00:00.000Z",
-    "updatedAt": "2026-05-17T12:00:00.000Z",
+    "publishedAt": "2026-03-31T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/data-led-valuations-how-agents-should-explain-evidence-to-sellers-hero-photo-v8.webp",
@@ -30653,8 +30653,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-21T08:00:00.000Z",
-      "dateModified": "2026-05-17T12:00:00.000Z",
+      "datePublished": "2026-03-31T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/data-led-valuations-how-agents-should-explain-evidence-to-sellers",
       "isPartOf": {
         "@type": "Blog",
@@ -30746,7 +30746,7 @@ const posts = [
     "id": "blog-082",
     "slug": "reducing-fall-throughs-agent-workflow-from-offer-accepted-to-completion",
     "title": "Reducing fall-throughs: agent workflow from offer accepted to completion",
-    "metaTitle": "Reducing fall-throughs",
+    "metaTitle": "Reducing fall-throughs | UK Property Guide",
     "metaDescription": "Reducing fall-throughs: agent workflow from offer accepted to completion. Estate agency growth guide with lead-quality workflow, response standards.",
     "excerpt": "Reducing fall-throughs: agent workflow from offer accepted to completion. Estate agency growth guide with lead-quality workflow, response standards.",
     "category": "Agents",
@@ -30771,8 +30771,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-21T08:00:00.000Z",
-    "updatedAt": "2026-05-17T12:00:00.000Z",
+    "publishedAt": "2026-04-01T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/reducing-fall-throughs-agent-workflow-from-offer-accepted-to-completion-hero-photo-v8.webp",
@@ -31021,8 +31021,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-21T08:00:00.000Z",
-      "dateModified": "2026-05-17T12:00:00.000Z",
+      "datePublished": "2026-04-01T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/reducing-fall-throughs-agent-workflow-from-offer-accepted-to-completion",
       "isPartOf": {
         "@type": "Blog",
@@ -31114,7 +31114,7 @@ const posts = [
     "id": "blog-083",
     "slug": "b2b-property-portal-comparison-what-agencies-should-measure-before-paying",
     "title": "B2B property portal comparison: what agencies should measure before paying",
-    "metaTitle": "B2B property portal comparison",
+    "metaTitle": "B2B property portal comparison | UK Property Guide",
     "metaDescription": "B2B property portal comparison: what agencies should measure before. Estate agency growth guide with lead-quality workflow, response standards, conversion.",
     "excerpt": "B2B property portal comparison: what agencies should measure before. Estate agency growth guide with lead-quality workflow, response standards, conversion.",
     "category": "Agents",
@@ -31139,8 +31139,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-21T08:00:00.000Z",
-    "updatedAt": "2026-05-17T12:00:00.000Z",
+    "publishedAt": "2026-04-02T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/b2b-property-portal-comparison-what-agencies-should-measure-before-paying-hero-photo-v8.webp",
@@ -31389,8 +31389,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-21T08:00:00.000Z",
-      "dateModified": "2026-05-17T12:00:00.000Z",
+      "datePublished": "2026-04-02T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/b2b-property-portal-comparison-what-agencies-should-measure-before-paying",
       "isPartOf": {
         "@type": "Blog",
@@ -31482,7 +31482,7 @@ const posts = [
     "id": "blog-084",
     "slug": "co-broking-and-partner-referrals-a-transparent-workflow-for-property-teams",
     "title": "Co-broking and partner referrals: a transparent workflow for property teams",
-    "metaTitle": "Co-broking and partner referrals",
+    "metaTitle": "Co-broking and partner referrals | UK Property Guide",
     "metaDescription": "Co-broking and partner referrals: a transparent workflow for property. Estate agency growth guide with lead-quality workflow, response standards.",
     "excerpt": "Co-broking and partner referrals: a transparent workflow for property. Estate agency growth guide with lead-quality workflow, response standards.",
     "category": "Agents",
@@ -31507,8 +31507,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-21T08:00:00.000Z",
-    "updatedAt": "2026-05-17T12:00:00.000Z",
+    "publishedAt": "2026-04-03T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/co-broking-and-partner-referrals-a-transparent-workflow-for-property-teams-hero-photo-v8.webp",
@@ -31757,8 +31757,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-21T08:00:00.000Z",
-      "dateModified": "2026-05-17T12:00:00.000Z",
+      "datePublished": "2026-04-03T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/co-broking-and-partner-referrals-a-transparent-workflow-for-property-teams",
       "isPartOf": {
         "@type": "Blog",
@@ -31850,7 +31850,7 @@ const posts = [
     "id": "blog-085",
     "slug": "estate-agent-fees-in-the-uk-what-sellers-should-compare-before-instructing",
     "title": "Estate agent fees in the UK: what sellers should compare before instructing",
-    "metaTitle": "Estate agent fees in the UK",
+    "metaTitle": "Estate agent fees in the UK | UK Property Guide",
     "metaDescription": "Estate agent fees in the UK: what sellers should compare before. Estate agent fee guide with contract terms, VAT checks, service comparison and seller.",
     "excerpt": "Estate agent fees in the UK: what sellers should compare before. Estate agent fee guide with contract terms, VAT checks, service comparison and seller.",
     "category": "Selling",
@@ -31875,8 +31875,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-22T08:00:00.000Z",
-    "updatedAt": "2026-05-17T12:00:00.000Z",
+    "publishedAt": "2026-04-04T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/estate-agent-fees-in-the-uk-what-sellers-should-compare-before-instructing-hero-photo-v8.webp",
@@ -32131,8 +32131,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-22T08:00:00.000Z",
-      "dateModified": "2026-05-17T12:00:00.000Z",
+      "datePublished": "2026-04-04T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/estate-agent-fees-in-the-uk-what-sellers-should-compare-before-instructing",
       "isPartOf": {
         "@type": "Blog",
@@ -32229,7 +32229,7 @@ const posts = [
     "id": "blog-086",
     "slug": "how-to-choose-an-estate-agent-valuation-evidence-marketing-and-contract-terms",
     "title": "How to choose an estate agent: valuation evidence, marketing and contract terms",
-    "metaTitle": "How to choose an estate agent",
+    "metaTitle": "How to choose an estate agent | UK Property Guide",
     "metaDescription": "How to choose an estate agent: valuation evidence, marketing and. Estate agent selection guide with valuation evidence, fee terms, marketing checks.",
     "excerpt": "How to choose an estate agent: valuation evidence, marketing and. Estate agent selection guide with valuation evidence, fee terms, marketing checks.",
     "category": "Selling",
@@ -32254,8 +32254,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-22T08:00:00.000Z",
-    "updatedAt": "2026-05-18T12:00:00.000Z",
+    "publishedAt": "2026-04-05T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/how-to-choose-an-estate-agent-valuation-evidence-marketing-and-contract-terms-hero-photo-v8.webp",
@@ -32510,8 +32510,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-22T08:00:00.000Z",
-      "dateModified": "2026-05-18T12:00:00.000Z",
+      "datePublished": "2026-04-05T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/how-to-choose-an-estate-agent-valuation-evidence-marketing-and-contract-terms",
       "isPartOf": {
         "@type": "Blog",
@@ -32633,8 +32633,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-22T08:00:00.000Z",
-    "updatedAt": "2026-05-18T12:00:00.000Z",
+    "publishedAt": "2026-04-06T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/sell-my-house-fast-without-panic-pricing-preparation-checklist-for-sellers-hero-photo-v8.webp",
@@ -32889,8 +32889,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-22T08:00:00.000Z",
-      "dateModified": "2026-05-18T12:00:00.000Z",
+      "datePublished": "2026-04-06T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/sell-my-house-fast-without-panic-pricing-preparation-checklist-for-sellers",
       "isPartOf": {
         "@type": "Blog",
@@ -32987,7 +32987,7 @@ const posts = [
     "id": "blog-088",
     "slug": "best-time-to-list-a-property-seasonality-pricing-and-local-demand-signals",
     "title": "Best time to list a property: seasonality, pricing and local demand signals",
-    "metaTitle": "Best time to list a property",
+    "metaTitle": "Best time to list a property | UK Property Guide",
     "metaDescription": "Best time to list a property: seasonality, pricing and local demand. Best time to list guide with seasonality, demand signals, price evidence and seller.",
     "excerpt": "Best time to list a property: seasonality, pricing and local demand. Best time to list guide with seasonality, demand signals, price evidence and seller.",
     "category": "Selling",
@@ -33012,8 +33012,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-22T08:00:00.000Z",
-    "updatedAt": "2026-05-18T12:00:00.000Z",
+    "publishedAt": "2026-04-07T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/best-time-to-list-a-property-seasonality-pricing-and-local-demand-signals-hero-photo-v8.webp",
@@ -33268,8 +33268,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-22T08:00:00.000Z",
-      "dateModified": "2026-05-18T12:00:00.000Z",
+      "datePublished": "2026-04-07T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/best-time-to-list-a-property-seasonality-pricing-and-local-demand-signals",
       "isPartOf": {
         "@type": "Blog",
@@ -33366,7 +33366,7 @@ const posts = [
     "id": "blog-089",
     "slug": "property-valuation-checklist-what-affects-asking-price-beyond-square-footage",
     "title": "Property valuation checklist: what affects asking price beyond square footage",
-    "metaTitle": "Property valuation Checklist",
+    "metaTitle": "Property valuation Checklist | UK Property Guide",
     "metaDescription": "Property valuation checklist: what affects asking price beyond square. Property valuation guide with comparable evidence, pricing range, demand signals.",
     "excerpt": "Property valuation checklist: what affects asking price beyond square. Property valuation guide with comparable evidence, pricing range, demand signals.",
     "category": "Selling",
@@ -33391,8 +33391,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-23T08:00:00.000Z",
-    "updatedAt": "2026-05-18T12:00:00.000Z",
+    "publishedAt": "2026-04-08T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/property-valuation-checklist-what-affects-asking-price-beyond-square-footage-hero-photo-v8.webp",
@@ -33647,8 +33647,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-23T08:00:00.000Z",
-      "dateModified": "2026-05-18T12:00:00.000Z",
+      "datePublished": "2026-04-08T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/property-valuation-checklist-what-affects-asking-price-beyond-square-footage",
       "isPartOf": {
         "@type": "Blog",
@@ -33745,7 +33745,7 @@ const posts = [
     "id": "blog-090",
     "slug": "preparing-a-home-for-virtual-tours-lighting-rooms-and-documents",
     "title": "Preparing a home for virtual tours: lighting, rooms and documents",
-    "metaTitle": "Preparing a home for virtual tours",
+    "metaTitle": "Preparing a home for virtual tours | UK Property Guide",
     "metaDescription": "Preparing a home for virtual tours: lighting, rooms and documents. Virtual tour preparation guide with room checklist, lighting, document readiness.",
     "excerpt": "Preparing a home for virtual tours: lighting, rooms and documents. Virtual tour preparation guide with room checklist, lighting, document readiness.",
     "category": "Selling",
@@ -33770,8 +33770,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-23T08:00:00.000Z",
-    "updatedAt": "2026-05-18T12:00:00.000Z",
+    "publishedAt": "2026-04-09T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents-hero-photo-v8.webp",
@@ -34026,8 +34026,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-23T08:00:00.000Z",
-      "dateModified": "2026-05-18T12:00:00.000Z",
+      "datePublished": "2026-04-09T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/preparing-a-home-for-virtual-tours-lighting-rooms-and-documents",
       "isPartOf": {
         "@type": "Blog",
@@ -34124,7 +34124,7 @@ const posts = [
     "id": "blog-091",
     "slug": "seller-disclosure-checklist-documents-buyers-and-solicitors-will-ask-for",
     "title": "Seller disclosure checklist: documents buyers and solicitors will ask for",
-    "metaTitle": "Seller disclosure Checklist",
+    "metaTitle": "Seller disclosure Checklist | UK Property Guide",
     "metaDescription": "Seller disclosure checklist: documents buyers and solicitors will ask. Seller disclosure guide with document checklist, solicitor questions, evidence.",
     "excerpt": "Seller disclosure checklist: documents buyers and solicitors will ask. Seller disclosure guide with document checklist, solicitor questions, evidence.",
     "category": "Selling",
@@ -34149,8 +34149,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-23T08:00:00.000Z",
-    "updatedAt": "2026-05-19T12:00:00.000Z",
+    "publishedAt": "2026-04-10T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/seller-disclosure-checklist-documents-buyers-and-solicitors-will-ask-for-hero-photo-v8.webp",
@@ -34405,8 +34405,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-23T08:00:00.000Z",
-      "dateModified": "2026-05-19T12:00:00.000Z",
+      "datePublished": "2026-04-10T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/seller-disclosure-checklist-documents-buyers-and-solicitors-will-ask-for",
       "isPartOf": {
         "@type": "Blog",
@@ -34503,7 +34503,7 @@ const posts = [
     "id": "blog-092",
     "slug": "price-reduction-strategy-when-to-adjust-asking-price-and-how-to-message-it",
     "title": "Price reduction strategy: when to adjust asking price and how to message it",
-    "metaTitle": "Price reduction strategy",
+    "metaTitle": "Price reduction strategy | UK Property Guide",
     "metaDescription": "Price reduction strategy: when to adjust asking price and how to message. Property price reduction guide with feedback signals, pricing evidence, messaging.",
     "excerpt": "Price reduction strategy: when to adjust asking price and how to message. Property price reduction guide with feedback signals, pricing evidence, messaging.",
     "category": "Selling",
@@ -34528,8 +34528,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-23T08:00:00.000Z",
-    "updatedAt": "2026-05-19T12:00:00.000Z",
+    "publishedAt": "2026-04-11T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/price-reduction-strategy-when-to-adjust-asking-price-and-how-to-message-it-hero-photo-v8.webp",
@@ -34784,8 +34784,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-23T08:00:00.000Z",
-      "dateModified": "2026-05-19T12:00:00.000Z",
+      "datePublished": "2026-04-11T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/price-reduction-strategy-when-to-adjust-asking-price-and-how-to-message-it",
       "isPartOf": {
         "@type": "Blog",
@@ -34882,7 +34882,7 @@ const posts = [
     "id": "blog-093",
     "slug": "selling-a-leasehold-flat-management-pack-service-charge-and-timeline",
     "title": "Selling a leasehold flat: management pack, service charge and timeline",
-    "metaTitle": "Selling a leasehold flat",
+    "metaTitle": "Selling a leasehold flat | UK Property Guide",
     "metaDescription": "Selling a leasehold flat: management pack, service charge and timeline. Leasehold flat guide with management pack, service charge, ground rent, major works.",
     "excerpt": "Selling a leasehold flat: management pack, service charge and timeline. Leasehold flat guide with management pack, service charge, ground rent, major works.",
     "category": "Selling",
@@ -34907,8 +34907,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-24T08:00:00.000Z",
-    "updatedAt": "2026-05-19T12:00:00.000Z",
+    "publishedAt": "2026-04-12T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/selling-a-leasehold-flat-management-pack-service-charge-and-timeline-hero-photo-v8.webp",
@@ -35163,8 +35163,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-24T08:00:00.000Z",
-      "dateModified": "2026-05-19T12:00:00.000Z",
+      "datePublished": "2026-04-12T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/selling-a-leasehold-flat-management-pack-service-charge-and-timeline",
       "isPartOf": {
         "@type": "Blog",
@@ -35261,7 +35261,7 @@ const posts = [
     "id": "blog-094",
     "slug": "selling-a-buy-to-let-property-tenant-tax-and-notice-considerations",
     "title": "Selling a buy-to-let property: tenant, tax and notice considerations",
-    "metaTitle": "Selling a buy-to-let property",
+    "metaTitle": "Selling a buy-to-let property | UK Property Guide",
     "metaDescription": "Selling a buy-to-let property: tenant, tax and notice considerations. Practical seller guide with evidence checks, contract points, common risks, checklist.",
     "excerpt": "Selling a buy-to-let property: tenant, tax and notice considerations. Practical seller guide with evidence checks, contract points, common risks, checklist.",
     "category": "Selling",
@@ -35287,8 +35287,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-24T08:00:00.000Z",
-    "updatedAt": "2026-05-19T12:00:00.000Z",
+    "publishedAt": "2026-04-13T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/selling-a-buy-to-let-property-tenant-tax-and-notice-considerations-hero-photo-v8.webp",
@@ -35549,8 +35549,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-24T08:00:00.000Z",
-      "dateModified": "2026-05-19T12:00:00.000Z",
+      "datePublished": "2026-04-13T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/selling-a-buy-to-let-property-tenant-tax-and-notice-considerations",
       "isPartOf": {
         "@type": "Blog",
@@ -35649,7 +35649,7 @@ const posts = [
     "id": "blog-095",
     "slug": "best-areas-to-rent-in-london-in-2026-by-budget-commute-and-lifestyle",
     "title": "Best areas to rent in London in 2026 by budget, commute and lifestyle",
-    "metaTitle": "Best Areas to Rent in London 2026",
+    "metaTitle": "Best Areas to Rent in London 2026 | UK Property Guide",
     "metaDescription": "Best areas to rent in London in 2026 by budget, commute and lifestyle. London property guide with area shortlist criteria, commute checks, budget.",
     "excerpt": "Best areas to rent in London in 2026 by budget, commute and lifestyle. London property guide with area shortlist criteria, commute checks, budget.",
     "category": "Local Guides",
@@ -35674,8 +35674,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-24T08:00:00.000Z",
-    "updatedAt": "2026-05-19T12:00:00.000Z",
+    "publishedAt": "2026-04-14T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/best-areas-to-rent-in-london-in-2026-by-budget-commute-and-lifestyle-hero-photo-v8.webp",
@@ -35924,8 +35924,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-24T08:00:00.000Z",
-      "dateModified": "2026-05-19T12:00:00.000Z",
+      "datePublished": "2026-04-14T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/best-areas-to-rent-in-london-in-2026-by-budget-commute-and-lifestyle",
       "isPartOf": {
         "@type": "Blog",
@@ -36042,8 +36042,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-24T08:00:00.000Z",
-    "updatedAt": "2026-05-20T12:00:00.000Z",
+    "publishedAt": "2026-04-15T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/where-to-buy-in-london-schools-transport-and-long-term-value-checklist-hero-photo-v8.webp",
@@ -36292,8 +36292,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-24T08:00:00.000Z",
-      "dateModified": "2026-05-20T12:00:00.000Z",
+      "datePublished": "2026-04-15T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/where-to-buy-in-london-schools-transport-and-long-term-value-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -36410,8 +36410,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-25T08:00:00.000Z",
-    "updatedAt": "2026-05-20T12:00:00.000Z",
+    "publishedAt": "2026-04-16T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/best-areas-to-rent-in-manchester-in-2026-by-budget-commute-and-lifestyle-hero-photo-v8.webp",
@@ -36660,8 +36660,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-25T08:00:00.000Z",
-      "dateModified": "2026-05-20T12:00:00.000Z",
+      "datePublished": "2026-04-16T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/best-areas-to-rent-in-manchester-in-2026-by-budget-commute-and-lifestyle",
       "isPartOf": {
         "@type": "Blog",
@@ -36778,8 +36778,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-25T08:00:00.000Z",
-    "updatedAt": "2026-05-20T12:00:00.000Z",
+    "publishedAt": "2026-04-17T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/where-to-buy-in-manchester-schools-transport-and-long-term-value-checklist-hero-photo-v8.webp",
@@ -37028,8 +37028,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-25T08:00:00.000Z",
-      "dateModified": "2026-05-20T12:00:00.000Z",
+      "datePublished": "2026-04-17T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/where-to-buy-in-manchester-schools-transport-and-long-term-value-checklist",
       "isPartOf": {
         "@type": "Blog",
@@ -37146,8 +37146,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-25T08:00:00.000Z",
-    "updatedAt": "2026-05-20T12:00:00.000Z",
+    "publishedAt": "2026-04-18T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/best-areas-to-rent-in-birmingham-in-2026-by-budget-commute-and-lifestyle-hero-photo-v8.webp",
@@ -37396,8 +37396,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-25T08:00:00.000Z",
-      "dateModified": "2026-05-20T12:00:00.000Z",
+      "datePublished": "2026-04-18T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/best-areas-to-rent-in-birmingham-in-2026-by-budget-commute-and-lifestyle",
       "isPartOf": {
         "@type": "Blog",
@@ -37514,8 +37514,8 @@ const posts = [
       "url": "https://estospaces.com/about"
     },
     "status": "published",
-    "publishedAt": "2026-05-25T08:00:00.000Z",
-    "updatedAt": "2026-05-20T12:00:00.000Z",
+    "publishedAt": "2026-04-19T08:00:00.000Z",
+    "updatedAt": "2026-05-01T12:00:00.000Z",
     "readingTime": 6,
     "heroImage": {
       "url": "/blog-images/where-to-buy-in-birmingham-schools-transport-and-long-term-value-checklist-hero-photo-v8.webp",
@@ -37764,8 +37764,8 @@ const posts = [
           "url": "https://estospaces.com/assets/logo-icon.png"
         }
       },
-      "datePublished": "2026-05-25T08:00:00.000Z",
-      "dateModified": "2026-05-20T12:00:00.000Z",
+      "datePublished": "2026-04-19T08:00:00.000Z",
+      "dateModified": "2026-05-01T12:00:00.000Z",
       "mainEntityOfPage": "https://estospaces.com/blogs/where-to-buy-in-birmingham-schools-transport-and-long-term-value-checklist",
       "isPartOf": {
         "@type": "Blog",

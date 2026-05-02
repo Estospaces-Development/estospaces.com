@@ -296,8 +296,8 @@ function toBlueprint([title, category, audience, intentType, targetKeyword, sour
 
 function buildPost(topic, index) {
   const slug = topic.slug;
-  const publishedAt = new Date(Date.UTC(2026, 4, 1 + Math.floor(index / 4), 8, 0, 0)).toISOString();
-  const updatedAt = new Date(Date.UTC(2026, 4, 1 + Math.floor(index / 5), 12, 0, 0)).toISOString();
+  const publishedAt = new Date(Date.UTC(2026, 0, 10 + index, 8, 0, 0)).toISOString();
+  const updatedAt = new Date(Date.UTC(2026, 4, 1, 12, 0, 0)).toISOString();
   const secondaryKeywords = buildSecondaryKeywords(topic);
   const sources = selectSources(topic.sourceTags);
   const keyTakeaways = buildTakeaways(topic);
@@ -1328,12 +1328,15 @@ function buildTags(topic) {
 
 function makeMetaTitle(topic) {
   const city = cityFromTitle(topic.title);
-  const ensureTitleLength = (value) => (value.length < 20 ? `${value} Guide` : value);
+  const ensureTitleLength = (value) => {
+    const base = value.length < 20 ? `${value} Guide` : value;
+    return base.length < 35 ? `${base} | UK Property Guide` : base;
+  };
   if (city && topic.title.startsWith(`Best areas to rent in ${city}`)) {
-    return `Best Areas to Rent in ${city} 2026`;
+    return ensureTitleLength(`Best Areas to Rent in ${city} 2026`);
   }
   if (city && topic.title.startsWith(`Where to buy in ${city}`)) {
-    return `Where to Buy in ${city}: Schools and Transport`;
+    return ensureTitleLength(`Where to Buy in ${city}: Schools and Transport`);
   }
   const compact = topic.title
     .replace(/^From 2026:\s*/, '')

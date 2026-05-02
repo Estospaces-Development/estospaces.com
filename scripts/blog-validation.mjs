@@ -43,6 +43,9 @@ export function validateBlogPosts(posts, { expectedCount = 100, sitemapUrls = []
     if (!['draft', 'published'].includes(post?.status)) errors.push(`${label}: invalid status.`);
     if (!post?.publishedAt) errors.push(`${label}: missing publishedAt.`);
     if (!post?.updatedAt) errors.push(`${label}: missing updatedAt.`);
+    if (post?.publishedAt && post?.updatedAt && new Date(post.updatedAt).getTime() < new Date(post.publishedAt).getTime()) {
+      errors.push(`${label}: updatedAt must not be before publishedAt.`);
+    }
     if (!post?.readingTime || post.readingTime < 3) errors.push(`${label}: readingTime is too low.`);
     if (!post?.canonicalUrl) errors.push(`${label}: missing canonicalUrl.`);
     if (!post?.heroImage?.url) errors.push(`${label}: missing hero image URL.`);

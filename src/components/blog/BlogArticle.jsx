@@ -175,7 +175,7 @@ export default function BlogArticle({ post, relatedPosts }) {
               <ul className="mt-4 space-y-3">
                 {post.externalLinks.map((source) => (
                   <li key={source.url} className="leading-7">
-                    <a href={source.url} rel="noreferrer" className="font-semibold text-primary hover:underline">
+                    <a href={source.url} rel="noopener noreferrer" className="font-semibold text-primary hover:underline">
                       {source.publisher}: {source.title}
                     </a>
                     <span className="block text-sm text-gray-600 dark:text-gray-300">{source.reason}</span>
