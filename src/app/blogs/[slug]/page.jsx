@@ -99,7 +99,9 @@ export default async function BlogDetailPage({ params }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
         />
       ))}
-      <BlogArticle post={post} relatedPosts={relatedPosts} />
+      <main>
+        <BlogArticle post={post} relatedPosts={relatedPosts} />
+      </main>
     </BlogChrome>
   );
 }

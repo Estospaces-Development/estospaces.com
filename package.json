@@ -14,6 +14,8 @@
     "blogs:update": "node scripts/update-blog-posts.mjs",
     "blogs:audit": "node scripts/audit-blog-seo.mjs",
     "blogs:validate": "node scripts/validate-blogs.mjs",
+    "site:audit": "node scripts/audit-site-seo.mjs",
+    "assets:og": "node scripts/generate-og-image.mjs",
     "start": "node .next/standalone/server.js"
   },
   "dependencies": {

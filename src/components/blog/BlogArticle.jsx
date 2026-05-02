@@ -30,7 +30,13 @@ export default function BlogArticle({ post, relatedPosts }) {
             {post.content.summary}
           </p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-gray-500 dark:text-gray-400">
-            <span>By <span itemProp="author">{post.author.name}</span></span>
+            <span>
+              By{' '}
+              <a itemProp="author" href={post.author.url} className="font-semibold text-gray-700 hover:text-primary dark:text-gray-200">
+                {post.author.name}
+              </a>
+            </span>
+            <span>{post.author.role}</span>
             <span>Published <time itemProp="datePublished" dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time></span>
             <span>Updated <time itemProp="dateModified" dateTime={post.updatedAt}>{formatDate(post.updatedAt)}</time></span>
             <span>{post.readingTime} min read</span>

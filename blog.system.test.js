@@ -74,6 +74,7 @@ test('blog routes, nav, sitemap, and JSON-LD expose crawlable blog surfaces', as
   const entries = await sitemap();
   const urls = entries.map((entry) => entry.url);
   assert.ok(urls.includes('https://estospaces.com/blogs'));
+  assert.ok(urls.includes('https://estospaces.com/about'));
   assert.equal(urls.filter((url) => url.startsWith('https://estospaces.com/blogs/')).length, 100);
   assert.ok(entries.some((entry) => entry.images?.length > 0));
 
@@ -83,6 +84,20 @@ test('blog routes, nav, sitemap, and JSON-LD expose crawlable blog surfaces', as
   assert.equal(jsonLd['@type'], 'BlogPosting');
   assert.equal(jsonLd.headline, posts.posts[0].title);
   assert.ok(jsonLd.image.url);
+});
+
+test('site-level SEO trust surfaces exist for home, blog index, and author pages', async () => {
+  const homeSource = await readFile('./src/components/landing/Home.jsx', 'utf8');
+  const blogIndexSource = await readFile('./src/app/blogs/page.jsx', 'utf8');
+  const aboutSource = await readFile('./src/app/about/page.jsx', 'utf8');
+  const layoutSource = await readFile('./src/app/layout.jsx', 'utf8');
+  const tailwindSource = await readFile('./tailwind.config.js', 'utf8');
+
+  assert.match(homeSource, /<main id="main-content">/);
+  assert.match(blogIndexSource, /buildBlogIndexJsonLd/);
+  assert.match(aboutSource, /Editorial Standards/);
+  assert.match(layoutSource, /estospaces-og\.webp/);
+  assert.doesNotMatch(tailwindSource, /letterSpacing:\s*'-/);
 });
 
 test('seeded blog hero images exist as crawlable WebP assets', async () => {

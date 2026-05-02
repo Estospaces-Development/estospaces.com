@@ -15,6 +15,12 @@ export default async function sitemap() {
       changeFrequency: 'daily',
       priority: 0.9,
     },
+    {
+      url: 'https://estospaces.com/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     ...posts.map((post) => ({
       url: post.canonicalUrl,
       lastModified: new Date(post.updatedAt),

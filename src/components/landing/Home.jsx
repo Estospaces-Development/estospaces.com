@@ -17,17 +17,19 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Navbar />
-      <Hero />
-      <BigPromise />
-      <SneakPeek />
-      <Problem />
-      <Solution />
-      <SocialProof />
-      <Testimonials />
-      <WhyJoin />
-      <Countdown />
-      <FAQ />
-      <FinalCTA />
+      <main id="main-content">
+        <Hero />
+        <BigPromise />
+        <SneakPeek />
+        <Problem />
+        <Solution />
+        <SocialProof />
+        <Testimonials />
+        <WhyJoin />
+        <Countdown />
+        <FAQ />
+        <FinalCTA />
+      </main>
       <Footer />
     </div>
   );

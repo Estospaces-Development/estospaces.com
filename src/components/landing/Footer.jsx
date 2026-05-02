@@ -89,6 +89,8 @@ const Footer = () => {
                         <ul className="space-y-2">
                             {[
                                 { name: 'Home', link: '/' },
+                                { name: 'About', link: '/about' },
+                                { name: 'Blog', link: '/blogs' },
                                 { name: 'Features', link: '#features' },
                                 { name: 'Reviews', link: '#reviews' },
                                 { name: 'Waitlist', link: '#join-waitlist' },

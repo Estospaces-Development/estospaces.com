@@ -1,8 +1,23 @@
 import '../index.css';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 
 const siteUrl = 'https://estospaces.com';
-const title = 'Estospaces - Discover Your Dream Home';
-const description = 'Explore verified property listings with immersive virtual tours, trusted brokers, and a smoother property search experience across the UK.';
+const title = 'Estospaces - Virtual Property Tours & Verified UK Listings';
+const description = 'Search verified UK property listings, explore immersive virtual tours, and connect with trusted brokers through Estospaces.';
+const ogImage = '/assets/estospaces-og.webp';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-cormorant',
+  weight: ['400', '500', '600', '700'],
+});
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -47,10 +62,10 @@ export const metadata = {
     description,
     images: [
       {
-        url: '/assets/modern-apartment.png',
+        url: ogImage,
         width: 1200,
         height: 630,
-        alt: 'Modern apartment preview on Estospaces',
+        alt: 'Estospaces virtual property tours and verified UK listings',
       },
     ],
   },
@@ -58,7 +73,7 @@ export const metadata = {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/assets/modern-apartment.png'],
+    images: [ogImage],
   },
   icons: {
     icon: [
@@ -76,15 +91,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );

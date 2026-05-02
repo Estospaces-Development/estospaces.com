@@ -1,6 +1,8 @@
 import BlogCard from '../../components/blog/BlogCard';
 import BlogChrome from '../../components/blog/BlogChrome';
-import { getBlogPosts, getFeaturedBlogPosts } from '../../lib/blogs';
+import { absoluteUrl, getBlogPosts, getFeaturedBlogPosts } from '../../lib/blogs';
+
+const siteUrl = 'https://estospaces.com';
 
 export const metadata = {
   title: 'UK Property Blog',
@@ -15,7 +17,7 @@ export const metadata = {
     type: 'website',
     images: [
       {
-        url: '/assets/modern-apartment.png',
+        url: '/assets/estospaces-og.webp',
         width: 1200,
         height: 630,
         alt: 'Estospaces UK property blog',
@@ -26,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'UK Property Blog | Estospaces',
     description: 'Source-backed UK property guides for buyers, renters, landlords, investors and estate agents.',
-    images: ['/assets/modern-apartment.png'],
+    images: ['/assets/estospaces-og.webp'],
   },
 };
 
@@ -48,9 +50,18 @@ export default async function BlogsPage({ searchParams }) {
     excludeSlugs: defaultListing ? featuredPosts.map((post) => post.slug) : [],
   });
   const displayTotal = defaultListing ? result.total + featuredPosts.length : result.total;
+  const visiblePosts = [...featuredPosts, ...result.posts];
+  const jsonLd = buildBlogIndexJsonLd(visiblePosts);
 
   return (
     <BlogChrome>
+      {jsonLd.map((item) => (
+        <script
+          key={item['@type']}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+        />
+      ))}
       <main className="pt-28">
         <section className="border-b border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-950">
           <div className="container mx-auto px-4 py-10 sm:py-14">
@@ -72,9 +83,14 @@ export default async function BlogsPage({ searchParams }) {
                 <h2 className="mt-1 text-2xl font-bold text-gray-950 dark:text-white">Start here</h2>
               </div>
             </div>
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-4">
               {featuredPosts.map((post, index) => (
-                <BlogCard key={post.slug} post={post} featured={index === 0} />
+                <BlogCard
+                  key={post.slug}
+                  post={post}
+                  featured={index === 0}
+                  className={index === 0 ? 'lg:col-span-2' : ''}
+                />
               ))}
             </div>
           </section>
@@ -183,4 +199,55 @@ function pageHref(page, query, category, tag) {
   if (tag) params.set('tag', tag);
   params.set('page', String(page));
   return `/blogs?${params.toString()}`;
+}
+
+function buildBlogIndexJsonLd(posts) {
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      '@id': `${siteUrl}/blogs#blog`,
+      name: 'Estospaces Blog',
+      url: `${siteUrl}/blogs`,
+      description: metadata.description,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Estospaces',
+        url: siteUrl,
+        logo: `${siteUrl}/assets/logo-icon.png`,
+      },
+      inLanguage: 'en-GB',
+      blogPost: posts.slice(0, 12).map((post) => ({
+        '@type': 'BlogPosting',
+        headline: post.title,
+        url: post.canonicalUrl,
+        image: absoluteUrl(post.heroImage.url),
+        datePublished: post.publishedAt,
+        dateModified: post.updatedAt,
+        author: {
+          '@type': 'Organization',
+          name: post.author.name,
+          url: post.author.url,
+        },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: siteUrl,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: `${siteUrl}/blogs`,
+        },
+      ],
+    },
+  ];
 }
