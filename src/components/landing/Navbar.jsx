@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, UserPlus } from 'lucide-react';
 import { useChat } from '../../contexts/ChatContext';
 
-const logoIcon = '/assets/logo-icon.png';
+const logoIcon = '/assets/logo-icon-96.webp';
 
 const Navbar = ({ activePath = '/', forceSolid = false }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -56,7 +56,7 @@ const Navbar = ({ activePath = '/', forceSolid = false }) => {
                         onClick={handleNavClick}
                         className="flex items-center gap-2 hover:opacity-80 transition-opacity"
                     >
-                        <img src={logoIcon} alt="Estospaces" className="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
+                        <img src={logoIcon} alt="Estospaces" width="96" height="96" className="w-9 h-9 sm:w-10 sm:h-10 object-contain" />
                         <span className={`font-bold text-lg sm:text-xl ${isSolid ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
                             Estospaces
                         </span>

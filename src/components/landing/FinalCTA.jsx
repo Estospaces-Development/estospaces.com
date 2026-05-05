@@ -9,6 +9,10 @@ const FinalCTA = () => {
         setIsModalOpen(true);
     };
 
+    const handleContactClick = () => {
+        window.location.href = `mailto:${'contact'}@${'estospaces.com'}`;
+    };
+
     const benefits = [
         'Early access to platform',
         'Exclusive launch offers',
@@ -75,14 +79,15 @@ const FinalCTA = () => {
                     {/* Contact Info */}
                     <div className="text-gray-400">
                         <p className="text-sm sm:text-lg leading-relaxed">
-                            Questions? Reach us at{' '}
-                            <a
-                                href="mailto:contact@estospaces.com"
+                            Questions?{' '}
+                            <button
+                                type="button"
+                                onClick={handleContactClick}
                                 className="text-primary hover:text-orange-400 font-semibold transition-colors inline-flex items-center gap-1 group"
                             >
-                                contact@estospaces.com
+                                Message our team
                                 <Mail size={16} className="group-hover:translate-x-1 transition-transform" />
-                            </a>
+                            </button>
                         </p>
                     </div>
                 </div>

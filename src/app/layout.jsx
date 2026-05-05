@@ -1,10 +1,12 @@
 import '../index.css';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
+import Script from 'next/script';
 
 const siteUrl = 'https://estospaces.com';
 const title = 'Estospaces - Virtual Property Tours & Verified UK Listings';
-const description = 'Search verified UK property listings, explore immersive virtual tours, and connect with trusted brokers through Estospaces.';
+const description = 'Search verified UK property listings, explore immersive virtual tours, compare homes with confidence, and connect with trusted brokers through Estospaces.';
 const ogImage = '/assets/estospaces-og.webp';
+const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const inter = Inter({
   subsets: ['latin'],
@@ -77,9 +79,11 @@ export const metadata = {
   },
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.png', type: 'image/png' },
+      { url: '/favicon.png', type: 'image/png', sizes: '512x512' },
     ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
   manifest: '/site.webmanifest',
 };
@@ -92,7 +96,25 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
-      <body>{children}</body>
+      <body>
+        {gaMeasurementId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gaMeasurementId}', { anonymize_ip: true });
+              `}
+            </Script>
+          </>
+        ) : null}
+        {children}
+      </body>
     </html>
   );
 }

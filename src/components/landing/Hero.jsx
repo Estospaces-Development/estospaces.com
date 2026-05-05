@@ -3,6 +3,7 @@ import useParallax from '../../hooks/useParallax';
 import SearchBar from '../ui/SearchBar';
 
 const backgroundVideo = '/assets/hero-section-video.mp4';
+const heroPoster = '/assets/modern-apartment.webp';
 
 const Hero = () => {
     const offset = useParallax(0.5);
@@ -21,7 +22,7 @@ const Hero = () => {
                     muted
                     playsInline
                     preload="metadata"
-                    poster="/assets/modern-apartment.png"
+                    poster={heroPoster}
                     aria-hidden="true"
                     className="w-full h-full object-cover"
                 >

@@ -9,6 +9,9 @@ const PropertyCard = ({ property }) => {
                 <img
                     src={property.image}
                     alt={property.title}
+                    width="800"
+                    height="520"
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">

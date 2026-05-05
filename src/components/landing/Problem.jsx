@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const modernApartment = '/assets/modern-apartment.png';
+const modernApartment = "image-set(url('/assets/modern-apartment-640.webp') 1x, url('/assets/modern-apartment.webp') 2x)";
 
 const Problem = () => {
     const sectionRef = useRef(null);
@@ -18,7 +18,7 @@ const Problem = () => {
             {/* Parallax Background */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <motion.div
-                    style={{ y, backgroundImage: `url(${modernApartment})` }}
+                    style={{ y, backgroundImage: modernApartment }}
                     className="absolute inset-0 w-full h-[120%] -top-[10%] bg-cover bg-center"
                 />
             </div>

@@ -16,8 +16,8 @@ const jsonLd = {
       ],
       contactPoint: {
         '@type': 'ContactPoint',
-        email: 'contact@estospaces.com',
         contactType: 'customer support',
+        url: 'https://estospaces.com/#contact',
       },
     },
     {

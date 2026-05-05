@@ -58,6 +58,22 @@ To add a new topic, update the canonical docs in `docs/blog-posts-to-do`, then r
 npm run build
 ```
 
+## SEO audit readiness
+
+Run the local technical SEO checks before deployment:
+
+```bash
+npm run site:audit
+npm run blogs:audit
+npm run build
+```
+
+For external audit tools, configure these production-only items outside the codebase:
+
+- Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to the real GA4 ID before `npm run build`.
+- Publish SPF/DMARC DNS records from `docs/dns-seo-records.md`.
+- Point both `estospaces.com` and `www.estospaces.com` to the production deployment so the canonical redirect can return `301` to `https://estospaces.com`.
+
 ## Structure
 
 - `src/app/` - Next.js App Router pages, metadata, sitemap, robots, and API routes
@@ -81,6 +97,7 @@ This project is configured for Vercel deployment. See `VERCEL_CONFIG.md` for det
 - `VERCEL_CONFIG.md` - Vercel deployment configuration
 - `EMAIL_SETUP.md` - Email configuration for reservation form
 - `docs/blog-ranking-protocol.md` - Blog SEO, AI answer visibility, QA and publishing protocol
+- `docs/dns-seo-records.md` - DNS records needed for SPF/DMARC and external SEO audits
 
 ## Reservation Form
 

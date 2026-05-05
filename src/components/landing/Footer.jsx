@@ -3,7 +3,7 @@ import { Twitter, Instagram, Linkedin, Send, Loader2 } from 'lucide-react';
 import { postJson } from '../../lib/landingApi';
 import { useChat } from '../../contexts/ChatContext';
 
-const logoIcon = '/assets/logo-icon.png';
+const logoIcon = '/assets/logo-icon-96.webp';
 
 const Footer = () => {
     const { closeChat } = useChat();
@@ -64,7 +64,7 @@ const Footer = () => {
                     {/* About */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-2 mb-4">
-                            <img src={logoIcon} alt="Estospaces" className="w-10 h-10 object-contain" />
+                            <img src={logoIcon} alt="Estospaces" width="96" height="96" loading="lazy" className="w-10 h-10 object-contain" />
                             <span className="font-bold text-lg sm:text-xl">Estospaces</span>
                         </div>
                         <p className="text-gray-400 text-sm sm:text-base mb-4 max-w-sm">
