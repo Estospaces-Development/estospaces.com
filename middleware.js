@@ -3,9 +3,23 @@ import blogSlugs from './src/data/generated-blog-slugs.js';
 
 const BLOG_SLUGS = new Set(blogSlugs);
 const STALE_BLOG_IMAGE_PATTERN = /^\/blog-images\/.+-hero-(?:image|photo)-v[1-7]\.webp$/;
+const CANONICAL_HOST = 'estospaces.com';
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get('host') || '';
+  const forwardedProto = request.headers.get('x-forwarded-proto') || request.nextUrl.protocol.replace(':', '');
+  const isLocalHost = host.startsWith('localhost') || host.startsWith('127.0.0.1');
+  const shouldRedirectHost = host === `www.${CANONICAL_HOST}`;
+  const shouldRedirectProtocol = forwardedProto === 'http' && !isLocalHost;
+
+  if (shouldRedirectHost || shouldRedirectProtocol) {
+    const url = request.nextUrl.clone();
+    url.protocol = 'https:';
+    url.hostname = CANONICAL_HOST;
+    url.port = '';
+    return NextResponse.redirect(url, 301);
+  }
 
   if (STALE_BLOG_IMAGE_PATTERN.test(pathname)) {
     return new NextResponse(null, {
@@ -37,7 +51,7 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/blogs/:path*', '/blog-images/:path*'],
+  matcher: ['/((?!_next/static|_next/image|api/health).*)'],
 };
 
 function notFoundHtml() {

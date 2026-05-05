@@ -12,7 +12,7 @@ const PropertiesSection = () => {
             beds: 4,
             baths: 3,
             area: 3500,
-            image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            image: '/assets/property-preview-villa.webp'
         },
         {
             id: 2,
@@ -23,7 +23,7 @@ const PropertiesSection = () => {
             beds: 3,
             baths: 2,
             area: 2200,
-            image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            image: '/assets/property-preview-city.webp'
         },
         {
             id: 3,
@@ -34,7 +34,7 @@ const PropertiesSection = () => {
             beds: 3,
             baths: 2,
             area: 1800,
-            image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            image: '/assets/property-preview-house.webp'
         },
         {
             id: 4,
@@ -45,7 +45,7 @@ const PropertiesSection = () => {
             beds: 2,
             baths: 2,
             area: 1500,
-            image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            image: '/assets/property-preview-apartment.webp'
         },
         {
             id: 5,
@@ -56,7 +56,7 @@ const PropertiesSection = () => {
             beds: 5,
             baths: 4,
             area: 4200,
-            image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            image: '/assets/property-preview-cottage.webp'
         },
         {
             id: 6,
@@ -67,7 +67,7 @@ const PropertiesSection = () => {
             beds: 2,
             baths: 1,
             area: 1200,
-            image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+            image: '/assets/property-preview-loft.webp'
         }
     ];
 

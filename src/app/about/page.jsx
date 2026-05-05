@@ -67,7 +67,7 @@ const jsonLd = {
 
 export default function AboutPage() {
   return (
-    <BlogChrome>
+    <BlogChrome activePath="/about">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

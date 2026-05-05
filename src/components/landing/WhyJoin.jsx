@@ -3,7 +3,7 @@ import { Eye, Shield, Zap, Bell, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import WaitlistModal from './WaitlistModal';
 
-const modernApartment = '/assets/modern-apartment.png';
+const modernApartment = "image-set(url('/assets/modern-apartment-640.webp') 1x, url('/assets/modern-apartment.webp') 2x)";
 
 const WhyJoin = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,7 +59,7 @@ const WhyJoin = () => {
             <div
                 className="absolute inset-0 z-0"
                 style={{
-                    backgroundImage: `url(${modernApartment})`,
+                    backgroundImage: modernApartment,
                     backgroundAttachment: 'fixed',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'

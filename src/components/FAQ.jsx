@@ -4,6 +4,10 @@ import { ChevronDown, HelpCircle, Mail } from 'lucide-react';
 const FAQ = () => {
     const [openIndex, setOpenIndex] = useState(null);
 
+    const handleContactClick = () => {
+        window.location.href = `mailto:${'contact'}@${'estospaces.com'}`;
+    };
+
     const faqs = [
         {
             question: 'What is Estospaces?',
@@ -87,13 +91,14 @@ const FAQ = () => {
                         <p className="text-gray-700 dark:text-gray-200 text-base sm:text-lg mb-4">
                             Still have questions? We're here to help!
                         </p>
-                        <a
-                            href="mailto:contact@estospaces.com"
+                        <button
+                            type="button"
+                            onClick={handleContactClick}
                             className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-orange-600 text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                         >
                             Contact Us
                             <Mail size={18} />
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
