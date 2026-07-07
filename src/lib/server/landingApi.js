@@ -16,6 +16,7 @@ const htmlEscapes = {
   "'": '&#39;',
 };
 let firestoreClient;
+const googleSheetHeaderCache = new Set();
 
 const normalizeText = (value, maxLength) => String(value || '').trim().slice(0, maxLength);
 const normalizeReservationPhone = (value) => (
@@ -323,6 +324,26 @@ const marketLabels = {
   england: 'England',
 };
 
+const reservationSheetHeaders = [
+  'Submitted At',
+  'Market',
+  'User Type',
+  'Name',
+  'Email',
+  'Phone',
+  'Newsletter Opt-In',
+  'Location',
+  'Looking For',
+  'Landing Page',
+  'UTM Source',
+  'UTM Medium',
+  'UTM Campaign',
+  'UTM Term',
+  'UTM Content',
+  'GCLID',
+  'FBCLID',
+];
+
 const attributionEntries = (attribution) => Object.entries(attribution || {})
   .filter(([, value]) => value)
   .map(([key, value]) => [key.replace(/_/g, ' '), value]);
@@ -373,6 +394,177 @@ const reservationSheetRow = (formData) => [
   formData.attribution?.fbclid || '',
 ];
 
+const sheetApiJson = async (url, accessToken, options = {}) => {
+  const response = await fetch(url, {
+    ...options,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  });
+  const payload = await response.json().catch(() => ({}));
+  return {
+    ok: response.ok,
+    status: response.status,
+    payload,
+  };
+};
+
+const quoteSheetName = (sheetName) => (
+  /^[A-Za-z0-9_]+$/.test(sheetName)
+    ? sheetName
+    : `'${sheetName.replace(/'/g, "''")}'`
+);
+
+const splitA1Range = (range) => {
+  const bangIndex = range.lastIndexOf('!');
+  if (bangIndex === -1) {
+    return {
+      sheetName: '',
+      columns: range,
+    };
+  }
+
+  const rawSheetName = range.slice(0, bangIndex).trim();
+  const sheetName = rawSheetName.startsWith("'") && rawSheetName.endsWith("'")
+    ? rawSheetName.slice(1, -1).replace(/''/g, "'")
+    : rawSheetName;
+
+  return {
+    sheetName,
+    columns: range.slice(bangIndex + 1),
+  };
+};
+
+const columnLetters = (value, fallback) => {
+  const match = String(value || '').match(/[A-Za-z]+/);
+  return match ? match[0].toUpperCase() : fallback;
+};
+
+const reservationHeaderRange = (range) => {
+  const { sheetName, columns } = splitA1Range(range);
+  const [startColumn, endColumn] = columns.split(':');
+  const start = columnLetters(startColumn, 'A');
+  const end = columnLetters(endColumn, 'Q');
+  const prefix = sheetName ? `${quoteSheetName(sheetName)}!` : '';
+  return `${prefix}${start}1:${end}1`;
+};
+
+const normalizedHeaderCell = (value) => normalizeText(value, 120).toLowerCase();
+
+const rowMatchesReservationHeaders = (row = []) => reservationSheetHeaders.every(
+  (header, index) => normalizedHeaderCell(row[index]) === normalizedHeaderCell(header),
+);
+
+const rowHasValues = (row = []) => row.some((value) => normalizeText(value, 200));
+
+const getTargetSheet = async (spreadsheetId, accessToken, range) => {
+  const { sheetName } = splitA1Range(range);
+  const metadataUrl = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}`);
+  metadataUrl.searchParams.set('fields', 'sheets.properties(sheetId,title)');
+  const metadataResult = await sheetApiJson(metadataUrl, accessToken);
+  if (!metadataResult.ok) {
+    return metadataResult;
+  }
+
+  const sheets = metadataResult.payload?.sheets || [];
+  const targetSheet = sheetName
+    ? sheets.find((sheet) => sheet.properties?.title === sheetName)
+    : sheets[0];
+
+  if (!targetSheet?.properties) {
+    return {
+      ok: false,
+      status: 404,
+      payload: {
+        error: {
+          message: `Google Sheet tab was not found${sheetName ? `: ${sheetName}` : ''}`,
+        },
+      },
+    };
+  }
+
+  return {
+    ok: true,
+    sheetId: targetSheet.properties.sheetId,
+  };
+};
+
+const insertHeaderRow = async (spreadsheetId, accessToken, sheetId) => sheetApiJson(
+  `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}:batchUpdate`,
+  accessToken,
+  {
+    method: 'POST',
+    body: JSON.stringify({
+      requests: [
+        {
+          insertDimension: {
+            range: {
+              sheetId,
+              dimension: 'ROWS',
+              startIndex: 0,
+              endIndex: 1,
+            },
+            inheritFromBefore: false,
+          },
+        },
+      ],
+    }),
+  },
+);
+
+const updateHeaderRow = async (spreadsheetId, accessToken, range) => {
+  const url = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(reservationHeaderRange(range))}`);
+  url.searchParams.set('valueInputOption', 'USER_ENTERED');
+  return sheetApiJson(url, accessToken, {
+    method: 'PUT',
+    body: JSON.stringify({
+      majorDimension: 'ROWS',
+      values: [reservationSheetHeaders],
+    }),
+  });
+};
+
+const ensureReservationSheetHeaders = async (spreadsheetId, accessToken, range) => {
+  const cacheKey = `${spreadsheetId}:${range}`;
+  if (googleSheetHeaderCache.has(cacheKey)) {
+    return { ok: true };
+  }
+
+  const headerUrl = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(reservationHeaderRange(range))}`);
+  const headerResult = await sheetApiJson(headerUrl, accessToken);
+  if (!headerResult.ok) {
+    return headerResult;
+  }
+
+  const firstRow = headerResult.payload?.values?.[0] || [];
+  if (rowMatchesReservationHeaders(firstRow)) {
+    googleSheetHeaderCache.add(cacheKey);
+    return { ok: true };
+  }
+
+  if (rowHasValues(firstRow)) {
+    const sheetResult = await getTargetSheet(spreadsheetId, accessToken, range);
+    if (!sheetResult.ok) {
+      return sheetResult;
+    }
+
+    const insertResult = await insertHeaderRow(spreadsheetId, accessToken, sheetResult.sheetId);
+    if (!insertResult.ok) {
+      return insertResult;
+    }
+  }
+
+  const updateResult = await updateHeaderRow(spreadsheetId, accessToken, range);
+  if (!updateResult.ok) {
+    return updateResult;
+  }
+
+  googleSheetHeaderCache.add(cacheKey);
+  return { ok: true };
+};
+
 const appendReservationToGoogleSheet = async (formData) => {
   const spreadsheetId = googleSheetsSpreadsheetId();
   if (!spreadsheetId) {
@@ -381,36 +573,41 @@ const appendReservationToGoogleSheet = async (formData) => {
 
   const range = googleSheetsLeadsRange();
   const accessToken = await getGoogleSheetsAccessToken();
+  const headerResult = await ensureReservationSheetHeaders(spreadsheetId, accessToken, range);
+  if (!headerResult.ok) {
+    return {
+      configured: true,
+      ok: false,
+      status: headerResult.status,
+      payload: headerResult.payload,
+    };
+  }
+
   const url = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(range)}:append`);
   url.searchParams.set('valueInputOption', 'USER_ENTERED');
   url.searchParams.set('insertDataOption', 'INSERT_ROWS');
 
-  const response = await fetch(url, {
+  const appendResult = await sheetApiJson(url, accessToken, {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify({
       majorDimension: 'ROWS',
       values: [reservationSheetRow(formData)],
     }),
   });
-  const payload = await response.json().catch(() => ({}));
 
-  if (!response.ok) {
+  if (!appendResult.ok) {
     return {
       configured: true,
       ok: false,
-      status: response.status,
-      payload,
+      status: appendResult.status,
+      payload: appendResult.payload,
     };
   }
 
   return {
     configured: true,
     ok: true,
-    updatedRange: payload?.updates?.updatedRange || '',
+    updatedRange: appendResult.payload?.updates?.updatedRange || '',
   };
 };
 

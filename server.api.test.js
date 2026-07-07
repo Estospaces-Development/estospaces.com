@@ -27,6 +27,26 @@ const request = (path, { method = 'POST', body, headers = {} } = {}) => new Requ
   body: body === undefined ? undefined : JSON.stringify(body),
 });
 
+const expectedReservationSheetHeaders = [
+  'Submitted At',
+  'Market',
+  'User Type',
+  'Name',
+  'Email',
+  'Phone',
+  'Newsletter Opt-In',
+  'Location',
+  'Looking For',
+  'Landing Page',
+  'UTM Source',
+  'UTM Medium',
+  'UTM Campaign',
+  'UTM Term',
+  'UTM Content',
+  'GCLID',
+  'FBCLID',
+];
+
 test('health endpoint and Next config expose production security headers', async () => {
   const response = healthGET();
   const payload = await response.json();
@@ -131,6 +151,15 @@ test('reservation API appends Reserve Your Spot leads to configured Google Sheet
   process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = 'test-sheets-token';
   globalThis.fetch = async (url, options) => {
     calls.push({ url: String(url), options });
+    if (String(url).includes('/values/A1%3AQ1')) {
+      return new Response(JSON.stringify({
+        values: [expectedReservationSheetHeaders],
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
     return new Response(JSON.stringify({
       updates: {
         updatedRange: 'Sheet1!A2:Q2',
@@ -166,11 +195,12 @@ test('reservation API appends Reserve Your Spot leads to configured Google Sheet
     assert.equal(response.status, 200);
     assert.equal(payload.sheetConfigured, true);
     assert.equal(payload.sheetStored, true);
-    assert.equal(calls.length, 1);
-    assert.match(calls[0].url, /spreadsheets\/1lcHZXqllQ6JT-pnnA6fN7cVqRt8xhZtU7TbBnsroUOA\/values\/A%3AQ:append/);
-    assert.match(calls[0].url, /valueInputOption=USER_ENTERED/);
-    assert.equal(calls[0].options.headers.Authorization, 'Bearer test-sheets-token');
-    const sheetBody = JSON.parse(calls[0].options.body);
+    assert.equal(calls.length, 2);
+    assert.match(calls[0].url, /spreadsheets\/1lcHZXqllQ6JT-pnnA6fN7cVqRt8xhZtU7TbBnsroUOA\/values\/A1%3AQ1/);
+    assert.match(calls[1].url, /spreadsheets\/1lcHZXqllQ6JT-pnnA6fN7cVqRt8xhZtU7TbBnsroUOA\/values\/A%3AQ:append/);
+    assert.match(calls[1].url, /valueInputOption=USER_ENTERED/);
+    assert.equal(calls[1].options.headers.Authorization, 'Bearer test-sheets-token');
+    const sheetBody = JSON.parse(calls[1].options.body);
     assert.deepEqual(sheetBody.values[0].slice(1, 9), [
       'India',
       'seller',
@@ -183,6 +213,119 @@ test('reservation API appends Reserve Your Spot leads to configured Google Sheet
     ]);
     assert.equal(sheetBody.values[0][10], 'google');
     assert.equal(sheetBody.values[0][12], 'india_launch');
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalSpreadsheetId === undefined) delete process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    else process.env.GOOGLE_SHEETS_SPREADSHEET_ID = originalSpreadsheetId;
+    if (originalSheetRange === undefined) delete process.env.GOOGLE_SHEETS_LEADS_RANGE;
+    else process.env.GOOGLE_SHEETS_LEADS_RANGE = originalSheetRange;
+    if (originalAccessToken === undefined) delete process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+    else process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = originalAccessToken;
+  }
+});
+
+test('reservation API inserts Google Sheet headers above existing lead rows', async () => {
+  const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  const originalSheetRange = process.env.GOOGLE_SHEETS_LEADS_RANGE;
+  const originalAccessToken = process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+
+  process.env.GOOGLE_SHEETS_SPREADSHEET_ID = 'header-insert-sheet';
+  process.env.GOOGLE_SHEETS_LEADS_RANGE = 'A:Q';
+  process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = 'test-sheets-token';
+  globalThis.fetch = async (url, options = {}) => {
+    const requestUrl = String(url);
+    const method = options.method || 'GET';
+    calls.push({ url: requestUrl, options: { ...options, method } });
+
+    if (requestUrl.includes('/values/A1%3AQ1') && method === 'GET') {
+      return new Response(JSON.stringify({
+        values: [['2026-07-07T15:29:23.759Z', 'India', 'buyer']],
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (requestUrl.match(/\/spreadsheets\/header-insert-sheet\?fields=/) && method === 'GET') {
+      return new Response(JSON.stringify({
+        sheets: [
+          {
+            properties: {
+              sheetId: 0,
+              title: 'Sheet1',
+            },
+          },
+        ],
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (requestUrl.endsWith('/spreadsheets/header-insert-sheet:batchUpdate') && method === 'POST') {
+      return new Response(JSON.stringify({}), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (requestUrl.includes('/values/A1%3AQ1') && method === 'PUT') {
+      return new Response(JSON.stringify({
+        updatedRange: 'Sheet1!A1:Q1',
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (requestUrl.includes('/values/A%3AQ:append') && method === 'POST') {
+      return new Response(JSON.stringify({
+        updates: {
+          updatedRange: 'Sheet1!A4:Q4',
+        },
+      }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    throw new Error(`Unexpected Sheets request: ${method} ${requestUrl}`);
+  };
+
+  try {
+    const response = await reservationRoute.POST(request('/api/send-reservation-email', {
+      body: {
+        market: 'india',
+        userType: 'buyer',
+        name: 'Header Insert Lead',
+        email: `header-insert-${randomUUID().slice(0, 8)}@example.com`,
+        location: 'Chennai',
+        lookingFor: 'I need the sheet headers to be understandable.',
+      },
+    }));
+    const payload = await response.json();
+
+    assert.equal(response.status, 200);
+    assert.equal(payload.sheetStored, true);
+    assert.equal(calls.length, 5);
+    assert.match(calls[0].url, /values\/A1%3AQ1/);
+    assert.match(calls[1].url, /fields=sheets\.properties/);
+    assert.match(calls[2].url, /:batchUpdate$/);
+    assert.match(calls[3].url, /values\/A1%3AQ1/);
+    assert.match(calls[4].url, /values\/A%3AQ:append/);
+
+    const insertBody = JSON.parse(calls[2].options.body);
+    assert.deepEqual(insertBody.requests[0].insertDimension.range, {
+      sheetId: 0,
+      dimension: 'ROWS',
+      startIndex: 0,
+      endIndex: 1,
+    });
+
+    const headerBody = JSON.parse(calls[3].options.body);
+    assert.deepEqual(headerBody.values[0], expectedReservationSheetHeaders);
   } finally {
     globalThis.fetch = originalFetch;
     if (originalSpreadsheetId === undefined) delete process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
