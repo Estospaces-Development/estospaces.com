@@ -3,8 +3,8 @@ import { Cormorant_Garamond, Inter } from 'next/font/google';
 import Script from 'next/script';
 
 const siteUrl = 'https://estospaces.com';
-const title = 'Estospaces - Virtual Property Tours & Verified UK Listings';
-const description = 'Search verified UK property listings, explore immersive virtual tours, compare homes with confidence, and connect with trusted brokers through Estospaces.';
+const title = 'Estospaces - Verified Property Search for India and England';
+const description = 'Search verified property listings across India and England, compare homes with confidence, and connect with trusted property professionals through Estospaces.';
 const ogImage = '/assets/estospaces-og.webp';
 const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
@@ -33,7 +33,8 @@ export const metadata = {
     'Estospaces',
     'virtual property tours',
     'verified property listings',
-    'UK property search',
+    'India property search',
+    'England property search',
     'real estate platform',
     'rent property',
     'buy property',
@@ -67,7 +68,7 @@ export const metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: 'Estospaces virtual property tours and verified UK listings',
+    alt: 'Estospaces verified property search for India and England',
       },
     ],
   },

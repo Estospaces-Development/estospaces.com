@@ -4,16 +4,22 @@ import { X, User, Home, Building, Mail, Phone, MapPin, MessageSquare, CheckCircl
 import { useWaitlist } from '../../hooks/useWaitlist';
 import Toast from '../ui/Toast';
 
+const normalizeReservationPhoneInput = (value) => (
+    value.replace(/[^\d+()\-\s]/g, '').slice(0, 20)
+);
+
 const WaitlistModal = ({ isOpen, onClose }) => {
     const { submitToWaitlist, loading, error, success } = useWaitlist();
 
     const [formData, setFormData] = useState({
+        market: 'india',
         userType: '',
         name: '',
         email: '',
         phone: '',
         location: '',
         lookingFor: '',
+        newsletterOptIn: false,
     });
 
     const [errors, setErrors] = useState({});
@@ -33,9 +39,27 @@ const WaitlistModal = ({ isOpen, onClose }) => {
         { value: 'seller', label: 'Seller', icon: Building, description: 'Want to list a property' },
     ];
 
+    const marketOptions = [
+        {
+            value: 'india',
+            label: 'India',
+            locationPlaceholder: 'Chennai, Bengaluru, Mumbai...',
+            phonePlaceholder: '+91 98765 43210',
+        },
+        {
+            value: 'england',
+            label: 'England',
+            locationPlaceholder: 'London, Manchester, Birmingham...',
+            phonePlaceholder: '+44 7700 900000',
+        },
+    ];
+
+    const selectedMarket = marketOptions.find((market) => market.value === formData.market) || marketOptions[0];
+
     const validateForm = () => {
         const newErrors = {};
 
+        if (!formData.market) newErrors.market = 'Please select a market';
         if (!formData.userType) newErrors.userType = 'Please select a user type';
         if (!formData.name.trim()) newErrors.name = 'Name is required';
         if (!formData.email.trim()) {
@@ -60,12 +84,14 @@ const WaitlistModal = ({ isOpen, onClose }) => {
         if (result.success) {
             // Reset form and close modal immediately
             setFormData({
+                market: 'india',
                 userType: '',
                 name: '',
                 email: '',
                 phone: '',
                 location: '',
                 lookingFor: '',
+                newsletterOptIn: false,
             });
             setErrors({});
             onClose();
@@ -81,7 +107,8 @@ const WaitlistModal = ({ isOpen, onClose }) => {
     };
 
     const handleChange = (field, value) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
+            const nextValue = field === 'phone' ? normalizeReservationPhoneInput(value) : value;
+            setFormData(prev => ({ ...prev, [field]: nextValue }));
         // Clear error when user starts typing
         if (errors[field]) {
             setErrors(prev => ({ ...prev, [field]: '' }));
@@ -152,7 +179,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                     className="mb-4 p-6 bg-green-50 border border-green-200 rounded-xl text-center"
                                 >
                                     <CheckCircle className="text-green-600 mx-auto mb-2" size={28} />
-                                    <p className="text-green-700 font-medium">Success! Closing...</p>
+                                    <p className="text-green-700 font-medium">Reservation received</p>
                                 </motion.div>
                             )}
 
@@ -173,6 +200,30 @@ const WaitlistModal = ({ isOpen, onClose }) => {
 
                             {/* Form */}
                             <form onSubmit={handleSubmit} className="space-y-4">
+                                {/* Market */}
+                                <div>
+                                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-2">
+                                        Market <span className="text-red-500">*</span>
+                                    </label>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        {marketOptions.map((market) => (
+                                            <button
+                                                key={market.value}
+                                                type="button"
+                                                onClick={() => handleChange('market', market.value)}
+                                                className={`rounded-xl border-2 px-4 py-3 text-left transition-colors ${formData.market === market.value
+                                                    ? 'border-primary bg-primary/5 text-gray-950 dark:bg-primary/10 dark:text-white'
+                                                    : 'border-gray-200 text-gray-700 hover:border-primary/50 dark:border-gray-700 dark:text-gray-200'
+                                                    }`}
+                                            >
+                                                <span className="block font-bold">{market.label}</span>
+                                                <span className="text-xs text-gray-500 dark:text-gray-400">Ad lead market</span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                    {errors.market && <p className="mt-2 text-sm text-red-600">{errors.market}</p>}
+                                </div>
+
                                 {/* User Type Selection */}
                                 <div>
                                     <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-3">
@@ -214,7 +265,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                             onChange={(e) => handleChange('name', e.target.value)}
                                             className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl outline-none transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 ${errors.name ? 'border-red-300 focus:border-red-500' : 'border-gray-200 dark:border-gray-700 focus:border-primary'
                                                 }`}
-                                            placeholder="John Doe"
+                                            placeholder="Full name"
                                         />
                                     </div>
                                     {errors.name && <p className="mt-2 text-sm text-red-600">{errors.name}</p>}
@@ -250,8 +301,10 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                             type="tel"
                                             value={formData.phone}
                                             onChange={(e) => handleChange('phone', e.target.value)}
+                                            inputMode="tel"
+                                            maxLength={20}
                                             className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:border-primary transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
-                                            placeholder="+1 (555) 000-0000"
+                                            placeholder={selectedMarket.phonePlaceholder}
                                         />
                                     </div>
                                 </div>
@@ -269,7 +322,7 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                             onChange={(e) => handleChange('location', e.target.value)}
                                             className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl outline-none transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 ${errors.location ? 'border-red-300 focus:border-red-500' : 'border-gray-200 dark:border-gray-700 focus:border-primary'
                                                 }`}
-                                            placeholder="New York, NY"
+                                            placeholder={selectedMarket.locationPlaceholder}
                                         />
                                     </div>
                                     {errors.location && <p className="mt-2 text-sm text-red-600">{errors.location}</p>}
@@ -293,6 +346,19 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                     </div>
                                     {errors.lookingFor && <p className="mt-2 text-sm text-red-600">{errors.lookingFor}</p>}
                                 </div>
+
+                                <label className="flex items-start gap-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/70 p-4 text-sm text-gray-700 dark:text-gray-200">
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.newsletterOptIn}
+                                        onChange={(e) => handleChange('newsletterOptIn', e.target.checked)}
+                                        className="mt-1 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                    />
+                                    <span>
+                                        <span className="block font-bold text-gray-900 dark:text-gray-100">Join the newsletter</span>
+                                        <span className="text-gray-500 dark:text-gray-400">Send me launch updates, product news, and early-access invitations.</span>
+                                    </span>
+                                </label>
 
                                 {/* Submit Button */}
                                 <button

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Search, MapPin, Home, DollarSign, Bed, Bath, X, SlidersHorizontal, ChevronDown } from 'lucide-react';
 
 export interface SearchFilters {
+  market: 'india' | 'england';
   keyword: string;
   location: string;
   listingType: 'all' | 'rent' | 'sale';
@@ -24,6 +25,7 @@ interface SearchBarProps {
 }
 
 const defaultFilters: SearchFilters = {
+  market: 'india',
   keyword: '',
   location: '',
   listingType: 'all',
@@ -69,6 +71,11 @@ const priceRanges = {
   ],
 };
 
+const marketOptions = [
+  { value: 'india', label: 'India', currency: 'INR', locationPlaceholder: 'City, PIN code...', suggestions: ['Chennai', 'Bengaluru', 'Mumbai', 'Delhi', 'Hyderabad', 'Pune', 'Kolkata', 'Ahmedabad'] },
+  { value: 'england', label: 'England', currency: 'GBP', locationPlaceholder: 'City, postcode...', suggestions: ['London', 'Manchester', 'Birmingham', 'Leeds', 'Liverpool', 'Bristol', 'Sheffield', 'Newcastle'] },
+] as const;
+
 const SearchBar: React.FC<SearchBarProps> = ({
   variant = 'full',
   initialFilters,
@@ -97,6 +104,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
     
     const location = searchParams.get('location');
     if (location) urlFilters.location = location;
+
+    const market = searchParams.get('market')?.toLowerCase();
+    if (market === 'india' || market === 'england') {
+      urlFilters.market = market;
+    }
     
     const listingType = searchParams.get('type') as 'all' | 'rent' | 'sale';
     if (listingType && ['all', 'rent', 'sale'].includes(listingType)) {
@@ -124,41 +136,43 @@ const SearchBar: React.FC<SearchBarProps> = ({
   }, []);
 
   // Location autocomplete
-  const fetchLocationSuggestions = useCallback(async (query: string) => {
+  const fetchLocationSuggestions = useCallback(async (query: string, market: SearchFilters['market']) => {
     if (query.length < 2) {
       setLocationSuggestions([]);
       return;
     }
 
+    const marketConfig = marketOptions.find((option) => option.value === market) || marketOptions[0];
+
     try {
-      // Use postcodes.io for UK postcode suggestions
-      const response = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(query)}/autocomplete`);
-      const data = await response.json();
-      
-      if (data.result && Array.isArray(data.result)) {
-        setLocationSuggestions(data.result.slice(0, 6));
-      } else {
-        setLocationSuggestions([]);
+      if (market === 'england') {
+        const response = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(query)}/autocomplete`);
+        const data = await response.json();
+
+        if (data.result && Array.isArray(data.result)) {
+          setLocationSuggestions(data.result.slice(0, 6));
+          return;
+        }
       }
     } catch {
-      // Fallback to common UK cities if API fails
-      const cities = ['London', 'Manchester', 'Birmingham', 'Leeds', 'Glasgow', 'Liverpool', 'Edinburgh', 'Bristol', 'Sheffield', 'Newcastle'];
-      const filtered = cities.filter(city => 
-        city.toLowerCase().includes(query.toLowerCase())
-      );
-      setLocationSuggestions(filtered.slice(0, 6));
+      // Fall back to curated launch-market cities.
     }
+
+    const filtered = marketConfig.suggestions.filter(city =>
+      city.toLowerCase().includes(query.toLowerCase())
+    );
+    setLocationSuggestions(filtered.slice(0, 6));
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (filters.location) {
-        fetchLocationSuggestions(filters.location);
+        fetchLocationSuggestions(filters.location, filters.market);
       }
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [filters.location, fetchLocationSuggestions]);
+  }, [filters.location, filters.market, fetchLocationSuggestions]);
 
   const handleInputChange = (field: keyof SearchFilters, value: string | number | null) => {
     setFilters(prev => ({ ...prev, [field]: value }));
@@ -171,6 +185,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     const params = new URLSearchParams();
     
     if (filters.keyword) params.set('q', filters.keyword);
+    if (filters.market !== defaultFilters.market) params.set('market', filters.market);
     if (filters.location) params.set('location', filters.location);
     if (filters.listingType !== 'all') params.set('type', filters.listingType);
     if (filters.propertyType) params.set('propertyType', filters.propertyType);
@@ -201,6 +216,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   const hasActiveFilters = 
+    filters.market !== defaultFilters.market ||
     filters.keyword || 
     filters.location || 
     filters.listingType !== 'all' || 
@@ -212,6 +228,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   // Hero variant - compact search for homepage
   if (variant === 'hero') {
+    const marketConfig = marketOptions.find((option) => option.value === filters.market) || marketOptions[0];
     return (
       <form onSubmit={handleSearch} className={`w-full ${className}`}>
         {/* Listing Type Tabs */}
@@ -233,7 +250,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         </div>
 
         {/* Search Fields */}
-        <div className="bg-white dark:bg-gray-900 p-4 sm:p-5 md:p-6 rounded-b-xl sm:rounded-tr-xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-900 p-4 sm:p-5 md:p-6 rounded-b-xl sm:rounded-tr-xl shadow-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 border border-gray-100 dark:border-gray-700">
           {/* Keyword */}
           <div className="relative">
             <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Keyword</label>
@@ -246,6 +263,23 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 placeholder="Enter Keyword..."
                 className="w-full min-w-0 outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent"
               />
+            </div>
+          </div>
+
+          {/* Market */}
+          <div className="relative">
+            <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Market</label>
+            <div className="flex items-center border-b border-gray-200 dark:border-gray-700 pb-2">
+              <MapPin size={18} className="text-primary mr-2" />
+              <select
+                value={filters.market}
+                onChange={(e) => handleInputChange('market', e.target.value as SearchFilters['market'])}
+                className="w-full min-w-0 outline-none text-gray-900 dark:text-gray-100 bg-transparent cursor-pointer"
+              >
+                {marketOptions.map((market) => (
+                  <option key={market.value} value={market.value}>{market.label}</option>
+                ))}
+              </select>
             </div>
           </div>
 
@@ -263,7 +297,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 }}
                 onFocus={() => setShowSuggestions(true)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                placeholder="City, Postcode..."
+                placeholder={marketConfig.locationPlaceholder}
                 className="w-full min-w-0 outline-none text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 bg-transparent"
               />
             </div>
@@ -311,6 +345,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
               <button
                 type="button"
                 onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+                aria-controls="landing-search-advanced-filters"
+                aria-expanded={showAdvancedFilters}
                 className="h-12 w-12 flex-shrink-0 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors inline-flex items-center justify-center"
                 title="Advanced Search"
               >
@@ -329,7 +365,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
         {/* Advanced Filters */}
         {showAdvancedFilters && (
-          <div className="bg-white dark:bg-gray-900 p-4 rounded-b-xl shadow-lg border border-t-0 border-gray-100 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-[-1px]">
+          <div
+            id="landing-search-advanced-filters"
+            data-testid="landing-search-advanced-filters"
+            className="relative z-20 mt-3 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-2xl border border-gray-100 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
             {/* Min Price */}
             <div>
               <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Min Price</label>
@@ -339,7 +379,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   type="number"
                   value={filters.minPrice || ''}
                   onChange={(e) => handleInputChange('minPrice', e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="Min GBP"
+                  placeholder={`Min ${marketConfig.currency}`}
                   className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent"
                 />
               </div>
@@ -354,7 +394,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   type="number"
                   value={filters.maxPrice || ''}
                   onChange={(e) => handleInputChange('maxPrice', e.target.value ? parseInt(e.target.value) : null)}
-                  placeholder="Max GBP"
+                  placeholder={`Max ${marketConfig.currency}`}
                   className="w-full outline-none text-gray-900 dark:text-gray-100 bg-transparent"
                 />
               </div>
@@ -429,6 +469,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   }
 
   // Full variant - for search results page
+  const marketConfig = marketOptions.find((option) => option.value === filters.market) || marketOptions[0];
   return (
     <form onSubmit={handleSearch} className={`bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 lg:p-6 ${className}`}>
       {/* Main Search Bar */}
@@ -453,7 +494,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
       </div>
 
       {/* Filter Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+        {/* Market */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Market</label>
+          <select
+            value={filters.market}
+            onChange={(e) => handleInputChange('market', e.target.value as SearchFilters['market'])}
+            className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white cursor-pointer"
+          >
+            {marketOptions.map((market) => (
+              <option key={market.value} value={market.value}>{market.label}</option>
+            ))}
+          </select>
+        </div>
+
         {/* Location */}
         <div className="relative">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Location</label>
@@ -468,7 +523,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               }}
               onFocus={() => setShowSuggestions(true)}
               onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-              placeholder="City or Postcode"
+              placeholder={marketConfig.locationPlaceholder}
               className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
             />
             {showSuggestions && locationSuggestions.length > 0 && (
@@ -519,7 +574,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 type="number"
                 value={filters.minPrice || ''}
                 onChange={(e) => handleInputChange('minPrice', e.target.value ? parseInt(e.target.value) : null)}
-                placeholder="Min GBP"
+                placeholder={`Min ${marketConfig.currency}`}
                 className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>
@@ -529,7 +584,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 type="number"
                 value={filters.maxPrice || ''}
                 onChange={(e) => handleInputChange('maxPrice', e.target.value ? parseInt(e.target.value) : null)}
-                placeholder="Max GBP"
+                placeholder={`Max ${marketConfig.currency}`}
                 className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
             </div>
@@ -601,4 +656,4 @@ const SearchBar: React.FC<SearchBarProps> = ({
 };
 
 export default SearchBar;
-export { defaultFilters, propertyTypes, priceRanges };
+export { defaultFilters, propertyTypes, priceRanges, marketOptions };

@@ -6,6 +6,30 @@ export const useWaitlist = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
 
+    const getAttribution = () => {
+        if (typeof window === 'undefined') {
+            return {};
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const fields = [
+            'utm_source',
+            'utm_medium',
+            'utm_campaign',
+            'utm_term',
+            'utm_content',
+            'gclid',
+            'fbclid',
+        ];
+
+        return fields.reduce((attribution, field) => {
+            const value = params.get(field);
+            return value ? { ...attribution, [field]: value } : attribution;
+        }, {
+            landingPage: window.location.pathname,
+        });
+    };
+
     const submitToWaitlist = async (data) => {
         setLoading(true);
         setError(null);
@@ -13,12 +37,15 @@ export const useWaitlist = () => {
 
         try {
             await postJson('/api/send-reservation-email', {
+                market: data.market,
                 userType: data.userType,
                 name: data.name,
                 email: data.email,
                 phone: data.phone || '',
                 location: data.location,
                 lookingFor: data.lookingFor,
+                newsletterOptIn: Boolean(data.newsletterOptIn),
+                attribution: getAttribution(),
             });
 
             setSuccess(true);

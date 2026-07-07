@@ -1,7 +1,13 @@
+import { createHash } from 'node:crypto';
+
 const reservationRecipient = process.env.RESERVATION_EMAIL || 'contact@estospaces.com';
 const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'Estospaces <contact@estospaces.com>';
 const allowedUserTypes = new Set(['buyer', 'renter', 'seller']);
+const allowedMarkets = new Set(['india', 'england']);
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const reservationDuplicateWindowMs = 24 * 60 * 60 * 1000;
+const reservationSubmissionKeys = new Map();
+const memoryRateLimitKeys = new Map();
 const htmlEscapes = {
   '&': '&amp;',
   '<': '&lt;',
@@ -9,10 +15,201 @@ const htmlEscapes = {
   '"': '&quot;',
   "'": '&#39;',
 };
+let firestoreClient;
 
 const normalizeText = (value, maxLength) => String(value || '').trim().slice(0, maxLength);
+const normalizeReservationPhone = (value) => (
+  String(value || '').replace(/[^\d+()\-\s]/g, '').trim().slice(0, 20)
+);
+const normalizeBoolean = (value) => value === true || value === 'true' || value === 'on';
+const normalizePhoneKey = (value) => String(value || '').replace(/\D/g, '');
 const escapeHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => htmlEscapes[char]);
 const isValidEmail = (email) => emailPattern.test(email) && email.length <= 254;
+const parsePositiveInteger = (value, fallback) => {
+  const parsed = Number.parseInt(String(value || ''), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+};
+
+const googleSheetsSpreadsheetId = () => normalizeText(process.env.GOOGLE_SHEETS_SPREADSHEET_ID, 160);
+const googleSheetsLeadsRange = () => normalizeText(
+  process.env.GOOGLE_SHEETS_LEADS_RANGE || 'A:Q',
+  200,
+) || 'A:Q';
+const googleSheetsClientEmail = () => normalizeText(
+  process.env.GOOGLE_SHEETS_CLIENT_EMAIL || process.env.GCP_CLIENT_EMAIL,
+  254,
+);
+const googleSheetsPrivateKey = () => String(
+  process.env.GOOGLE_SHEETS_PRIVATE_KEY || process.env.GCP_PRIVATE_KEY || '',
+).replace(/\\n/g, '\n');
+
+const landingEmailRateLimit = () => ({
+  limit: parsePositiveInteger(process.env.LANDING_EMAIL_RATE_LIMIT_MAX, 5),
+  windowMs: parsePositiveInteger(process.env.LANDING_EMAIL_RATE_LIMIT_WINDOW_MS, 15 * 60 * 1000),
+});
+
+const landingChatStartRateLimit = () => ({
+  limit: parsePositiveInteger(process.env.LANDING_CHAT_START_RATE_LIMIT_MAX, 30),
+  windowMs: parsePositiveInteger(process.env.LANDING_CHAT_START_RATE_LIMIT_WINDOW_MS, 15 * 60 * 1000),
+});
+
+const rateLimitCollectionName = () => normalizeText(
+  process.env.LANDING_RATE_LIMIT_COLLECTION || 'landingApiRateLimits',
+  80,
+) || 'landingApiRateLimits';
+
+const firestoreProjectId = () => normalizeText(
+  process.env.GCP_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT,
+  120,
+);
+
+const hasExplicitFirestoreCredentials = () => Boolean(
+  process.env.GCP_CLIENT_EMAIL && process.env.GCP_PRIVATE_KEY,
+);
+
+const shouldUseFirestoreRateLimit = () => {
+  const store = normalizeText(process.env.LANDING_RATE_LIMIT_STORE, 20).toLowerCase();
+  if (store === 'memory') return false;
+  if (store === 'firestore') return true;
+  return Boolean(process.env.K_SERVICE || firestoreProjectId() || hasExplicitFirestoreCredentials());
+};
+
+const getRateLimitFirestore = async () => {
+  if (firestoreClient) return firestoreClient;
+  const { Firestore } = await import('@google-cloud/firestore');
+  const options = {};
+  const projectId = firestoreProjectId();
+  if (projectId) {
+    options.projectId = projectId;
+  }
+  if (hasExplicitFirestoreCredentials()) {
+    options.credentials = {
+      client_email: process.env.GCP_CLIENT_EMAIL,
+      private_key: process.env.GCP_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    };
+  }
+  firestoreClient = new Firestore(options);
+  return firestoreClient;
+};
+
+const rateLimitDocId = (scope, key) => {
+  const digest = createHash('sha256').update(`${scope}:${key}`).digest('hex');
+  return `${scope}-${digest}`;
+};
+
+const requestClientIdentifier = (request) => {
+  const headerValue = request.headers.get('x-forwarded-for')
+    || request.headers.get('x-real-ip')
+    || request.headers.get('cf-connecting-ip')
+    || request.headers.get('fastly-client-ip')
+    || '';
+  return normalizeText(headerValue.split(',')[0], 120).toLowerCase();
+};
+
+const landingRateLimitKeys = (request, identifiers) => {
+  const clientIdentifier = requestClientIdentifier(request);
+  return [
+    clientIdentifier ? `client:${clientIdentifier}` : '',
+    ...identifiers,
+  ].map((key) => normalizeText(key, 220).toLowerCase()).filter(Boolean);
+};
+
+const pruneMemoryRateLimitKeys = (now) => {
+  for (const [key, entry] of memoryRateLimitKeys.entries()) {
+    if (entry.expiresAt <= now) {
+      memoryRateLimitKeys.delete(key);
+    }
+  }
+};
+
+const enforceMemoryRateLimit = async ({ scope, keys, limit, windowMs }) => {
+  const now = Date.now();
+  pruneMemoryRateLimitKeys(now);
+
+  for (const key of keys) {
+    const id = `${scope}:${key}`;
+    const entry = memoryRateLimitKeys.get(id);
+    if (entry && entry.expiresAt > now && entry.count >= limit) {
+      return { limited: true, retryAfterSeconds: Math.ceil((entry.expiresAt - now) / 1000) };
+    }
+  }
+
+  keys.forEach((key) => {
+    const id = `${scope}:${key}`;
+    const entry = memoryRateLimitKeys.get(id);
+    const expiresAt = entry && entry.expiresAt > now ? entry.expiresAt : now + windowMs;
+    memoryRateLimitKeys.set(id, {
+      count: entry && entry.expiresAt > now ? entry.count + 1 : 1,
+      expiresAt,
+    });
+  });
+
+  return { limited: false };
+};
+
+const enforceFirestoreRateLimit = async ({ scope, keys, limit, windowMs }) => {
+  const firestore = await getRateLimitFirestore();
+  const now = Date.now();
+  const refs = keys.map((key) => firestore.collection(rateLimitCollectionName()).doc(rateLimitDocId(scope, key)));
+  let limitedResult = null;
+
+  await firestore.runTransaction(async (transaction) => {
+    const snapshots = [];
+    for (const ref of refs) {
+      snapshots.push(await transaction.get(ref));
+    }
+
+    const writes = [];
+    snapshots.forEach((snapshot, index) => {
+      const data = snapshot.exists ? snapshot.data() : {};
+      const expiresAt = Number(data.expires_at || 0);
+      const active = expiresAt > now;
+      const count = active ? Number(data.count || 0) : 0;
+
+      if (count >= limit) {
+        limitedResult = {
+          limited: true,
+          retryAfterSeconds: Math.ceil((expiresAt - now) / 1000),
+        };
+        return;
+      }
+
+      writes.push({
+        ref: refs[index],
+        data: {
+          count: count + 1,
+          expires_at: active ? expiresAt : now + windowMs,
+          key_hash: refs[index].id,
+          scope,
+          updated_at: now,
+        },
+      });
+    });
+
+    if (limitedResult) return;
+    writes.forEach(({ ref, data }) => transaction.set(ref, data, { merge: true }));
+  });
+
+  return limitedResult || { limited: false };
+};
+
+const enforceLandingAbuseLimit = async (request, scope, identifiers, config) => {
+  const keys = landingRateLimitKeys(request, identifiers);
+  if (!keys.length) {
+    return { limited: false };
+  }
+
+  if (!shouldUseFirestoreRateLimit()) {
+    return enforceMemoryRateLimit({ scope, keys, ...config });
+  }
+
+  try {
+    return await enforceFirestoreRateLimit({ scope, keys, ...config });
+  } catch (error) {
+    console.error('Landing API rate limit store failed', { scope, error });
+    return { unavailable: true };
+  }
+};
 
 const corsAllowedOrigins = () => (process.env.CORS_ALLOWED_ORIGINS || process.env.ALLOWED_ORIGINS || '')
   .split(',')
@@ -35,13 +232,28 @@ const corsHeaders = (request) => {
   return headers;
 };
 
-const jsonResponse = (request, payload, status = 200) => new Response(JSON.stringify(payload), {
+const jsonResponse = (request, payload, status = 200, extraHeaders = {}) => new Response(JSON.stringify(payload), {
   status,
   headers: {
     'Content-Type': 'application/json',
     ...corsHeaders(request),
+    ...extraHeaders,
   },
 });
+
+const rateLimitResponse = (request, result) => {
+  if (result?.unavailable) {
+    return jsonResponse(request, {
+      error: 'Email submission protection is temporarily unavailable. Please try again shortly.',
+    }, 503);
+  }
+
+  return jsonResponse(request, {
+    error: 'Too many requests. Please try again later.',
+  }, 429, {
+    'Retry-After': String(Math.max(1, result?.retryAfterSeconds || 60)),
+  });
+};
 
 const parseJson = async (request) => {
   try {
@@ -58,13 +270,159 @@ const formatTimestamp = () => new Date().toLocaleString('en-US', {
 });
 
 const normalizeReservationForm = (body) => ({
+  market: normalizeText(body?.market || 'india', 20).toLowerCase(),
   userType: normalizeText(body?.userType, 20).toLowerCase(),
   name: normalizeText(body?.name, 120),
   email: normalizeText(body?.email, 254).toLowerCase(),
-  phone: normalizeText(body?.phone, 40),
+  phone: normalizeReservationPhone(body?.phone),
   location: normalizeText(body?.location, 120),
   lookingFor: normalizeText(body?.lookingFor, 2000),
+  newsletterOptIn: normalizeBoolean(body?.newsletterOptIn),
+  attribution: normalizeAttribution(body?.attribution),
 });
+
+const normalizeAttribution = (value) => {
+  const source = value && typeof value === 'object' ? value : {};
+  return {
+    landingPage: normalizeText(source.landingPage, 200),
+    utm_source: normalizeText(source.utm_source, 120),
+    utm_medium: normalizeText(source.utm_medium, 120),
+    utm_campaign: normalizeText(source.utm_campaign, 160),
+    utm_term: normalizeText(source.utm_term, 160),
+    utm_content: normalizeText(source.utm_content, 160),
+    gclid: normalizeText(source.gclid, 220),
+    fbclid: normalizeText(source.fbclid, 220),
+  };
+};
+
+const marketLabels = {
+  india: 'India',
+  england: 'England',
+};
+
+const attributionEntries = (attribution) => Object.entries(attribution || {})
+  .filter(([, value]) => value)
+  .map(([key, value]) => [key.replace(/_/g, ' '), value]);
+
+const getGoogleSheetsAccessToken = async () => {
+  if (process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN) {
+    return process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+  }
+
+  const { GoogleAuth } = await import('google-auth-library');
+  const clientEmail = googleSheetsClientEmail();
+  const privateKey = googleSheetsPrivateKey();
+  const auth = new GoogleAuth({
+    credentials: clientEmail && privateKey ? {
+      client_email: clientEmail,
+      private_key: privateKey,
+    } : undefined,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+  });
+  const client = await auth.getClient();
+  const tokenResponse = await client.getAccessToken();
+  const token = typeof tokenResponse === 'string' ? tokenResponse : tokenResponse?.token;
+
+  if (!token) {
+    throw new Error('Google Sheets access token was not available');
+  }
+
+  return token;
+};
+
+const reservationSheetRow = (formData) => [
+  new Date().toISOString(),
+  marketLabels[formData.market] || formData.market,
+  formData.userType,
+  formData.name,
+  formData.email,
+  formData.phone,
+  formData.newsletterOptIn ? 'Yes' : 'No',
+  formData.location,
+  formData.lookingFor,
+  formData.attribution?.landingPage || '',
+  formData.attribution?.utm_source || '',
+  formData.attribution?.utm_medium || '',
+  formData.attribution?.utm_campaign || '',
+  formData.attribution?.utm_term || '',
+  formData.attribution?.utm_content || '',
+  formData.attribution?.gclid || '',
+  formData.attribution?.fbclid || '',
+];
+
+const appendReservationToGoogleSheet = async (formData) => {
+  const spreadsheetId = googleSheetsSpreadsheetId();
+  if (!spreadsheetId) {
+    return { configured: false, ok: true, skipped: true };
+  }
+
+  const range = googleSheetsLeadsRange();
+  const accessToken = await getGoogleSheetsAccessToken();
+  const url = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(range)}:append`);
+  url.searchParams.set('valueInputOption', 'USER_ENTERED');
+  url.searchParams.set('insertDataOption', 'INSERT_ROWS');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      majorDimension: 'ROWS',
+      values: [reservationSheetRow(formData)],
+    }),
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    return {
+      configured: true,
+      ok: false,
+      status: response.status,
+      payload,
+    };
+  }
+
+  return {
+    configured: true,
+    ok: true,
+    updatedRange: payload?.updates?.updatedRange || '',
+  };
+};
+
+const reservationDuplicateKeys = (formData) => {
+  const keys = [`email:${formData.email}`];
+  const phoneKey = normalizePhoneKey(formData.phone);
+  if (phoneKey) {
+    keys.push(`phone:${phoneKey}`);
+  }
+  return keys;
+};
+
+const pruneReservationSubmissionKeys = (now = Date.now()) => {
+  for (const [key, expiresAt] of reservationSubmissionKeys.entries()) {
+    if (expiresAt <= now) {
+      reservationSubmissionKeys.delete(key);
+    }
+  }
+};
+
+const findDuplicateReservation = (formData) => {
+  pruneReservationSubmissionKeys();
+  const duplicateKey = reservationDuplicateKeys(formData).find((key) => reservationSubmissionKeys.has(key));
+  if (!duplicateKey) {
+    return null;
+  }
+  return duplicateKey.startsWith('phone:') ? 'phone number' : 'email address';
+};
+
+const rememberReservationSubmission = (formData) => {
+  const expiresAt = Date.now() + reservationDuplicateWindowMs;
+  reservationDuplicateKeys(formData).forEach((key) => {
+    reservationSubmissionKeys.set(key, expiresAt);
+  });
+};
 
 const normalizeChatStart = (body) => ({
   visitorId: normalizeText(body?.visitorId, 80),
@@ -86,6 +444,7 @@ const getReservationEmailHtml = (formData) => {
     renter: 'Renter',
     seller: 'Seller',
   };
+  const attributionRows = attributionEntries(formData.attribution);
 
   return `
 <!DOCTYPE html>
@@ -118,6 +477,12 @@ const getReservationEmailHtml = (formData) => {
                     <table role="presentation" style="width:100%;border-collapse:collapse;">
                       <tr>
                         <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;">
+                          <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Market</strong>
+                          <span style="color:#111827;font-size:16px;font-weight:600;">${escapeHtml(marketLabels[formData.market] || formData.market)}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;">
                           <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">User Type</strong>
                           <span style="color:#111827;font-size:16px;font-weight:600;">${escapeHtml(userTypeLabels[formData.userType] || formData.userType)}</span>
                         </td>
@@ -143,6 +508,12 @@ const getReservationEmailHtml = (formData) => {
                       </tr>` : ''}
                       <tr>
                         <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;">
+                          <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Newsletter opt-in</strong>
+                          <span style="color:#111827;font-size:16px;font-weight:600;">${formData.newsletterOptIn ? 'Yes' : 'No'}</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;">
                           <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Location/City</strong>
                           <span style="color:#111827;font-size:16px;font-weight:600;">${escapeHtml(formData.location || 'Not provided')}</span>
                         </td>
@@ -153,6 +524,13 @@ const getReservationEmailHtml = (formData) => {
                           <p style="color:#111827;font-size:16px;line-height:1.6;margin:8px 0 0;white-space:pre-wrap;">${escapeHtml(formData.lookingFor || 'Not provided')}</p>
                         </td>
                       </tr>
+                      ${attributionRows.length ? `
+                      <tr>
+                        <td style="padding:12px 0;">
+                          <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Ad Attribution</strong>
+                          <p style="color:#111827;font-size:14px;line-height:1.6;margin:8px 0 0;white-space:pre-wrap;">${escapeHtml(attributionRows.map(([key, value]) => `${key}: ${value}`).join('\n'))}</p>
+                        </td>
+                      </tr>` : ''}
                     </table>
                   </td>
                 </tr>
@@ -179,20 +557,27 @@ const getReservationEmailText = (formData) => {
     renter: 'Renter',
     seller: 'Seller',
   };
+  const attributionRows = attributionEntries(formData.attribution);
 
   return `
 New Reserve Your Spot Lead
 
 A new user has reserved their spot on the Estospaces landing page.
 
+Market: ${marketLabels[formData.market] || formData.market}
 User Type: ${userTypeLabels[formData.userType] || formData.userType}
 Full Name: ${formData.name || 'Not provided'}
 Email Address: ${formData.email || 'Not provided'}
 ${formData.phone ? `Phone Number: ${formData.phone}` : ''}
+Newsletter opt-in: ${formData.newsletterOptIn ? 'Yes' : 'No'}
 Location/City: ${formData.location || 'Not provided'}
 
 What They're Looking For:
 ${formData.lookingFor || 'Not provided'}
+${attributionRows.length ? `
+Ad Attribution:
+${attributionRows.map(([key, value]) => `${key}: ${value}`).join('\n')}
+` : ''}
 
 Submitted at ${formatTimestamp()} UTC
   `.trim();
@@ -375,8 +760,24 @@ export const handleReservation = async (request) => {
   if (!allowedUserTypes.has(formData.userType)) {
     return jsonResponse(request, { error: 'Invalid user type' }, 400);
   }
+  if (!allowedMarkets.has(formData.market)) {
+    return jsonResponse(request, { error: 'Invalid market' }, 400);
+  }
   if (!isValidEmail(formData.email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
+  }
+
+  const duplicateReason = findDuplicateReservation(formData);
+  if (duplicateReason) {
+    return jsonResponse(request, { error: `This waitlist reservation is already reserved for that ${duplicateReason}.` }, 409);
+  }
+
+  const rateLimit = await enforceLandingAbuseLimit(request, 'reservation', [
+    `email:${formData.email}`,
+    normalizePhoneKey(formData.phone) ? `phone:${normalizePhoneKey(formData.phone)}` : '',
+  ], landingEmailRateLimit());
+  if (rateLimit.limited || rateLimit.unavailable) {
+    return rateLimitResponse(request, rateLimit);
   }
 
   try {
@@ -391,12 +792,25 @@ export const handleReservation = async (request) => {
       return jsonResponse(request, { error: 'Failed to send reservation email' }, 500);
     }
 
+    const sheetResult = await appendReservationToGoogleSheet(formData);
+    if (!sheetResult.ok) {
+      console.error('Reservation Google Sheet append failed', {
+        status: sheetResult.status,
+        payload: sheetResult.payload,
+      });
+      return jsonResponse(request, { error: 'Failed to store reservation lead in Google Sheet' }, 500);
+    }
+
+    rememberReservationSubmission(formData);
+
     return jsonResponse(request, {
       success: true,
       message: emailResult.skipped
         ? 'Reservation received (email service not configured)'
         : 'Reservation email sent successfully',
       emailConfigured: !emailResult.skipped,
+      sheetConfigured: sheetResult.configured,
+      sheetStored: sheetResult.configured && sheetResult.ok,
     });
   } catch (error) {
     console.error('Reservation email request failed', error);
@@ -418,6 +832,13 @@ export const handleNewsletter = async (request) => {
   }
   if (!isValidEmail(email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
+  }
+
+  const rateLimit = await enforceLandingAbuseLimit(request, 'newsletter', [
+    `email:${email}`,
+  ], landingEmailRateLimit());
+  if (rateLimit.limited || rateLimit.unavailable) {
+    return rateLimitResponse(request, rateLimit);
   }
 
   try {
@@ -460,6 +881,14 @@ export const handleChatStart = async (request) => {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
   }
 
+  const rateLimit = await enforceLandingAbuseLimit(request, 'chat_start', [
+    `email:${formData.email}`,
+    `visitor:${formData.visitorId}`,
+  ], landingChatStartRateLimit());
+  if (rateLimit.limited || rateLimit.unavailable) {
+    return rateLimitResponse(request, rateLimit);
+  }
+
   const conversationId = formData.visitorId;
   return jsonResponse(request, {
     success: true,
@@ -493,6 +922,15 @@ export const handleChatMessage = async (request) => {
   }
   if (!isValidEmail(formData.email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
+  }
+
+  const rateLimit = await enforceLandingAbuseLimit(request, 'chat_message', [
+    `email:${formData.email}`,
+    `visitor:${formData.visitorId}`,
+    `conversation:${formData.conversationId}`,
+  ], landingEmailRateLimit());
+  if (rateLimit.limited || rateLimit.unavailable) {
+    return rateLimitResponse(request, rateLimit);
   }
 
   try {

@@ -99,4 +99,12 @@ This project is configured for Vercel deployment. See `VERCEL_CONFIG.md` for det
 
 ## Reservation Form
 
-The "Reserve Your Spot" form sends emails to `contact@estospaces.com` through the landing API. See `EMAIL_SETUP.md` for email service configuration.
+The "Reserve Your Spot" form sends emails to `contact@estospaces.com` and appends each successful lead to the configured Google Sheet through the landing API.
+
+Current lead sheet:
+
+```text
+https://docs.google.com/spreadsheets/d/1lcHZXqllQ6JT-pnnA6fN7cVqRt8xhZtU7TbBnsroUOA/edit
+```
+
+See `EMAIL_SETUP.md` for email and Google Sheets configuration.

@@ -1,4 +1,5 @@
 import LandingPage from './landing-page';
+import { serializeJsonLd } from '../lib/json-ld';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -39,8 +40,8 @@ const jsonLd = {
       '@id': 'https://estospaces.com/#real-estate-platform',
       name: 'Estospaces',
       url: 'https://estospaces.com',
-      areaServed: 'United Kingdom',
-      description: 'A virtual-first real estate platform for verified listings, immersive property tours, and trusted broker connections.',
+      areaServed: ['India', 'England'],
+      description: 'A property platform for verified listings and trusted property professional connections across India and England.',
     },
   ],
 };
@@ -50,7 +51,7 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <LandingPage />
     </>
