@@ -792,7 +792,14 @@ export const handleReservation = async (request) => {
       return jsonResponse(request, { error: 'Failed to send reservation email' }, 500);
     }
 
-    const sheetResult = await appendReservationToGoogleSheet(formData);
+    let sheetResult;
+    try {
+      sheetResult = await appendReservationToGoogleSheet(formData);
+    } catch (error) {
+      console.error('Reservation Google Sheet append failed', { error });
+      return jsonResponse(request, { error: 'Failed to store reservation lead in Google Sheet' }, 500);
+    }
+
     if (!sheetResult.ok) {
       console.error('Reservation Google Sheet append failed', {
         status: sheetResult.status,

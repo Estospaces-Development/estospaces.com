@@ -239,6 +239,46 @@ test('reservation API fails clearly when configured Google Sheet cannot store th
   }
 });
 
+test('reservation API reports Google Sheet storage errors when append throws', async () => {
+  const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  const originalAccessToken = process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+  const originalFetch = globalThis.fetch;
+  const originalConsoleError = console.error;
+  const loggedErrors = [];
+
+  process.env.GOOGLE_SHEETS_SPREADSHEET_ID = '1lcHZXqllQ6JT-pnnA6fN7cVqRt8xhZtU7TbBnsroUOA';
+  process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = 'test-sheets-token';
+  console.error = (...args) => loggedErrors.push(args);
+  globalThis.fetch = async () => {
+    throw new Error('sheet append network failure');
+  };
+
+  try {
+    const response = await reservationRoute.POST(request('/api/send-reservation-email', {
+      body: {
+        market: 'india',
+        userType: 'buyer',
+        name: 'Sheet Throw Lead',
+        email: `sheet-throw-${randomUUID().slice(0, 8)}@example.com`,
+        location: 'Chennai',
+        lookingFor: 'Looking for a property lead with thrown sheet append.',
+      },
+    }));
+    const payload = await response.json();
+
+    assert.equal(response.status, 500);
+    assert.match(payload.error, /Google Sheet/i);
+    assert.equal(loggedErrors.length, 1);
+  } finally {
+    console.error = originalConsoleError;
+    globalThis.fetch = originalFetch;
+    if (originalSpreadsheetId === undefined) delete process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    else process.env.GOOGLE_SHEETS_SPREADSHEET_ID = originalSpreadsheetId;
+    if (originalAccessToken === undefined) delete process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+    else process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = originalAccessToken;
+  }
+});
+
 test('reservation phone input is capped before it can submit oversized values', () => {
   const modalSource = readFileSync(resolve(process.cwd(), 'src/components/landing/WaitlistModal.jsx'), 'utf8');
   const apiSource = readFileSync(resolve(process.cwd(), 'src/lib/server/landingApi.js'), 'utf8');
