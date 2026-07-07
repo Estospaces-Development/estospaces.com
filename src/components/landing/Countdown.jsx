@@ -30,7 +30,7 @@ const Countdown = () => {
                             <div className="flex items-center gap-2 sm:gap-3">
                                 <Rocket className="text-primary" size={22} />
                                 <p className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-600 font-bold text-lg sm:text-2xl">
-                                    Launching Q2 2026
+                                    Launching soon
                                 </p>
                             </div>
                         </div>
