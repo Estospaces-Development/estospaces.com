@@ -92,7 +92,7 @@ const Footer = () => {
                                 { name: 'About', link: '/about' },
                                 { name: 'Blog', link: '/blogs' },
                                 { name: 'Features', link: '#features' },
-                                { name: 'Reviews', link: '#reviews' },
+                                { name: 'Testimonials', link: '#reviews' },
                                 { name: 'Waitlist', link: '#join-waitlist' },
                                 { name: 'Contact Us', link: '#contact' }
                             ].map((item) => (

@@ -11,7 +11,7 @@ const Navbar = ({ activePath = '/', forceSolid = false }) => {
     const isSolid = forceSolid || isScrolled;
     const navItems = [
         { label: 'Features', href: forceSolid ? '/#features' : '#features' },
-        { label: 'Reviews', href: forceSolid ? '/#reviews' : '#reviews' },
+        { label: 'Testimonials', href: forceSolid ? '/#reviews' : '#reviews' },
         { label: 'FAQ', href: forceSolid ? '/#faq' : '#faq' },
         { label: 'Blog', href: '/blogs' },
         { label: 'Contact', href: forceSolid ? '/#contact' : '#contact' },
