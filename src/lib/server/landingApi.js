@@ -53,6 +53,11 @@ const landingChatStartRateLimit = () => ({
   windowMs: parsePositiveInteger(process.env.LANDING_CHAT_START_RATE_LIMIT_WINDOW_MS, 15 * 60 * 1000),
 });
 
+const landingRateLimitStoreTimeoutMs = () => parsePositiveInteger(
+  process.env.LANDING_RATE_LIMIT_STORE_TIMEOUT_MS,
+  1500,
+);
+
 const rateLimitCollectionName = () => normalizeText(
   process.env.LANDING_RATE_LIMIT_COLLECTION || 'landingApiRateLimits',
   80,
@@ -193,6 +198,20 @@ const enforceFirestoreRateLimit = async ({ scope, keys, limit, windowMs }) => {
   return limitedResult || { limited: false };
 };
 
+const withTimeout = async (promise, timeoutMs, message) => {
+  let timeoutId;
+  const timeoutPromise = new Promise((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error(message)), timeoutMs);
+    timeoutId.unref?.();
+  });
+
+  try {
+    return await Promise.race([promise, timeoutPromise]);
+  } finally {
+    clearTimeout(timeoutId);
+  }
+};
+
 const enforceLandingAbuseLimit = async (request, scope, identifiers, config) => {
   const keys = landingRateLimitKeys(request, identifiers);
   if (!keys.length) {
@@ -204,10 +223,14 @@ const enforceLandingAbuseLimit = async (request, scope, identifiers, config) => 
   }
 
   try {
-    return await enforceFirestoreRateLimit({ scope, keys, ...config });
+    return await withTimeout(
+      enforceFirestoreRateLimit({ scope, keys, ...config }),
+      landingRateLimitStoreTimeoutMs(),
+      'Firestore rate limit store timed out',
+    );
   } catch (error) {
     console.error('Landing API rate limit store failed', { scope, error });
-    return { unavailable: true };
+    return enforceMemoryRateLimit({ scope, keys, ...config });
   }
 };
 

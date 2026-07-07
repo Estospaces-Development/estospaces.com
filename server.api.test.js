@@ -289,6 +289,15 @@ test('reservation phone input is capped before it can submit oversized values', 
   assert.match(apiSource, /phone:\s*normalizeReservationPhone/);
 });
 
+test('landing API rate limiter falls back when Firestore is unavailable', () => {
+  const apiSource = readFileSync(resolve(process.cwd(), 'src/lib/server/landingApi.js'), 'utf8');
+
+  assert.match(apiSource, /landingRateLimitStoreTimeoutMs/);
+  assert.match(apiSource, /Firestore rate limit store timed out/);
+  assert.match(apiSource, /return enforceMemoryRateLimit\(\{ scope, keys, \.\.\.config \}\);/);
+  assert.doesNotMatch(apiSource, /return \{ unavailable: true \};/);
+});
+
 test('landing hero advanced search panel is separated from the main search card', () => {
   const searchBarSource = readFileSync(resolve(process.cwd(), 'src/components/ui/SearchBar.tsx'), 'utf8');
 
