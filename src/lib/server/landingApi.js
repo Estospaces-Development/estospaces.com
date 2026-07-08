@@ -5,6 +5,7 @@ const resendFromEmail = process.env.RESEND_FROM_EMAIL || 'Estospaces <contact@es
 const allowedUserTypes = new Set(['buyer', 'renter', 'seller']);
 const allowedMarkets = new Set(['india', 'england']);
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const internalAutomationPattern = /\bcodex\b/i;
 const reservationDuplicateWindowMs = 24 * 60 * 60 * 1000;
 const reservationSubmissionKeys = new Map();
 const memoryRateLimitKeys = new Map();
@@ -304,6 +305,14 @@ const normalizeReservationForm = (body) => ({
   newsletterOptIn: normalizeBoolean(body?.newsletterOptIn),
   attribution: normalizeAttribution(body?.attribution),
 });
+
+const isInternalAutomationReservation = (formData) => [
+  formData.name,
+  formData.email,
+  formData.location,
+  formData.lookingFor,
+  ...Object.values(formData.attribution || {}),
+].some((value) => internalAutomationPattern.test(String(value || '')));
 
 const normalizeAttribution = (value) => {
   const source = value && typeof value === 'object' ? value : {};
@@ -985,6 +994,9 @@ export const handleReservation = async (request) => {
   }
   if (!isValidEmail(formData.email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
+  }
+  if (isInternalAutomationReservation(formData)) {
+    return jsonResponse(request, { error: 'Internal automation test submissions are not accepted on the public reservation form.' }, 400);
   }
 
   const duplicateReason = findDuplicateReservation(formData);

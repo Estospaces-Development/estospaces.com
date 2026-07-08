@@ -139,6 +139,51 @@ test('reservation API rejects unsupported launch markets', async () => {
   assert.match((await response.json()).error, /market/i);
 });
 
+test('reservation API rejects internal Codex automation submissions before sheet append', async () => {
+  const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  const originalAccessToken = process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+
+  process.env.GOOGLE_SHEETS_SPREADSHEET_ID = 'proof-sheet';
+  process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = 'test-sheets-token';
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url: String(url), options });
+    return new Response(JSON.stringify({ updates: { updatedRange: 'Sheet1!A2:Q2' } }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  };
+
+  try {
+    const response = await reservationRoute.POST(request('/api/send-reservation-email', {
+      body: {
+        market: 'india',
+        userType: 'buyer',
+        name: 'Codex Manual Lead',
+        email: `codex-manual-${randomUUID().slice(0, 8)}@example.com`,
+        location: 'Chennai',
+        lookingFor: 'Automated test reservation should not enter production sheet.',
+        attribution: {
+          landingPage: '/',
+          utm_source: 'codex',
+        },
+      },
+    }));
+    const payload = await response.json();
+
+    assert.equal(response.status, 400);
+    assert.match(payload.error, /internal automation/i);
+    assert.equal(calls.length, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalSpreadsheetId === undefined) delete process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    else process.env.GOOGLE_SHEETS_SPREADSHEET_ID = originalSpreadsheetId;
+    if (originalAccessToken === undefined) delete process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+    else process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = originalAccessToken;
+  }
+});
+
 test('reservation API appends Reserve Your Spot leads to configured Google Sheet', async () => {
   const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
   const originalSheetRange = process.env.GOOGLE_SHEETS_LEADS_RANGE;
