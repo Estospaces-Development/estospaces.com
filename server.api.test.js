@@ -763,3 +763,14 @@ test('newsletter and chat email APIs throttle repeated public submissions', asyn
   assert.equal(limitedChat.headers.has('retry-after'), true);
   assert.match((await limitedChat.json()).error, /too many requests/i);
 });
+
+test('landing search price controls use market-specific currency icons', () => {
+  const source = readFileSync(resolve('src/components/ui/SearchBar.tsx'), 'utf8');
+
+  assert.doesNotMatch(source, /DollarSign/);
+  assert.match(source, /IndianRupee/);
+  assert.match(source, /PoundSterling/);
+  assert.match(source, /const CurrencyIcon = marketConfig\.value === 'england' \? PoundSterling : IndianRupee;/);
+  assert.match(source, /placeholder=\{`Min \$\{marketConfig\.currency\}`\}/);
+  assert.match(source, /placeholder=\{`Max \$\{marketConfig\.currency\}`\}/);
+});

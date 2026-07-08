@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Search, MapPin, Home, DollarSign, Bed, Bath, X, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { Search, MapPin, Home, IndianRupee, PoundSterling, Bed, Bath, X, SlidersHorizontal, ChevronDown } from 'lucide-react';
 
 export interface SearchFilters {
   market: 'india' | 'england';
@@ -229,6 +229,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   // Hero variant - compact search for homepage
   if (variant === 'hero') {
     const marketConfig = marketOptions.find((option) => option.value === filters.market) || marketOptions[0];
+    const CurrencyIcon = marketConfig.value === 'england' ? PoundSterling : IndianRupee;
+
     return (
       <form onSubmit={handleSearch} className={`w-full ${className}`}>
         {/* Listing Type Tabs */}
@@ -374,7 +376,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <div>
               <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Min Price</label>
               <div className="flex items-center border border-gray-200 dark:border-gray-700 rounded px-3 py-2">
-                <DollarSign size={16} className="text-gray-400 mr-2" />
+                <CurrencyIcon size={16} className="text-gray-400 mr-2" aria-hidden="true" />
                 <input
                   type="number"
                   value={filters.minPrice || ''}
@@ -389,7 +391,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <div>
               <label className="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase mb-1">Max Price</label>
               <div className="flex items-center border border-gray-200 dark:border-gray-700 rounded px-3 py-2">
-                <DollarSign size={16} className="text-gray-400 mr-2" />
+                <CurrencyIcon size={16} className="text-gray-400 mr-2" aria-hidden="true" />
                 <input
                   type="number"
                   value={filters.maxPrice || ''}
