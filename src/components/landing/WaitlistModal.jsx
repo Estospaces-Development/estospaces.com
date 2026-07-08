@@ -8,6 +8,34 @@ const normalizeReservationPhoneInput = (value) => (
     value.replace(/[^\d+()\-\s]/g, '').slice(0, 20)
 );
 
+const phoneDigits = (value) => normalizeReservationPhoneInput(value).replace(/\D/g, '');
+const formatIndiaPhone = (digits) => `+91 ${digits.slice(0, 5)} ${digits.slice(5)}`;
+const formatEnglandPhone = (digits) => `+44 ${digits.slice(0, 4)} ${digits.slice(4)}`;
+
+const normalizeReservationPhoneForMarket = (value, market) => {
+    const cleaned = normalizeReservationPhoneInput(value).trim();
+    if (!cleaned) return { phone: '', error: '' };
+
+    const digits = phoneDigits(cleaned);
+    if (market === 'india') {
+        const national = digits.length === 12 && digits.startsWith('91') ? digits.slice(2) : digits;
+        if (national.length === 10 && /^[6-9]/.test(national)) {
+            return { phone: formatIndiaPhone(national), error: '' };
+        }
+        return { phone: cleaned, error: 'Use an India phone number like +91 98765 43210.' };
+    }
+
+    const national = digits.length === 12 && digits.startsWith('44')
+        ? digits.slice(2)
+        : digits.length === 11 && digits.startsWith('0')
+            ? digits.slice(1)
+            : digits;
+    if (national.length === 10) {
+        return { phone: formatEnglandPhone(national), error: '' };
+    }
+    return { phone: cleaned, error: 'Use an England phone number like +44 7700 900000.' };
+};
+
 const WaitlistModal = ({ isOpen, onClose }) => {
     const { submitToWaitlist, loading, error, success } = useWaitlist();
 
@@ -68,6 +96,8 @@ const WaitlistModal = ({ isOpen, onClose }) => {
             newErrors.email = 'Please enter a valid email';
         }
         if (!formData.location.trim()) newErrors.location = 'Location is required';
+        const phoneValidation = normalizeReservationPhoneForMarket(formData.phone, formData.market);
+        if (phoneValidation.error) newErrors.phone = phoneValidation.error;
         if (!formData.lookingFor.trim()) newErrors.lookingFor = 'Please tell us what you\'re looking for';
 
         setErrors(newErrors);
@@ -79,7 +109,13 @@ const WaitlistModal = ({ isOpen, onClose }) => {
 
         if (!validateForm()) return;
 
-        const result = await submitToWaitlist(formData);
+        const phoneValidation = normalizeReservationPhoneForMarket(formData.phone, formData.market);
+        const submissionData = { ...formData, phone: phoneValidation.phone };
+        if (phoneValidation.phone !== formData.phone) {
+            setFormData(prev => ({ ...prev, phone: phoneValidation.phone }));
+        }
+
+        const result = await submitToWaitlist(submissionData);
 
         if (result.success) {
             // Reset form and close modal immediately
@@ -303,10 +339,15 @@ const WaitlistModal = ({ isOpen, onClose }) => {
                                             onChange={(e) => handleChange('phone', e.target.value)}
                                             inputMode="tel"
                                             maxLength={20}
-                                            className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-xl outline-none focus:border-primary transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+                                            aria-describedby="reservation-phone-help reservation-phone-error"
+                                            className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl outline-none transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 ${errors.phone ? 'border-red-300 focus:border-red-500' : 'border-gray-200 dark:border-gray-700 focus:border-primary'}`}
                                             placeholder={selectedMarket.phonePlaceholder}
                                         />
                                     </div>
+                                    <p id="reservation-phone-help" className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                                        Use {selectedMarket.phonePlaceholder}. Numbers without country code are formatted for the selected market.
+                                    </p>
+                                    {errors.phone && <p id="reservation-phone-error" className="mt-2 text-sm text-red-600">{errors.phone}</p>}
                                 </div>
 
                                 {/* Location */}

@@ -139,6 +139,116 @@ test('reservation API rejects unsupported launch markets', async () => {
   assert.match((await response.json()).error, /market/i);
 });
 
+test('reservation API formats market phone numbers before sheet append', async () => {
+  const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  const originalSheetRange = process.env.GOOGLE_SHEETS_LEADS_RANGE;
+  const originalAccessToken = process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+
+  process.env.GOOGLE_SHEETS_SPREADSHEET_ID = 'phone-format-sheet';
+  process.env.GOOGLE_SHEETS_LEADS_RANGE = 'A:Q';
+  process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = 'test-sheets-token';
+  globalThis.fetch = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    if (String(url).includes('/values/A1%3AQ1')) {
+      return new Response(JSON.stringify({ values: [expectedReservationSheetHeaders] }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    return new Response(JSON.stringify({ updates: { updatedRange: 'Sheet1!A2:Q2' } }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  };
+
+  try {
+    const india = await reservationRoute.POST(request('/api/send-reservation-email', {
+      body: {
+        market: 'india',
+        userType: 'buyer',
+        name: 'Phone India Lead',
+        email: `phone-india-${randomUUID().slice(0, 8)}@example.com`,
+        phone: '8787675675',
+        location: 'Chennai',
+        lookingFor: 'Testing India phone formatting.',
+      },
+    }));
+    assert.equal(india.status, 200);
+
+    const england = await reservationRoute.POST(request('/api/send-reservation-email', {
+      body: {
+        market: 'england',
+        userType: 'renter',
+        name: 'Phone England Lead',
+        email: `phone-england-${randomUUID().slice(0, 8)}@example.com`,
+        phone: '7435537052',
+        location: 'London',
+        lookingFor: 'Testing England phone formatting.',
+      },
+    }));
+    assert.equal(england.status, 200);
+
+    const appendBodies = calls
+      .filter((call) => String(call.url).includes('/values/A%3AQ:append'))
+      .map((call) => JSON.parse(call.options.body).values[0]);
+    assert.equal(appendBodies.length, 2);
+    assert.equal(appendBodies[0][5], '+91 87876 75675');
+    assert.equal(appendBodies[1][5], '+44 7435 537052');
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalSpreadsheetId === undefined) delete process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    else process.env.GOOGLE_SHEETS_SPREADSHEET_ID = originalSpreadsheetId;
+    if (originalSheetRange === undefined) delete process.env.GOOGLE_SHEETS_LEADS_RANGE;
+    else process.env.GOOGLE_SHEETS_LEADS_RANGE = originalSheetRange;
+    if (originalAccessToken === undefined) delete process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+    else process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = originalAccessToken;
+  }
+});
+
+test('reservation API rejects invalid market phone before sheet append', async () => {
+  const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+  const originalAccessToken = process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+  const originalFetch = globalThis.fetch;
+  const calls = [];
+
+  process.env.GOOGLE_SHEETS_SPREADSHEET_ID = 'invalid-phone-sheet';
+  process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = 'test-sheets-token';
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url: String(url), options });
+    return new Response(JSON.stringify({ updates: { updatedRange: 'Sheet1!A2:Q2' } }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  };
+
+  try {
+    const response = await reservationRoute.POST(request('/api/send-reservation-email', {
+      body: {
+        market: 'india',
+        userType: 'buyer',
+        name: 'Invalid Phone Lead',
+        email: `invalid-phone-${randomUUID().slice(0, 8)}@example.com`,
+        phone: '12345',
+        location: 'Chennai',
+        lookingFor: 'Testing invalid India phone rejection.',
+      },
+    }));
+    const payload = await response.json();
+
+    assert.equal(response.status, 400);
+    assert.match(payload.error, /India phone number/);
+    assert.equal(calls.length, 0);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalSpreadsheetId === undefined) delete process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    else process.env.GOOGLE_SHEETS_SPREADSHEET_ID = originalSpreadsheetId;
+    if (originalAccessToken === undefined) delete process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
+    else process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN = originalAccessToken;
+  }
+});
+
 test('reservation API rejects internal Codex automation submissions before sheet append', async () => {
   const originalSpreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
   const originalAccessToken = process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN;
@@ -472,9 +582,12 @@ test('reservation phone input is capped before it can submit oversized values', 
   const apiSource = readFileSync(resolve(process.cwd(), 'src/lib/server/landingApi.js'), 'utf8');
 
   assert.match(modalSource, /normalizeReservationPhoneInput/);
+  assert.match(modalSource, /normalizeReservationPhoneForMarket/);
+  assert.match(modalSource, /reservation-phone-help/);
   assert.match(modalSource, /maxLength=\{20\}/);
   assert.match(apiSource, /normalizeReservationPhone/);
-  assert.match(apiSource, /phone:\s*normalizeReservationPhone/);
+  assert.match(apiSource, /phoneResult = normalizeReservationPhone/);
+  assert.match(apiSource, /phoneError/);
 });
 
 test('landing API rate limiter falls back when Firestore is unavailable', () => {
@@ -512,7 +625,7 @@ test('waitlist reservation can opt into newsletter without closing-copy confusio
   assert.match(hookSource, /attribution:\s*getAttribution\(\)/);
   assert.match(hookSource, /newsletterOptIn:\s*Boolean\(data\.newsletterOptIn\)/);
   assert.match(apiSource, /allowedMarkets/);
-  assert.match(apiSource, /market:\s*normalizeText/);
+  assert.match(apiSource, /const market = normalizeText/);
   assert.match(apiSource, /Ad Attribution/);
   assert.match(apiSource, /newsletterOptIn:\s*normalizeBoolean/);
   assert.match(apiSource, /Newsletter opt-in/);
@@ -539,10 +652,11 @@ test('reservation API rejects duplicate reservations by email or phone', async (
   const suffix = randomUUID().slice(0, 8);
   const firstEmail = `duplicate-${suffix}@example.com`;
   const firstBody = {
+    market: 'england',
     userType: 'buyer',
     name: 'Duplicate User',
     email: firstEmail,
-    phone: `+44 7700 ${suffix.slice(0, 4)}`,
+    phone: '+44 7700 900000',
     location: 'London',
     lookingFor: 'A two bedroom flat',
     newsletterOptIn: true,

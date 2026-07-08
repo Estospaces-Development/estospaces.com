@@ -20,9 +20,39 @@ let firestoreClient;
 const googleSheetHeaderCache = new Set();
 
 const normalizeText = (value, maxLength) => String(value || '').trim().slice(0, maxLength);
-const normalizeReservationPhone = (value) => (
-  String(value || '').replace(/[^\d+()\-\s]/g, '').trim().slice(0, 20)
-);
+const normalizePhoneCharacters = (value) => String(value || '').replace(/[^\d+()\-\s]/g, '').trim().slice(0, 20);
+const phoneDigits = (value) => normalizePhoneCharacters(value).replace(/\D/g, '');
+const formatIndiaPhone = (digits) => `+91 ${digits.slice(0, 5)} ${digits.slice(5)}`;
+const formatEnglandPhone = (digits) => `+44 ${digits.slice(0, 4)} ${digits.slice(4)}`;
+const normalizeReservationPhone = (value, market) => {
+  const cleaned = normalizePhoneCharacters(value);
+  if (!cleaned) {
+    return { phone: '', error: '' };
+  }
+
+  const digits = phoneDigits(cleaned);
+  if (market === 'india') {
+    const national = digits.length === 12 && digits.startsWith('91') ? digits.slice(2) : digits;
+    if (national.length === 10 && /^[6-9]/.test(national)) {
+      return { phone: formatIndiaPhone(national), error: '' };
+    }
+    return { phone: cleaned, error: 'Use an India phone number like +91 98765 43210.' };
+  }
+
+  if (market === 'england') {
+    const national = digits.length === 12 && digits.startsWith('44')
+      ? digits.slice(2)
+      : digits.length === 11 && digits.startsWith('0')
+        ? digits.slice(1)
+        : digits;
+    if (national.length === 10) {
+      return { phone: formatEnglandPhone(national), error: '' };
+    }
+    return { phone: cleaned, error: 'Use an England phone number like +44 7700 900000.' };
+  }
+
+  return { phone: cleaned, error: '' };
+};
 const normalizeBoolean = (value) => value === true || value === 'true' || value === 'on';
 const normalizePhoneKey = (value) => String(value || '').replace(/\D/g, '');
 const escapeHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => htmlEscapes[char]);
@@ -294,17 +324,22 @@ const formatTimestamp = () => new Date().toLocaleString('en-US', {
   timeStyle: 'short',
 });
 
-const normalizeReservationForm = (body) => ({
-  market: normalizeText(body?.market || 'india', 20).toLowerCase(),
-  userType: normalizeText(body?.userType, 20).toLowerCase(),
-  name: normalizeText(body?.name, 120),
-  email: normalizeText(body?.email, 254).toLowerCase(),
-  phone: normalizeReservationPhone(body?.phone),
-  location: normalizeText(body?.location, 120),
-  lookingFor: normalizeText(body?.lookingFor, 2000),
-  newsletterOptIn: normalizeBoolean(body?.newsletterOptIn),
-  attribution: normalizeAttribution(body?.attribution),
-});
+const normalizeReservationForm = (body) => {
+  const market = normalizeText(body?.market || 'india', 20).toLowerCase();
+  const phoneResult = normalizeReservationPhone(body?.phone, market);
+  return {
+    market,
+    userType: normalizeText(body?.userType, 20).toLowerCase(),
+    name: normalizeText(body?.name, 120),
+    email: normalizeText(body?.email, 254).toLowerCase(),
+    phone: phoneResult.phone,
+    phoneError: phoneResult.error,
+    location: normalizeText(body?.location, 120),
+    lookingFor: normalizeText(body?.lookingFor, 2000),
+    newsletterOptIn: normalizeBoolean(body?.newsletterOptIn),
+    attribution: normalizeAttribution(body?.attribution),
+  };
+};
 
 const isInternalAutomationReservation = (formData) => [
   formData.name,
@@ -991,6 +1026,9 @@ export const handleReservation = async (request) => {
   }
   if (!allowedMarkets.has(formData.market)) {
     return jsonResponse(request, { error: 'Invalid market' }, 400);
+  }
+  if (formData.phoneError) {
+    return jsonResponse(request, { error: formData.phoneError }, 400);
   }
   if (!isValidEmail(formData.email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
