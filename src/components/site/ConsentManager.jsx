@@ -55,8 +55,19 @@ export default function ConsentManager({ measurementId, salesIqWidgetUrl }) {
                   window.$zoho.salesiq = window.$zoho.salesiq || {};
                   window.$zoho.salesiq.ready = window.$zoho.salesiq.ready || function(){};
                   window.$zoho.salesiq.afterReady = function() {
+                    if (typeof window.$zoho.salesiq.domain === 'function') {
+                      window.$zoho.salesiq.domain('estospaces.com');
+                    }
                     if (typeof window.$zoho.salesiq.privacy?.updateCookieConsent === 'function') {
                       window.$zoho.salesiq.privacy.updateCookieConsent(['analytics', 'performance']);
+                    }
+                    if (typeof window.$zoho.salesiq.visitor?.customaction === 'function') {
+                      const actions = Array.isArray(window.__estospacesZohoActions)
+                        ? window.__estospacesZohoActions.splice(0)
+                        : [];
+                      for (const action of actions) {
+                        window.$zoho.salesiq.visitor.customaction(action);
+                      }
                     }
                   };
                 `}

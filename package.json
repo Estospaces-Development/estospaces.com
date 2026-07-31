@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css}\" \"scripts/*.{js,mjs}\" \"*.{js,mjs,json}\" \"docs/*.md\" \"PRODUCT.md\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css}\" \"scripts/*.{js,mjs}\" \"*.{js,mjs,json}\" \"docs/*.md\" \"PRODUCT.md\"",
     "verify": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run site:audit && npm run build",
-    "test": "node --test server.api.test.js blog.system.test.js launch-readiness.test.js",
+    "test": "node --test analytics.test.js server.api.test.js blog.system.test.js launch-readiness.test.js",
     "test:api": "node --test server.api.test.js",
     "test:blog": "node --test blog.system.test.js",
     "blogs:seed": "node scripts/seed-blogs.mjs",
