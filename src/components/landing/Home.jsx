@@ -3,6 +3,8 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
 import { siteConfig } from '../../config/site';
+import TrackedLink from '../site/TrackedLink';
+import TrackedSection from '../site/TrackedSection';
 import { JourneyRoute, LandingHero, SectionReveal } from './LandingMotion';
 import Footer from './Footer';
 import Navbar from './Navbar';
@@ -58,6 +60,8 @@ const productScreens = [
     alt: 'EstoSpaces seeker dashboard showing property search controls and primary navigation',
     href: siteConfig.paths.register,
     action: 'Request seeker access',
+    eventName: 'create_account_clicked',
+    eventPlacement: 'product_proof_seeker',
     route: '/dashboard',
   },
   {
@@ -71,6 +75,8 @@ const productScreens = [
     alt: 'EstoSpaces property manager dashboard showing Fast Track, listings, leads, applications, and performance metrics',
     href: siteConfig.paths.brokerRegister,
     action: 'Request manager access',
+    eventName: 'broker_join_clicked',
+    eventPlacement: 'product_proof_manager',
     route: '/manager/dashboard',
   },
 ];
@@ -300,9 +306,11 @@ export default function Home() {
         </section>
 
         {siteConfig.features.showProductScreenshots ? (
-          <section
+          <TrackedSection
             aria-labelledby="product-proof-title"
             className={styles.productProofSection}
+            eventName="product_preview_viewed"
+            eventProperties={{ placement: 'product_proof' }}
             id="product-proof"
           >
             <div className={styles.productProofIntro}>
@@ -349,14 +357,18 @@ export default function Home() {
                     </div>
                     <h3>{screen.title}</h3>
                     <p>{screen.body}</p>
-                    <a href={screen.href}>
+                    <TrackedLink
+                      eventName={screen.eventName}
+                      eventProperties={{ placement: screen.eventPlacement }}
+                      href={screen.href}
+                    >
                       {screen.action} <ArrowUpRight aria-hidden="true" size={17} />
-                    </a>
+                    </TrackedLink>
                   </div>
                 </article>
               ))}
             </div>
-          </section>
+          </TrackedSection>
         ) : null}
 
         <JourneyRoute stages={workflow} />
@@ -392,9 +404,14 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
-              <a className={styles.textAction} href={siteConfig.paths.register}>
+              <TrackedLink
+                className={styles.textAction}
+                eventName="create_account_clicked"
+                eventProperties={{ placement: 'seeker_journey' }}
+                href={siteConfig.paths.register}
+              >
                 Request seeker access <ArrowUpRight aria-hidden="true" size={17} />
-              </a>
+              </TrackedLink>
             </SectionReveal>
 
             <SectionReveal className={styles.relayPanel} delay={0.08}>
@@ -414,9 +431,14 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
-              <a className={styles.textAction} href={siteConfig.paths.brokerRegister}>
+              <TrackedLink
+                className={styles.textAction}
+                eventName="broker_join_clicked"
+                eventProperties={{ placement: 'professional_journey' }}
+                href={siteConfig.paths.brokerRegister}
+              >
                 Discuss professional access <ArrowUpRight aria-hidden="true" size={17} />
-              </a>
+              </TrackedLink>
             </SectionReveal>
           </div>
         </section>
@@ -653,7 +675,14 @@ export default function Home() {
             <h2>Details, stated plainly.</h2>
             <p>
               Need an answer about your situation?{' '}
-              <a href={siteConfig.paths.contact}>Contact EstoSpaces</a>.
+              <TrackedLink
+                eventName="contact_clicked"
+                eventProperties={{ placement: 'faq' }}
+                href={siteConfig.paths.contact}
+              >
+                Contact EstoSpaces
+              </TrackedLink>
+              .
             </p>
           </div>
           <div className={styles.faqList}>
@@ -682,12 +711,22 @@ export default function Home() {
             </p>
           </div>
           <div className={styles.finalActions}>
-            <a className={styles.primaryAction} href={siteConfig.paths.register}>
+            <TrackedLink
+              className={styles.primaryAction}
+              eventName="create_account_clicked"
+              eventProperties={{ placement: 'final_cta' }}
+              href={siteConfig.paths.register}
+            >
               Create account <ArrowRight aria-hidden="true" size={18} />
-            </a>
-            <a className={styles.secondaryAction} href={siteConfig.paths.login}>
+            </TrackedLink>
+            <TrackedLink
+              className={styles.secondaryAction}
+              eventName="login_clicked"
+              eventProperties={{ placement: 'final_cta' }}
+              href={siteConfig.paths.login}
+            >
               Existing user log in
-            </a>
+            </TrackedLink>
           </div>
         </section>
       </main>
