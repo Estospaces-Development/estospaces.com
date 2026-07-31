@@ -52,7 +52,13 @@ export default function ConsentManager({ measurementId, salesIqWidgetUrl }) {
               <Script id="zoho-salesiq-consented" strategy="afterInteractive">
                 {`
                   window.$zoho = window.$zoho || {};
-                  window.$zoho.salesiq = window.$zoho.salesiq || { ready: function(){} };
+                  window.$zoho.salesiq = window.$zoho.salesiq || {};
+                  window.$zoho.salesiq.ready = window.$zoho.salesiq.ready || function(){};
+                  window.$zoho.salesiq.afterReady = function() {
+                    if (typeof window.$zoho.salesiq.privacy?.updateCookieConsent === 'function') {
+                      window.$zoho.salesiq.privacy.updateCookieConsent(['analytics', 'performance']);
+                    }
+                  };
                 `}
               </Script>
               <Script id="zsiqscript" src={salesIqWidgetUrl} strategy="afterInteractive" />

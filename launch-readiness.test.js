@@ -104,6 +104,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   const analytics = await read('./src/lib/analytics.js');
   const trackedLink = await read('./src/components/site/TrackedLink.jsx');
   const trackedSection = await read('./src/components/site/TrackedSection.jsx');
+  const consentManager = await read('./src/components/site/ConsentManager.jsx');
   const footer = await read('./src/components/landing/Footer.jsx');
   const home = await read('./src/components/landing/Home.jsx');
   const nav = await read('./src/components/landing/Navbar.jsx');
@@ -114,6 +115,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   assert.match(analytics, /salesiq\?\.visitor\?\.customaction/);
   assert.match(trackedLink, /trackEvent\(eventName, eventProperties\)/);
   assert.match(trackedSection, /IntersectionObserver/);
+  assert.match(consentManager, /privacy\.updateCookieConsent\(\['analytics', 'performance'\]\)/);
   assert.match(nav, /eventName="login_clicked"/);
   assert.match(nav, /eventName="create_account_clicked"/);
   assert.match(hero, /eventName="broker_join_clicked"/);
