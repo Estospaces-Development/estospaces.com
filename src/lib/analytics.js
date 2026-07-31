@@ -1,4 +1,6 @@
 const consentStorageKey = 'estospaces_cookie_consent';
+const zohoActionQueueKey = '__estospacesZohoActions';
+const maxZohoActionQueueSize = 100;
 
 const allowedEvents = new Set([
   'landing_search_submitted',
@@ -24,6 +26,12 @@ const allowedProperties = new Set([
   'item',
 ]);
 
+function sanitizePropertyValue(value) {
+  if (typeof value !== 'string') return '';
+  const normalized = value.trim();
+  return /^[a-z0-9][a-z0-9_.:/-]{0,39}$/i.test(normalized) ? normalized : '';
+}
+
 export function trackEvent(name, properties = {}) {
   if (
     typeof window === 'undefined' ||
@@ -34,10 +42,10 @@ export function trackEvent(name, properties = {}) {
   }
 
   const safeProperties = Object.fromEntries(
-    Object.entries(properties).filter(
-      ([key, value]) =>
-        allowedProperties.has(key) && typeof value === 'string' && value.length <= 40,
-    ),
+    Object.entries(properties)
+      .filter(([key]) => allowedProperties.has(key))
+      .map(([key, value]) => [key, sanitizePropertyValue(value)])
+      .filter(([, value]) => value),
   );
 
   let tracked = false;
@@ -47,12 +55,22 @@ export function trackEvent(name, properties = {}) {
     tracked = true;
   }
 
+  const context = Object.entries(safeProperties)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('|');
+  const action = (context ? `estospaces:${name}|${context}` : `estospaces:${name}`).slice(0, 250);
+
   if (typeof window.$zoho?.salesiq?.visitor?.customaction === 'function') {
-    const context = Object.entries(safeProperties)
-      .map(([key, value]) => `${key}=${value}`)
-      .join('|');
-    const action = context ? `estospaces:${name}|${context}` : `estospaces:${name}`;
     window.$zoho.salesiq.visitor.customaction(action);
+    tracked = true;
+  } else {
+    window[zohoActionQueueKey] = Array.isArray(window[zohoActionQueueKey])
+      ? window[zohoActionQueueKey]
+      : [];
+    if (window[zohoActionQueueKey].length >= maxZohoActionQueueSize) {
+      window[zohoActionQueueKey].shift();
+    }
+    window[zohoActionQueueKey].push(action);
     tracked = true;
   }
 
