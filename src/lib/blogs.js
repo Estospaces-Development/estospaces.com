@@ -64,7 +64,10 @@ export async function getAllBlogPosts({ includeDrafts = false } = {}) {
 
 export async function getBlogPostBySlug(slug, { includeDrafts = false } = {}) {
   const posts = await loadBlogPosts();
-  return posts.find((post) => post.slug === slug && (includeDrafts || post.status === 'published')) || null;
+  return (
+    posts.find((post) => post.slug === slug && (includeDrafts || post.status === 'published')) ||
+    null
+  );
 }
 
 export async function getFeaturedBlogPosts(limit = 4) {
@@ -79,11 +82,12 @@ export async function getRelatedBlogPosts(post, limit = 3) {
   const explicit = post.relatedPostSlugs
     .map((slug) => posts.find((candidate) => candidate.slug === slug))
     .filter(Boolean);
-  const byCategory = posts.filter((candidate) => (
-    candidate.slug !== post.slug &&
-    candidate.category === post.category &&
-    !explicit.some((item) => item.slug === candidate.slug)
-  ));
+  const byCategory = posts.filter(
+    (candidate) =>
+      candidate.slug !== post.slug &&
+      candidate.category === post.category &&
+      !explicit.some((item) => item.slug === candidate.slug),
+  );
 
   return [...explicit, ...byCategory].slice(0, limit);
 }
@@ -94,10 +98,16 @@ export async function createOrUpdateBlogPost(post) {
   }
 
   const firestore = await getFirestore();
-  await firestore.collection(BLOG_COLLECTION).doc(post.slug).set({
-    ...post,
-    updatedAt: post.updatedAt || new Date().toISOString(),
-  }, { merge: true });
+  await firestore
+    .collection(BLOG_COLLECTION)
+    .doc(post.slug)
+    .set(
+      {
+        ...post,
+        updatedAt: post.updatedAt || new Date().toISOString(),
+      },
+      { merge: true },
+    );
 
   return { skipped: false, id: post.slug };
 }
@@ -130,7 +140,9 @@ export async function uploadBlogImage({ slug, bytes, contentType = 'image/webp',
   );
 
   if (!response.ok) {
-    throw new Error(`Cloud Storage upload failed with ${response.status}: ${await response.text()}`);
+    throw new Error(
+      `Cloud Storage upload failed with ${response.status}: ${await response.text()}`,
+    );
   }
 
   return {
@@ -178,17 +190,20 @@ export function buildBlogPostJsonLd(post) {
     inLanguage: 'en-GB',
     isAccessibleForFree: true,
     wordCount: estimatePostWords(post),
-    citation: (post.externalLinks || post.sources || []).map((source) => source.url).filter(Boolean),
+    citation: (post.externalLinks || post.sources || [])
+      .map((source) => source.url)
+      .filter(Boolean),
     keywords: [post.targetKeyword, ...post.secondaryKeywords, ...post.tags].join(', '),
-    about: [
-      post.category,
-      post.audience,
-      post.targetKeyword,
-    ].map((name) => ({ '@type': 'Thing', name })),
+    about: [post.category, post.audience, post.targetKeyword].map((name) => ({
+      '@type': 'Thing',
+      name,
+    })),
     mentions: [
       ...(post.internalLinks || []).map((link) => link.title),
       ...(post.externalLinks || []).map((link) => link.publisher),
-    ].filter(Boolean).map((name) => ({ '@type': 'Thing', name })),
+    ]
+      .filter(Boolean)
+      .map((name) => ({ '@type': 'Thing', name })),
   };
 }
 
@@ -196,7 +211,9 @@ function estimatePostWords(post) {
   return JSON.stringify({
     content: post.content,
     faq: post.faq,
-  }).split(/\s+/).filter(Boolean).length;
+  })
+    .split(/\s+/)
+    .filter(Boolean).length;
 }
 
 export function buildBreadcrumbJsonLd(post) {
@@ -269,9 +286,7 @@ function shouldUseFirestore() {
 
 function hasGcpConfig() {
   return Boolean(
-    process.env.GCP_PROJECT_ID &&
-    process.env.GCP_CLIENT_EMAIL &&
-    process.env.GCP_PRIVATE_KEY
+    process.env.GCP_PROJECT_ID && process.env.GCP_CLIENT_EMAIL && process.env.GCP_PRIVATE_KEY,
   );
 }
 
@@ -324,7 +339,9 @@ function normalizeDate(value) {
 }
 
 function normalize(value) {
-  return String(value || '').toLowerCase().trim();
+  return String(value || '')
+    .toLowerCase()
+    .trim();
 }
 
 function uniqueSorted(values) {

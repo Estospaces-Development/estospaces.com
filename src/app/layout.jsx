@@ -1,47 +1,35 @@
 import '../index.css';
-import { Cormorant_Garamond, Inter } from 'next/font/google';
-import Script from 'next/script';
+import '@fontsource-variable/archivo';
+import '@fontsource/ibm-plex-mono/400.css';
 
-const siteUrl = 'https://estospaces.com';
-const title = 'Estospaces - Verified Property Search for India and England';
-const description = 'Search verified property listings across India and England, compare homes with confidence, and connect with trusted property professionals through Estospaces.';
-const ogImage = '/assets/estospaces-og.webp';
-const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+import ConsentManager from '../components/site/ConsentManager';
+import { siteConfig } from '../config/site';
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-cormorant',
-  weight: ['400', '500', '600', '700'],
-});
+const siteUrl = siteConfig.siteUrl;
+const title = siteConfig.metadata.title;
+const description = siteConfig.metadata.description;
+const ogImage = siteConfig.metadata.image;
+const gaMeasurementId = siteConfig.analyticsMeasurementId;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: '%s | Estospaces',
+    template: '%s | EstoSpaces',
   },
   description,
-  applicationName: 'Estospaces',
+  applicationName: siteConfig.name,
   keywords: [
-    'Estospaces',
-    'virtual property tours',
-    'verified property listings',
-    'India property search',
-    'England property search',
-    'real estate platform',
-    'rent property',
-    'buy property',
+    'EstoSpaces',
+    'property technology',
+    'property search',
+    'property enquiries',
+    'broker response tracking',
+    'Fast Track property workflow',
   ],
-  authors: [{ name: 'Estospaces' }],
-  creator: 'Estospaces',
-  publisher: 'Estospaces',
+  authors: [{ name: siteConfig.legalOperator }],
+  creator: siteConfig.legalOperator,
+  publisher: siteConfig.legalOperator,
   alternates: {
     canonical: '/',
   },
@@ -58,9 +46,8 @@ export const metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_GB',
     url: siteUrl,
-    siteName: 'Estospaces',
+    siteName: siteConfig.name,
     title,
     description,
     images: [
@@ -68,7 +55,7 @@ export const metadata = {
         url: ogImage,
         width: 1200,
         height: 630,
-    alt: 'Estospaces verified property search for India and England',
+        alt: `${siteConfig.name} property-technology platform`,
       },
     ],
   },
@@ -96,25 +83,17 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang="en">
       <body>
-        {gaMeasurementId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){window.dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaMeasurementId}', { anonymize_ip: true });
-              `}
-            </Script>
-          </>
-        ) : null}
+        <a
+          className="fixed left-4 top-3 z-[100] -translate-y-24 rounded-lg bg-gray-950 px-4 py-3 font-bold text-white focus:translate-y-0 focus:outline-none focus:ring-4 focus:ring-orange-300"
+          href="#main-content"
+        >
+          Skip to main content
+        </a>
         {children}
+        <script defer src="/navigation.js" />
+        {gaMeasurementId ? <ConsentManager measurementId={gaMeasurementId} /> : null}
       </body>
     </html>
   );

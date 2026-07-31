@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :focus-visible {
+    outline: 3px solid #c2410c;
+    outline-offset: 3px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body.mobile-navigation-open {
+  overflow: hidden;
+}
+
 /* Smooth Animations for Dashboard */
 @keyframes fadeIn {
   from {
@@ -59,10 +85,12 @@
 
 /* Wave animation for greeting emoji */
 @keyframes wave {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg);
   }
-  10%, 30% {
+  10%,
+  30% {
     transform: rotate(14deg);
   }
   20% {
@@ -71,7 +99,8 @@
   40% {
     transform: rotate(-4deg);
   }
-  50%, 70% {
+  50%,
+  70% {
     transform: rotate(10deg);
   }
   60% {
@@ -96,11 +125,11 @@
   .transition-smooth {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   .transition-fast {
     transition: all 0.15s ease-out;
   }
-  
+
   .hover-lift:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
@@ -111,21 +140,25 @@
   * {
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
-  
+
   html {
-    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+      'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
-    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+      'Helvetica Neue', sans-serif;
     font-size: 14px;
     line-height: 1.5;
     letter-spacing: 0;
     font-weight: 400;
   }
-  
+
   /* Typography Scale - Matching Modern Chat Interface */
   h1 {
     font-size: 24px;
@@ -133,70 +166,73 @@
     font-weight: 600;
     letter-spacing: 0;
   }
-  
+
   h2 {
     font-size: 20px;
     line-height: 1.4;
     font-weight: 600;
     letter-spacing: 0;
   }
-  
+
   h3 {
     font-size: 18px;
     line-height: 1.45;
     font-weight: 600;
     letter-spacing: 0;
   }
-  
+
   h4 {
     font-size: 16px;
     line-height: 1.5;
     font-weight: 600;
     letter-spacing: 0;
   }
-  
+
   h5 {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 600;
     letter-spacing: 0;
   }
-  
+
   h6 {
     font-size: 12px;
     line-height: 1.5;
     font-weight: 600;
     letter-spacing: 0;
   }
-  
+
   p {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
     letter-spacing: 0;
   }
-  
-  small, .text-xs {
+
+  small,
+  .text-xs {
     font-size: 12px;
     line-height: 1.5;
     font-weight: 400;
     letter-spacing: 0;
   }
-  
+
   button {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 500;
     letter-spacing: 0;
   }
-  
-  input, textarea, select {
+
+  input,
+  textarea,
+  select {
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
     letter-spacing: 0;
   }
-  
+
   label {
     font-size: 12px;
     line-height: 1.5;
@@ -207,19 +243,19 @@
 
 /* Custom Scrollbar Design - Theme Aware */
 /* Default/Light Theme Scrollbars */
-html:not([data-theme="dark"]) ::-webkit-scrollbar,
+html:not([data-theme='dark']) ::-webkit-scrollbar,
 html:not(.dark) ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-html:not([data-theme="dark"]) ::-webkit-scrollbar-track,
+html:not([data-theme='dark']) ::-webkit-scrollbar-track,
 html:not(.dark) ::-webkit-scrollbar-track {
   background: #f9fafb;
   border-radius: 10px;
 }
 
-html:not([data-theme="dark"]) ::-webkit-scrollbar-thumb,
+html:not([data-theme='dark']) ::-webkit-scrollbar-thumb,
 html:not(.dark) ::-webkit-scrollbar-thumb {
   background: #9ca3af;
   border-radius: 10px;
@@ -227,30 +263,30 @@ html:not(.dark) ::-webkit-scrollbar-thumb {
   border: 1px solid #f9fafb;
 }
 
-html:not([data-theme="dark"]) ::-webkit-scrollbar-thumb:hover,
+html:not([data-theme='dark']) ::-webkit-scrollbar-thumb:hover,
 html:not(.dark) ::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
 
-html:not([data-theme="dark"]) ::-webkit-scrollbar-corner,
+html:not([data-theme='dark']) ::-webkit-scrollbar-corner,
 html:not(.dark) ::-webkit-scrollbar-corner {
   background: #f9fafb;
 }
 
 /* Dark Theme Scrollbars */
-html[data-theme="dark"] ::-webkit-scrollbar,
+html[data-theme='dark'] ::-webkit-scrollbar,
 html.dark ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-html[data-theme="dark"] ::-webkit-scrollbar-track,
+html[data-theme='dark'] ::-webkit-scrollbar-track,
 html.dark ::-webkit-scrollbar-track {
   background: #111827;
   border-radius: 10px;
 }
 
-html[data-theme="dark"] ::-webkit-scrollbar-thumb,
+html[data-theme='dark'] ::-webkit-scrollbar-thumb,
 html.dark ::-webkit-scrollbar-thumb {
   background: #4b5563;
   border-radius: 10px;
@@ -258,37 +294,37 @@ html.dark ::-webkit-scrollbar-thumb {
   border: 1px solid #111827;
 }
 
-html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover,
+html[data-theme='dark'] ::-webkit-scrollbar-thumb:hover,
 html.dark ::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
 
-html[data-theme="dark"] ::-webkit-scrollbar-corner,
+html[data-theme='dark'] ::-webkit-scrollbar-corner,
 html.dark ::-webkit-scrollbar-corner {
   background: #111827;
 }
 
 /* Firefox scrollbar - Default/Light Theme */
-html:not([data-theme="dark"]),
+html:not([data-theme='dark']),
 html:not(.dark) {
   scrollbar-width: thin;
   scrollbar-color: #9ca3af #f9fafb;
 }
 
-html:not([data-theme="dark"]) *,
+html:not([data-theme='dark']) *,
 html:not(.dark) * {
   scrollbar-width: thin;
   scrollbar-color: #9ca3af #f9fafb;
 }
 
 /* Firefox scrollbar - Dark Theme */
-html[data-theme="dark"],
+html[data-theme='dark'],
 html.dark {
   scrollbar-width: thin;
   scrollbar-color: #4b5563 #111827;
 }
 
-html[data-theme="dark"] *,
+html[data-theme='dark'] *,
 html.dark * {
   scrollbar-width: thin;
   scrollbar-color: #4b5563 #111827;
@@ -305,7 +341,7 @@ html.dark * {
 }
 
 /* BotSailor Widget Custom Colors */
-iframe[src*="botsailor"] {
+iframe[src*='botsailor'] {
   z-index: 9999 !important;
 }
 
@@ -314,8 +350,8 @@ iframe[src*="botsailor"] {
 .btn-primary,
 #bs-widget-launcher,
 .bs-launcher-button,
-[class*="botsailor"] button,
-[class*="bs-"] button {
+[class*='botsailor'] button,
+[class*='bs-'] button {
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
   border-color: #f97316 !important;
   color: #ffffff !important;
@@ -331,7 +367,8 @@ iframe[src*="botsailor"] {
 
 /* Welcome Animation Styles */
 @keyframes bounce-subtle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -340,7 +377,8 @@ iframe[src*="botsailor"] {
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -401,66 +439,66 @@ iframe[src*="botsailor"] {
 
 /* Number Input Styling - Theme-Aware with Primary Color (#FF6B35) */
 /* Light Theme Number Inputs */
-html:not([data-theme="dark"]) input[type="number"],
-html:not(.dark) input[type="number"] {
+html:not([data-theme='dark']) input[type='number'],
+html:not(.dark) input[type='number'] {
   background-color: #f9fafb !important;
   border-color: #e5e7eb !important;
   color: #111827 !important;
 }
 
-html:not([data-theme="dark"]) input[type="number"]:hover,
-html:not(.dark) input[type="number"]:hover {
+html:not([data-theme='dark']) input[type='number']:hover,
+html:not(.dark) input[type='number']:hover {
   border-color: #d1d5db !important;
 }
 
-html:not([data-theme="dark"]) input[type="number"]:focus,
-html:not(.dark) input[type="number"]:focus {
+html:not([data-theme='dark']) input[type='number']:focus,
+html:not(.dark) input[type='number']:focus {
   background-color: #ffffff !important;
-  border-color: #FF6B35 !important;
+  border-color: #ff6b35 !important;
   color: #111827 !important;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1) !important;
   outline: none !important;
 }
 
-html:not([data-theme="dark"]) input[type="number"]:active,
-html:not(.dark) input[type="number"]:active {
-  border-color: #FF6B35 !important;
+html:not([data-theme='dark']) input[type='number']:active,
+html:not(.dark) input[type='number']:active {
+  border-color: #ff6b35 !important;
 }
 
 /* Dark Theme Number Inputs */
-html[data-theme="dark"] input[type="number"],
-html.dark input[type="number"] {
+html[data-theme='dark'] input[type='number'],
+html.dark input[type='number'] {
   background-color: #1f2937 !important;
   border-color: #374151 !important;
   color: #f9fafb !important;
 }
 
-html[data-theme="dark"] input[type="number"]:hover,
-html.dark input[type="number"]:hover {
+html[data-theme='dark'] input[type='number']:hover,
+html.dark input[type='number']:hover {
   border-color: #4b5563 !important;
 }
 
-html[data-theme="dark"] input[type="number"]:focus,
-html.dark input[type="number"]:focus {
+html[data-theme='dark'] input[type='number']:focus,
+html.dark input[type='number']:focus {
   background-color: #111827 !important;
-  border-color: #FF6B35 !important;
+  border-color: #ff6b35 !important;
   color: #f9fafb !important;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2) !important;
   outline: none !important;
 }
 
-html[data-theme="dark"] input[type="number"]:active,
-html.dark input[type="number"]:active {
-  border-color: #FF6B35 !important;
+html[data-theme='dark'] input[type='number']:active,
+html.dark input[type='number']:active {
+  border-color: #ff6b35 !important;
 }
 
 /* Number Input Spinner Buttons - Styled with Primary Color (#FF6B35) */
 /* Note: Webkit spinners have limited styling, but we make them larger and more visible */
 /* Light Theme - Native spinners */
-html:not([data-theme="dark"]) input[type="number"]::-webkit-inner-spin-button,
-html:not([data-theme="dark"]) input[type="number"]::-webkit-outer-spin-button,
-html:not(.dark) input[type="number"]::-webkit-inner-spin-button,
-html:not(.dark) input[type="number"]::-webkit-outer-spin-button {
+html:not([data-theme='dark']) input[type='number']::-webkit-inner-spin-button,
+html:not([data-theme='dark']) input[type='number']::-webkit-outer-spin-button,
+html:not(.dark) input[type='number']::-webkit-inner-spin-button,
+html:not(.dark) input[type='number']::-webkit-outer-spin-button {
   opacity: 1 !important;
   height: 32px !important;
   width: 28px !important;
@@ -470,27 +508,27 @@ html:not(.dark) input[type="number"]::-webkit-outer-spin-button {
   transform: scale(1.2);
 }
 
-html:not([data-theme="dark"]) input[type="number"]:hover::-webkit-inner-spin-button,
-html:not([data-theme="dark"]) input[type="number"]:hover::-webkit-outer-spin-button,
-html:not(.dark) input[type="number"]:hover::-webkit-inner-spin-button,
-html:not(.dark) input[type="number"]:hover::-webkit-outer-spin-button {
+html:not([data-theme='dark']) input[type='number']:hover::-webkit-inner-spin-button,
+html:not([data-theme='dark']) input[type='number']:hover::-webkit-outer-spin-button,
+html:not(.dark) input[type='number']:hover::-webkit-inner-spin-button,
+html:not(.dark) input[type='number']:hover::-webkit-outer-spin-button {
   opacity: 1 !important;
   transform: scale(1.3);
 }
 
-html:not([data-theme="dark"]) input[type="number"]:focus::-webkit-inner-spin-button,
-html:not([data-theme="dark"]) input[type="number"]:focus::-webkit-outer-spin-button,
-html:not(.dark) input[type="number"]:focus::-webkit-inner-spin-button,
-html:not(.dark) input[type="number"]:focus::-webkit-outer-spin-button {
+html:not([data-theme='dark']) input[type='number']:focus::-webkit-inner-spin-button,
+html:not([data-theme='dark']) input[type='number']:focus::-webkit-outer-spin-button,
+html:not(.dark) input[type='number']:focus::-webkit-inner-spin-button,
+html:not(.dark) input[type='number']:focus::-webkit-outer-spin-button {
   opacity: 1 !important;
   transform: scale(1.35);
 }
 
 /* Dark Theme - Native spinners */
-html[data-theme="dark"] input[type="number"]::-webkit-inner-spin-button,
-html[data-theme="dark"] input[type="number"]::-webkit-outer-spin-button,
-html.dark input[type="number"]::-webkit-inner-spin-button,
-html.dark input[type="number"]::-webkit-outer-spin-button {
+html[data-theme='dark'] input[type='number']::-webkit-inner-spin-button,
+html[data-theme='dark'] input[type='number']::-webkit-outer-spin-button,
+html.dark input[type='number']::-webkit-inner-spin-button,
+html.dark input[type='number']::-webkit-outer-spin-button {
   opacity: 1 !important;
   height: 32px !important;
   width: 28px !important;
@@ -501,39 +539,39 @@ html.dark input[type="number"]::-webkit-outer-spin-button {
   transform: scale(1.2);
 }
 
-html[data-theme="dark"] input[type="number"]:hover::-webkit-inner-spin-button,
-html[data-theme="dark"] input[type="number"]:hover::-webkit-outer-spin-button,
-html.dark input[type="number"]:hover::-webkit-inner-spin-button,
-html.dark input[type="number"]:hover::-webkit-outer-spin-button {
+html[data-theme='dark'] input[type='number']:hover::-webkit-inner-spin-button,
+html[data-theme='dark'] input[type='number']:hover::-webkit-outer-spin-button,
+html.dark input[type='number']:hover::-webkit-inner-spin-button,
+html.dark input[type='number']:hover::-webkit-outer-spin-button {
   opacity: 1 !important;
   filter: brightness(1.9) contrast(1.3) !important;
   transform: scale(1.3);
 }
 
-html[data-theme="dark"] input[type="number"]:focus::-webkit-inner-spin-button,
-html[data-theme="dark"] input[type="number"]:focus::-webkit-outer-spin-button,
-html.dark input[type="number"]:focus::-webkit-inner-spin-button,
-html.dark input[type="number"]:focus::-webkit-outer-spin-button {
+html[data-theme='dark'] input[type='number']:focus::-webkit-inner-spin-button,
+html[data-theme='dark'] input[type='number']:focus::-webkit-outer-spin-button,
+html.dark input[type='number']:focus::-webkit-inner-spin-button,
+html.dark input[type='number']:focus::-webkit-outer-spin-button {
   opacity: 1 !important;
   filter: brightness(2.1) contrast(1.4) !important;
   transform: scale(1.35);
 }
 
 /* Firefox Number Input - Use accent color */
-html:not([data-theme="dark"]) input[type="number"]:focus,
-html:not(.dark) input[type="number"]:focus {
-  accent-color: #FF6B35 !important;
+html:not([data-theme='dark']) input[type='number']:focus,
+html:not(.dark) input[type='number']:focus {
+  accent-color: #ff6b35 !important;
 }
 
-html[data-theme="dark"] input[type="number"]:focus,
-html.dark input[type="number"]:focus {
-  accent-color: #FF6B35 !important;
+html[data-theme='dark'] input[type='number']:focus,
+html.dark input[type='number']:focus {
+  accent-color: #ff6b35 !important;
 }
 
 /* Checkbox Styling - Theme-Aware with Primary Color (#FF6B35) */
-html:not([data-theme="dark"]) input[type="checkbox"],
-html:not(.dark) input[type="checkbox"] {
-  accent-color: #FF6B35 !important;
+html:not([data-theme='dark']) input[type='checkbox'],
+html:not(.dark) input[type='checkbox'] {
+  accent-color: #ff6b35 !important;
   border-color: #d1d5db !important;
   background-color: #ffffff !important;
   width: 20px !important;
@@ -542,29 +580,29 @@ html:not(.dark) input[type="checkbox"] {
   transition: all 0.2s ease !important;
 }
 
-html:not([data-theme="dark"]) input[type="checkbox"]:hover,
-html:not(.dark) input[type="checkbox"]:hover {
-  border-color: #FF6B35 !important;
+html:not([data-theme='dark']) input[type='checkbox']:hover,
+html:not(.dark) input[type='checkbox']:hover {
+  border-color: #ff6b35 !important;
   box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.1) !important;
 }
 
-html:not([data-theme="dark"]) input[type="checkbox"]:checked,
-html:not(.dark) input[type="checkbox"]:checked {
-  background-color: #FF6B35 !important;
-  border-color: #FF6B35 !important;
+html:not([data-theme='dark']) input[type='checkbox']:checked,
+html:not(.dark) input[type='checkbox']:checked {
+  background-color: #ff6b35 !important;
+  border-color: #ff6b35 !important;
   color: #ffffff !important;
 }
 
-html:not([data-theme="dark"]) input[type="checkbox"]:focus,
-html:not(.dark) input[type="checkbox"]:focus {
+html:not([data-theme='dark']) input[type='checkbox']:focus,
+html:not(.dark) input[type='checkbox']:focus {
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2) !important;
-  border-color: #FF6B35 !important;
+  border-color: #ff6b35 !important;
 }
 
-html[data-theme="dark"] input[type="checkbox"],
-html.dark input[type="checkbox"] {
-  accent-color: #FF6B35 !important;
+html[data-theme='dark'] input[type='checkbox'],
+html.dark input[type='checkbox'] {
+  accent-color: #ff6b35 !important;
   border-color: #4b5563 !important;
   background-color: #1f2937 !important;
   width: 20px !important;
@@ -573,47 +611,47 @@ html.dark input[type="checkbox"] {
   transition: all 0.2s ease !important;
 }
 
-html[data-theme="dark"] input[type="checkbox"]:hover,
-html.dark input[type="checkbox"]:hover {
-  border-color: #FF6B35 !important;
+html[data-theme='dark'] input[type='checkbox']:hover,
+html.dark input[type='checkbox']:hover {
+  border-color: #ff6b35 !important;
   box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.15) !important;
 }
 
-html[data-theme="dark"] input[type="checkbox"]:checked,
-html.dark input[type="checkbox"]:checked {
-  background-color: #FF6B35 !important;
-  border-color: #FF6B35 !important;
+html[data-theme='dark'] input[type='checkbox']:checked,
+html.dark input[type='checkbox']:checked {
+  background-color: #ff6b35 !important;
+  border-color: #ff6b35 !important;
   color: #ffffff !important;
 }
 
-html[data-theme="dark"] input[type="checkbox"]:focus,
-html.dark input[type="checkbox"]:focus {
+html[data-theme='dark'] input[type='checkbox']:focus,
+html.dark input[type='checkbox']:focus {
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.3) !important;
-  border-color: #FF6B35 !important;
+  border-color: #ff6b35 !important;
 }
 
 /* Special styling for yellow/featured checkbox (keep yellow theme) */
-html:not([data-theme="dark"]) input[type="checkbox"].border-yellow-400,
-html:not(.dark) input[type="checkbox"].border-yellow-400 {
+html:not([data-theme='dark']) input[type='checkbox'].border-yellow-400,
+html:not(.dark) input[type='checkbox'].border-yellow-400 {
   border-color: #fbbf24 !important;
   accent-color: #f59e0b !important;
 }
 
-html:not([data-theme="dark"]) input[type="checkbox"].border-yellow-400:checked,
-html:not(.dark) input[type="checkbox"].border-yellow-400:checked {
+html:not([data-theme='dark']) input[type='checkbox'].border-yellow-400:checked,
+html:not(.dark) input[type='checkbox'].border-yellow-400:checked {
   background-color: #f59e0b !important;
   border-color: #f59e0b !important;
 }
 
-html[data-theme="dark"] input[type="checkbox"].border-yellow-400,
-html.dark input[type="checkbox"].border-yellow-400 {
+html[data-theme='dark'] input[type='checkbox'].border-yellow-400,
+html.dark input[type='checkbox'].border-yellow-400 {
   border-color: #fbbf24 !important;
   accent-color: #fbbf24 !important;
 }
 
-html[data-theme="dark"] input[type="checkbox"].border-yellow-400:checked,
-html.dark input[type="checkbox"].border-yellow-400:checked {
+html[data-theme='dark'] input[type='checkbox'].border-yellow-400:checked,
+html.dark input[type='checkbox'].border-yellow-400:checked {
   background-color: #fbbf24 !important;
   border-color: #fbbf24 !important;
 }

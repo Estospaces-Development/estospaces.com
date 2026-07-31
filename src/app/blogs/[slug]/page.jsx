@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import BlogArticle from '../../../components/blog/BlogArticle';
 import BlogChrome from '../../../components/blog/BlogChrome';
+import { serializeJsonLd } from '../../../lib/json-ld';
 import {
   absoluteUrl,
   buildBlogPostJsonLd,
@@ -84,11 +85,7 @@ export default async function BlogDetailPage({ params }) {
   }
 
   const relatedPosts = await getRelatedBlogPosts(post, 3);
-  const jsonLd = [
-    buildBlogPostJsonLd(post),
-    buildBreadcrumbJsonLd(post),
-    buildFaqJsonLd(post),
-  ];
+  const jsonLd = [buildBlogPostJsonLd(post), buildBreadcrumbJsonLd(post), buildFaqJsonLd(post)];
 
   return (
     <BlogChrome>
@@ -96,10 +93,10 @@ export default async function BlogDetailPage({ params }) {
         <script
           key={item['@type']}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(item) }}
         />
       ))}
-      <main>
+      <main id="main-content">
         <BlogArticle post={post} relatedPosts={relatedPosts} />
       </main>
     </BlogChrome>

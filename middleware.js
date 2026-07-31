@@ -3,20 +3,18 @@ import blogSlugs from './src/data/generated-blog-slugs.js';
 
 const BLOG_SLUGS = new Set(blogSlugs);
 const STALE_BLOG_IMAGE_PATTERN = /^\/blog-images\/.+-hero-(?:image|photo)-v[1-7]\.webp$/;
-const CANONICAL_HOST = 'estospaces.com';
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get('host') || '';
-  const forwardedProto = request.headers.get('x-forwarded-proto') || request.nextUrl.protocol.replace(':', '');
+  const forwardedProto =
+    request.headers.get('x-forwarded-proto') || request.nextUrl.protocol.replace(':', '');
   const isLocalHost = host.startsWith('localhost') || host.startsWith('127.0.0.1');
-  const shouldRedirectHost = host === `www.${CANONICAL_HOST}`;
   const shouldRedirectProtocol = forwardedProto === 'http' && !isLocalHost;
 
-  if (shouldRedirectHost || shouldRedirectProtocol) {
+  if (shouldRedirectProtocol) {
     const url = request.nextUrl.clone();
     url.protocol = 'https:';
-    url.hostname = CANONICAL_HOST;
     url.port = '';
     return NextResponse.redirect(url, 301);
   }

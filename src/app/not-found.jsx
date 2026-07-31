@@ -13,7 +13,7 @@ export const metadata = {
 export default function NotFound() {
   return (
     <BlogChrome activePath="/not-found">
-      <main className="pt-28">
+      <main className="pt-28" id="main-content">
         <section className="border-b border-gray-100 bg-white dark:border-gray-800 dark:bg-gray-950">
           <div className="container mx-auto max-w-4xl px-4 py-16 text-center sm:py-24">
             <p className="text-sm font-semibold uppercase tracking-normal text-primary">404</p>
@@ -21,7 +21,8 @@ export default function NotFound() {
               This page is not available
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-300">
-              The link may be old, the page may have moved, or the address may have been typed incorrectly.
+              The link may be old, the page may have moved, or the address may have been typed
+              incorrectly.
             </p>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <Link

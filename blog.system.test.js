@@ -14,6 +14,7 @@ import {
   getFeaturedBlogPosts,
   getRelatedBlogPosts,
 } from './src/lib/blogs.js';
+import { serializeJsonLd } from './src/lib/json-ld.js';
 import sitemap from './src/app/sitemap.js';
 
 const sourcePath = '../docs/blog-posts-to-do';
@@ -32,8 +33,16 @@ test('blog generator creates exactly 100 unique SEO-ready drafts from the canoni
   assert.ok(posts.every((post) => post.heroImage.gcpPath.endsWith('-hero-photo-v8.webp')));
   assert.ok(posts.every((post) => post.internalLinks.length >= 3));
   assert.ok(posts.every((post) => post.externalLinks.length >= 2));
-  assert.ok(posts.every((post) => post.content.sections.some((section) => section.heading === 'Key Takeaways')));
-  assert.ok(posts.every((post) => post.content.sections.some((section) => section.heading === 'Common Mistakes to Avoid')));
+  assert.ok(
+    posts.every((post) =>
+      post.content.sections.some((section) => section.heading === 'Key Takeaways'),
+    ),
+  );
+  assert.ok(
+    posts.every((post) =>
+      post.content.sections.some((section) => section.heading === 'Common Mistakes to Avoid'),
+    ),
+  );
   assert.ok(posts.every((post) => post.metaTitle.length <= 60));
   assert.ok(posts.every((post) => post.metaDescription.length <= 156));
   assert.ok(posts.every((post) => post.faq.length >= 3));
@@ -86,17 +95,40 @@ test('blog routes, nav, sitemap, and JSON-LD expose crawlable blog surfaces', as
   assert.ok(jsonLd.image.url);
 });
 
+test('blog JSON-LD serialization cannot break out of script tags', () => {
+  const hostile = buildBlogPostJsonLd({
+    ...generatedPosts[0],
+    title: '</script><script>alert("xss")</script>',
+    metaDescription: 'line\u2028separator & <tag> \u2029',
+    category: 'Safety </script>',
+    targetKeyword: '<script>',
+    secondaryKeywords: ['one & two'],
+    tags: ['</script>'],
+  });
+
+  const serialized = serializeJsonLd(hostile);
+  assert.doesNotMatch(serialized, /<\/script/i);
+  assert.doesNotMatch(serialized, /<script/i);
+  assert.match(serialized, /\\u003c\/script\\u003e/i);
+  assert.match(serialized, /\\u2028/);
+  assert.match(serialized, /\\u2029/);
+  assert.equal(JSON.parse(serialized).headline, hostile.headline);
+  assert.equal(JSON.parse(serialized).description, hostile.description);
+});
+
 test('site-level SEO trust surfaces exist for home, blog index, and author pages', async () => {
   const homeSource = await readFile('./src/components/landing/Home.jsx', 'utf8');
   const blogIndexSource = await readFile('./src/app/blogs/page.jsx', 'utf8');
   const aboutSource = await readFile('./src/app/about/page.jsx', 'utf8');
   const layoutSource = await readFile('./src/app/layout.jsx', 'utf8');
+  const siteConfigSource = await readFile('./src/config/site.ts', 'utf8');
   const tailwindSource = await readFile('./tailwind.config.js', 'utf8');
 
   assert.match(homeSource, /<main id="main-content">/);
   assert.match(blogIndexSource, /buildBlogIndexJsonLd/);
   assert.match(aboutSource, /Editorial Standards/);
-  assert.match(layoutSource, /estospaces-og\.webp/);
+  assert.match(layoutSource, /siteConfig\.metadata\.image/);
+  assert.match(siteConfigSource, /estospaces-og\.webp/);
   assert.doesNotMatch(tailwindSource, /letterSpacing:\s*'-/);
 });
 

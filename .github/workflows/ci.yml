@@ -6,20 +6,33 @@ on:
   pull_request:
     branches: [develop, main]
 
+permissions:
+  contents: read
+
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       NEXT_PUBLIC_APP_BASE_URL: https://app.estospaces.com
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: "20"
+          node-version: "22.22.2"
           cache: npm
 
       - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run site:audit
       - run: npm run build
-      - run: npm run test:api
+      - name: Build hardened Docker image
+        run: |
+          docker build \
+            --build-arg NEXT_PUBLIC_APP_BASE_URL="${NEXT_PUBLIC_APP_BASE_URL}" \
+            --build-arg NEXT_PUBLIC_LANDING_API_BASE_URL="https://landing-api.estospaces.invalid" \
+            -t test-estospaces-com:${{ github.sha }} .

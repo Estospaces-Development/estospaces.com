@@ -19,8 +19,15 @@ const htmlEscapes = {
 let firestoreClient;
 const googleSheetHeaderCache = new Set();
 
-const normalizeText = (value, maxLength) => String(value || '').trim().slice(0, maxLength);
-const normalizePhoneCharacters = (value) => String(value || '').replace(/[^\d+()\-\s]/g, '').trim().slice(0, 20);
+const normalizeText = (value, maxLength) =>
+  String(value || '')
+    .trim()
+    .slice(0, maxLength);
+const normalizePhoneCharacters = (value) =>
+  String(value || '')
+    .replace(/[^\d+()\-\s]/g, '')
+    .trim()
+    .slice(0, 20);
 const phoneDigits = (value) => normalizePhoneCharacters(value).replace(/\D/g, '');
 const formatIndiaPhone = (digits) => `+91 ${digits.slice(0, 5)} ${digits.slice(5)}`;
 const formatEnglandPhone = (digits) => `+44 ${digits.slice(0, 4)} ${digits.slice(4)}`;
@@ -40,11 +47,12 @@ const normalizeReservationPhone = (value, market) => {
   }
 
   if (market === 'england') {
-    const national = digits.length === 12 && digits.startsWith('44')
-      ? digits.slice(2)
-      : digits.length === 11 && digits.startsWith('0')
-        ? digits.slice(1)
-        : digits;
+    const national =
+      digits.length === 12 && digits.startsWith('44')
+        ? digits.slice(2)
+        : digits.length === 11 && digits.startsWith('0')
+          ? digits.slice(1)
+          : digits;
     if (national.length === 10) {
       return { phone: formatEnglandPhone(national), error: '' };
     }
@@ -62,18 +70,17 @@ const parsePositiveInteger = (value, fallback) => {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 };
 
-const googleSheetsSpreadsheetId = () => normalizeText(process.env.GOOGLE_SHEETS_SPREADSHEET_ID, 160);
-const googleSheetsLeadsRange = () => normalizeText(
-  process.env.GOOGLE_SHEETS_LEADS_RANGE || 'A:Q',
-  200,
-) || 'A:Q';
-const googleSheetsClientEmail = () => normalizeText(
-  process.env.GOOGLE_SHEETS_CLIENT_EMAIL || process.env.GCP_CLIENT_EMAIL,
-  254,
-);
-const googleSheetsPrivateKey = () => String(
-  process.env.GOOGLE_SHEETS_PRIVATE_KEY || process.env.GCP_PRIVATE_KEY || '',
-).replace(/\\n/g, '\n');
+const googleSheetsSpreadsheetId = () =>
+  normalizeText(process.env.GOOGLE_SHEETS_SPREADSHEET_ID, 160);
+const googleSheetsLeadsRange = () =>
+  normalizeText(process.env.GOOGLE_SHEETS_LEADS_RANGE || 'A:Q', 200) || 'A:Q';
+const googleSheetsClientEmail = () =>
+  normalizeText(process.env.GOOGLE_SHEETS_CLIENT_EMAIL || process.env.GCP_CLIENT_EMAIL, 254);
+const googleSheetsPrivateKey = () =>
+  String(process.env.GOOGLE_SHEETS_PRIVATE_KEY || process.env.GCP_PRIVATE_KEY || '').replace(
+    /\\n/g,
+    '\n',
+  );
 
 const landingEmailRateLimit = () => ({
   limit: parsePositiveInteger(process.env.LANDING_EMAIL_RATE_LIMIT_MAX, 5),
@@ -82,33 +89,35 @@ const landingEmailRateLimit = () => ({
 
 const landingChatStartRateLimit = () => ({
   limit: parsePositiveInteger(process.env.LANDING_CHAT_START_RATE_LIMIT_MAX, 30),
-  windowMs: parsePositiveInteger(process.env.LANDING_CHAT_START_RATE_LIMIT_WINDOW_MS, 15 * 60 * 1000),
+  windowMs: parsePositiveInteger(
+    process.env.LANDING_CHAT_START_RATE_LIMIT_WINDOW_MS,
+    15 * 60 * 1000,
+  ),
 });
 
-const landingRateLimitStoreTimeoutMs = () => parsePositiveInteger(
-  process.env.LANDING_RATE_LIMIT_STORE_TIMEOUT_MS,
-  1500,
-);
+const landingRateLimitStoreTimeoutMs = () =>
+  parsePositiveInteger(process.env.LANDING_RATE_LIMIT_STORE_TIMEOUT_MS, 1500);
 
-const rateLimitCollectionName = () => normalizeText(
-  process.env.LANDING_RATE_LIMIT_COLLECTION || 'landingApiRateLimits',
-  80,
-) || 'landingApiRateLimits';
+const rateLimitCollectionName = () =>
+  normalizeText(process.env.LANDING_RATE_LIMIT_COLLECTION || 'landingApiRateLimits', 80) ||
+  'landingApiRateLimits';
 
-const firestoreProjectId = () => normalizeText(
-  process.env.GCP_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT,
-  120,
-);
+const firestoreProjectId = () =>
+  normalizeText(
+    process.env.GCP_PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || process.env.GCLOUD_PROJECT,
+    120,
+  );
 
-const hasExplicitFirestoreCredentials = () => Boolean(
-  process.env.GCP_CLIENT_EMAIL && process.env.GCP_PRIVATE_KEY,
-);
+const hasExplicitFirestoreCredentials = () =>
+  Boolean(process.env.GCP_CLIENT_EMAIL && process.env.GCP_PRIVATE_KEY);
 
 const shouldUseFirestoreRateLimit = () => {
   const store = normalizeText(process.env.LANDING_RATE_LIMIT_STORE, 20).toLowerCase();
   if (store === 'memory') return false;
   if (store === 'firestore') return true;
-  return Boolean(process.env.K_SERVICE || firestoreProjectId() || hasExplicitFirestoreCredentials());
+  return Boolean(
+    process.env.K_SERVICE || firestoreProjectId() || hasExplicitFirestoreCredentials(),
+  );
 };
 
 const getRateLimitFirestore = async () => {
@@ -135,20 +144,20 @@ const rateLimitDocId = (scope, key) => {
 };
 
 const requestClientIdentifier = (request) => {
-  const headerValue = request.headers.get('x-forwarded-for')
-    || request.headers.get('x-real-ip')
-    || request.headers.get('cf-connecting-ip')
-    || request.headers.get('fastly-client-ip')
-    || '';
+  const headerValue =
+    request.headers.get('x-forwarded-for') ||
+    request.headers.get('x-real-ip') ||
+    request.headers.get('cf-connecting-ip') ||
+    request.headers.get('fastly-client-ip') ||
+    '';
   return normalizeText(headerValue.split(',')[0], 120).toLowerCase();
 };
 
 const landingRateLimitKeys = (request, identifiers) => {
   const clientIdentifier = requestClientIdentifier(request);
-  return [
-    clientIdentifier ? `client:${clientIdentifier}` : '',
-    ...identifiers,
-  ].map((key) => normalizeText(key, 220).toLowerCase()).filter(Boolean);
+  return [clientIdentifier ? `client:${clientIdentifier}` : '', ...identifiers]
+    .map((key) => normalizeText(key, 220).toLowerCase())
+    .filter(Boolean);
 };
 
 const pruneMemoryRateLimitKeys = (now) => {
@@ -187,7 +196,9 @@ const enforceMemoryRateLimit = async ({ scope, keys, limit, windowMs }) => {
 const enforceFirestoreRateLimit = async ({ scope, keys, limit, windowMs }) => {
   const firestore = await getRateLimitFirestore();
   const now = Date.now();
-  const refs = keys.map((key) => firestore.collection(rateLimitCollectionName()).doc(rateLimitDocId(scope, key)));
+  const refs = keys.map((key) =>
+    firestore.collection(rateLimitCollectionName()).doc(rateLimitDocId(scope, key)),
+  );
   let limitedResult = null;
 
   await firestore.runTransaction(async (transaction) => {
@@ -224,7 +235,9 @@ const enforceFirestoreRateLimit = async ({ scope, keys, limit, windowMs }) => {
     });
 
     if (limitedResult) return;
-    writes.forEach(({ ref, data }) => transaction.set(ref, data, { merge: true }));
+    writes.forEach(({ ref, data }) => {
+      transaction.set(ref, data, { merge: true });
+    });
   });
 
   return limitedResult || { limited: false };
@@ -266,10 +279,11 @@ const enforceLandingAbuseLimit = async (request, scope, identifiers, config) => 
   }
 };
 
-const corsAllowedOrigins = () => (process.env.CORS_ALLOWED_ORIGINS || process.env.ALLOWED_ORIGINS || '')
-  .split(',')
-  .map((origin) => origin.trim())
-  .filter(Boolean);
+const corsAllowedOrigins = () =>
+  (process.env.CORS_ALLOWED_ORIGINS || process.env.ALLOWED_ORIGINS || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 
 const corsHeaders = (request) => {
   const headers = {
@@ -287,27 +301,37 @@ const corsHeaders = (request) => {
   return headers;
 };
 
-const jsonResponse = (request, payload, status = 200, extraHeaders = {}) => new Response(JSON.stringify(payload), {
-  status,
-  headers: {
-    'Content-Type': 'application/json',
-    ...corsHeaders(request),
-    ...extraHeaders,
-  },
-});
+const jsonResponse = (request, payload, status = 200, extraHeaders = {}) =>
+  new Response(JSON.stringify(payload), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      ...corsHeaders(request),
+      ...extraHeaders,
+    },
+  });
 
 const rateLimitResponse = (request, result) => {
   if (result?.unavailable) {
-    return jsonResponse(request, {
-      error: 'Email submission protection is temporarily unavailable. Please try again shortly.',
-    }, 503);
+    return jsonResponse(
+      request,
+      {
+        error: 'Email submission protection is temporarily unavailable. Please try again shortly.',
+      },
+      503,
+    );
   }
 
-  return jsonResponse(request, {
-    error: 'Too many requests. Please try again later.',
-  }, 429, {
-    'Retry-After': String(Math.max(1, result?.retryAfterSeconds || 60)),
-  });
+  return jsonResponse(
+    request,
+    {
+      error: 'Too many requests. Please try again later.',
+    },
+    429,
+    {
+      'Retry-After': String(Math.max(1, result?.retryAfterSeconds || 60)),
+    },
+  );
 };
 
 const parseJson = async (request) => {
@@ -318,11 +342,12 @@ const parseJson = async (request) => {
   }
 };
 
-const formatTimestamp = () => new Date().toLocaleString('en-US', {
-  timeZone: 'UTC',
-  dateStyle: 'long',
-  timeStyle: 'short',
-});
+const formatTimestamp = () =>
+  new Date().toLocaleString('en-US', {
+    timeZone: 'UTC',
+    dateStyle: 'long',
+    timeStyle: 'short',
+  });
 
 const normalizeReservationForm = (body) => {
   const market = normalizeText(body?.market || 'india', 20).toLowerCase();
@@ -341,13 +366,14 @@ const normalizeReservationForm = (body) => {
   };
 };
 
-const isInternalAutomationReservation = (formData) => [
-  formData.name,
-  formData.email,
-  formData.location,
-  formData.lookingFor,
-  ...Object.values(formData.attribution || {}),
-].some((value) => internalAutomationPattern.test(String(value || '')));
+const isInternalAutomationReservation = (formData) =>
+  [
+    formData.name,
+    formData.email,
+    formData.location,
+    formData.lookingFor,
+    ...Object.values(formData.attribution || {}),
+  ].some((value) => internalAutomationPattern.test(String(value || '')));
 
 const normalizeAttribution = (value) => {
   const source = value && typeof value === 'object' ? value : {};
@@ -388,9 +414,10 @@ const reservationSheetHeaders = [
   'FBCLID',
 ];
 
-const attributionEntries = (attribution) => Object.entries(attribution || {})
-  .filter(([, value]) => value)
-  .map(([key, value]) => [key.replace(/_/g, ' '), value]);
+const attributionEntries = (attribution) =>
+  Object.entries(attribution || {})
+    .filter(([, value]) => value)
+    .map(([key, value]) => [key.replace(/_/g, ' '), value]);
 
 const getGoogleSheetsAccessToken = async () => {
   if (process.env.GOOGLE_SHEETS_TEST_ACCESS_TOKEN) {
@@ -401,10 +428,13 @@ const getGoogleSheetsAccessToken = async () => {
   const clientEmail = googleSheetsClientEmail();
   const privateKey = googleSheetsPrivateKey();
   const auth = new GoogleAuth({
-    credentials: clientEmail && privateKey ? {
-      client_email: clientEmail,
-      private_key: privateKey,
-    } : undefined,
+    credentials:
+      clientEmail && privateKey
+        ? {
+            client_email: clientEmail,
+            private_key: privateKey,
+          }
+        : undefined,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
   const client = await auth.getClient();
@@ -455,11 +485,8 @@ const sheetApiJson = async (url, accessToken, options = {}) => {
   };
 };
 
-const quoteSheetName = (sheetName) => (
-  /^[A-Za-z0-9_]+$/.test(sheetName)
-    ? sheetName
-    : `'${sheetName.replace(/'/g, "''")}'`
-);
+const quoteSheetName = (sheetName) =>
+  /^[A-Za-z0-9_]+$/.test(sheetName) ? sheetName : `'${sheetName.replace(/'/g, "''")}'`;
 
 const splitA1Range = (range) => {
   const bangIndex = range.lastIndexOf('!');
@@ -471,9 +498,10 @@ const splitA1Range = (range) => {
   }
 
   const rawSheetName = range.slice(0, bangIndex).trim();
-  const sheetName = rawSheetName.startsWith("'") && rawSheetName.endsWith("'")
-    ? rawSheetName.slice(1, -1).replace(/''/g, "'")
-    : rawSheetName;
+  const sheetName =
+    rawSheetName.startsWith("'") && rawSheetName.endsWith("'")
+      ? rawSheetName.slice(1, -1).replace(/''/g, "'")
+      : rawSheetName;
 
   return {
     sheetName,
@@ -497,15 +525,18 @@ const reservationHeaderRange = (range) => {
 
 const normalizedHeaderCell = (value) => normalizeText(value, 120).toLowerCase();
 
-const rowMatchesReservationHeaders = (row = []) => reservationSheetHeaders.every(
-  (header, index) => normalizedHeaderCell(row[index]) === normalizedHeaderCell(header),
-);
+const rowMatchesReservationHeaders = (row = []) =>
+  reservationSheetHeaders.every(
+    (header, index) => normalizedHeaderCell(row[index]) === normalizedHeaderCell(header),
+  );
 
 const rowHasValues = (row = []) => row.some((value) => normalizeText(value, 200));
 
 const getTargetSheet = async (spreadsheetId, accessToken, range) => {
   const { sheetName } = splitA1Range(range);
-  const metadataUrl = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}`);
+  const metadataUrl = new URL(
+    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}`,
+  );
   metadataUrl.searchParams.set('fields', 'sheets.properties(sheetId,title)');
   const metadataResult = await sheetApiJson(metadataUrl, accessToken);
   if (!metadataResult.ok) {
@@ -535,31 +566,34 @@ const getTargetSheet = async (spreadsheetId, accessToken, range) => {
   };
 };
 
-const insertHeaderRow = async (spreadsheetId, accessToken, sheetId) => sheetApiJson(
-  `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}:batchUpdate`,
-  accessToken,
-  {
-    method: 'POST',
-    body: JSON.stringify({
-      requests: [
-        {
-          insertDimension: {
-            range: {
-              sheetId,
-              dimension: 'ROWS',
-              startIndex: 0,
-              endIndex: 1,
+const insertHeaderRow = async (spreadsheetId, accessToken, sheetId) =>
+  sheetApiJson(
+    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}:batchUpdate`,
+    accessToken,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        requests: [
+          {
+            insertDimension: {
+              range: {
+                sheetId,
+                dimension: 'ROWS',
+                startIndex: 0,
+                endIndex: 1,
+              },
+              inheritFromBefore: false,
             },
-            inheritFromBefore: false,
           },
-        },
-      ],
-    }),
-  },
-);
+        ],
+      }),
+    },
+  );
 
 const updateHeaderRow = async (spreadsheetId, accessToken, range) => {
-  const url = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(reservationHeaderRange(range))}`);
+  const url = new URL(
+    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(reservationHeaderRange(range))}`,
+  );
   url.searchParams.set('valueInputOption', 'USER_ENTERED');
   return sheetApiJson(url, accessToken, {
     method: 'PUT',
@@ -576,7 +610,9 @@ const ensureReservationSheetHeaders = async (spreadsheetId, accessToken, range) 
     return { ok: true };
   }
 
-  const headerUrl = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(reservationHeaderRange(range))}`);
+  const headerUrl = new URL(
+    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(reservationHeaderRange(range))}`,
+  );
   const headerResult = await sheetApiJson(headerUrl, accessToken);
   if (!headerResult.ok) {
     return headerResult;
@@ -627,7 +663,9 @@ const appendReservationToGoogleSheet = async (formData) => {
     };
   }
 
-  const url = new URL(`https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(range)}:append`);
+  const url = new URL(
+    `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}/values/${encodeURIComponent(range)}:append`,
+  );
   url.searchParams.set('valueInputOption', 'USER_ENTERED');
   url.searchParams.set('insertDataOption', 'INSERT_ROWS');
 
@@ -674,7 +712,9 @@ const pruneReservationSubmissionKeys = (now = Date.now()) => {
 
 const findDuplicateReservation = (formData) => {
   pruneReservationSubmissionKeys();
-  const duplicateKey = reservationDuplicateKeys(formData).find((key) => reservationSubmissionKeys.has(key));
+  const duplicateKey = reservationDuplicateKeys(formData).find((key) =>
+    reservationSubmissionKeys.has(key),
+  );
   if (!duplicateKey) {
     return null;
   }
@@ -763,13 +803,17 @@ const getReservationEmailHtml = (formData) => {
                           <a href="mailto:${escapeHtml(formData.email)}" style="color:#f97316;font-size:16px;font-weight:600;text-decoration:none;">${escapeHtml(formData.email || 'Not provided')}</a>
                         </td>
                       </tr>
-                      ${formData.phone ? `
+                      ${
+                        formData.phone
+                          ? `
                       <tr>
                         <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;">
                           <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Phone Number</strong>
                           <a href="tel:${escapeHtml(formData.phone)}" style="color:#111827;font-size:16px;font-weight:600;text-decoration:none;">${escapeHtml(formData.phone)}</a>
                         </td>
-                      </tr>` : ''}
+                      </tr>`
+                          : ''
+                      }
                       <tr>
                         <td style="padding:12px 0;border-bottom:1px solid #e5e7eb;">
                           <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Newsletter opt-in</strong>
@@ -788,13 +832,17 @@ const getReservationEmailHtml = (formData) => {
                           <p style="color:#111827;font-size:16px;line-height:1.6;margin:8px 0 0;white-space:pre-wrap;">${escapeHtml(formData.lookingFor || 'Not provided')}</p>
                         </td>
                       </tr>
-                      ${attributionRows.length ? `
+                      ${
+                        attributionRows.length
+                          ? `
                       <tr>
                         <td style="padding:12px 0;">
                           <strong style="color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:0;display:block;margin-bottom:4px;">Ad Attribution</strong>
                           <p style="color:#111827;font-size:14px;line-height:1.6;margin:8px 0 0;white-space:pre-wrap;">${escapeHtml(attributionRows.map(([key, value]) => `${key}: ${value}`).join('\n'))}</p>
                         </td>
-                      </tr>` : ''}
+                      </tr>`
+                          : ''
+                      }
                     </table>
                   </td>
                 </tr>
@@ -838,10 +886,14 @@ Location/City: ${formData.location || 'Not provided'}
 
 What They're Looking For:
 ${formData.lookingFor || 'Not provided'}
-${attributionRows.length ? `
+${
+  attributionRows.length
+    ? `
 Ad Attribution:
 ${attributionRows.map(([key, value]) => `${key}: ${value}`).join('\n')}
-` : ''}
+`
+    : ''
+}
 
 Submitted at ${formatTimestamp()} UTC
   `.trim();
@@ -896,7 +948,8 @@ const getNewsletterEmailHtml = (email, source) => `
 </body>
 </html>`;
 
-const getNewsletterEmailText = (email, source) => `
+const getNewsletterEmailText = (email, source) =>
+  `
 New Newsletter Subscriber
 
 Email Address: ${email}
@@ -965,7 +1018,8 @@ const getChatMessageEmailHtml = (formData) => `
 </body>
 </html>`;
 
-const getChatMessageEmailText = (formData) => `
+const getChatMessageEmailText = (formData) =>
+  `
 New Landing Chat Message
 
 Name: ${formData.name}
@@ -1002,10 +1056,11 @@ const sendResendEmail = async ({ subject, html, text }) => {
   return { ok: response.ok, status: response.status, payload };
 };
 
-export const optionsResponse = (request) => new Response(null, {
-  status: 204,
-  headers: corsHeaders(request),
-});
+export const optionsResponse = (request) =>
+  new Response(null, {
+    status: 204,
+    headers: corsHeaders(request),
+  });
 
 export const handleReservation = async (request) => {
   const body = await parseJson(request);
@@ -1015,11 +1070,21 @@ export const handleReservation = async (request) => {
 
   const formData = normalizeReservationForm(body);
 
-  if (!formData.name || !formData.email || !formData.location || !formData.lookingFor || !formData.userType) {
-    return jsonResponse(request, {
-      error: 'Missing required fields',
-      required: ['name', 'email', 'location', 'lookingFor', 'userType'],
-    }, 400);
+  if (
+    !formData.name ||
+    !formData.email ||
+    !formData.location ||
+    !formData.lookingFor ||
+    !formData.userType
+  ) {
+    return jsonResponse(
+      request,
+      {
+        error: 'Missing required fields',
+        required: ['name', 'email', 'location', 'lookingFor', 'userType'],
+      },
+      400,
+    );
   }
   if (!allowedUserTypes.has(formData.userType)) {
     return jsonResponse(request, { error: 'Invalid user type' }, 400);
@@ -1034,18 +1099,34 @@ export const handleReservation = async (request) => {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
   }
   if (isInternalAutomationReservation(formData)) {
-    return jsonResponse(request, { error: 'Internal automation test submissions are not accepted on the public reservation form.' }, 400);
+    return jsonResponse(
+      request,
+      {
+        error:
+          'Internal automation test submissions are not accepted on the public reservation form.',
+      },
+      400,
+    );
   }
 
   const duplicateReason = findDuplicateReservation(formData);
   if (duplicateReason) {
-    return jsonResponse(request, { error: `This waitlist reservation is already reserved for that ${duplicateReason}.` }, 409);
+    return jsonResponse(
+      request,
+      { error: `This waitlist reservation is already reserved for that ${duplicateReason}.` },
+      409,
+    );
   }
 
-  const rateLimit = await enforceLandingAbuseLimit(request, 'reservation', [
-    `email:${formData.email}`,
-    normalizePhoneKey(formData.phone) ? `phone:${normalizePhoneKey(formData.phone)}` : '',
-  ], landingEmailRateLimit());
+  const rateLimit = await enforceLandingAbuseLimit(
+    request,
+    'reservation',
+    [
+      `email:${formData.email}`,
+      normalizePhoneKey(formData.phone) ? `phone:${normalizePhoneKey(formData.phone)}` : '',
+    ],
+    landingEmailRateLimit(),
+  );
   if (rateLimit.limited || rateLimit.unavailable) {
     return rateLimitResponse(request, rateLimit);
   }
@@ -1067,7 +1148,11 @@ export const handleReservation = async (request) => {
       sheetResult = await appendReservationToGoogleSheet(formData);
     } catch (error) {
       console.error('Reservation Google Sheet append failed', { error });
-      return jsonResponse(request, { error: 'Failed to store reservation lead in Google Sheet' }, 500);
+      return jsonResponse(
+        request,
+        { error: 'Failed to store reservation lead in Google Sheet' },
+        500,
+      );
     }
 
     if (!sheetResult.ok) {
@@ -1075,7 +1160,11 @@ export const handleReservation = async (request) => {
         status: sheetResult.status,
         payload: sheetResult.payload,
       });
-      return jsonResponse(request, { error: 'Failed to store reservation lead in Google Sheet' }, 500);
+      return jsonResponse(
+        request,
+        { error: 'Failed to store reservation lead in Google Sheet' },
+        500,
+      );
     }
 
     rememberReservationSubmission(formData);
@@ -1111,9 +1200,12 @@ export const handleNewsletter = async (request) => {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
   }
 
-  const rateLimit = await enforceLandingAbuseLimit(request, 'newsletter', [
-    `email:${email}`,
-  ], landingEmailRateLimit());
+  const rateLimit = await enforceLandingAbuseLimit(
+    request,
+    'newsletter',
+    [`email:${email}`],
+    landingEmailRateLimit(),
+  );
   if (rateLimit.limited || rateLimit.unavailable) {
     return rateLimitResponse(request, rateLimit);
   }
@@ -1152,16 +1244,22 @@ export const handleChatStart = async (request) => {
   const formData = normalizeChatStart(body);
 
   if (!formData.name || !formData.email || !formData.visitorId) {
-    return jsonResponse(request, { error: 'Name, email, and visitor identifier are required' }, 400);
+    return jsonResponse(
+      request,
+      { error: 'Name, email, and visitor identifier are required' },
+      400,
+    );
   }
   if (!isValidEmail(formData.email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
   }
 
-  const rateLimit = await enforceLandingAbuseLimit(request, 'chat_start', [
-    `email:${formData.email}`,
-    `visitor:${formData.visitorId}`,
-  ], landingChatStartRateLimit());
+  const rateLimit = await enforceLandingAbuseLimit(
+    request,
+    'chat_start',
+    [`email:${formData.email}`, `visitor:${formData.visitorId}`],
+    landingChatStartRateLimit(),
+  );
   if (rateLimit.limited || rateLimit.unavailable) {
     return rateLimitResponse(request, rateLimit);
   }
@@ -1194,18 +1292,33 @@ export const handleChatMessage = async (request) => {
 
   const formData = normalizeChatMessage(body);
 
-  if (!formData.name || !formData.email || !formData.visitorId || !formData.conversationId || !formData.message) {
-    return jsonResponse(request, { error: 'Name, email, conversation, and message are required' }, 400);
+  if (
+    !formData.name ||
+    !formData.email ||
+    !formData.visitorId ||
+    !formData.conversationId ||
+    !formData.message
+  ) {
+    return jsonResponse(
+      request,
+      { error: 'Name, email, conversation, and message are required' },
+      400,
+    );
   }
   if (!isValidEmail(formData.email)) {
     return jsonResponse(request, { error: 'Invalid email address' }, 400);
   }
 
-  const rateLimit = await enforceLandingAbuseLimit(request, 'chat_message', [
-    `email:${formData.email}`,
-    `visitor:${formData.visitorId}`,
-    `conversation:${formData.conversationId}`,
-  ], landingEmailRateLimit());
+  const rateLimit = await enforceLandingAbuseLimit(
+    request,
+    'chat_message',
+    [
+      `email:${formData.email}`,
+      `visitor:${formData.visitorId}`,
+      `conversation:${formData.conversationId}`,
+    ],
+    landingEmailRateLimit(),
+  );
   if (rateLimit.limited || rateLimit.unavailable) {
     return rateLimitResponse(request, rateLimit);
   }

@@ -1,7 +1,7 @@
 {
-  "name": "Estospaces",
-  "short_name": "Estospaces",
-  "description": "Verified property listings and immersive virtual tours.",
+  "name": "EstoSpaces",
+  "short_name": "EstoSpaces",
+  "description": "Private-beta property technology for a clearer route from enquiry to the next useful action.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#111827",

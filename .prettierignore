@@ -1,0 +1,8 @@
+.next
+artifacts
+.superdesign
+.impeccable
+coverage
+node_modules
+public/navigation.js
+src/data/blog-posts.json

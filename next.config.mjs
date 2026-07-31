@@ -11,8 +11,10 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self' data:",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://api.postcodes.io https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com",
-  "form-action 'self'",
+  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com",
+  "form-action 'self' https://app.estospaces.com",
+  "manifest-src 'self'",
+  "worker-src 'self' blob:",
   'upgrade-insecure-requests',
 ].join('; ');
 
@@ -22,6 +24,8 @@ const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
   { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
   { key: 'Permissions-Policy', value: 'camera=(), geolocation=(), microphone=()' },
+  { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+  { key: 'X-DNS-Prefetch-Control', value: 'off' },
   { key: 'Content-Security-Policy', value: contentSecurityPolicy },
 ];
 
@@ -29,6 +33,7 @@ const securityHeaders = [
 const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
+  productionBrowserSourceMaps: false,
   trailingSlash: false,
   turbopack: {
     root: projectRoot,

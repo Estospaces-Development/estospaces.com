@@ -4,6 +4,9 @@ dist
 test-results
 .npm-vercel-cache
 coverage
+.env
+.env.*
+*.local
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -15,3 +18,9 @@ VERCEL_CONFIG.md
 PR_INSTRUCTIONS.md
 EMAIL_SETUP.md
 IMPORT_PATHS_FIXED.md
+*.pem
+*.key
+*.p12
+*.pfx
+*secret*
+*credential*

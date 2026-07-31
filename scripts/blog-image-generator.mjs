@@ -11,12 +11,12 @@ const BASE_IMAGE_PROFILES = [
   { path: 'public/blog-base-images/compliance.png', focusX: 0.18, focusY: 0.44, zoom: 1.06 },
   { path: 'public/blog-base-images/local-renting.png', focusX: 0.24, focusY: 0.36, zoom: 1.08 },
   { path: 'public/blog-base-images/buying-selling.png', focusX: 0.24, focusY: 0.42, zoom: 1.08 },
-  { path: 'public/blog-base-images/agents-tech.png', focusX: 0.22, focusY: 0.54, zoom: 1.10 },
+  { path: 'public/blog-base-images/agents-tech.png', focusX: 0.22, focusY: 0.54, zoom: 1.1 },
   { path: 'public/blog-base-images/investment-data.png', focusX: 0.26, focusY: 0.38, zoom: 1.08 },
-  { path: 'public/assets/modern-apartment.png', focusX: 0.50, focusY: 0.44, zoom: 1.00 },
-  { path: 'public/blog-base-images/compliance.png', focusX: 0.78, focusY: 0.50, zoom: 1.34 },
+  { path: 'public/assets/modern-apartment.png', focusX: 0.5, focusY: 0.44, zoom: 1.0 },
+  { path: 'public/blog-base-images/compliance.png', focusX: 0.78, focusY: 0.5, zoom: 1.34 },
   { path: 'public/blog-base-images/local-renting.png', focusX: 0.76, focusY: 0.54, zoom: 1.34 },
-  { path: 'public/blog-base-images/buying-selling.png', focusX: 0.74, focusY: 0.48, zoom: 1.30 },
+  { path: 'public/blog-base-images/buying-selling.png', focusX: 0.74, focusY: 0.48, zoom: 1.3 },
   { path: 'public/blog-base-images/agents-tech.png', focusX: 0.78, focusY: 0.46, zoom: 1.36 },
   { path: 'public/blog-base-images/investment-data.png', focusX: 0.74, focusY: 0.52, zoom: 1.34 },
   { path: 'public/assets/modern-apartment.png', focusX: 0.28, focusY: 0.52, zoom: 1.22 },
@@ -35,19 +35,18 @@ export async function generateBlogHeroImage(post, { outputDir = DEFAULT_OUTPUT_D
 
   let image = sharp(basePath(post, seed))
     .resize(source.width, source.height, { fit: 'cover' })
-    .extract(cropWindow(seed, source.width, source.height, canvas.width, canvas.height, baseProfile))
+    .extract(
+      cropWindow(seed, source.width, source.height, canvas.width, canvas.height, baseProfile),
+    )
     .modulate({
-      brightness: 0.95 + ((seed % 11) / 100),
-      saturation: 0.96 + (((seed >>> 4) % 15) / 100),
+      brightness: 0.95 + (seed % 11) / 100,
+      saturation: 0.96 + ((seed >>> 4) % 15) / 100,
       hue: (seed % 13) - 6,
     });
 
   if (numericId % 2 === 0) image = image.flop();
 
-  const bytes = await image
-    .sharpen({ sigma: 0.45 })
-    .webp({ quality: 90, effort: 5 })
-    .toBuffer();
+  const bytes = await image.sharpen({ sigma: 0.45 }).webp({ quality: 90, effort: 5 }).toBuffer();
 
   const absoluteOutputDir = resolve(process.cwd(), outputDir);
   await mkdir(absoluteOutputDir, { recursive: true });
@@ -74,11 +73,11 @@ function baseImageIndex(post, seed) {
   const rank = listingRank(post, seed);
   const sourceIndex = rank % 6;
   const cropVariant = Math.floor(rank / 6) % 2;
-  return sourceIndex + (cropVariant * 6);
+  return sourceIndex + cropVariant * 6;
 }
 
 function postNumber(post, seed) {
-  return Number.parseInt(String(post.id || '').replace(/\D/g, ''), 10) || ((seed % 100) + 1);
+  return Number.parseInt(String(post.id || '').replace(/\D/g, ''), 10) || (seed % 100) + 1;
 }
 
 function listingRank(post, seed) {
@@ -86,7 +85,7 @@ function listingRank(post, seed) {
   const maxGroup = Math.floor((TARGET_POST_COUNT - 1) / POSTS_PER_DATE_GROUP);
   const dateGroup = Math.floor((number - 1) / POSTS_PER_DATE_GROUP);
   const withinGroup = (number - 1) % POSTS_PER_DATE_GROUP;
-  return Math.max(0, ((maxGroup - dateGroup) * POSTS_PER_DATE_GROUP) + withinGroup);
+  return Math.max(0, (maxGroup - dateGroup) * POSTS_PER_DATE_GROUP + withinGroup);
 }
 
 function cropWindow(seed, sourceWidth, sourceHeight, width, height, baseProfile) {

@@ -1,5 +1,7 @@
 import BlogChrome from '../../components/blog/BlogChrome';
 
+const skeletonIds = ['featured', 'guide', 'market', 'legal', 'workflow', 'security'];
+
 export default function BlogsLoading() {
   return (
     <BlogChrome>
@@ -10,8 +12,11 @@ export default function BlogsLoading() {
           <div className="mt-4 h-6 w-full max-w-xl bg-gray-100 dark:bg-gray-900" />
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="h-80 border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-950" />
+          {skeletonIds.map((skeletonId) => (
+            <div
+              key={skeletonId}
+              className="h-80 border border-gray-100 bg-gray-50 dark:border-gray-800 dark:bg-gray-950"
+            />
           ))}
         </div>
       </main>

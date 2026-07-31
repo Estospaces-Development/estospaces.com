@@ -1,47 +1,45 @@
 import LandingPage from './landing-page';
 import { serializeJsonLd } from '../lib/json-ld';
+import { siteConfig } from '../config/site';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'Organization',
-      '@id': 'https://estospaces.com/#organization',
-      name: 'Estospaces',
-      url: 'https://estospaces.com',
-      logo: 'https://estospaces.com/assets/logo-icon.png',
-      sameAs: [
-        'https://x.com/ESTOSPACES',
-        'https://www.instagram.com/estospaces/',
-        'https://www.linkedin.com/company/estospaces-solutions-private-limited',
-      ],
+      '@id': `${siteConfig.siteUrl}/#organization`,
+      name: siteConfig.name,
+      legalName: siteConfig.legalOperator,
+      url: siteConfig.siteUrl,
+      logo: `${siteConfig.siteUrl}/assets/logo-icon.png`,
+      sameAs: Object.values(siteConfig.social),
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        url: 'https://estospaces.com/#contact',
+        email: siteConfig.contactEmail,
+        url: `${siteConfig.siteUrl}/contact`,
       },
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://estospaces.com/#website',
-      url: 'https://estospaces.com',
-      name: 'Estospaces',
+      '@id': `${siteConfig.siteUrl}/#website`,
+      url: siteConfig.siteUrl,
+      name: siteConfig.name,
       publisher: {
-        '@id': 'https://estospaces.com/#organization',
-      },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: 'https://app.estospaces.com/search?q={search_term_string}',
-        'query-input': 'required name=search_term_string',
+        '@id': `${siteConfig.siteUrl}/#organization`,
       },
     },
     {
-      '@type': 'RealEstateAgent',
-      '@id': 'https://estospaces.com/#real-estate-platform',
-      name: 'Estospaces',
-      url: 'https://estospaces.com',
-      areaServed: ['India', 'England'],
-      description: 'A property platform for verified listings and trusted property professional connections across India and England.',
+      '@type': 'SoftwareApplication',
+      '@id': `${siteConfig.siteUrl}/#software`,
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      description: siteConfig.metadata.description,
+      publisher: {
+        '@id': `${siteConfig.siteUrl}/#organization`,
+      },
     },
   ],
 };
