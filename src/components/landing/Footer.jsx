@@ -85,7 +85,8 @@ export default function Footer() {
                     </li>
                   );
                 })}
-                {group.heading === 'Legal' && siteConfig.features.analytics ? (
+                {group.heading === 'Legal' &&
+                (siteConfig.analyticsMeasurementId || siteConfig.salesIqWidgetUrl) ? (
                   <li>
                     <TrackedButton
                       data-cookie-preferences
