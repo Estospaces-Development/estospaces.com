@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import { siteConfig } from '../../config/site';
+import TrackedButton from '../site/TrackedButton';
 import TrackedLink from '../site/TrackedLink';
 import styles from './Landing.module.css';
 
@@ -8,34 +9,39 @@ const footerGroups = [
   {
     heading: 'Access',
     links: [
-      ['Create account', siteConfig.paths.register, 'create_account_clicked'],
-      ['Existing user log in', siteConfig.paths.login, 'login_clicked'],
-      ['Professional access', siteConfig.paths.brokerRegister, 'broker_join_clicked'],
+      ['Create account', siteConfig.paths.register, 'create_account_clicked', 'create_account'],
+      ['Existing user log in', siteConfig.paths.login, 'login_clicked', 'login'],
+      [
+        'Professional access',
+        siteConfig.paths.brokerRegister,
+        'broker_join_clicked',
+        'professional',
+      ],
     ],
   },
   {
     heading: 'Company',
     links: [
-      ['About', '/about'],
-      ['Contact', '/contact'],
-      ['Security', '/security'],
-      ['Blog', '/blogs'],
+      ['About', '/about', 'navigation_clicked', 'about'],
+      ['Contact', '/contact', 'contact_clicked', 'contact'],
+      ['Security', '/security', 'navigation_clicked', 'security'],
+      ['Blog', '/blogs', 'navigation_clicked', 'blog'],
     ],
   },
   {
     heading: 'Legal',
     links: [
-      ['Privacy', '/privacy'],
-      ['Terms', '/terms'],
-      ['Cookies', '/cookies'],
+      ['Privacy', '/privacy', 'navigation_clicked', 'privacy'],
+      ['Terms', '/terms', 'navigation_clicked', 'terms'],
+      ['Cookies', '/cookies', 'navigation_clicked', 'cookies'],
     ],
   },
   {
     heading: 'Social',
     links: [
-      ['X / Twitter', siteConfig.social.x],
-      ['Instagram', siteConfig.social.instagram],
-      ['LinkedIn', siteConfig.social.linkedin],
+      ['X / Twitter', siteConfig.social.x, 'social_link_clicked', 'x'],
+      ['Instagram', siteConfig.social.instagram, 'social_link_clicked', 'instagram'],
+      ['LinkedIn', siteConfig.social.linkedin, 'social_link_clicked', 'linkedin'],
     ],
   },
 ];
@@ -63,13 +69,13 @@ export default function Footer() {
             <nav aria-label={`${group.heading} links`} key={group.heading}>
               <h2>{group.heading}</h2>
               <ul>
-                {group.links.map(([label, href, eventName]) => {
+                {group.links.map(([label, href, eventName, destination]) => {
                   const external = href.startsWith('http') && !href.includes('app.estospaces.com');
                   return (
                     <li key={label}>
                       <TrackedLink
                         eventName={eventName}
-                        eventProperties={eventName ? { placement: 'footer' } : undefined}
+                        eventProperties={{ placement: 'footer', destination }}
                         href={href}
                         rel={external ? 'noreferrer' : undefined}
                         target={external ? '_blank' : undefined}
@@ -81,9 +87,14 @@ export default function Footer() {
                 })}
                 {group.heading === 'Legal' && siteConfig.features.analytics ? (
                   <li>
-                    <button data-cookie-preferences type="button">
+                    <TrackedButton
+                      data-cookie-preferences
+                      eventName="cookie_preferences_opened"
+                      eventProperties={{ placement: 'footer' }}
+                      type="button"
+                    >
                       Cookie preferences
-                    </button>
+                    </TrackedButton>
                   </li>
                 ) : null}
               </ul>

@@ -7,9 +7,22 @@ const allowedEvents = new Set([
   'broker_join_clicked',
   'product_preview_viewed',
   'contact_clicked',
+  'navigation_clicked',
+  'social_link_clicked',
+  'source_link_clicked',
+  'cookie_preferences_opened',
+  'section_viewed',
+  'faq_opened',
 ]);
 
-const allowedProperties = new Set(['placement', 'market', 'listing_type']);
+const allowedProperties = new Set([
+  'placement',
+  'market',
+  'listing_type',
+  'destination',
+  'section',
+  'item',
+]);
 
 export function trackEvent(name, properties = {}) {
   if (

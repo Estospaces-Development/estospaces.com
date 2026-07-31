@@ -5,20 +5,30 @@ import TrackedLink from '../site/TrackedLink';
 import styles from './Landing.module.css';
 
 const navItems = [
-  { index: '01', label: 'Product', href: '/#product' },
-  { index: '02', label: 'How it works', href: '/#journey' },
-  { index: '03', label: 'For property seekers', href: '/#property-seekers' },
-  { index: '04', label: 'For brokers', href: '/#brokers' },
-  { index: '05', label: 'Security', href: '/security' },
-  { index: '06', label: 'About', href: '/about' },
-  { index: '07', label: 'Blog', href: '/blogs' },
+  { index: '01', label: 'Product', href: '/#product', destination: 'product' },
+  { index: '02', label: 'How it works', href: '/#journey', destination: 'journey' },
+  {
+    index: '03',
+    label: 'For property seekers',
+    href: '/#property-seekers',
+    destination: 'seekers',
+  },
+  { index: '04', label: 'For brokers', href: '/#brokers', destination: 'brokers' },
+  { index: '05', label: 'Security', href: '/security', destination: 'security' },
+  { index: '06', label: 'About', href: '/about', destination: 'about' },
+  { index: '07', label: 'Blog', href: '/blogs', destination: 'blog' },
 ];
 
 export default function Navbar({ activePath = '/' }) {
   return (
     <header className={styles.siteHeader}>
       <nav aria-label="Primary navigation" className={styles.navbar}>
-        <a className={styles.brand} href="/">
+        <TrackedLink
+          className={styles.brand}
+          eventName="navigation_clicked"
+          eventProperties={{ placement: 'header', destination: 'home' }}
+          href="/"
+        >
           <Image
             alt=""
             height={96}
@@ -28,19 +38,21 @@ export default function Navbar({ activePath = '/' }) {
             width={96}
           />
           <span>{siteConfig.name}</span>
-        </a>
+        </TrackedLink>
 
         <div className={styles.desktopNav}>
           <div className={styles.chapterNav}>
             {navItems.map((item) => (
-              <a
+              <TrackedLink
                 aria-current={activePath === item.href ? 'page' : undefined}
+                eventName="navigation_clicked"
+                eventProperties={{ placement: 'header', destination: item.destination }}
                 href={item.href}
                 key={item.label}
               >
                 <span>{item.index}</span>
                 {item.label}
-              </a>
+              </TrackedLink>
             ))}
           </div>
           <span aria-hidden="true" className={styles.navDivider} />
@@ -79,15 +91,17 @@ export default function Navbar({ activePath = '/' }) {
         <div className={`hidden ${styles.mobilePanel}`} data-mobile-menu id="mobile-navigation">
           <div className={styles.mobilePanelInner}>
             {navItems.map((item, index) => (
-              <a
+              <TrackedLink
                 data-mobile-menu-first={index === 0 ? '' : undefined}
                 data-mobile-menu-link
+                eventName="navigation_clicked"
+                eventProperties={{ placement: 'mobile_header', destination: item.destination }}
                 href={item.href}
                 key={item.label}
               >
                 <span>{item.index}</span>
                 {item.label}
-              </a>
+              </TrackedLink>
             ))}
             <TrackedLink
               className={styles.mobileLogin}

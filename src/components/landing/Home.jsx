@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 
 import { siteConfig } from '../../config/site';
+import PageActivityTracker from '../site/PageActivityTracker';
 import TrackedLink from '../site/TrackedLink';
 import TrackedSection from '../site/TrackedSection';
 import { JourneyRoute, LandingHero, SectionReveal } from './LandingMotion';
@@ -275,6 +276,7 @@ const faqs = [
 export default function Home() {
   return (
     <div className={styles.page}>
+      <PageActivityTracker />
       <Navbar />
       <main id="main-content">
         <LandingHero
@@ -284,7 +286,11 @@ export default function Home() {
           searchNotice="Property search is not available in this public beta yet."
         />
 
-        <section aria-label="Current product status" className={styles.statusLedger}>
+        <section
+          aria-label="Current product status"
+          className={styles.statusLedger}
+          data-analytics-section="status"
+        >
           <div className={styles.statusLedgerInner}>
             <div className={styles.statusLead}>
               <span>Current field status</span>
@@ -373,7 +379,7 @@ export default function Home() {
 
         <JourneyRoute stages={workflow} />
 
-        <section className={styles.relaySection} id="relay">
+        <section className={styles.relaySection} data-analytics-section="audiences" id="relay">
           <div aria-hidden="true" className={styles.relayAxis}>
             <span>02</span>
           </div>
@@ -443,7 +449,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.differenceSection} id="difference">
+        <section
+          className={styles.differenceSection}
+          data-analytics-section="difference"
+          id="difference"
+        >
           <div aria-hidden="true" className={styles.differenceAxis}>
             <span>03</span>
           </div>
@@ -477,6 +487,7 @@ export default function Home() {
               aria-label="Scrollable comparison of public property-platform capabilities"
               aria-describedby="comparison-scroll-hint"
               className={styles.comparisonScroll}
+              data-analytics-section="comparison"
               tabIndex={0}
             >
               <table className={styles.comparisonTable}>
@@ -518,29 +529,45 @@ export default function Home() {
               <p>
                 First-party EstoSpaces entries describe the intended private-beta workflow, not
                 unrestricted general availability. Third-party references:{' '}
-                <a href="https://www.magicbricks.com/aboutus.html" rel="noreferrer" target="_blank">
+                <TrackedLink
+                  eventName="source_link_clicked"
+                  eventProperties={{ placement: 'comparison', destination: 'magicbricks' }}
+                  href="https://www.magicbricks.com/aboutus.html"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   MagicBricks
-                </a>
+                </TrackedLink>
                 ,{' '}
-                <a
+                <TrackedLink
+                  eventName="source_link_clicked"
+                  eventProperties={{ placement: 'comparison', destination: '99acres' }}
                   href="https://play.google.com/store/apps/details?id=com.nnacres.app"
                   rel="noreferrer"
                   target="_blank"
                 >
                   99acres
-                </a>
+                </TrackedLink>
                 ,{' '}
-                <a href="https://housing.com/partners/broker/" rel="noreferrer" target="_blank">
+                <TrackedLink
+                  eventName="source_link_clicked"
+                  eventProperties={{ placement: 'comparison', destination: 'housing' }}
+                  href="https://housing.com/partners/broker/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Housing.com
-                </a>
+                </TrackedLink>
                 , and{' '}
-                <a
+                <TrackedLink
+                  eventName="source_link_clicked"
+                  eventProperties={{ placement: 'comparison', destination: 'nobroker' }}
                   href="https://www.nobroker.in/prophub/property-management/rental-property-management/"
                   rel="noreferrer"
                   target="_blank"
                 >
                   NoBroker
-                </a>
+                </TrackedLink>
                 .
               </p>
             </div>
@@ -628,7 +655,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className={styles.evidenceSection} id="evidence">
+        <section className={styles.evidenceSection} data-analytics-section="evidence" id="evidence">
           <div aria-hidden="true" className={styles.evidenceAxis}>
             <span>04</span>
           </div>
@@ -669,7 +696,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.faqSection} id="faq">
+        <section className={styles.faqSection} data-analytics-section="faq" id="faq">
           <div className={styles.faqIntro}>
             <p className={styles.sectionCode}>Field notes / Questions</p>
             <h2>Details, stated plainly.</h2>
@@ -687,7 +714,11 @@ export default function Home() {
           </div>
           <div className={styles.faqList}>
             {faqs.map((faq, index) => (
-              <details className={styles.faqItem} key={faq.question}>
+              <details
+                className={styles.faqItem}
+                data-analytics-item={`faq_${String(index + 1).padStart(2, '0')}`}
+                key={faq.question}
+              >
                 <summary>
                   <span>{String(index + 1).padStart(2, '0')}</span>
                   {faq.question}
@@ -701,7 +732,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.finalCta}>
+        <section className={styles.finalCta} data-analytics-section="final_cta">
           <div>
             <p className={styles.sectionCode}>Next field action</p>
             <h2>Start with a clearer brief.</h2>
