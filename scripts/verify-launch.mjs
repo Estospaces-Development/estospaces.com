@@ -160,10 +160,10 @@ try {
     .locator('script[src^="/_next/"]')
     .evaluateAll((scripts) => scripts.map((script) => script.getAttribute('src')));
   assert(
-    homeRuntimeScripts.length === 0,
-    `Static homepage loaded unexpected Next.js runtime scripts: ${homeRuntimeScripts.join(', ')}`,
+    homeRuntimeScripts.length > 0,
+    'Homepage runtime is required for consent-gated Zoho SalesIQ',
   );
-  report.interactions.staticHomepageRuntime = true;
+  report.interactions.consentRuntime = true;
   await context.close();
 
   for (const [name, width, height] of viewports) {
@@ -376,10 +376,23 @@ async function verifyInteractions(page) {
     'Analytics loaded without a configured measurement ID',
   );
   assert(
-    (await page.getByLabel('Cookie preferences').count()) === 0,
-    'Consent UI must stay absent when analytics is not configured',
+    (await page.locator('script[src*="salesiq.zoho.in/widget"]').count()) === 0,
+    'Zoho SalesIQ loaded before consent',
   );
-  report.interactions.analyticsDisabledByDefault = true;
+  assert(
+    (await page.getByLabel('Cookie preferences').count()) === 1,
+    'Consent UI must be available for Zoho SalesIQ',
+  );
+  await page.getByRole('button', { name: 'Allow analytics & chat' }).click();
+  await page
+    .locator('script[src*="salesiq.zoho.in/widget"]')
+    .first()
+    .waitFor({ state: 'attached' });
+  assert(
+    (await page.locator('script[src*="salesiq.zoho.in/widget"]').count()) >= 1,
+    'Zoho SalesIQ did not load after consent',
+  );
+  report.interactions.optionalToolsConsentGated = true;
 
   const faq = page.locator('#faq details').first();
   await faq.locator('summary').click();

@@ -3,7 +3,7 @@ import { buildPageMetadata, siteConfig } from '../../config/site';
 
 export const metadata = buildPageMetadata({
   title: `${siteConfig.name} Cookie Policy`,
-  description: `The essential storage and optional consent-based analytics behavior used on the ${siteConfig.name} public website.`,
+  description: `The essential storage and optional consent-based analytics and support tools used on the ${siteConfig.name} public website.`,
   path: '/cookies',
 });
 
@@ -17,14 +17,20 @@ export default function CookiesPage() {
       <PolicySection title="What the public website uses">
         <PolicyList>
           <li>
-            <strong>Cookie preference:</strong> when analytics is configured, the browser stores
-            your accepted or rejected choice in local storage under
+            <strong>Cookie preference:</strong> the browser stores your accepted or rejected choice
+            for optional website tools in local storage under
             <code> estospaces_cookie_consent</code>.
           </li>
           <li>
             <strong>Optional analytics:</strong> Google Analytics scripts and cookies load only
-            after you choose “Accept analytics” and only when a measurement ID is supplied through
-            the deployment environment.
+            after you choose “Allow analytics &amp; chat” and only when a measurement ID is supplied
+            through the deployment environment.
+          </li>
+          <li>
+            <strong>Optional live support and visitor tracking:</strong> Zoho SalesIQ loads only
+            after you choose “Allow analytics &amp; chat”. It may use cookies or browser storage to
+            provide chat, understand visits, and connect website interactions with our customer
+            support and CRM workflow.
           </li>
           <li>
             <strong>Essential infrastructure:</strong> hosting and security systems may process
@@ -32,11 +38,11 @@ export default function CookiesPage() {
           </li>
         </PolicyList>
       </PolicySection>
-      <PolicySection title="What the public website does not embed">
+      <PolicySection title="Other third-party embeds">
         <p>
           The launch homepage does not embed autoplay video, maps, advertising pixels, external font
-          requests, or social-media widgets. Social links make a third-party request only when you
-          choose to follow them.
+          requests, or social-media widgets. Apart from the consent-based tools described above,
+          social links make a third-party request only when you choose to follow them.
         </p>
       </PolicySection>
       <PolicySection title="Analytics events">
@@ -48,8 +54,8 @@ export default function CookiesPage() {
       </PolicySection>
       <PolicySection title="Change or withdraw your choice">
         <p>
-          When analytics is configured, the footer includes “Cookie preferences”. Reject is as
-          accessible as Accept. Rejecting analytics does not block core website functions.
+          The footer includes “Cookie preferences”. Reject is as accessible as Accept. Rejecting
+          optional tools does not block core website functions.
         </p>
       </PolicySection>
       <PolicySection title="Contact">

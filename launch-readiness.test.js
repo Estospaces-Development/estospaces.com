@@ -24,6 +24,7 @@ test('canonical site configuration exposes verified public product routes', () =
   assert.equal(siteConfig.features.showProductScreenshots, true);
   assert.equal(siteConfig.features.showPublicSearch, false);
   assert.match(siteConfig.analyticsMeasurementId, /^(|G-[A-Z0-9]+)$/);
+  assert.match(siteConfig.salesIqWidgetUrl, /^https:\/\/salesiq\.zoho\.in\/widget\?wc=siq/);
 });
 
 test('landing search serializes empty, partial, encoded, and market queries to the app contract', () => {
@@ -90,9 +91,13 @@ test('navigation and consent controls meet key accessibility contracts', async (
   assert.match(navigationScript, /event\.key === 'Escape'/);
   assert.match(navigationScript, /mobile-navigation-open/);
   assert.match(layout, /Skip to main content/);
-  assert.match(consent, /Reject analytics/);
-  assert.match(consent, /Accept analytics/);
+  assert.match(consent, /Reject optional tools/);
+  assert.match(consent, /Allow analytics &amp; chat/);
   assert.match(consent, /preference === 'accepted'/);
+  assert.match(consent, /window\.\$zoho\.salesiq/);
+  assert.match(consent, /id="zsiqscript"/);
+  assert.match(consent, /window\.location\.reload\(\)/);
+  assert.match(layout, /salesIqWidgetUrl/);
 });
 
 test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to access links', async () => {
@@ -123,6 +128,7 @@ test('static homepage optimization preserves progressive enhancement and structu
 
   assert.match(stripScript, /NEXT_PUBLIC_GA_MEASUREMENT_ID/);
   assert.match(stripScript, /analyticsConfigured/);
+  assert.match(stripScript, /salesIqConfigured/);
   assert.match(stripScript, /navigation\.js/);
   assert.match(stripScript, /application\/ld\+json/);
   assert.match(stripScript, /nextScripts\.length === 0 \|\| flightScripts\.length === 0/);

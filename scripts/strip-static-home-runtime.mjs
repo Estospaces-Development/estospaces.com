@@ -2,9 +2,10 @@ import { readFile, writeFile } from 'node:fs/promises';
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || '';
 const analyticsConfigured = /^G-[A-Z0-9]+$/.test(measurementId);
+const salesIqConfigured = true;
 
-if (analyticsConfigured) {
-  console.log('Kept homepage hydration because consent-gated analytics is configured.');
+if (analyticsConfigured || salesIqConfigured) {
+  console.log('Kept homepage hydration because consent-gated optional tools are configured.');
   process.exit(0);
 }
 
