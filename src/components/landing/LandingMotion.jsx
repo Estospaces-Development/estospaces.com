@@ -84,7 +84,7 @@ export function LandingHero({ brokerRegisterPath, loginPath, registerPath, searc
 
 export function JourneyRoute({ stages }) {
   return (
-    <section className={styles.journey} id="journey">
+    <section className={styles.journey} data-analytics-section="journey" id="journey">
       <div className={styles.journeyStatic}>
         <div className={styles.sectionIntro} data-scroll-reveal>
           <p className={styles.sectionCode}>Chapter 01 / Documented route</p>

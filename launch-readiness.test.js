@@ -104,6 +104,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   const analytics = await read('./src/lib/analytics.js');
   const trackedLink = await read('./src/components/site/TrackedLink.jsx');
   const trackedSection = await read('./src/components/site/TrackedSection.jsx');
+  const pageActivityTracker = await read('./src/components/site/PageActivityTracker.jsx');
   const consentManager = await read('./src/components/site/ConsentManager.jsx');
   const footer = await read('./src/components/landing/Footer.jsx');
   const home = await read('./src/components/landing/Home.jsx');
@@ -115,6 +116,8 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   assert.match(analytics, /salesiq\?\.visitor\?\.customaction/);
   assert.match(trackedLink, /trackEvent\(eventName, eventProperties\)/);
   assert.match(trackedSection, /IntersectionObserver/);
+  assert.match(pageActivityTracker, /section_viewed/);
+  assert.match(pageActivityTracker, /faq_opened/);
   assert.match(consentManager, /privacy\.updateCookieConsent\(\['analytics', 'performance'\]\)/);
   assert.match(nav, /eventName="login_clicked"/);
   assert.match(nav, /eventName="create_account_clicked"/);
@@ -122,6 +125,8 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   assert.match(home, /eventName="product_preview_viewed"/);
   assert.match(home, /placement: 'final_cta'/);
   assert.match(footer, /placement: 'footer'/);
+  assert.match(footer, /cookie_preferences_opened/);
+  assert.match(nav, /navigation_clicked/);
 });
 
 test('audience anchors and comparison overflow guidance are explicit', async () => {
