@@ -20,7 +20,7 @@ These are the business, legal, operational, or account decisions that remain unr
 
 - Legal entities: `Estospaces Solutions Private Limited` in India and `Estospaces Solutions Limited` in the United Kingdom.
 - Verified public mailbox: `contact@estospaces.com`.
-- Founding team: Yashwanth Manuwada (Founder) and Siranjeevi Subramaniyan (Co-Founder).
+- Founding team: Yashwanth Manuwada (Co-Founder) and Siranjeevi Subramaniyan (Co-Founder).
 - Product proof: two sanitized seeker and manager dashboard captures from 10 July 2026, published with `Test data only` and crop disclosures.
 - Testimonials and metrics: none are approved or shown.
 - Identity alignment: the website, cloud applications, billing accounts, and provider records may use the same approved legal identity.

@@ -93,7 +93,6 @@ export default function Footer() {
           © {new Date().getFullYear()} {siteConfig.name}
         </p>
         <p>Private beta / Availability varies by area</p>
-        <span>REF: ES-PB-001</span>
       </div>
     </footer>
   );

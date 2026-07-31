@@ -200,7 +200,7 @@ The current page requests a 65 KB WebP hero instead of the obsolete 27 MB video.
 - [x] Legal operator is exact and owner-verified. Evidence: `Estospaces Solutions Private Limited` in India and `Estospaces Solutions Limited` in the United Kingdom are centralized in typed config and shown consistently; private registration records remain outside the public repository.
 - [ ] Launch market/rollout is consistent. Homepage is safely neutral; the actual rollout decision remains open.
 - [x] Domain email is owner-verified. Evidence: `contact@estospaces.com` is the canonical public contact and security-reporting mailbox; monitoring/escalation operations remain a separate launch task.
-- [x] Founder/team details are approved. Evidence: Yashwanth Manuwada (Founder) and Siranjeevi Subramaniyan (Co-Founder) are published without unapproved biographies or photographs.
+- [x] Founder/team details are approved. Evidence: Yashwanth Manuwada (Co-Founder) and Siranjeevi Subramaniyan (Co-Founder) are published without unapproved biographies or photographs.
 - [x] Website, cloud applications, billing accounts, and provider records may use the same approved legal identity. Private account/provider records are intentionally not published or stored in this repository.
 
 ### Landing website

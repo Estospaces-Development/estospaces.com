@@ -30,7 +30,7 @@ const legalEntities = {
 const foundingTeam = [
   {
     name: 'Yashwanth Manuwada',
-    role: 'Founder',
+    role: 'Co-Founder',
   },
   {
     name: 'Siranjeevi Subramaniyan',

@@ -13,7 +13,7 @@ test('canonical site configuration exposes verified public product routes', () =
   assert.equal(siteConfig.legalOperator, 'Estospaces Solutions Private Limited');
   assert.equal(siteConfig.legalEntities.unitedKingdom.name, 'Estospaces Solutions Limited');
   assert.deepEqual(siteConfig.foundingTeam, [
-    { name: 'Yashwanth Manuwada', role: 'Founder' },
+    { name: 'Yashwanth Manuwada', role: 'Co-Founder' },
     { name: 'Siranjeevi Subramaniyan', role: 'Co-Founder' },
   ]);
   assert.equal(siteConfig.contactEmail, 'contact@estospaces.com');
