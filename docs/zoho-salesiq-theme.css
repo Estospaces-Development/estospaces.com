@@ -1,11 +1,21 @@
 /* EstoSpaces SalesIQ messenger accents. Uploaded in Brand > Website > Configurations. */
-.siqcw-newchat.siqcw-btn,
-.siqcw-newchat.siqcw-btn:hover,
-.siqcw-newchat.siqcw-btn:focus-visible {
+:root,
+html,
+body {
+  --siqcw-custom-bg-color: #e95a24 !important;
+  --siqcw-button-bg-color: #e95a24 !important;
+  --siqcw-newchat-btn-bg: #e95a24 !important;
+}
+
+html body div[data-zsqa='new_conversation'].siqcw-newchat.siqcw-btn,
+html body div[data-zsqa='new_conversation'].siqcw-newchat.siqcw-btn:hover,
+html body div[data-zsqa='new_conversation'].siqcw-newchat.siqcw-btn:focus-visible {
+  background: #e95a24 !important;
   background-color: #e95a24 !important;
   color: #ffffff !important;
 }
 
-.siqcw-newchat.siqcw-btn:active {
+html body div[data-zsqa='new_conversation'].siqcw-newchat.siqcw-btn:active {
+  background: #a6320d !important;
   background-color: #a6320d !important;
 }

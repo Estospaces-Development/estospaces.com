@@ -69,6 +69,7 @@ test('health endpoint and Next config expose production security headers', async
   assert.match(csp, /script-src 'self' 'unsafe-inline' https:\/\/www\.googletagmanager\.com/);
   assert.match(csp, /https:\/\/salesiq\.zoho\.in/);
   assert.match(csp, /https:\/\/static\.zohocdn\.com/);
+  assert.match(csp, /style-src[^;]+https:\/\/\*\.zohopublic\.in/);
   assert.match(csp, /font-src 'self' data: https:\/\/static\.zohocdn\.com/);
   assert.match(csp, /connect-src 'self' https:\/\/www\.google-analytics\.com/);
   assert.match(csp, /https:\/\/\*\.zohopublic\.in/);
