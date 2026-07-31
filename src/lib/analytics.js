@@ -56,8 +56,8 @@ export function trackEvent(name, properties = {}) {
   }
 
   const context = Object.entries(safeProperties)
-      .map(([key, value]) => `${key}=${value}`)
-      .join('|');
+    .map(([key, value]) => `${key}=${value}`)
+    .join('|');
   const action = (context ? `estospaces:${name}|${context}` : `estospaces:${name}`).slice(0, 250);
 
   if (typeof window.$zoho?.salesiq?.visitor?.customaction === 'function') {
