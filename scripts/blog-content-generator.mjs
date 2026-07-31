@@ -804,7 +804,7 @@ const TOOL_TOPICS = [
   ],
 ];
 
-export async function buildBlogPostDrafts({ sourcePath = '../docs/blog-posts-to-do' } = {}) {
+export async function buildBlogPostDrafts({ sourcePath = 'docs/blog-posts-to-do' } = {}) {
   const source = await readCanonicalSource(sourcePath);
   const blueprints = buildBlueprints(source.text);
   const posts = blueprints.slice(0, 100).map((topic, index) => buildPost(topic, index, blueprints));
