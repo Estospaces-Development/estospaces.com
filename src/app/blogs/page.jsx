@@ -54,7 +54,7 @@ export default async function BlogsPage({ searchParams }) {
     excludeSlugs: defaultListing ? featuredPosts.map((post) => post.slug) : [],
   });
   const displayTotal = defaultListing ? result.total + featuredPosts.length : result.total;
-  const visiblePosts = [...featuredPosts, ...result.posts];
+  const visiblePosts = [...(showFeatured ? featuredPosts : []), ...result.posts];
   const jsonLd = buildBlogIndexJsonLd(visiblePosts);
 
   return (

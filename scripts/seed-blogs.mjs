@@ -5,7 +5,7 @@ import { buildBlogPostDrafts } from './blog-content-generator.mjs';
 import { generateBlogHeroImage } from './blog-image-generator.mjs';
 import { validateBlogPosts } from './blog-validation.mjs';
 
-const sourcePath = process.env.BLOG_TOPIC_SOURCE_PATH || '../docs/blog-posts-to-do';
+const sourcePath = process.env.BLOG_TOPIC_SOURCE_PATH || 'docs/blog-posts-to-do';
 const outputPath = resolve(process.cwd(), 'src/data/generated-blog-posts.js');
 const slugsOutputPath = resolve(process.cwd(), 'src/data/generated-blog-slugs.js');
 

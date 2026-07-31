@@ -12,6 +12,7 @@ export default async function sitemap() {
     ['/terms', '2026-07-30', 'monthly', 0.4],
     ['/cookies', '2026-07-30', 'monthly', 0.4],
     ['/blogs', '2026-07-30', 'daily', 0.9],
+    ['/properties-coming-soon', '2026-07-31', 'monthly', 0.5],
   ];
 
   return [

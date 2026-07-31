@@ -17,7 +17,7 @@ import {
 import { serializeJsonLd } from './src/lib/json-ld.js';
 import sitemap from './src/app/sitemap.js';
 
-const sourcePath = '../docs/blog-posts-to-do';
+const sourcePath = 'docs/blog-posts-to-do';
 
 test('blog generator creates exactly 100 unique SEO-ready drafts from the canonical topic docs', async () => {
   const posts = await buildBlogPostDrafts({ sourcePath });
@@ -130,6 +130,18 @@ test('site-level SEO trust surfaces exist for home, blog index, and author pages
   assert.match(layoutSource, /siteConfig\.metadata\.image/);
   assert.match(siteConfigSource, /estospaces-og\.webp/);
   assert.doesNotMatch(tailwindSource, /letterSpacing:\s*'-/);
+});
+
+test('landing property search routes to the development-phase coming-soon page', async () => {
+  const comingSoonSource = await readFile('./src/app/properties-coming-soon/page.jsx', 'utf8');
+  const searchRedirectSource = await readFile('./src/app/search/page.jsx', 'utf8');
+  const entries = await sitemap();
+  const urls = entries.map((entry) => entry.url);
+
+  assert.match(comingSoonSource, /Property listings are coming soon/);
+  assert.match(comingSoonSource, /Your search was received/);
+  assert.match(searchRedirectSource, /redirect\(`\/properties-coming-soon/);
+  assert.ok(urls.includes('https://estospaces.com/properties-coming-soon'));
 });
 
 test('seeded blog hero images exist as crawlable WebP assets', async () => {
