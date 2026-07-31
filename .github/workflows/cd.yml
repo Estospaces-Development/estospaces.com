@@ -24,7 +24,6 @@ jobs:
       TARGET_ENV: prod
       LANDING_APP_BASE_URL: ${{ vars.APP_BASE_URL }}
       LANDING_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID || secrets.GA_MEASUREMENT_ID }}
-      LANDING_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID || secrets.GA_MEASUREMENT_ID }}
 
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
