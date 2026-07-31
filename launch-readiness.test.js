@@ -126,6 +126,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   assert.match(home, /placement: 'final_cta'/);
   assert.match(footer, /placement: 'footer'/);
   assert.match(footer, /cookie_preferences_opened/);
+  assert.match(footer, /siteConfig\.salesIqWidgetUrl/);
   assert.match(nav, /navigation_clicked/);
 });
 
