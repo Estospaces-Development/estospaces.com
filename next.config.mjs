@@ -8,7 +8,7 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   "frame-ancestors 'none'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://salesiq.zoho.in https://static.zohocdn.com https://js.zohocdn.com",
-  "style-src 'self' 'unsafe-inline' https://static.zohocdn.com https://css.zohocdn.com",
+  "style-src 'self' 'unsafe-inline' https://static.zohocdn.com https://css.zohocdn.com https://*.zohopublic.in",
   "font-src 'self' data: https://static.zohocdn.com",
   "img-src 'self' data: blob: https:",
   "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://*.zoho.in https://*.zohopublic.in https://*.zohocdn.com wss://*.zoho.in wss://*.zohopublic.in",
