@@ -5,6 +5,8 @@ const appBaseUrl = trimTrailingSlash(
   process.env.NEXT_PUBLIC_APP_BASE_URL || 'https://app.estospaces.com',
 );
 const configuredMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
+const salesIqWidgetUrl =
+  'https://salesiq.zoho.in/widget?wc=siq338477be5e895c804b660f4765d048440ae1b20b437769a0cdecedd3b5619524';
 const contactEmail = 'contact@estospaces.com';
 const analyticsMeasurementId = /^G-[A-Z0-9]+$/.test(configuredMeasurementId)
   ? configuredMeasurementId
@@ -55,6 +57,7 @@ export const siteConfig = {
   siteUrl,
   appBaseUrl,
   analyticsMeasurementId,
+  salesIqWidgetUrl,
   contactEmail,
   supportEmail: contactEmail,
   paths: {

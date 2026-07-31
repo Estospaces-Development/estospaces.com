@@ -10,6 +10,7 @@ const title = siteConfig.metadata.title;
 const description = siteConfig.metadata.description;
 const ogImage = siteConfig.metadata.image;
 const gaMeasurementId = siteConfig.analyticsMeasurementId;
+const salesIqWidgetUrl = siteConfig.salesIqWidgetUrl;
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -93,7 +94,7 @@ export default function RootLayout({ children }) {
         </a>
         {children}
         <script defer src="/navigation.js" />
-        {gaMeasurementId ? <ConsentManager measurementId={gaMeasurementId} /> : null}
+        <ConsentManager measurementId={gaMeasurementId} salesIqWidgetUrl={salesIqWidgetUrl} />
       </body>
     </html>
   );

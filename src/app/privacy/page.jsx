@@ -43,13 +43,14 @@ export default function PrivacyPage() {
             the separate application.
           </li>
           <li>
-            Anonymous website usage events only when analytics is configured and you accept
-            analytics cookies.
+            Website usage, live-chat, and support interaction data only when you allow optional
+            analytics and chat tools.
           </li>
         </PolicyList>
         <p>
           The landing-site analytics abstraction does not send contact details, search text,
-          document metadata, or the contents of messages.
+          document metadata, or the contents of messages to Google Analytics. Information you
+          intentionally submit through Zoho SalesIQ chat is processed to provide support.
         </p>
       </PolicySection>
       <PolicySection title="Why information is used">
@@ -65,8 +66,9 @@ export default function PrivacyPage() {
       </PolicySection>
       <PolicySection title="Service providers and transfers">
         <p>
-          Hosting, application, monitoring, email, and optional analytics providers may process
-          limited information on our behalf. The current architecture is Google Cloud oriented. Some
+          Hosting, application, monitoring, email, optional analytics, and live-support providers
+          may process limited information on our behalf. These providers include Google Cloud,
+          Google Analytics when configured, and Zoho SalesIQ when you allow optional tools. Some
           providers may process information outside your country, subject to the safeguards required
           for the relevant service and applicable law.
         </p>
@@ -82,10 +84,9 @@ export default function PrivacyPage() {
       </PolicySection>
       <PolicySection title="Your choices and rights">
         <p>
-          You can reject optional website analytics, reopen cookie preferences when analytics is
-          configured, and contact us about access, correction, deletion, restriction, objection, or
-          portability where those rights apply. Identity checks may be required before acting on a
-          request.
+          You can reject optional website analytics and chat tools, reopen cookie preferences, and
+          contact us about access, correction, deletion, restriction, objection, or portability
+          where those rights apply. Identity checks may be required before acting on a request.
         </p>
       </PolicySection>
       <PolicySection title="Changes">

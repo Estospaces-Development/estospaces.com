@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { consentStorageKey } from '../../lib/analytics';
 
-export default function ConsentManager({ measurementId }) {
+export default function ConsentManager({ measurementId, salesIqWidgetUrl }) {
   const [preference, setPreference] = useState('loading');
 
   useEffect(() => {
@@ -16,10 +16,14 @@ export default function ConsentManager({ measurementId }) {
     return () => window.removeEventListener('estospaces:open-cookie-preferences', reopen);
   }, []);
 
-  if (!measurementId) return null;
+  if (!measurementId && !salesIqWidgetUrl) return null;
 
   const choose = (value) => {
     window.localStorage.setItem(consentStorageKey, value);
+    if (preference === 'accepted' && value === 'rejected') {
+      window.location.reload();
+      return;
+    }
     setPreference(value);
   };
 
@@ -27,18 +31,33 @@ export default function ConsentManager({ measurementId }) {
     <>
       {preference === 'accepted' ? (
         <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-            strategy="afterInteractive"
-          />
-          <Script id="ga4-consented" strategy="afterInteractive">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              window.gtag = function(){window.dataLayer.push(arguments);};
-              window.gtag('js', new Date());
-              window.gtag('config', '${measurementId}', { anonymize_ip: true });
-            `}
-          </Script>
+          {measurementId ? (
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+                strategy="afterInteractive"
+              />
+              <Script id="ga4-consented" strategy="afterInteractive">
+                {`
+                  window.dataLayer = window.dataLayer || [];
+                  window.gtag = function(){window.dataLayer.push(arguments);};
+                  window.gtag('js', new Date());
+                  window.gtag('config', '${measurementId}', { anonymize_ip: true });
+                `}
+              </Script>
+            </>
+          ) : null}
+          {salesIqWidgetUrl ? (
+            <>
+              <Script id="zoho-salesiq-consented" strategy="afterInteractive">
+                {`
+                  window.$zoho = window.$zoho || {};
+                  window.$zoho.salesiq = window.$zoho.salesiq || { ready: function(){} };
+                `}
+              </Script>
+              <Script id="zsiqscript" src={salesIqWidgetUrl} strategy="afterInteractive" />
+            </>
+          ) : null}
         </>
       ) : null}
       {preference === 'unset' ? (
@@ -46,11 +65,11 @@ export default function ConsentManager({ measurementId }) {
           aria-label="Cookie preferences"
           className="fixed inset-x-4 bottom-4 z-[70] mx-auto max-w-3xl rounded-2xl border border-gray-200 bg-white p-5 shadow-2xl sm:p-6"
         >
-          <h2 className="text-lg font-bold text-gray-950">Choose whether to allow analytics</h2>
+          <h2 className="text-lg font-bold text-gray-950">Choose optional website tools</h2>
           <p className="mt-2 leading-6 text-gray-600">
-            Essential site functions work without analytics. With your permission, anonymous usage
-            events help us understand the website. We never include search text or contact details.
-            Read the{' '}
+            Essential site functions work without optional tools. With your permission, analytics
+            and Zoho SalesIQ help us understand visits and offer live support. We do not send search
+            text, contact details, messages, or documents to our website analytics. Read the{' '}
             <a className="font-semibold text-primary underline" href="/cookies">
               cookie policy
             </a>
@@ -62,14 +81,14 @@ export default function ConsentManager({ measurementId }) {
               onClick={() => choose('rejected')}
               type="button"
             >
-              Reject analytics
+              Reject optional tools
             </button>
             <button
               className="min-h-11 rounded-xl bg-primary px-5 font-semibold text-white hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-orange-200"
               onClick={() => choose('accepted')}
               type="button"
             >
-              Accept analytics
+              Allow analytics &amp; chat
             </button>
           </div>
         </section>
