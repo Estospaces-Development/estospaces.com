@@ -15,8 +15,7 @@ export function trackEvent(name, properties = {}) {
   if (
     typeof window === 'undefined' ||
     !allowedEvents.has(name) ||
-    window.localStorage.getItem(consentStorageKey) !== 'accepted' ||
-    typeof window.gtag !== 'function'
+    window.localStorage.getItem(consentStorageKey) !== 'accepted'
   ) {
     return false;
   }
@@ -28,8 +27,23 @@ export function trackEvent(name, properties = {}) {
     ),
   );
 
-  window.gtag('event', name, safeProperties);
-  return true;
+  let tracked = false;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, safeProperties);
+    tracked = true;
+  }
+
+  if (typeof window.$zoho?.salesiq?.visitor?.customaction === 'function') {
+    const context = Object.entries(safeProperties)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('|');
+    const action = context ? `estospaces:${name}|${context}` : `estospaces:${name}`;
+    window.$zoho.salesiq.visitor.customaction(action);
+    tracked = true;
+  }
+
+  return tracked;
 }
 
 export { consentStorageKey };

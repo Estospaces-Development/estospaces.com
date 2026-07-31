@@ -1,15 +1,16 @@
 import Image from 'next/image';
 
 import { siteConfig } from '../../config/site';
+import TrackedLink from '../site/TrackedLink';
 import styles from './Landing.module.css';
 
 const footerGroups = [
   {
     heading: 'Access',
     links: [
-      ['Create account', siteConfig.paths.register],
-      ['Existing user log in', siteConfig.paths.login],
-      ['Professional access', siteConfig.paths.brokerRegister],
+      ['Create account', siteConfig.paths.register, 'create_account_clicked'],
+      ['Existing user log in', siteConfig.paths.login, 'login_clicked'],
+      ['Professional access', siteConfig.paths.brokerRegister, 'broker_join_clicked'],
     ],
   },
   {
@@ -62,17 +63,19 @@ export default function Footer() {
             <nav aria-label={`${group.heading} links`} key={group.heading}>
               <h2>{group.heading}</h2>
               <ul>
-                {group.links.map(([label, href]) => {
+                {group.links.map(([label, href, eventName]) => {
                   const external = href.startsWith('http') && !href.includes('app.estospaces.com');
                   return (
                     <li key={label}>
-                      <a
+                      <TrackedLink
+                        eventName={eventName}
+                        eventProperties={eventName ? { placement: 'footer' } : undefined}
                         href={href}
                         rel={external ? 'noreferrer' : undefined}
                         target={external ? '_blank' : undefined}
                       >
                         {label}
-                      </a>
+                      </TrackedLink>
                     </li>
                   );
                 })}

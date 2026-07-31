@@ -103,15 +103,23 @@ test('navigation and consent controls meet key accessibility contracts', async (
 test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to access links', async () => {
   const analytics = await read('./src/lib/analytics.js');
   const trackedLink = await read('./src/components/site/TrackedLink.jsx');
+  const trackedSection = await read('./src/components/site/TrackedSection.jsx');
+  const footer = await read('./src/components/landing/Footer.jsx');
+  const home = await read('./src/components/landing/Home.jsx');
   const nav = await read('./src/components/landing/Navbar.jsx');
   const hero = await read('./src/components/landing/LandingMotion.jsx');
 
   assert.match(analytics, /allowedEvents/);
   assert.match(analytics, /localStorage\.getItem\(consentStorageKey\) !== 'accepted'/);
+  assert.match(analytics, /salesiq\?\.visitor\?\.customaction/);
   assert.match(trackedLink, /trackEvent\(eventName, eventProperties\)/);
+  assert.match(trackedSection, /IntersectionObserver/);
   assert.match(nav, /eventName="login_clicked"/);
   assert.match(nav, /eventName="create_account_clicked"/);
   assert.match(hero, /eventName="broker_join_clicked"/);
+  assert.match(home, /eventName="product_preview_viewed"/);
+  assert.match(home, /placement: 'final_cta'/);
+  assert.match(footer, /placement: 'footer'/);
 });
 
 test('audience anchors and comparison overflow guidance are explicit', async () => {
