@@ -20,6 +20,8 @@ jobs:
     env:
       SERVICE_NAME: estospaces-landing
       REGION: asia-south1
+      FALLBACK_SERVICE_NAME: estospaces-landing-www
+      FALLBACK_REGION: us-central1
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
       TARGET_ENV: prod
       LANDING_APP_BASE_URL: ${{ vars.APP_BASE_URL }}
@@ -51,13 +53,36 @@ jobs:
         run: |
           IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/estospaces/${SERVICE_NAME}:${GITHUB_SHA}"
           SERVICE_TARGET="${SERVICE_NAME}-${TARGET_ENV}"
-          gcloud run services update "$SERVICE_TARGET" \
+          if DEPLOY_OUTPUT="$(gcloud run services update "$SERVICE_TARGET" \
             --image="$IMAGE" \
             --region="${REGION}" \
-            --project="${PROJECT_ID}"
+            --project="${PROJECT_ID}" 2>&1)"; then
+            printf '%s\n' "$DEPLOY_OUTPUT"
+            DEPLOY_SERVICE="$SERVICE_TARGET"
+            DEPLOY_REGION="$REGION"
+          else
+            printf '%s\n' "$DEPLOY_OUTPUT"
+            QUOTA_ERROR='Project failed to initialize in this region due to quota exceeded.'
+            if [[ "$DEPLOY_OUTPUT" != *"$QUOTA_ERROR"* ]]; then
+              exit 1
+            fi
+
+            echo "::warning::Mumbai Cloud Run initialization is quota-blocked; deploying the checked image to the existing public landing service."
+            gcloud run services update "$FALLBACK_SERVICE_NAME" \
+              --image="$IMAGE" \
+              --region="$FALLBACK_REGION" \
+              --project="$PROJECT_ID"
+            DEPLOY_SERVICE="$FALLBACK_SERVICE_NAME"
+            DEPLOY_REGION="$FALLBACK_REGION"
+          fi
+
+          echo "DEPLOY_IMAGE=$IMAGE" >> "$GITHUB_ENV"
+          echo "DEPLOY_SERVICE=$DEPLOY_SERVICE" >> "$GITHUB_ENV"
+          echo "DEPLOY_REGION=$DEPLOY_REGION" >> "$GITHUB_ENV"
 
       - name: Health check
         run: |
-          SERVICE_TARGET="${SERVICE_NAME}-${TARGET_ENV}"
-          READY_REVISION="$(gcloud run services describe "$SERVICE_TARGET" --region="${REGION}" --project="${PROJECT_ID}" --format='value(status.latestReadyRevisionName)')"
+          READY_REVISION="$(gcloud run services describe "$DEPLOY_SERVICE" --region="$DEPLOY_REGION" --project="$PROJECT_ID" --format='value(status.latestReadyRevisionName)')"
+          READY_IMAGE="$(gcloud run services describe "$DEPLOY_SERVICE" --region="$DEPLOY_REGION" --project="$PROJECT_ID" --format='value(spec.template.spec.containers[0].image)')"
           test -n "$READY_REVISION"
+          test "$READY_IMAGE" = "$DEPLOY_IMAGE"
