@@ -695,3 +695,14 @@ select:focus {
 .pagination-container select:focus {
   z-index: 50;
 }
+
+/* Keep the SalesIQ launcher aligned with the landing-page signal color. */
+#zsiq_float {
+  background: #e95a24 !important;
+}
+
+#zsiq_float #zs_fl_chat,
+#zsiq_float #zs_fl_close {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
