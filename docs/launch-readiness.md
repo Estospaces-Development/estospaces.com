@@ -23,7 +23,7 @@ The local landing implementation is ready for review. The overall release remain
 - Implemented the exact desktop/mobile navigation destinations: Product, How it works, For property seekers, For brokers, Security, About, Blog, Log in, and Create account.
 - Rewrote the hero around enquiry progression and changed its status to `Private beta / Access remains release-gated`.
 - Replaced the non-working public search form with a truthful service notice plus the verified registration and existing-user routes.
-- Added two equal, sanitized 1120×609 WebP product-proof captures for the seeker and manager dashboards, dated 10 July 2026 and labelled `Test data only`.
+- Replaced the two dashboard captures with a role-based tutorial (seeker and manager walkthrough videos, with chapters taken from each video's description), labelled as recorded on the real app with fictional training data and qualified as private beta.
 - Added separate seeker and broker/manager use cases, a five-step workflow, target limitations, a dated comparison, and evidence-oriented FAQs.
 - Removed rendered and obsolete source-level testimonials, metrics, waitlist controls, AI Lakshmi, virtual-tour, Street View, CRM, fake property previews, and unsupported live-feature claims.
 - Kept the homepage market-neutral while preserving the established UK editorial surface for a separate editorial decision.
@@ -94,8 +94,6 @@ Local evidence paths:
 - `artifacts/launch-readiness/minimum-320-text-spacing.png`
 - `artifacts/launch-readiness/desktop-200-percent-zoom.png`
 - `artifacts/launch-readiness/production/production-verification.json`
-- `public/assets/landing/product-proof-seeker-fast-track.webp`
-- `public/assets/landing/product-proof-manager-fast-track.webp`
 
 ## Route and service matrix
 
@@ -213,7 +211,7 @@ The current page requests a 65 KB WebP hero instead of the obsolete 27 MB video.
 - [x] Every public claim has evidence. Evidence: `docs/content-claims-register.md` and qualified/removed claims.
 - [x] No fictional testimonials or metrics remain. Evidence: active/source scan and obsolete module removal.
 - [x] No roadmap-only feature is presented as live. Evidence: release-gated wording and no roadmap feature grid.
-- [x] Genuine product proof is visible. Evidence: two approved, sanitized 1120×609 dashboard captures dated 10 July 2026, labelled `Test data only` and cropped for clarity.
+- [x] Genuine product proof is visible. Evidence: the seeker and manager tutorial videos recorded on the real app, labelled as fictional training data, with chapters taken from each video's description and a private-beta availability line.
 - [x] Navigation, footer, and all landing CTAs work. Evidence: rendered internal-link and interaction checks.
 - [x] About, Contact, Security, Privacy, Terms, and Cookies work without JavaScript. Evidence: production-build no-JS checks.
 - [x] Unknown routes return 404. Evidence: deliberate route test.

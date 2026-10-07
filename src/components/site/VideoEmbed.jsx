@@ -10,7 +10,7 @@ import styles from '../landing/Landing.module.css';
  */
 export default function VideoEmbed({ video, label, placement }) {
   return (
-    <div className={styles.videoFrame}>
+    <div className={styles.videoFrame} data-video-frame>
       <a
         className={styles.videoFacade}
         data-video-id={video.id}

@@ -72,7 +72,7 @@ alternating light/dark section themes.
 
 - Show exactly two genuine, sanitized dashboard captures:
   seeker dashboard and manager dashboard.
-- Frames are equal, 1120×609 intrinsic pixels, and compact.
+- Tutorial posters are 16:9; the chapter list matches the video's height and scrolls inside its own box.
 - Desktop: two columns. Mobile: one column.
 - Captions must state private-beta scope, capture date, test-data status, and
   cropping.

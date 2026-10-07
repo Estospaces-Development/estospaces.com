@@ -125,30 +125,6 @@
   }
 }
 
-@keyframes proof-card-reveal {
-  from {
-    clip-path: inset(0 0 18% 0);
-    opacity: 1;
-    transform: translate3d(0, 22px, 0);
-  }
-
-  to {
-    clip-path: inset(0 0 0 0);
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes proof-image-settle {
-  from {
-    transform: scale(1.035);
-  }
-
-  to {
-    transform: scale(1);
-  }
-}
-
 @media (min-width: 768px) {
   @supports (animation-timeline: view()) {
     .page [data-section-reveal],
@@ -170,20 +146,6 @@
       animation: hero-route-scroll linear both;
       animation-range: 0 90vh;
       animation-timeline: scroll(root);
-    }
-  }
-
-  @supports (animation-timeline: view()) {
-    .productProofCard {
-      animation: proof-card-reveal linear both;
-      animation-range: entry 8% cover 34%;
-      animation-timeline: view();
-    }
-
-    .productProofViewport img {
-      animation: proof-image-settle linear both;
-      animation-range: entry 8% cover 38%;
-      animation-timeline: view();
     }
   }
 }
@@ -704,193 +666,6 @@
 }
 
 /* Verified application access */
-
-.productProofSection {
-  content-visibility: auto;
-  contain-intrinsic-block-size: auto 820px;
-  border-bottom: 1px solid var(--rule-strong);
-  background: var(--ink);
-  color: var(--paper);
-  padding: clamp(4.75rem, 7vw, 6.75rem) var(--layout-gutter);
-}
-
-.productProofIntro {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.75rem;
-}
-
-.productProofIntro h2 {
-  max-width: 18ch;
-  margin: 0.9rem 0 0;
-  font-size: clamp(2.9rem, 5vw, 5.6rem);
-  font-weight: 560;
-  letter-spacing: -0.06em;
-  line-height: 0.92;
-  text-wrap: balance;
-}
-
-.productProofContext {
-  max-width: 62ch;
-}
-
-.productProofContext p {
-  margin: 0;
-  color: var(--stone);
-  font-size: clamp(0.96rem, 1.15vw, 1.08rem);
-  line-height: 1.55;
-}
-
-.productProofContext span {
-  display: block;
-  margin-top: 1rem;
-  color: var(--signal);
-  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.productProofGrid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.9rem, 1.8vw, 1.6rem);
-  align-items: start;
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-}
-
-.productProofCard {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--rule-strong);
-  background: var(--ink-raised);
-  will-change: clip-path, opacity, transform;
-}
-
-.productProofBrowser {
-  display: grid;
-  min-height: 40px;
-  grid-template-columns: 72px 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  border-bottom: 1px solid var(--rule-strong);
-  background: #0c0e0c;
-  color: var(--stone);
-  padding: 0.55rem 0.8rem;
-  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.productProofBrowser > span {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.productProofBrowser i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--stone-dim);
-}
-
-.productProofBrowser i:first-child {
-  background: var(--signal);
-}
-
-.productProofBrowser p {
-  overflow: hidden;
-  margin: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.productProofBrowser b {
-  color: var(--signal);
-  font-size: inherit;
-  font-weight: 650;
-}
-
-.productProofViewport {
-  display: flex;
-  aspect-ratio: 1.84;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
-  background: #f7f8f9;
-}
-
-.productProofViewport img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  will-change: transform;
-}
-
-.productProofCaption {
-  border-top: 1px solid var(--rule-strong);
-  background: var(--ink-raised);
-  padding: clamp(1.1rem, 2vw, 1.6rem);
-}
-
-.productProofCaption > div {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  color: var(--signal);
-  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.productProofCaption > div span {
-  display: grid;
-  width: 26px;
-  height: 26px;
-  place-items: center;
-  border: 1px solid var(--rule-strong);
-}
-
-.productProofCaption > div p,
-.productProofCaption > p {
-  margin: 0;
-}
-
-.productProofCaption h3 {
-  margin: 0.9rem 0 0.55rem;
-  font-size: clamp(1.3rem, 1.8vw, 1.75rem);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-}
-
-.productProofCaption > p {
-  max-width: 48ch;
-  color: var(--stone);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.productProofCaption > a {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.9rem;
-  color: var(--paper);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-decoration-color: var(--signal);
-  text-underline-offset: 6px;
-  text-transform: uppercase;
-}
 
 /* Journey */
 
@@ -2119,11 +1894,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .productProofIntro {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
   .statusLedgerInner > div:nth-child(3) {
     border-top: 1px solid var(--rule);
   }
@@ -2280,33 +2050,6 @@
 
   .statusLedgerInner > div:last-child {
     border-bottom: 0;
-  }
-
-  .productProofSection {
-    padding: 4.75rem 1rem;
-  }
-
-  .productProofIntro h2 {
-    font-size: clamp(2.65rem, 12vw, 4rem);
-  }
-
-  .productProofGrid {
-    grid-template-columns: 1fr;
-    margin-top: 2.5rem;
-  }
-
-  .productProofBrowser {
-    grid-template-columns: 52px 1fr auto;
-    gap: 0.7rem;
-    padding-inline: 0.75rem;
-  }
-
-  .productProofBrowser b {
-    font-size: 0.72rem;
-  }
-
-  .productProofCaption {
-    padding: 1.5rem 1.25rem 1.75rem;
   }
 
   .journeyStatic,
@@ -2529,22 +2272,6 @@
   }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
-  .productProofGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .productProofBrowser {
-    grid-template-columns: 44px 1fr auto;
-    gap: 0.5rem;
-    font-size: 0.72rem;
-  }
-
-  .productProofCaption h3 {
-    font-size: 1.55rem;
-  }
-}
-
 @media (min-width: 768px) {
   .hero {
     min-height: 680px;
@@ -2647,9 +2374,7 @@
 
   .heroImage,
   .heroContent,
-  .heroRouteLine,
-  .productProofCard,
-  .productProofViewport img {
+  .heroRouteLine {
     animation: none !important;
     clip-path: none !important;
     opacity: 1 !important;
@@ -2808,4 +2533,215 @@
 
 .videoFacade:active .videoPlay {
   transform: translate(-50%, -50%) scale(0.96);
+}
+
+/* Role tutorial */
+
+.tutorialSection {
+  border-bottom: 1px solid var(--rule-strong);
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(4.5rem, 7vw, 6.5rem) var(--layout-gutter);
+}
+
+.tutorialIntro {
+  display: grid;
+  gap: 1.4rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.tutorialIntro h2 {
+  max-width: 16ch;
+  margin: 0;
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+  font-weight: 560;
+  letter-spacing: -0.06em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.tutorialIntro p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--stone);
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+  line-height: 1.55;
+}
+
+.tutorial {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tutorialTabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.tutorialTabs {
+  scroll-margin-top: 5.5rem;
+}
+
+.tutorialTabs[hidden],
+.tutorialPanel[hidden] {
+  display: none;
+}
+
+.tutorialTabs button {
+  display: grid;
+  gap: 0.3rem;
+  min-height: 64px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  padding: 0.9rem 1rem 1rem;
+  background: none;
+  color: var(--stone);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.tutorialTabs button strong {
+  font-size: 1.05rem;
+  font-weight: 620;
+}
+
+.tutorialTabs button span {
+  color: var(--stone-dim);
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tutorialTabs button:hover {
+  color: var(--paper);
+}
+
+.tutorialTabs button[aria-selected='true'] {
+  border-bottom-color: var(--signal);
+  background: rgb(242 240 232 / 4%);
+  color: var(--paper);
+}
+
+.tutorialTabs button:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: -3px;
+}
+
+.tutorialPanel {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.tutorialPanelHead h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+}
+
+.tutorialPanelHead p {
+  max-width: 60ch;
+  margin: 0.5rem 0 0;
+  color: var(--stone);
+  line-height: 1.55;
+}
+
+.tutorialStage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.tutorialChapters {
+  max-height: 24rem;
+  margin: 0;
+  overflow-y: auto;
+  border: 1px solid var(--rule-strong);
+  padding: 0;
+  background: var(--ink-raised);
+  list-style: none;
+}
+
+.tutorialChapters li + li {
+  border-top: 1px solid var(--rule);
+}
+
+.tutorialChapters a {
+  display: grid;
+  min-height: 44px;
+  grid-template-columns: 3.4rem 1fr;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  color: var(--stone);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.tutorialChapters a span {
+  color: var(--signal);
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tutorialChapters a:hover {
+  background: rgb(242 240 232 / 5%);
+  color: var(--paper);
+}
+
+.tutorialChapters a:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: -3px;
+}
+
+.tutorialChapters a[aria-current='true'] {
+  background: rgb(233 90 36 / 12%);
+  box-shadow: inset 3px 0 0 var(--signal);
+  color: var(--paper);
+}
+
+.tutorialNote {
+  max-width: 70ch;
+  margin: 0;
+  color: var(--stone-dim);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.relayActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 2rem;
+}
+
+@media (min-width: 1024px) {
+  .tutorialStage {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+    align-items: stretch;
+  }
+
+  .tutorialChapters {
+    height: 0;
+    min-height: 100%;
+    max-height: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tutorialTabs button,
+  .tutorialChapters a {
+    transition: none;
+  }
 }

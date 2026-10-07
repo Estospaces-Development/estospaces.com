@@ -21,7 +21,7 @@ test('canonical site configuration exposes verified public product routes', () =
   assert.equal(siteConfig.paths.register, 'https://app.estospaces.com/register');
   assert.equal(siteConfig.paths.search, 'https://app.estospaces.com/search');
   assert.equal(siteConfig.features.showTestimonials, false);
-  assert.equal(siteConfig.features.showProductScreenshots, true);
+  assert.equal(siteConfig.features.showTutorial, true);
   assert.equal(siteConfig.features.showPublicSearch, false);
   assert.match(siteConfig.analyticsMeasurementId, /^(|G-[A-Z0-9]+)$/);
   assert.match(siteConfig.salesIqWidgetUrl, /^https:\/\/salesiq\.zoho\.in\/widget\?wc=siq/);
@@ -53,6 +53,7 @@ test('homepage exposes real access paths and omits unsupported launch claims', a
   const home = await read('./src/components/landing/Home.jsx');
   const nav = await read('./src/components/landing/Navbar.jsx');
   const footer = await read('./src/components/landing/Footer.jsx');
+  const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
   const publicSurface = `${home}\n${nav}\n${footer}`;
 
   assert.match(home, /<main id="main-content">/);
@@ -69,10 +70,9 @@ test('homepage exposes real access paths and omits unsupported launch claims', a
     /Coming Soon|Loved by Thousands|100% Verified|70%|40%|Dream Home|waitlist/i,
   );
   assert.doesNotMatch(home, /hero-section-video|<video|Testimonials|Countdown/);
-  assert.match(home, /id="product-proof"/);
-  assert.match(home, /product-proof-seeker-fast-track\.webp/);
-  assert.match(home, /product-proof-manager-fast-track\.webp/);
-  assert.match(home, /Test data only/);
+  assert.match(home, /<ProductTutorial \/>/);
+  assert.match(tutorial, /id="product-proof"/);
+  assert.match(tutorial, /fictional\s+training data/);
 });
 
 test('navigation and consent controls meet key accessibility contracts', async () => {
@@ -110,6 +110,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   const home = await read('./src/components/landing/Home.jsx');
   const nav = await read('./src/components/landing/Navbar.jsx');
   const hero = await read('./src/components/landing/LandingMotion.jsx');
+  const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
 
   assert.match(analytics, /allowedEvents/);
   assert.match(analytics, /localStorage\.getItem\(consentStorageKey\) !== 'accepted'/);
@@ -122,7 +123,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   assert.match(nav, /eventName="login_clicked"/);
   assert.match(nav, /eventName="create_account_clicked"/);
   assert.match(hero, /eventName="broker_join_clicked"/);
-  assert.match(home, /eventName="product_preview_viewed"/);
+  assert.match(tutorial, /eventName="product_preview_viewed"/);
   assert.match(home, /placement: 'final_cta'/);
   assert.match(footer, /placement: 'footer'/);
   assert.match(footer, /cookie_preferences_opened/);
@@ -181,6 +182,7 @@ test('security reporting publishes the verified domain mailbox as security.txt',
 test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP', async () => {
   const home = await read('./src/components/landing/Home.jsx');
   const embed = await read('./src/components/site/VideoEmbed.jsx');
+  const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
   const script = await read('./public/navigation.js');
   const nextConfig = await read('./next.config.mjs');
 
@@ -189,8 +191,8 @@ test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP
     ['iX_gHgIUHhs', 'xM140AfjOBA', 'hi-H7D164NA'],
   );
   assert.match(home, /siteConfig\.videos\.overview/);
-  assert.match(home, /siteConfig\.videos\.user/);
-  assert.match(home, /siteConfig\.videos\.manager/);
+  assert.match(tutorial, /siteConfig\.videos\.user/);
+  assert.match(tutorial, /siteConfig\.videos\.manager/);
   assert.doesNotMatch(embed, /<iframe/); // nothing loads from YouTube before the visitor clicks
   assert.match(script, /^\s*iframe\.src = `https:\/\/www\.youtube-nocookie\.com\/embed\//m);
   const frameSrc = nextConfig.match(/"frame-src ([^"]*)"/)[1].split(' ');
@@ -226,4 +228,50 @@ test('design rules: restrained eyebrows, readable type, one sign-up label per au
     /Request beta access|Request seeker access|Request manager access|Discuss professional access/,
   );
   assert.match(motion, /Create account/);
+});
+
+test('role tutorial: real chapters, works without JavaScript, deep-linkable', async () => {
+  const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
+  const script = await read('./public/navigation.js');
+  const toSeconds = (time) => time.split(':').reduce((total, part) => total * 60 + Number(part), 0);
+
+  // chapter lists come from each video's own description: start at 0, strictly increasing
+  for (const [key, count] of [
+    ['user', 12],
+    ['manager', 17],
+  ]) {
+    const { chapters } = siteConfig.videos[key];
+    assert.equal(chapters.length, count, `${key} chapter count`);
+    assert.equal(toSeconds(chapters[0][0]), 0);
+    const starts = chapters.map(([time]) => toSeconds(time));
+    assert.deepEqual(
+      starts,
+      [...starts].sort((a, b) => a - b),
+    );
+    assert.equal(new Set(starts).size, starts.length);
+    assert.ok(chapters.every(([, title]) => title.trim().length > 3));
+  }
+
+  // without JavaScript: tabs stay hidden, every chapter is a plain link to that moment on YouTube
+  assert.match(tutorial, /data-tutorial-tabs\s+hidden/);
+  assert.match(
+    tutorial,
+    /href=\{`https:\/\/www\.youtube\.com\/watch\?v=\$\{video\.id\}&t=\$\{seconds\}s`\}/,
+  );
+  assert.doesNotMatch(tutorial, /<iframe/);
+
+  // with JavaScript: tab semantics, arrow-key navigation, start offsets, and #tutorial-<role> links
+  assert.match(script, /ArrowRight/);
+  assert.match(script, /aria-selected/);
+  assert.match(script, /&start=\$\{start\}/);
+  assert.match(script, /#tutorial-/);
+  assert.match(tutorial, /id=\{`tutorial-\$\{key\}`\}/);
+
+  // constraints stay next to the claim (PRODUCT.md), and the release check follows this section
+  assert.match(tutorial, /Private beta/);
+  assert.match(tutorial, /not every feature shown is available/);
+  assert.match(script, /facades\.set\(frame, facade\)/); // a hidden tab's video is stopped
+  assert.match(script, /a\[href\^="#tutorial-"\]/); // links to the open tab still respond
+  const launchCheck = await read('./scripts/verify-launch.mjs');
+  assert.doesNotMatch(launchCheck, /product-proof img|1120/);
 });
