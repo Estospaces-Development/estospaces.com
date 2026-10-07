@@ -211,7 +211,7 @@ The current page requests a 65 KB WebP hero instead of the obsolete 27 MB video.
 - [x] Every public claim has evidence. Evidence: `docs/content-claims-register.md` and qualified/removed claims.
 - [x] No fictional testimonials or metrics remain. Evidence: active/source scan and obsolete module removal.
 - [x] No roadmap-only feature is presented as live. Evidence: release-gated wording and no roadmap feature grid.
-- [x] Genuine product proof is visible. Evidence: two approved, sanitized 1120×609 dashboard captures dated 10 July 2026, labelled `Test data only` and cropped for clarity.
+- [x] Genuine product proof is visible. Evidence: the seeker and manager tutorial videos recorded on the real app, labelled as fictional training data, with chapters taken from each video's description and a private-beta availability line.
 - [x] Navigation, footer, and all landing CTAs work. Evidence: rendered internal-link and interaction checks.
 - [x] About, Contact, Security, Privacy, Terms, and Cookies work without JavaScript. Evidence: production-build no-JS checks.
 - [x] Unknown routes return 404. Evidence: deliberate route test.
