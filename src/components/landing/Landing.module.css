@@ -201,7 +201,6 @@
 .operatorNote span,
 .footer h2,
 .footerBase,
-.heroReference,
 .visualMeasure {
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 }
@@ -309,7 +308,7 @@
   gap: 0.45rem;
   color: var(--stone);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.09em;
   text-decoration: none;
   text-transform: uppercase;
@@ -319,7 +318,7 @@
 
 .chapterNav a span {
   color: var(--signal);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
 }
 
 .desktopMore {
@@ -334,7 +333,7 @@
   color: var(--stone);
   cursor: pointer;
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.09em;
   list-style: none;
   text-transform: uppercase;
@@ -405,7 +404,7 @@
   color: var(--paper);
   cursor: pointer;
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -440,7 +439,7 @@
 .mobilePanelInner > a > span {
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
 }
 
 .mobileSupporting {
@@ -555,7 +554,7 @@
   gap: 0.75rem;
   margin: 0 0 1.7rem;
   color: var(--signal);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -626,7 +625,7 @@
   display: block;
   margin-bottom: 0.5rem;
   color: var(--signal);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -642,7 +641,7 @@
   margin: 0.45rem 0 0;
   color: var(--stone);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   line-height: 1.55;
 }
 
@@ -656,19 +655,6 @@
   background: var(--signal);
   transform: scaleX(0.18);
   transform-origin: left center;
-}
-
-.heroReference {
-  position: absolute;
-  right: var(--layout-gutter);
-  bottom: 0.65rem;
-  left: var(--layout-gutter);
-  z-index: 3;
-  display: flex;
-  justify-content: space-between;
-  color: var(--stone);
-  font-size: 0.54rem;
-  letter-spacing: 0.13em;
 }
 
 /* Product status ledger */
@@ -702,7 +688,7 @@
   display: block;
   margin-bottom: 0.65rem;
   color: var(--stone-dim);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -730,13 +716,12 @@
 
 .productProofIntro {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.65fr);
-  gap: clamp(2rem, 7vw, 7rem);
-  align-items: end;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
 }
 
 .productProofIntro h2 {
-  max-width: 13ch;
+  max-width: 18ch;
   margin: 0.9rem 0 0;
   font-size: clamp(2.9rem, 5vw, 5.6rem);
   font-weight: 560;
@@ -746,8 +731,7 @@
 }
 
 .productProofContext {
-  max-width: 560px;
-  padding-bottom: 0.45rem;
+  max-width: 62ch;
 }
 
 .productProofContext p {
@@ -762,7 +746,7 @@
   margin-top: 1rem;
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.11em;
   text-transform: uppercase;
@@ -795,7 +779,7 @@
   color: var(--stone);
   padding: 0.55rem 0.8rem;
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.57rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -859,7 +843,7 @@
   align-items: center;
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.61rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -900,7 +884,7 @@
   gap: 0.5rem;
   margin-top: 0.9rem;
   color: var(--paper);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 750;
   letter-spacing: 0.08em;
   text-decoration-color: var(--signal);
@@ -937,7 +921,7 @@
 
 .journeyRail > span {
   color: var(--signal);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
 }
 
 .journeyRail > div {
@@ -958,7 +942,7 @@
 
 .journeyRail small {
   writing-mode: vertical-rl;
-  font-size: 0.52rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -981,7 +965,7 @@
 .sectionCode {
   margin: 0 0 1rem;
   color: var(--signal);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1031,7 +1015,7 @@
 
 .journeySteps li > span {
   color: inherit;
-  font-size: 0.55rem;
+  font-size: 0.72rem;
 }
 
 .journeySteps button {
@@ -1041,7 +1025,7 @@
   color: inherit;
   cursor: pointer;
   font-family: inherit;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-align: left;
   text-transform: uppercase;
@@ -1066,7 +1050,7 @@
 .journeyDetailInner > span {
   display: block;
   color: var(--signal);
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
 }
 
@@ -1094,7 +1078,7 @@
   border-left: 2px solid var(--signal);
   padding-left: 0.85rem;
   color: #c9ccc5;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 1.55;
@@ -1132,7 +1116,7 @@
   justify-content: space-between;
   border-top: 1px solid rgba(242, 240, 232, 0.3);
   color: rgba(242, 240, 232, 0.72);
-  font-size: 0.54rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   padding-top: 0.6rem;
 }
@@ -1166,14 +1150,14 @@
 .journeyStatic li > span {
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.64rem;
+  font-size: 0.72rem;
 }
 
 .journeyStatic li div > p:first-child {
   margin: 0 0 0.45rem;
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1183,6 +1167,8 @@
   font-size: clamp(1.6rem, 5vw, 2.5rem);
   font-weight: 560;
   letter-spacing: -0.04em;
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
 .journeyStatic li div > p:not(:first-child) {
@@ -1214,21 +1200,6 @@
 
 .differenceSection {
   contain-intrinsic-block-size: auto 3600px;
-}
-
-.relayAxis,
-.differenceAxis,
-.evidenceAxis {
-  position: absolute;
-  inset: 0 auto 0 0;
-  display: none;
-  width: 72px;
-  border-right: 1px solid var(--rule);
-  color: var(--signal);
-  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.64rem;
-  padding-top: 8.5rem;
-  text-align: center;
 }
 
 .sectionIntro {
@@ -1268,7 +1239,7 @@
   display: flex;
   justify-content: space-between;
   color: var(--signal);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -1310,7 +1281,7 @@
 
 .relayList > li > span {
   color: var(--signal);
-  font-size: 0.56rem;
+  font-size: 0.72rem;
   padding-top: 0.18rem;
 }
 
@@ -1337,7 +1308,7 @@
   margin-top: 2rem;
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   letter-spacing: 0.07em;
   text-decoration: underline;
   text-decoration-color: var(--signal-dark);
@@ -1356,9 +1327,8 @@
 
 .comparisonHeading {
   display: grid;
-  grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 1.1fr);
-  gap: clamp(2rem, 7vw, 8rem);
-  align-items: end;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
   margin-top: 5rem;
   border-top: 1px solid var(--signal);
   padding: 1.5rem 0 2.25rem;
@@ -1369,14 +1339,14 @@
 .audienceGrid article > span {
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
 .comparisonHeading h3 {
-  max-width: 14ch;
-  margin: 0.75rem 0 0;
+  max-width: 20ch;
+  margin: 0;
   font-size: clamp(1.9rem, 3vw, 3.3rem);
   font-weight: 540;
   letter-spacing: -0.045em;
@@ -1396,7 +1366,7 @@
   margin-top: 0.85rem;
   color: var(--paper);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1428,7 +1398,7 @@
   margin: 0.85rem 0 0;
   color: var(--stone-dim);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   letter-spacing: 0.06em;
   line-height: 1.5;
   text-transform: uppercase;
@@ -1478,7 +1448,7 @@
 .comparisonTable thead th {
   color: var(--paper);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1577,7 +1547,7 @@
 .journeyColumn li span {
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.55rem;
+  font-size: 0.72rem;
 }
 
 .connectedColumn li {
@@ -1698,7 +1668,7 @@
   max-width: 900px;
   margin: 5rem 0 0 auto;
   color: var(--stone);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   line-height: 1.65;
 }
 
@@ -1742,9 +1712,14 @@
   padding: 1.4rem 0;
 }
 
+.evidenceHead th {
+  font-weight: 500;
+  text-align: left;
+}
+
 .evidenceHead {
   color: var(--stone-dim);
-  font-size: 0.57rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -1760,7 +1735,7 @@
 .evidenceRow > td:first-of-type {
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -1784,7 +1759,7 @@
 
 .operatorNote span {
   color: var(--stone-dim);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -1847,7 +1822,7 @@
 .faqItem summary > span:first-child {
   color: var(--signal);
   font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
-  font-size: 0.56rem;
+  font-size: 0.72rem;
 }
 
 .faqMark {
@@ -1966,7 +1941,7 @@
 .footer h2 {
   margin: 0 0 1.2rem;
   color: var(--signal);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2006,7 +1981,7 @@
   border-top: 1px solid var(--rule);
   padding: 1.5rem var(--layout-gutter);
   color: var(--stone-dim);
-  font-size: 0.55rem;
+  font-size: 0.72rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -2087,7 +2062,7 @@
   .chapterNav a,
   .desktopMore summary,
   .loginLink {
-    font-size: 0.6rem;
+    font-size: 0.72rem;
   }
 
   .chapterNav a span {
@@ -2096,7 +2071,7 @@
 
   .navAction {
     padding-inline: 0.75rem;
-    font-size: 0.58rem;
+    font-size: 0.72rem;
   }
 }
 
@@ -2122,16 +2097,8 @@
   }
 
   .journeyStatic h3 {
-    max-width: 15ch;
+    max-width: 22ch;
     font-size: clamp(2.1rem, 3.2vw, 3.8rem);
-  }
-
-  .relayAxis,
-  .differenceAxis,
-  .evidenceAxis {
-    left: max(0px, calc(var(--layout-gutter) - 56px));
-    display: block;
-    width: 40px;
   }
 }
 
@@ -2248,7 +2215,7 @@
 
   .heroKicker {
     margin-bottom: 1.35rem;
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     letter-spacing: 0.14em;
   }
 
@@ -2292,17 +2259,11 @@
   }
 
   .serviceNotice p {
-    font-size: 0.57rem;
+    font-size: 0.72rem;
   }
 
   .heroRouteLine {
     bottom: 1.7rem;
-  }
-
-  .heroReference {
-    right: 1rem;
-    bottom: 0.45rem;
-    left: 1rem;
   }
 
   .statusLedgerInner {
@@ -2341,7 +2302,7 @@
   }
 
   .productProofBrowser b {
-    font-size: 0.5rem;
+    font-size: 0.72rem;
   }
 
   .productProofCaption {
@@ -2576,7 +2537,7 @@
   .productProofBrowser {
     grid-template-columns: 44px 1fr auto;
     gap: 0.5rem;
-    font-size: 0.49rem;
+    font-size: 0.72rem;
   }
 
   .productProofCaption h3 {
@@ -2621,7 +2582,7 @@
 
   .heroKicker {
     margin-bottom: 0.65rem;
-    font-size: 0.54rem;
+    font-size: 0.72rem;
   }
 
   .hero h1 {
@@ -2644,7 +2605,7 @@
   .heroActions a {
     min-height: 44px;
     padding: 0.7rem 0.9rem;
-    font-size: 0.64rem;
+    font-size: 0.72rem;
   }
 
   .heroProfessionalLink {
@@ -2704,7 +2665,7 @@
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--rule-strong);
-  background: #000;
+  background: var(--ink-raised);
 }
 
 .videoFrame iframe {
@@ -2828,4 +2789,23 @@
   .videoPlay {
     transition: none;
   }
+}
+
+.videoTag {
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  left: 1.1rem;
+  border: 1px solid rgb(242 240 232 / 35%);
+  padding: 0.3rem 0.55rem;
+  background: rgb(16 18 15 / 55%);
+  color: var(--paper);
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.videoFacade:active .videoPlay {
+  transform: translate(-50%, -50%) scale(0.96);
 }
