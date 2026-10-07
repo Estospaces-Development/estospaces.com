@@ -45,3 +45,28 @@
 
   setOpen(false);
 })();
+
+// Click-to-play video facades: swap the link for a privacy-enhanced YouTube iframe.
+(() => {
+  document.querySelectorAll('a[data-video-id]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+      event.preventDefault();
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(link.dataset.videoId)}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      iframe.title = link.dataset.videoTitle || 'EstoSpaces video';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      link.replaceWith(iframe);
+      iframe.focus();
+
+      window.dispatchEvent(
+        new CustomEvent('estospaces:video-play', {
+          detail: { placement: link.dataset.videoPlacement },
+        }),
+      );
+    });
+  });
+})();

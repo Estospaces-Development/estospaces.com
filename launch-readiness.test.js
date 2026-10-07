@@ -177,3 +177,22 @@ test('security reporting publishes the verified domain mailbox as security.txt',
   assert.match(securityTxt, /Canonical: https:\/\/estospaces\.com\/\.well-known\/security\.txt/);
   assert.match(securityTxt, /Policy: https:\/\/estospaces\.com\/security/);
 });
+
+test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP', async () => {
+  const home = await read('./src/components/landing/Home.jsx');
+  const embed = await read('./src/components/site/VideoEmbed.jsx');
+  const script = await read('./public/navigation.js');
+  const nextConfig = await read('./next.config.mjs');
+
+  assert.deepEqual(
+    Object.values(siteConfig.videos).map((video) => video.id),
+    ['iX_gHgIUHhs', 'xM140AfjOBA', 'hi-H7D164NA'],
+  );
+  assert.match(home, /siteConfig\.videos\.overview/);
+  assert.match(home, /siteConfig\.videos\.user/);
+  assert.match(home, /siteConfig\.videos\.manager/);
+  assert.doesNotMatch(embed, /<iframe/); // nothing loads from YouTube before the visitor clicks
+  assert.match(script, /^\s*iframe\.src = `https:\/\/www\.youtube-nocookie\.com\/embed\//m);
+  const frameSrc = nextConfig.match(/"frame-src ([^"]*)"/)[1].split(' ');
+  assert.ok(new Set(frameSrc).has('https://www.youtube-nocookie.com'));
+});

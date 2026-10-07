@@ -27,10 +27,15 @@ export default function PageActivityTracker() {
       if (item) trackEvent('faq_opened', { item });
     };
 
+    const trackVideo = (event) =>
+      trackEvent('video_played', { placement: event.detail?.placement });
+
     document.addEventListener('toggle', trackDetails, true);
+    window.addEventListener('estospaces:video-play', trackVideo);
     return () => {
       observer.disconnect();
       document.removeEventListener('toggle', trackDetails, true);
+      window.removeEventListener('estospaces:video-play', trackVideo);
     };
   }, []);
 
