@@ -33,9 +33,6 @@ lerna-debug.log*
 *.swo
 *~
 
-# Vercel
-.vercel
-.npm-vercel-cache
 
 # TypeScript
 *.tsbuildinfo

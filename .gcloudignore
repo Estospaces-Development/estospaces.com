@@ -5,7 +5,6 @@ node_modules
 .next
 dist
 test-results
-.npm-vercel-cache
 coverage
 
 .env
