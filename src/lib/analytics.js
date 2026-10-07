@@ -15,6 +15,7 @@ const allowedEvents = new Set([
   'cookie_preferences_opened',
   'section_viewed',
   'faq_opened',
+  'video_played',
 ]);
 
 const allowedProperties = new Set([
