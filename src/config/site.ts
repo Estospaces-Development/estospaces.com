@@ -83,7 +83,8 @@ export const siteConfig = {
     overview: {
       id: 'iX_gHgIUHhs',
       title: 'EstoSpaces in 30 Seconds: Listings, Leads, Viewings and Fast Track in One App',
-      thumbnail: '/assets/landing/video-overview.webp',
+      thumbnail: '/assets/landing/video-overview-poster.webp',
+      tag: 'Overview / 30 sec',
     },
     user: {
       id: 'xM140AfjOBA',

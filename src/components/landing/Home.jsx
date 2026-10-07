@@ -61,7 +61,7 @@ const productScreens = [
     height: 609,
     alt: 'EstoSpaces seeker dashboard showing property search controls and primary navigation',
     href: siteConfig.paths.register,
-    action: 'Request seeker access',
+    action: 'Create seeker account',
     eventName: 'create_account_clicked',
     eventPlacement: 'product_proof_seeker',
     route: '/dashboard',
@@ -76,7 +76,7 @@ const productScreens = [
     height: 609,
     alt: 'EstoSpaces property manager dashboard showing Fast Track, listings, leads, applications, and performance metrics',
     href: siteConfig.paths.brokerRegister,
-    action: 'Request manager access',
+    action: 'Create manager account',
     eventName: 'broker_join_clicked',
     eventPlacement: 'product_proof_manager',
     route: '/manager/dashboard',
@@ -320,7 +320,6 @@ export default function Home() {
         >
           <div className={styles.videoSectionGrid}>
             <div>
-              <p className={styles.sectionCode}>Watch / 30 seconds</p>
               <h2 id="overview-video-title">See EstoSpaces in 30 seconds.</h2>
               <p>
                 A short tour of listings, leads, viewings, and Fast Track in one workspace. Private
@@ -342,7 +341,6 @@ export default function Home() {
           >
             <div className={styles.productProofIntro}>
               <div>
-                <p className={styles.sectionCode}>Field proof / Live application access</p>
                 <h2 id="product-proof-title">The workspace behind the promise.</h2>
               </div>
               <div className={styles.productProofContext}>
@@ -401,11 +399,7 @@ export default function Home() {
         <JourneyRoute stages={workflow} />
 
         <section className={styles.relaySection} data-analytics-section="audiences" id="relay">
-          <div aria-hidden="true" className={styles.relayAxis}>
-            <span>02</span>
-          </div>
           <div className={styles.sectionIntro}>
-            <p className={styles.sectionCode}>Chapter 02 / The relay</p>
             <h2>One journey. Clear responsibility on both sides.</h2>
             <p>
               EstoSpaces connects the seeker’s next action with the professional’s operating
@@ -444,7 +438,7 @@ export default function Home() {
                 eventProperties={{ placement: 'seeker_journey' }}
                 href={siteConfig.paths.register}
               >
-                Request seeker access <ArrowUpRight aria-hidden="true" size={17} />
+                Create seeker account <ArrowUpRight aria-hidden="true" size={17} />
               </TrackedLink>
             </SectionReveal>
 
@@ -478,7 +472,7 @@ export default function Home() {
                 eventProperties={{ placement: 'professional_journey' }}
                 href={siteConfig.paths.brokerRegister}
               >
-                Discuss professional access <ArrowUpRight aria-hidden="true" size={17} />
+                Create manager account <ArrowUpRight aria-hidden="true" size={17} />
               </TrackedLink>
             </SectionReveal>
           </div>
@@ -489,11 +483,7 @@ export default function Home() {
           data-analytics-section="difference"
           id="difference"
         >
-          <div aria-hidden="true" className={styles.differenceAxis}>
-            <span>03</span>
-          </div>
           <SectionReveal className={styles.sectionIntro}>
-            <p className={styles.sectionCode}>Chapter 03 / The difference</p>
             <h2>More than another property portal.</h2>
             <p>
               Most portals are built to help people discover properties. EstoSpaces is being built
@@ -505,7 +495,6 @@ export default function Home() {
           <SectionReveal className={styles.comparisonBlock}>
             <div className={styles.comparisonHeading}>
               <div>
-                <span>Comparative field note</span>
                 <h3>Compare the public product shape.</h3>
               </div>
               <div className={styles.comparisonCaveat}>
@@ -644,7 +633,6 @@ export default function Home() {
 
           <SectionReveal className={styles.trustBlock}>
             <div>
-              <p className={styles.sectionCode}>Built around trust</p>
               <h3>Accountability belongs in the workflow.</h3>
             </div>
             <ul>
@@ -673,7 +661,6 @@ export default function Home() {
           </div>
 
           <SectionReveal className={styles.whyExist}>
-            <p className={styles.sectionCode}>Why we exist</p>
             <h3>
               Property progress should not depend on scattered calls, messages, files, and memory.
             </h3>
@@ -691,11 +678,8 @@ export default function Home() {
         </section>
 
         <section className={styles.evidenceSection} data-analytics-section="evidence" id="evidence">
-          <div aria-hidden="true" className={styles.evidenceAxis}>
-            <span>04</span>
-          </div>
           <div className={styles.sectionIntro}>
-            <p className={styles.sectionCode}>Chapter 04 / Evidence</p>
+            <p className={styles.sectionCode}>Operating limits</p>
             <h2>The limits belong beside the claim.</h2>
             <p>
               Targets can be useful without being presented as promises. This is the operating
@@ -733,7 +717,6 @@ export default function Home() {
 
         <section className={styles.faqSection} data-analytics-section="faq" id="faq">
           <div className={styles.faqIntro}>
-            <p className={styles.sectionCode}>Field notes / Questions</p>
             <h2>Details, stated plainly.</h2>
             <p>
               Need an answer about your situation?{' '}
@@ -769,7 +752,6 @@ export default function Home() {
 
         <section className={styles.finalCta} data-analytics-section="final_cta">
           <div>
-            <p className={styles.sectionCode}>Next field action</p>
             <h2>Start with a clearer brief.</h2>
             <p>
               Open the private-beta registration route, or return to the application if you already

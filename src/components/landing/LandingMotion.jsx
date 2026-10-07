@@ -46,7 +46,7 @@ export function LandingHero({ brokerRegisterPath, loginPath, registerPath, searc
             eventProperties={{ placement: 'hero' }}
             href={registerPath}
           >
-            Request beta access <ArrowRight aria-hidden="true" size={18} />
+            Create account <ArrowRight aria-hidden="true" size={18} />
           </TrackedLink>
           <TrackedLink
             className={styles.secondaryAction}
@@ -74,10 +74,6 @@ export function LandingHero({ brokerRegisterPath, loginPath, registerPath, searc
       </aside>
 
       <div aria-hidden="true" className={styles.heroRouteLine} />
-      <div aria-hidden="true" className={styles.heroReference}>
-        <span>ESTO / FIELD 001</span>
-        <span>PRIVATE BETA / AREA VARIES</span>
-      </div>
     </section>
   );
 }
@@ -87,7 +83,7 @@ export function JourneyRoute({ stages }) {
     <section className={styles.journey} data-analytics-section="journey" id="journey">
       <div className={styles.journeyStatic}>
         <div className={styles.sectionIntro} data-scroll-reveal>
-          <p className={styles.sectionCode}>Chapter 01 / Documented route</p>
+          <p className={styles.sectionCode}>How it works</p>
           <h2>The next useful step, kept in view.</h2>
         </div>
         <ol>
