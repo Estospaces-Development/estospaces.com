@@ -323,8 +323,9 @@ export default function Home() {
               <p className={styles.sectionCode}>Watch / 30 seconds</p>
               <h2 id="overview-video-title">See EstoSpaces in 30 seconds.</h2>
               <p>
-                A short tour of listings, leads, viewings, and Fast Track in one workspace. Press
-                play to load the video from YouTube.
+                A short tour of listings, leads, viewings, and Fast Track in one workspace. Private
+                beta: access, inventory, and coverage vary by area. Press play to load the video
+                from YouTube.
               </p>
             </div>
             <VideoEmbed placement="overview" video={siteConfig.videos.overview} />
