@@ -1,15 +1,14 @@
 // biome-ignore-all lint/a11y/noNoninteractiveTabindex: The horizontal comparison region must be keyboard-scrollable.
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
 
 import { siteConfig } from '../../config/site';
 import PageActivityTracker from '../site/PageActivityTracker';
 import TrackedLink from '../site/TrackedLink';
-import TrackedSection from '../site/TrackedSection';
 import VideoEmbed from '../site/VideoEmbed';
 import { JourneyRoute, LandingHero, SectionReveal } from './LandingMotion';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import ProductTutorial from './ProductTutorial';
 import styles from './Landing.module.css';
 
 const workflow = [
@@ -47,39 +46,6 @@ const workflow = [
     title: 'Move toward a viewing or application',
     body: 'Fast Track is designed to help an active enquiry progress without losing sight of the people, documents, or decisions involved.',
     note: 'The 24-hour aim is progress, not completion.',
-  },
-];
-
-const productScreens = [
-  {
-    number: '01',
-    label: 'Seeker dashboard',
-    title: 'Search from one clear home base',
-    body: 'A cropped private-beta capture showing the real seeker dashboard, property search controls, and direct access to activity and messages.',
-    src: '/assets/landing/product-proof-seeker-fast-track.webp',
-    width: 1120,
-    height: 609,
-    alt: 'EstoSpaces seeker dashboard showing property search controls and primary navigation',
-    href: siteConfig.paths.register,
-    action: 'Create seeker account',
-    eventName: 'create_account_clicked',
-    eventPlacement: 'product_proof_seeker',
-    route: '/dashboard',
-  },
-  {
-    number: '02',
-    label: 'Manager dashboard',
-    title: 'See active work at a glance',
-    body: 'A cropped private-beta capture showing the real manager dashboard with Fast Track activity, listings, leads, applications, and performance context.',
-    src: '/assets/landing/product-proof-manager-fast-track.webp',
-    width: 1120,
-    height: 609,
-    alt: 'EstoSpaces property manager dashboard showing Fast Track, listings, leads, applications, and performance metrics',
-    href: siteConfig.paths.brokerRegister,
-    action: 'Create manager account',
-    eventName: 'broker_join_clicked',
-    eventPlacement: 'product_proof_manager',
-    route: '/manager/dashboard',
   },
 ];
 
@@ -331,70 +297,7 @@ export default function Home() {
           </div>
         </section>
 
-        {siteConfig.features.showProductScreenshots ? (
-          <TrackedSection
-            aria-labelledby="product-proof-title"
-            className={styles.productProofSection}
-            eventName="product_preview_viewed"
-            eventProperties={{ placement: 'product_proof' }}
-            id="product-proof"
-          >
-            <div className={styles.productProofIntro}>
-              <div>
-                <h2 id="product-proof-title">The workspace behind the promise.</h2>
-              </div>
-              <div className={styles.productProofContext}>
-                <p>
-                  Real, sanitized private-beta captures show the current seeker and manager
-                  dashboards. Access, inventory, workflow availability, and the test figures shown
-                  remain limited to the beta environment.
-                </p>
-                <span>Captured 10 July 2026 / Test data only / Cropped for clarity</span>
-              </div>
-            </div>
-
-            <div className={styles.productProofGrid}>
-              {productScreens.map((screen) => (
-                <article className={styles.productProofCard} key={screen.title}>
-                  <div aria-hidden="true" className={styles.productProofBrowser}>
-                    <span>
-                      <i />
-                      <i />
-                      <i />
-                    </span>
-                    <p>{screen.route}</p>
-                    <b>PRIVATE BETA</b>
-                  </div>
-                  <div className={styles.productProofViewport}>
-                    <Image
-                      alt={screen.alt}
-                      height={screen.height}
-                      sizes="(max-width: 767px) calc(100vw - 34px), (max-width: 1023px) 78vw, 44vw"
-                      src={screen.src}
-                      unoptimized
-                      width={screen.width}
-                    />
-                  </div>
-                  <div className={styles.productProofCaption}>
-                    <div>
-                      <span>{screen.number}</span>
-                      <p>{screen.label}</p>
-                    </div>
-                    <h3>{screen.title}</h3>
-                    <p>{screen.body}</p>
-                    <TrackedLink
-                      eventName={screen.eventName}
-                      eventProperties={{ placement: screen.eventPlacement }}
-                      href={screen.href}
-                    >
-                      {screen.action} <ArrowUpRight aria-hidden="true" size={17} />
-                    </TrackedLink>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </TrackedSection>
-        ) : null}
+        {siteConfig.features.showTutorial ? <ProductTutorial /> : null}
 
         <JourneyRoute stages={workflow} />
 
@@ -425,21 +328,19 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
-              <div className={styles.relayVideo}>
-                <VideoEmbed
-                  label="Watch the user masterclass"
-                  placement="seeker_masterclass"
-                  video={siteConfig.videos.user}
-                />
+              <div className={styles.relayActions}>
+                <a className={styles.textAction} href="#tutorial-user">
+                  Watch the seeker tutorial <ArrowUpRight aria-hidden="true" size={17} />
+                </a>
+                <TrackedLink
+                  className={styles.textAction}
+                  eventName="create_account_clicked"
+                  eventProperties={{ placement: 'seeker_journey' }}
+                  href={siteConfig.paths.register}
+                >
+                  Create seeker account <ArrowUpRight aria-hidden="true" size={17} />
+                </TrackedLink>
               </div>
-              <TrackedLink
-                className={styles.textAction}
-                eventName="create_account_clicked"
-                eventProperties={{ placement: 'seeker_journey' }}
-                href={siteConfig.paths.register}
-              >
-                Create seeker account <ArrowUpRight aria-hidden="true" size={17} />
-              </TrackedLink>
             </SectionReveal>
 
             <SectionReveal className={styles.relayPanel} delay={0.08}>
@@ -459,21 +360,19 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
-              <div className={styles.relayVideo}>
-                <VideoEmbed
-                  label="Watch the manager walkthrough"
-                  placement="manager_walkthrough"
-                  video={siteConfig.videos.manager}
-                />
+              <div className={styles.relayActions}>
+                <a className={styles.textAction} href="#tutorial-manager">
+                  Watch the manager tutorial <ArrowUpRight aria-hidden="true" size={17} />
+                </a>
+                <TrackedLink
+                  className={styles.textAction}
+                  eventName="broker_join_clicked"
+                  eventProperties={{ placement: 'professional_journey' }}
+                  href={siteConfig.paths.brokerRegister}
+                >
+                  Create manager account <ArrowUpRight aria-hidden="true" size={17} />
+                </TrackedLink>
               </div>
-              <TrackedLink
-                className={styles.textAction}
-                eventName="broker_join_clicked"
-                eventProperties={{ placement: 'professional_journey' }}
-                href={siteConfig.paths.brokerRegister}
-              >
-                Create manager account <ArrowUpRight aria-hidden="true" size={17} />
-              </TrackedLink>
             </SectionReveal>
           </div>
         </section>

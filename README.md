@@ -89,12 +89,13 @@ For external audit tools, configure these production-only items outside the code
 
 ## Deployment
 
-This project is configured for Vercel deployment. See `VERCEL_CONFIG.md` for details.
+Production runs on Google Cloud Run (`estospaces-landing-www`), built from the `Dockerfile`. `.github/workflows/cd.yml` builds and deploys on every push to `main`.
+
+The workflow currently pushes to the Mumbai (`asia-south1`) Artifact Registry, which no longer exists, so it fails at "Build and Push". Until it targets the `europe-west2` registry, production deploys use Cloud Build (`gcloud builds submit --region=europe-west2`), then `gcloud run services update --no-traffic --tag=...`, a canary, and `update-traffic` to 100%.
 
 ## Documentation
 
 - `IMPORT_PATHS_FIXED.md` - Import path structure documentation
-- `VERCEL_CONFIG.md` - Vercel deployment configuration
 - `EMAIL_SETUP.md` - Email configuration for reservation form
 - `docs/blog-ranking-protocol.md` - Blog SEO, AI answer visibility, QA and publishing protocol
 - `docs/dns-seo-records.md` - DNS records needed for SPF/DMARC and external SEO audits
