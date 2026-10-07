@@ -12,7 +12,7 @@ const contentSecurityPolicy = [
   "font-src 'self' data: https://static.zohocdn.com",
   "img-src 'self' data: blob: https:",
   "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://*.zoho.in https://*.zohopublic.in https://*.zohocdn.com wss://*.zoho.in wss://*.zohopublic.in",
-  "frame-src 'self' https://*.zoho.in https://*.zohopublic.in",
+  "frame-src 'self' https://www.youtube-nocookie.com https://*.zoho.in https://*.zohopublic.in",
   "media-src 'self' blob: https://*.zohopublic.in https://*.zohocdn.com",
   "form-action 'self' https://app.estospaces.com",
   "manifest-src 'self'",

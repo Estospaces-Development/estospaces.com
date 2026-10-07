@@ -6,6 +6,7 @@ import { siteConfig } from '../../config/site';
 import PageActivityTracker from '../site/PageActivityTracker';
 import TrackedLink from '../site/TrackedLink';
 import TrackedSection from '../site/TrackedSection';
+import VideoEmbed from '../site/VideoEmbed';
 import { JourneyRoute, LandingHero, SectionReveal } from './LandingMotion';
 import Footer from './Footer';
 import Navbar from './Navbar';
@@ -311,6 +312,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section
+          aria-labelledby="overview-video-title"
+          className={styles.videoSection}
+          data-analytics-section="overview_video"
+          id="overview-video"
+        >
+          <div className={styles.videoSectionGrid}>
+            <div>
+              <p className={styles.sectionCode}>Watch / 30 seconds</p>
+              <h2 id="overview-video-title">See EstoSpaces in 30 seconds.</h2>
+              <p>
+                A short tour of listings, leads, viewings, and Fast Track in one workspace. Press
+                play to load the video from YouTube.
+              </p>
+            </div>
+            <VideoEmbed placement="overview" video={siteConfig.videos.overview} />
+          </div>
+        </section>
+
         {siteConfig.features.showProductScreenshots ? (
           <TrackedSection
             aria-labelledby="product-proof-title"
@@ -410,6 +430,13 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
+              <div className={styles.relayVideo}>
+                <VideoEmbed
+                  label="Watch the user masterclass"
+                  placement="seeker_masterclass"
+                  video={siteConfig.videos.user}
+                />
+              </div>
               <TrackedLink
                 className={styles.textAction}
                 eventName="create_account_clicked"
@@ -437,6 +464,13 @@ export default function Home() {
                   </li>
                 ))}
               </ol>
+              <div className={styles.relayVideo}>
+                <VideoEmbed
+                  label="Watch the manager walkthrough"
+                  placement="manager_walkthrough"
+                  video={siteConfig.videos.manager}
+                />
+              </div>
               <TrackedLink
                 className={styles.textAction}
                 eventName="broker_join_clicked"

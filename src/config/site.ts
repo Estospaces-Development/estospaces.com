@@ -79,6 +79,23 @@ export const siteConfig = {
     instagram: 'https://www.instagram.com/estospaces/',
     linkedin: 'https://www.linkedin.com/company/estospaces-solutions-private-limited',
   },
+  videos: {
+    overview: {
+      id: 'iX_gHgIUHhs',
+      title: 'EstoSpaces in 30 Seconds: Listings, Leads, Viewings and Fast Track in One App',
+      thumbnail: '/assets/landing/video-overview.webp',
+    },
+    user: {
+      id: 'xM140AfjOBA',
+      title: 'How to Use Estospaces | Complete User Masterclass (Find a Home → Get Your Keys)',
+      thumbnail: '/assets/landing/video-user-masterclass.webp',
+    },
+    manager: {
+      id: 'hi-H7D164NA',
+      title: 'Stop Losing Property Leads: The Complete Estospaces Manager Walkthrough',
+      thumbnail: '/assets/landing/video-manager-walkthrough.webp',
+    },
+  },
   features: {
     showProductScreenshots: true,
     showTestimonials: false,
