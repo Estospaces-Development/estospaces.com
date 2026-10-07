@@ -193,5 +193,6 @@ test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP
   assert.match(home, /siteConfig\.videos\.manager/);
   assert.doesNotMatch(embed, /<iframe/); // nothing loads from YouTube before the visitor clicks
   assert.match(script, /youtube-nocookie\.com\/embed/);
-  assert.match(nextConfig, /frame-src[^"]*https:\/\/www\.youtube-nocookie\.com/);
+  const frameSrc = nextConfig.match(/"frame-src ([^"]*)"/)[1].split(' ');
+  assert.ok(frameSrc.includes('https://www.youtube-nocookie.com'));
 });

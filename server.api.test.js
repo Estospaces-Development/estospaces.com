@@ -73,7 +73,7 @@ test('health endpoint and Next config expose production security headers', async
   assert.match(csp, /font-src 'self' data: https:\/\/static\.zohocdn\.com/);
   assert.match(csp, /connect-src 'self' https:\/\/www\.google-analytics\.com/);
   assert.match(csp, /https:\/\/\*\.zohopublic\.in/);
-  assert.match(csp, /frame-src 'self' https:\/\/www\.youtube-nocookie\.com https:\/\/\*\.zoho\.in/);
+  assert.match(csp, /frame-src 'self' https:\/\/\*\.zoho\.in/);
   assert.doesNotMatch(csp, /api\.postcodes\.io/);
   assert.equal(headers.get('Cross-Origin-Opener-Policy'), 'same-origin');
 });
