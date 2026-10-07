@@ -423,23 +423,25 @@ async function verifyInteractions(page) {
     login: 'https://app.estospaces.com/login/',
   };
 
-  const proofImages = await page.locator('#product-proof img').evaluateAll((images) =>
-    images.map((image) => ({
-      alt: image.getAttribute('alt'),
-      complete: image.complete,
-      naturalWidth: image.naturalWidth,
-      naturalHeight: image.naturalHeight,
-    })),
-  );
-  assert(proofImages.length === 2, 'Product proof must contain exactly two approved captures');
+  const tutorial = await page.locator('#product-proof').evaluate((section) => ({
+    tabs: [...section.querySelectorAll('[role="tab"]')].map((tab) => tab.id),
+    visiblePanels: [...section.querySelectorAll('[role="tabpanel"]')].filter(
+      (panel) => !panel.hidden,
+    ).length,
+    chapters: section.querySelectorAll('[data-chapter-start]').length,
+    iframes: section.querySelectorAll('iframe').length,
+  }));
+  assert(tutorial.tabs.length === 2, 'Tutorial must offer a seeker and a manager tab');
   assert(
-    proofImages.every(
-      (image) =>
-        image.complete && image.naturalWidth === 1120 && image.naturalHeight === 609 && image.alt,
-    ),
-    `Product proof assets did not load correctly: ${JSON.stringify(proofImages)}`,
+    tutorial.visiblePanels === 1,
+    'Exactly one tutorial panel must be visible with scripts on',
   );
-  report.interactions.productProof = proofImages;
+  assert(
+    tutorial.chapters === 29,
+    `Tutorial must list all 29 chapters, found ${tutorial.chapters}`,
+  );
+  assert(tutorial.iframes === 0, 'No video player may load before the visitor presses play');
+  report.interactions.productProof = tutorial;
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(baseUrl, { waitUntil: 'networkidle' });

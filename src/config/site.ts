@@ -93,7 +93,7 @@ export const siteConfig = {
       label: 'Property seeker',
       duration: '17 min',
       summary:
-        'Follow one rental from search to keys: shortlist, Fast Track, documents, viewing, agreement.',
+        'Follow one rental through the product: shortlist, Fast Track, documents, viewing, agreement.',
       chapters: [
         ['00:00', 'Welcome to your home journey'],
         ['01:06', 'Account, profile and getting around'],

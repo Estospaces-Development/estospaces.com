@@ -266,4 +266,12 @@ test('role tutorial: real chapters, works without JavaScript, deep-linkable', as
   assert.match(script, /&start=\$\{start\}/);
   assert.match(script, /#tutorial-/);
   assert.match(tutorial, /id=\{`tutorial-\$\{key\}`\}/);
+
+  // constraints stay next to the claim (PRODUCT.md), and the release check follows this section
+  assert.match(tutorial, /Private beta/);
+  assert.match(tutorial, /not every feature shown is available/);
+  assert.match(script, /facades\.set\(frame, facade\)/); // a hidden tab's video is stopped
+  assert.match(script, /a\[href\^="#tutorial-"\]/); // links to the open tab still respond
+  const launchCheck = await read('./scripts/verify-launch.mjs');
+  assert.doesNotMatch(launchCheck, /product-proof img|1120/);
 });

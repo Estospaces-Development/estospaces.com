@@ -28,7 +28,8 @@ export default function ProductTutorial() {
         <h2 id="tutorial-title">Learn it live, in the real app.</h2>
         <p>
           Choose your role and follow a full walkthrough recorded on the real EstoSpaces app. Jump
-          to any chapter, or watch it start to finish.
+          to any chapter, or watch it start to finish. Private beta: access, inventory, and the
+          features shown vary by area.
         </p>
       </div>
 
@@ -105,7 +106,8 @@ export default function ProductTutorial() {
 
         <p className={styles.tutorialNote}>
           Every screen is the real EstoSpaces app. Names, homes, and records shown are fictional
-          training data. The video loads from YouTube only when you press play.
+          training data, and not every feature shown is available in every area yet. The video loads
+          from YouTube only when you press play.
         </p>
       </div>
     </TrackedSection>

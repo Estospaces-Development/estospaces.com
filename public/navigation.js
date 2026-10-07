@@ -48,6 +48,8 @@
 
 // Click-to-play videos: load a privacy-enhanced YouTube iframe only when the visitor asks for it.
 (() => {
+  const facades = new WeakMap();
+
   const mountVideo = (frame, source, start) => {
     const iframe = document.createElement('iframe');
     iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(source.id)}?autoplay=1&rel=0&modestbranding=1&playsinline=1${start > 0 ? `&start=${start}` : ''}`;
@@ -55,6 +57,8 @@
     iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     iframe.allowFullscreen = true;
     iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    const facade = frame.querySelector('a[data-video-id]');
+    if (facade) facades.set(frame, facade);
     frame.replaceChildren(iframe);
     iframe.focus();
 
@@ -98,6 +102,15 @@
       });
       panels.forEach((panel) => {
         panel.hidden = panel.dataset.tutorialPanel !== key;
+        if (!panel.hidden) return;
+        // Stop a playing video in a panel that is no longer shown: put its start button back.
+        const frame = panel.querySelector('[data-video-frame]');
+        if (frame && facades.has(frame)) {
+          frame.replaceChildren(facades.get(frame));
+          panel
+            .querySelectorAll('[data-chapter-start]')
+            .forEach((chapter) => chapter.removeAttribute('aria-current'));
+        }
       });
     };
 
@@ -130,6 +143,18 @@
         if (next === undefined) return;
         event.preventDefault();
         select(tabs[next].dataset.tutorialTab, true);
+      });
+    });
+
+    // A link to the tab that is already in the address bar fires no hashchange; handle the click.
+    document.querySelectorAll('a[href^="#tutorial-"]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const key = link.getAttribute('href').replace('#tutorial-', '');
+        if (!tabs.some((tab) => tab.dataset.tutorialTab === key)) return;
+        event.preventDefault();
+        select(key);
+        tablist.scrollIntoView({ block: 'start' });
+        window.history.replaceState(null, '', link.getAttribute('href'));
       });
     });
 
