@@ -5,18 +5,17 @@ import TrackedLink from '../site/TrackedLink';
 import styles from './Landing.module.css';
 
 const navItems = [
-  { index: '01', label: 'Product', href: '/#product', destination: 'product' },
-  { index: '02', label: 'How it works', href: '/#journey', destination: 'journey' },
+  { label: 'Product', href: '/#product', destination: 'product' },
+  { label: 'How it works', href: '/#journey', destination: 'journey' },
   {
-    index: '03',
     label: 'For property seekers',
     href: '/#property-seekers',
     destination: 'seekers',
   },
-  { index: '04', label: 'For brokers', href: '/#brokers', destination: 'brokers' },
-  { index: '05', label: 'Security', href: '/security', destination: 'security' },
-  { index: '06', label: 'About', href: '/about', destination: 'about' },
-  { index: '07', label: 'Blog', href: '/blogs', destination: 'blog' },
+  { label: 'For brokers', href: '/#brokers', destination: 'brokers' },
+  { label: 'Security', href: '/security', destination: 'security' },
+  { label: 'About', href: '/about', destination: 'about' },
+  { label: 'Blog', href: '/blogs', destination: 'blog' },
 ];
 
 export default function Navbar({ activePath = '/' }) {
@@ -50,7 +49,6 @@ export default function Navbar({ activePath = '/' }) {
                 href={item.href}
                 key={item.label}
               >
-                <span>{item.index}</span>
                 {item.label}
               </TrackedLink>
             ))}
@@ -99,7 +97,6 @@ export default function Navbar({ activePath = '/' }) {
                 href={item.href}
                 key={item.label}
               >
-                <span>{item.index}</span>
                 {item.label}
               </TrackedLink>
             ))}

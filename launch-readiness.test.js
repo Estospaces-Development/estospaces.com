@@ -196,3 +196,34 @@ test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP
   const frameSrc = nextConfig.match(/"frame-src ([^"]*)"/)[1].split(' ');
   assert.ok(new Set(frameSrc).has('https://www.youtube-nocookie.com'));
 });
+
+test('design rules: restrained eyebrows, readable type, one sign-up label per audience', async () => {
+  const home = await read('./src/components/landing/Home.jsx');
+  const motion = await read('./src/components/landing/LandingMotion.jsx');
+  const nav = await read('./src/components/landing/Navbar.jsx');
+  const css = await read('./src/components/landing/Landing.module.css');
+  const markup = `${home}\n${motion}\n${nav}`;
+
+  // at most one eyebrow per three sections (about ten sections on the page)
+  const eyebrows = (markup.match(/className=\{styles\.(sectionCode|heroKicker)\}/g) || []).length;
+  assert.ok(eyebrows <= 4, `expected at most 4 eyebrows, found ${eyebrows}`);
+
+  // no numbered chapter labels, decorative reference strips, or numbered nav prefixes
+  assert.doesNotMatch(markup, /Chapter 0\d|FIELD 001|Field notes|Field proof|Next field action/);
+  assert.doesNotMatch(markup, /heroReference|(relay|difference|evidence)Axis/);
+  assert.doesNotMatch(nav, /item\.index/);
+
+  // no type below 11.5px (0.72rem)
+  const sizes = [...css.matchAll(/font-size:\s*(\d*\.?\d+)rem/g)].map((match) => Number(match[1]));
+  assert.ok(
+    sizes.length > 0 && Math.min(...sizes) >= 0.72,
+    `smallest font-size ${Math.min(...sizes)}rem`,
+  );
+
+  // one label per intent: sign-up links say "Create ... account"
+  assert.doesNotMatch(
+    markup,
+    /Request beta access|Request seeker access|Request manager access|Discuss professional access/,
+  );
+  assert.match(motion, /Create account/);
+});

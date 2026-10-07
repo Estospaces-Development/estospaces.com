@@ -24,6 +24,7 @@ export default function VideoEmbed({ video, label, placement }) {
         <span aria-hidden="true" className={styles.videoPlay}>
           <Play fill="currentColor" size={26} />
         </span>
+        {video.tag ? <span className={styles.videoTag}>{video.tag}</span> : null}
         <span className={styles.videoLabel}>
           <span className="sr-only">Play video: </span>
           {label || video.title}
