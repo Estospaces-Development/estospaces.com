@@ -39,7 +39,7 @@ export default function SecurityPage() {
         </p>
         <p>
           No website can promise perfect protection. Security controls, dependencies, and operating
-          processes require ongoing review throughout the private beta.
+          processes are reviewed on an ongoing basis.
         </p>
       </PolicySection>
       <PolicySection title="Report a security issue">
