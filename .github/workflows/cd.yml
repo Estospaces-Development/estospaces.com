@@ -58,6 +58,8 @@ jobs:
             --image="$DEPLOY_IMAGE" \
             --region="$DEPLOY_REGION" \
             --project="$PROJECT_ID"
+          # A manual canary pins traffic to a named revision; send traffic back to the newest one.
+          gcloud run services update-traffic "$DEPLOY_SERVICE" --to-latest --region="$DEPLOY_REGION" --project="$PROJECT_ID"
 
       - name: Health check
         run: |
@@ -67,6 +69,9 @@ jobs:
           echo "Ready revision: ${READY_REVISION:-none}"
           test -n "$READY_REVISION"
           test "$READY_IMAGE" = "$DEPLOY_IMAGE"
+          LATEST_TRAFFIC="$(gcloud run services describe "$DEPLOY_SERVICE" --region="$DEPLOY_REGION" --project="$PROJECT_ID" --format='value(status.traffic[0].latestRevision)')"
+          echo "Traffic follows latest: ${LATEST_TRAFFIC:-unknown}"
+          test "$LATEST_TRAFFIC" = "True"
           for url in "${SERVICE_URL}/health" "https://estospaces.com/health"; do
             code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$url" || echo 000)"
             echo "$url -> HTTP $code"
