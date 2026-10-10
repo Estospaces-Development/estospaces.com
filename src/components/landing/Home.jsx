@@ -1,683 +1,1037 @@
 // biome-ignore-all lint/a11y/noNoninteractiveTabindex: The horizontal comparison region must be keyboard-scrollable.
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Bricolage_Grotesque, Geist, Geist_Mono } from 'next/font/google';
 
 import { siteConfig } from '../../config/site';
+import { buildPropertySearchUrl } from '../../lib/search-url';
 import PageActivityTracker from '../site/PageActivityTracker';
+import TrackedButton from '../site/TrackedButton';
 import TrackedLink from '../site/TrackedLink';
-import VideoEmbed from '../site/VideoEmbed';
-import { JourneyRoute, LandingHero, SectionReveal } from './LandingMotion';
-import Footer from './Footer';
-import Navbar from './Navbar';
-import ProductTutorial from './ProductTutorial';
-import styles from './Landing.module.css';
+import { ApartmentArt, FloorPlan } from './HomeArt';
+import HomeSearch from './HomeSearch';
+import HomeVideo from './HomeVideo';
+import styles from './Home.module.css';
 
-const workflow = [
+const display = Bricolage_Grotesque({
+  subsets: ['latin'],
+  axes: ['opsz'],
+  display: 'swap',
+  variable: '--font-display',
+});
+const body = Geist({ subsets: ['latin'], display: 'swap', variable: '--font-body' });
+const mono = Geist_Mono({ subsets: ['latin'], display: 'swap', variable: '--font-mono' });
+
+// Swapping the demo video only means replacing these files; update the length label with it.
+const demo = {
+  src: '/assets/landing/estospaces-demo.mp4',
+  poster: '/assets/landing/estospaces-demo-poster.jpg',
+  length: '2:17',
+};
+
+const { paths, videos } = siteConfig;
+const rentUrl = buildPropertySearchUrl(paths.search, { type: 'rent' });
+const buyUrl = buildPropertySearchUrl(paths.search, { type: 'sale' });
+const youtube = (id) => `https://www.youtube.com/watch?v=${id}`;
+
+const navLinks = [
+  ['Rent', rentUrl],
+  ['Buy', buyUrl],
+  ['How it works', '#how'],
+  ['For professionals', '#pros'],
+  ['Security', paths.security],
+];
+
+const trust = [
+  ['Verified professionals', 'Every lister is onboarded before a home goes live.'],
+  ['A clock you can see', '10-minute response target. Measured, not guaranteed.'],
+  ['Documents stay on the case', 'Share once — never forwarded around chats.'],
+  ['Fast Track to a viewing', 'The aim: a viewing within 24 hours.'],
+];
+
+const listings = [
   {
-    number: '01',
-    label: 'Prepare',
-    title: 'Start with your requirements',
-    body: 'Create an account and record the area, property type, timing, and practical constraints that matter to you.',
-    note: 'The registration route is available; completed access remains release-gated.',
+    title: '2BHK apartment',
+    place: 'Anna Nagar, Chennai',
+    meta: '1,150 sq ft · Near metro',
+    price: '₹38,000',
+    unit: '/ month',
+    avail: 'Available Nov',
+    reply: '~6 min',
+    plan: 'p2',
+    sky: '#F7E4D3',
+    ink: '#6B2C12',
+    room: '#EFCBAB',
   },
   {
-    number: '02',
-    label: 'Discover',
-    title: 'Review supported options',
-    body: 'When the production search service passes release checks, review current property information in supported areas.',
-    note: 'Coverage and inventory vary by area.',
+    title: '1-bed flat',
+    place: 'Didsbury, Manchester',
+    meta: '540 sq ft · Furnished',
+    price: '£1,150',
+    unit: 'pcm',
+    avail: 'Available now',
+    reply: '~9 min',
+    plan: 'p1',
+    sky: '#E2E8F1',
+    ink: '#2F3B52',
+    room: '#C8D3E4',
   },
   {
-    number: '03',
-    label: 'Connect',
-    title: 'Send a focused enquiry',
-    body: 'Where professional coverage is available, share the relevant property and context with a participating broker or manager.',
-    note: 'Availability depends on operating coverage.',
+    title: '3BHK villa',
+    place: 'Whitefield, Bengaluru',
+    meta: '2,400 sq ft · Gated',
+    price: '₹1.6 Cr',
+    unit: 'to buy',
+    avail: 'New launch',
+    reply: '~12 min',
+    plan: 'pv',
+    sky: '#E3EDDF',
+    ink: '#2F4A35',
+    room: '#C6DABF',
   },
   {
-    number: '04',
-    label: 'Track',
-    title: 'See the response and next action',
-    body: 'Keep messages, requested information, and the next useful action connected to one property journey.',
-    note: 'Ten minutes is a response target, not a guarantee.',
-  },
-  {
-    number: '05',
-    label: 'Progress',
-    title: 'Move toward a viewing or application',
-    body: 'Fast Track is designed to help an active enquiry progress without losing sight of the people, documents, or decisions involved.',
-    note: 'The 24-hour aim is progress, not completion.',
+    title: 'Studio',
+    place: 'Leith, Edinburgh',
+    meta: '410 sq ft · Near tram',
+    price: '£895',
+    unit: 'pcm',
+    avail: 'From 15 Nov',
+    reply: '~8 min',
+    plan: 'ps',
+    sky: '#EAE4F1',
+    ink: '#3E3A4C',
+    room: '#D4CAE2',
   },
 ];
 
-const seekerSteps = [
-  ['Set the brief', 'Record what you need before starting the property journey.'],
+const mapRows = [
+  ['#D9632B', '2BHK · Anna Nagar', '1,150 sq ft · near metro', '₹38k'],
+  ['#8C3A17', '3BHK · Shenoy Nagar', '1,480 sq ft · pet-friendly', '₹52k'],
+  ['#4F7A5A', '1BHK · Kilpauk', '640 sq ft · furnished', '₹24k'],
+];
+
+const pins = [
+  [34, 20, '₹31k'],
+  [60, 34, '₹52k'],
+  [18, 54, '₹24k'],
+  [70, 58, '₹45k'],
+  [12, 14, '₹28k'],
+];
+
+const steps = [
   [
-    'Keep context together',
-    'Return to the property, enquiry, messages, and requested information.',
+    '01 · Prepare',
+    'Start with your requirements',
+    'Area, budget, move-in date and must-haves — three quick questions.',
   ],
   [
-    'See the next action',
-    'Understand what is waiting on you and what is waiting on the professional.',
-  ],
-  ['Use Fast Track', 'Progress an eligible enquiry toward a viewing or application.'],
-];
-
-const professionalSteps = [
-  ['Complete onboarding', 'Follow the onboarding steps shown before using professional features.'],
-  [
-    'Receive useful context',
-    'See the property and enquiry details needed for a relevant response.',
+    '02 · Discover',
+    'Review supported options',
+    'Homes from verified professionals in the areas we cover.',
   ],
   [
-    'Manage active cases',
-    'Keep time-sensitive next actions visible across active property journeys.',
+    '03 · Connect',
+    'Send a focused enquiry',
+    'Your brief goes with it, so you never repeat yourself on a call.',
   ],
-  ['Review response timing', 'Track performance against the private-beta operating target.'],
+  [
+    '04 · Track',
+    'See the reply and next action',
+    'Who answered, how fast, and what they need from you.',
+  ],
+  [
+    '05 · Progress',
+    'Move to a viewing or application',
+    'Documents and the viewing slot live on the same case.',
+  ],
 ];
 
-const comparisonRows = [
-  {
-    feature: 'Property discovery',
-    estoSpaces: 'Release-gated beta',
-    magicBricks: 'Publicly offered',
-    acres: 'Publicly offered',
-    housing: 'Publicly offered',
-    noBroker: 'Publicly offered',
-  },
-  {
-    feature: 'Connect with a professional or owner',
-    estoSpaces: 'Participating professionals',
-    magicBricks: 'Buyer and seller connections',
-    acres: 'Owners, brokers, and builders',
-    housing: 'Owners, brokers, and builders',
-    noBroker: 'Owner-first plus service teams',
-  },
-  {
-    feature: 'Property or participant verification',
-    estoSpaces: 'Private-beta workflow',
-    magicBricks: 'Service-specific checks vary',
-    acres: 'Verified-listing signals',
-    housing: 'Broker verification products',
-    noBroker: 'Tenant and legal checks',
-  },
-  {
-    feature: 'Time-bound response workflow',
-    estoSpaces: '10-minute operating target',
-    magicBricks: 'No equivalent target confirmed',
-    acres: 'No equivalent target confirmed',
-    housing: 'No equivalent target confirmed',
-    noBroker: 'No equivalent target confirmed',
-  },
-  {
-    feature: 'Connected transaction case workspace',
-    estoSpaces: 'Fast Track beta workflow',
-    magicBricks: 'Service-specific assistance',
-    acres: 'No equivalent workspace confirmed',
-    housing: 'No equivalent workspace confirmed',
-    noBroker: 'Property-management services',
-  },
-  {
-    feature: 'Documents linked to case progress',
-    estoSpaces: 'Designed into Fast Track',
-    magicBricks: 'Loan and service contexts',
-    acres: 'No equivalent workspace confirmed',
-    housing: 'No equivalent workspace confirmed',
-    noBroker: 'Agreement and legal services',
-  },
-  {
-    feature: 'Professional operations view',
-    estoSpaces: 'Private-beta manager workflow',
-    magicBricks: 'Business tools vary',
-    acres: 'Listing and lead tools',
-    housing: 'Broker partner products',
-    noBroker: 'Relationship-manager services',
-  },
+const shortlist = [
+  ['#D9632B', '2BHK · Anna Nagar', 'Viewing Sat', '#E5F2EA', '#1F6A44'],
+  ['#5D6F8C', '1-bed · Didsbury', 'Replied', '#FBE9DD', '#9A3A0A'],
+  ['#4F7A5A', '3BHK villa · Whitefield', 'Docs sent', '#EEEBE6', '#4A443D'],
 ];
 
-const traditionalJourney = [
-  'Search across listings',
-  'Contact several people',
-  'Wait for callbacks',
-  'Move the conversation to calls or messaging apps',
-  'Exchange files separately',
-  'Arrange appointments elsewhere',
-  'Track progress yourself',
+const days = [
+  ['WED', '11'],
+  ['THU', '12'],
+  ['FRI', '13'],
+  ['SAT', '14'],
+  ['SUN', '15'],
 ];
 
-const connectedJourney = [
-  'Set a clear property brief',
-  'Review supported property options',
-  'Connect with a participating professional',
-  'Track the response target',
-  'Shortlist the relevant property',
-  'Use Fast Track for an eligible case',
-  'Keep documents, messages, and next actions together',
-  'Progress toward a viewing or application',
+const leads = [
+  [
+    'AR',
+    '#FBE1D0',
+    '#9A3A0A',
+    'Ananya R. · 2BHK to rent',
+    '₹35–40k · Move in Nov · Pet-friendly',
+    '6:42',
+  ],
+  ['TH', '#DCE3EF', '#2F3B52', 'Tom H. · 1-bed flat', '£1,150 pcm · Didsbury', '8:15'],
+  ['FZ', '#DDEBDF', '#1F6A44', 'Farhan & Zoya · 3BHK to buy', '₹1.6 Cr · Whitefield', 'Docs in'],
 ];
 
-const trustSignals = [
-  'Onboarding and verification workflows',
-  'Property responsibility kept visible',
-  'Secure document handling by design',
-  'Connected case timeline',
-  'Activity history',
-  'Guided next actions',
-  'Transparent operating limits',
-];
-
-const audienceUseCases = [
-  {
-    audience: 'Property seekers',
-    items: [
-      'Find supported options when search is released',
-      'Request a relevant professional connection',
-      'Track each active next action',
-      'Keep case documents and messages together',
-    ],
-  },
-  {
-    audience: 'Brokers and managers',
-    items: [
-      'Manage inventory and enquiry context',
-      'Respond within the live operating window',
-      'Share relevant property options',
-      'Manage active cases, appointments, and contracts',
-    ],
-  },
-];
-
-const evidence = [
-  {
-    signal: 'Response target',
-    status: '10 minutes',
-    detail:
-      'Participating professionals during supported operating periods. Actual response time varies.',
-  },
-  {
-    signal: 'Fast Track aim',
-    status: 'Within 24 hours',
-    detail:
-      'Progress toward a viewing or application. It is not a tenancy or purchase completion promise.',
-  },
-  {
-    signal: 'Platform role',
-    status: 'Software provider',
-    detail:
-      'No estate-agency status is claimed. Property professionals remain responsible for their services.',
-  },
-  {
-    signal: 'Availability',
-    status: 'Private beta',
-    detail: 'Access, inventory, and professional coverage are limited and vary by area.',
-  },
+const comparison = [
+  ['Browse homes', 'Yes'],
+  ['Verified professional on every listing', 'Varies'],
+  ['Your brief sent with every enquiry', '—'],
+  ['Response time you can see', '—'],
+  ['Documents kept with your case', '—'],
+  ['Viewing tracked to the next step', '—'],
 ];
 
 const faqs = [
-  {
-    question: 'What does private beta mean?',
-    answer:
-      'EstoSpaces is available to a limited group while product reliability, property coverage, and operating processes are validated. Features and availability can change during this period.',
-  },
-  {
-    question: 'Is a professional response guaranteed within 10 minutes?',
-    answer:
-      'No. Participating professionals are measured against a 10-minute response target during supported operating periods. Actual response times vary with coverage, availability, and operating conditions.',
-  },
-  {
-    question: 'What does Fast Track promise?',
-    answer:
-      'Fast Track is designed to help move an enquiry toward a viewing or application within 24 hours. It does not guarantee that a rental or purchase will complete within 24 hours.',
-  },
-  {
-    question: 'Is EstoSpaces an estate agency?',
-    answer:
-      'No agency status is claimed. EstoSpaces is software backed by Estospaces Solutions Private Limited in India and Estospaces Solutions Limited in the United Kingdom. Property professionals remain responsible for their services and property information.',
-  },
-  {
-    question: 'Which areas are supported?',
-    answer:
-      'Coverage is being validated area by area during private beta. Inventory and participating-professional availability vary, and public search will only be promoted after its production release checks pass.',
-  },
+  [
+    'private-beta',
+    'What does private beta mean?',
+    'EstoSpaces is open for account registration while we bring areas and professionals online. Features and coverage vary by area, and we say so where it matters.',
+  ],
+  [
+    'ten-minutes',
+    'Is a reply within 10 minutes guaranteed?',
+    'No. It is a response target professionals work to, and the time is measured and shown to you. Actual times vary.',
+  ],
+  [
+    'fast-track',
+    'What does Fast Track mean?',
+    'Fast Track moves an active enquiry toward a viewing or application, with the aim of a viewing within 24 hours. It is an aim, not a promise.',
+  ],
+  [
+    'agency',
+    'Is EstoSpaces an estate agency?',
+    'No. EstoSpaces is a software provider. Listings and viewings are handled by the verified professionals on the platform.',
+  ],
+  [
+    'areas',
+    'Which areas are supported?',
+    'Coverage is limited and growing across India and the UK. The map and search show exactly where homes are available today.',
+  ],
 ];
+
+const footerGroups = [
+  [
+    'Access',
+    [
+      ['Create account', paths.register, 'create_account_clicked', 'create_account'],
+      ['Log in', paths.login, 'login_clicked', 'login'],
+      ['Professional access', paths.brokerRegister, 'broker_join_clicked', 'professional'],
+    ],
+  ],
+  [
+    'Company',
+    [
+      ['About', paths.about, 'navigation_clicked', 'about'],
+      ['Security', paths.security, 'navigation_clicked', 'security'],
+      ['Blog', paths.blog, 'navigation_clicked', 'blog'],
+      ['Contact', paths.contact, 'contact_clicked', 'contact'],
+    ],
+  ],
+  [
+    'Follow',
+    [
+      ['X / Twitter', siteConfig.social.x, 'social_link_clicked', 'x'],
+      ['Instagram', siteConfig.social.instagram, 'social_link_clicked', 'instagram'],
+      ['LinkedIn', siteConfig.social.linkedin, 'social_link_clicked', 'linkedin'],
+    ],
+  ],
+];
+
+const cx = (...names) => names.filter(Boolean).join(' ');
+
+function BrandMark({ size, iconSize, className }) {
+  return (
+    <span className={className} style={{ width: size, height: size }}>
+      <svg
+        aria-hidden="true"
+        fill="none"
+        height={iconSize}
+        stroke="#FFFFFF"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.4"
+        viewBox="0 0 24 24"
+        width={iconSize}
+      >
+        <path d="M4 11.5 12 5l8 6.5V20H4z" />
+        <path d="M10 20v-5h4v5" />
+      </svg>
+    </span>
+  );
+}
+
+function Tick({ className }) {
+  return (
+    <span className={className}>
+      <svg
+        aria-hidden="true"
+        fill="none"
+        height="12"
+        stroke="#FFFFFF"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="3.4"
+        viewBox="0 0 24 24"
+        width="12"
+      >
+        <path d="m5 12 5 5 9-10" />
+      </svg>
+    </span>
+  );
+}
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div className={cx(styles.page, display.variable, body.variable, mono.variable)}>
       <PageActivityTracker />
-      <Navbar />
-      <main id="main-content">
-        <LandingHero
-          brokerRegisterPath={siteConfig.paths.brokerRegister}
-          loginPath={siteConfig.paths.login}
-          registerPath={siteConfig.paths.register}
-          searchNotice="Property search is not available in this public beta yet."
-        />
 
+      {/* ============ NAV ============ */}
+      <header className={styles.header}>
+        <div className={styles.headerInner}>
+          <a aria-label={`${siteConfig.name} home`} className={styles.brand} href="/">
+            <BrandMark className={styles.brandMark} iconSize={18} size={34} />
+            <span className={cx(styles.display, styles.brandName)}>estospaces</span>
+          </a>
+          <nav aria-label="Main" className={styles.nav}>
+            {navLinks.map(([label, href]) => (
+              <a className={styles.navLink} href={href} key={label}>
+                {label}
+              </a>
+            ))}
+          </nav>
+          <div className={styles.access}>
+            <TrackedLink
+              className={styles.loginLink}
+              eventName="login_clicked"
+              eventProperties={{ placement: 'header' }}
+              href={paths.login}
+            >
+              Log in
+            </TrackedLink>
+            <TrackedLink
+              className={styles.signupBtn}
+              eventName="create_account_clicked"
+              eventProperties={{ placement: 'header' }}
+              href={paths.register}
+            >
+              Create account
+            </TrackedLink>
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content">
+        {/* ============ HERO ============ */}
+        <section className={styles.hero} data-analytics-section="hero" id="product">
+          <div className={styles.heroGrid}>
+            <div className={styles.heroCopy}>
+              <div className={cx(styles.badgeRow, styles.rise)}>
+                <span className={styles.badge}>
+                  <span aria-hidden="true" className={styles.badgeDot} />
+                  Private beta · India &amp; the UK
+                </span>
+              </div>
+              <h1 className={cx(styles.display, styles.h1, styles.rise)} style={{ '--d': '0.08s' }}>
+                Homes that <span className={styles.accentText}>answer&nbsp;back.</span>
+              </h1>
+              <p className={cx(styles.lede, styles.rise)} style={{ '--d': '0.16s' }}>
+                Send one clear brief to verified professionals. See who replied, what they need, and
+                when your viewing is — in one place, not scattered across calls and chats.
+              </p>
+              <dl className={cx(styles.stats, styles.rise)} style={{ '--d': '0.24s' }}>
+                {[
+                  ['10 min', 'reply target, shown live'],
+                  ['24 h', 'Fast Track aim to a viewing'],
+                  ['1 case', 'brief, docs & viewing'],
+                ].map(([value, label]) => (
+                  <div className={styles.stat} key={value}>
+                    <dt className={cx(styles.mono, styles.statValue)}>{value}</dt>
+                    <dd className={styles.statLabel} style={{ margin: 0 }}>
+                      {label}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div className={cx(styles.heroVisual, styles.rise)} style={{ '--d': '0.12s' }}>
+              <div className={styles.heroArt}>
+                <ApartmentArt />
+                <span className={styles.heroPlace}>Anna Nagar, Chennai</span>
+              </div>
+
+              <figure aria-label="Example case: 2BHK in Anna Nagar" className={styles.caseCard}>
+                <div className={styles.caseHead}>
+                  <div className={styles.caseHeadText}>
+                    <span className={styles.caseMeta}>Case #0418 · with Rahul K.</span>
+                    <span className={cx(styles.display, styles.caseTitle)}>2BHK · Anna Nagar</span>
+                  </div>
+                  <span className={cx(styles.mono, styles.casePrice)}>₹38,000/mo</span>
+                </div>
+                <div className={styles.caseSteps}>
+                  <div className={styles.caseStep}>
+                    <Tick className={styles.stepDone} />
+                    <span className={styles.caseStepGrow}>Brief sent</span>
+                    <span className={cx(styles.mono, styles.caseTime)}>7:02 pm</span>
+                  </div>
+                  <div className={styles.caseStep}>
+                    <Tick className={styles.stepDone} />
+                    <span className={styles.caseStepGrow}>Rahul replied</span>
+                    <span
+                      className={styles.mono}
+                      style={{ color: 'var(--green)', fontSize: 12, fontWeight: 600 }}
+                    >
+                      in 6 min
+                    </span>
+                  </div>
+                  <div className={styles.caseStep}>
+                    <span aria-hidden="true" className={styles.stepNow} />
+                    <span className={styles.caseStepGrow} style={{ fontWeight: 600 }}>
+                      Upload ID &amp; income proof
+                    </span>
+                    <span className={styles.caseTime}>2 of 3</span>
+                  </div>
+                  <div className={styles.caseStep} style={{ color: 'var(--ink-3)' }}>
+                    <span aria-hidden="true" className={styles.stepNext} />
+                    <span className={styles.caseStepGrow}>Viewing</span>
+                    <span className={cx(styles.mono, styles.caseTime)}>Sat · 11:00</span>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+
+          <div className={styles.searchWrap}>
+            <HomeSearch searchUrl={paths.search} />
+          </div>
+
+          <div className={styles.trustWrap}>
+            <ul className={styles.trust}>
+              {trust.map(([title, text]) => (
+                <li className={styles.trustItem} key={title}>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ============ LISTINGS ============ */}
         <section
-          aria-label="Current product status"
-          className={styles.statusLedger}
-          data-analytics-section="status"
+          aria-labelledby="listings-title"
+          className={styles.section}
+          data-analytics-section="listings"
+          id="property-seekers"
         >
-          <div className={styles.statusLedgerInner}>
-            <div className={styles.statusLead}>
-              <span>Current field status</span>
-              <strong>Private beta</strong>
+          <div className={cx(styles.wrap, styles.listings)}>
+            <div className={styles.listingsHead}>
+              <div className={styles.listingsHeadText}>
+                <h2 className={cx(styles.display, styles.h2)} id="listings-title">
+                  Fresh on EstoSpaces
+                </h2>
+                <p className={styles.subtle}>
+                  Every home listed by a verified professional — with how fast they usually reply.
+                </p>
+              </div>
+              <a className={styles.outlineBtn} href={paths.search}>
+                Explore all homes
+                <svg
+                  aria-hidden="true"
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.2"
+                  viewBox="0 0 24 24"
+                  width="16"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
             </div>
-            <div>
-              <span>Platform role</span>
-              <strong>Software provider</strong>
+
+            <div className={styles.cards}>
+              {listings.map((l, index) => (
+                <article
+                  className={cx(styles.card, styles.reveal)}
+                  key={l.title}
+                  style={{ '--d': `${index * 0.06}s` }}
+                >
+                  <div className={styles.thumb} style={{ background: l.sky }}>
+                    <FloorPlan
+                      ink={l.ink}
+                      plan={l.plan}
+                      room={l.room}
+                      sky={l.sky}
+                      title={l.title}
+                    />
+                    <a className={styles.saveBtn} href={paths.register}>
+                      <span className={styles.srOnly}>Save {l.title} (create an account)</span>
+                      <svg
+                        aria-hidden="true"
+                        fill="none"
+                        height="17"
+                        stroke="#16130F"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        width="17"
+                      >
+                        <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" />
+                      </svg>
+                    </a>
+                  </div>
+                  <div className={styles.cardBody}>
+                    <div className={styles.cardRow}>
+                      <h3 className={styles.cardTitle}>{l.title}</h3>
+                      <span className={styles.avail}>{l.avail}</span>
+                    </div>
+                    <span className={styles.cardPlace}>{l.place}</span>
+                    <span className={styles.cardMeta}>{l.meta} · Verified agent</span>
+                    <div className={styles.cardFoot}>
+                      <span className={styles.price}>
+                        <strong>{l.price}</strong>{' '}
+                        <span className={styles.priceUnit}>{l.unit}</span>
+                      </span>
+                      <span className={styles.reply}>Replies in {l.reply}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
-            <div>
-              <span>Operating targets</span>
-              <strong>Measured, not guaranteed</strong>
-            </div>
-            <div>
-              <span>Area coverage</span>
-              <strong>Limited and variable</strong>
+            <p className={styles.footnote}>
+              Sample listings for design — fills from live inventory.
+            </p>
+          </div>
+        </section>
+
+        {/* ============ MAP ============ */}
+        <section
+          aria-labelledby="map-title"
+          className={styles.section}
+          data-analytics-section="map"
+        >
+          <div className={styles.wrap}>
+            <div className={styles.mapCard}>
+              <div className={styles.mapCopy}>
+                <h2 className={cx(styles.display, styles.h2Map)} id="map-title">
+                  See where you&apos;d actually live.
+                </h2>
+                <p className={styles.bodyText}>
+                  Verified homes on one map, with price and typical reply time on every pin.
+                  Coverage is growing area by area — the map shows exactly where we&apos;re live.
+                </p>
+                <ul className={styles.mapList}>
+                  {mapRows.map(([color, title, meta, price]) => (
+                    <li className={styles.mapRow} key={title}>
+                      <span
+                        aria-hidden="true"
+                        className={styles.swatch}
+                        style={{ background: color }}
+                      />
+                      <div className={styles.mapRowText}>
+                        <strong>{title}</strong>
+                        <span>{meta}</span>
+                      </div>
+                      <span className={cx(styles.mono, styles.mapRowPrice)}>{price}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a className={styles.darkBtn} href={paths.search}>
+                  Open the map
+                </a>
+              </div>
+
+              <div
+                className={styles.map}
+                role="img"
+                aria-label="Illustrative map of homes with price pins"
+              >
+                <svg
+                  aria-hidden="true"
+                  className={styles.mapSvg}
+                  preserveAspectRatio="xMidYMid slice"
+                  viewBox="0 0 620 600"
+                >
+                  <rect fill="#EFEAE2" height="600" width="620" />
+                  <path
+                    d="M-20 430 C 120 380, 200 470, 330 420 S 560 360, 660 400 L 660 640 L -20 640 Z"
+                    fill="#CFE0E6"
+                  />
+                  <rect fill="#D7E5CF" height="110" rx="18" width="150" x="380" y="70" />
+                  <rect fill="#D7E5CF" height="90" rx="16" width="110" x="60" y="210" />
+                  <path d="M-10 150 L 640 110" stroke="#FFFFFF" strokeWidth="18" />
+                  <path d="M-10 330 L 640 290" stroke="#FFFFFF" strokeWidth="14" />
+                  <path d="M230 -10 L 270 620" stroke="#FFFFFF" strokeWidth="18" />
+                  <path d="M470 -10 L 430 620" stroke="#FFFFFF" strokeWidth="12" />
+                  <path
+                    d="M60 -10 C 120 200, 40 380, 120 620"
+                    fill="none"
+                    stroke="#FFFFFF"
+                    strokeWidth="10"
+                  />
+                  <path d="M-10 240 L 640 220" stroke="#F7F4EF" strokeWidth="6" />
+                  <path d="M350 -10 L 360 620" stroke="#F7F4EF" strokeWidth="6" />
+                  <path d="M140 -10 L 160 620" stroke="#F7F4EF" strokeWidth="6" />
+                  <path d="M560 -10 L 540 620" stroke="#F7F4EF" strokeWidth="6" />
+                </svg>
+                {pins.map(([left, top, price]) => (
+                  <span
+                    className={cx(styles.mono, styles.pin)}
+                    key={price}
+                    style={{ left: `${left}%`, top: `${top}%` }}
+                  >
+                    {price}
+                  </span>
+                ))}
+                <div className={styles.pinGroup}>
+                  <span
+                    className={cx(styles.mono, styles.pin, styles.pinOn)}
+                    style={{ position: 'static' }}
+                  >
+                    ₹38k
+                  </span>
+                  <div className={styles.pinCard}>
+                    <span aria-hidden="true" className={styles.pinCardSwatch} />
+                    <span className={styles.pinCardText}>
+                      <strong>2BHK · Anna Nagar</strong>
+                      <span>Replies in ~6 min</span>
+                      <span className={styles.pinAvail}>Available Nov</span>
+                    </span>
+                  </div>
+                </div>
+                <div className={styles.mapNote}>Illustrative map</div>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* ============ HOW IT WORKS ============ */}
         <section
-          aria-labelledby="overview-video-title"
-          className={styles.videoSection}
+          aria-labelledby="how-title"
+          className={styles.section}
+          data-analytics-section="how_it_works"
+          id="how"
+        >
+          <span aria-hidden="true" id="journey" />
+          <div className={cx(styles.wrap, styles.how)}>
+            <div className={styles.howHead}>
+              <h2 className={cx(styles.display, styles.h2How)} id="how-title">
+                Everything after “I&apos;m interested” — handled.
+              </h2>
+              <p className={styles.howLede}>
+                Other sites stop at the listing. EstoSpaces keeps the next useful step in view until
+                you&apos;re standing in the home.
+              </p>
+            </div>
+
+            <ol className={styles.steps}>
+              {steps.map(([num, title, text], index) => (
+                <li className={styles.step} key={num}>
+                  <span
+                    className={cx(styles.mono, styles.stepNum, index === 2 && styles.stepNumOn)}
+                  >
+                    {num}
+                  </span>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ol>
+
+            <div className={styles.bento}>
+              <div className={cx(styles.tile, styles.reveal)}>
+                <div className={styles.tileHead}>
+                  <h3>Shortlist, compare, decide</h3>
+                  <p>Every saved home shows exactly where it stands.</p>
+                </div>
+                <ul className={styles.shortlist}>
+                  {shortlist.map(([color, name, tag, tagBg, tagColor]) => (
+                    <li className={styles.shortRow} key={name}>
+                      <span
+                        aria-hidden="true"
+                        className={styles.shortThumb}
+                        style={{ background: color }}
+                      />
+                      <span className={styles.shortName}>{name}</span>
+                      <span className={styles.tag} style={{ background: tagBg, color: tagColor }}>
+                        {tag}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div
+                className={cx(styles.tile, styles.tileDark, styles.onDark, styles.reveal)}
+                style={{ '--d': '0.06s' }}
+              >
+                <div className={styles.tileHead}>
+                  <h3>Hear back, fast</h3>
+                  <p>
+                    Professionals work to a 10-minute response target — and you can see the clock.
+                  </p>
+                </div>
+                <div className={styles.clock}>
+                  <div className={styles.ring}>
+                    <svg aria-hidden="true" height="120" viewBox="0 0 120 120" width="120">
+                      <circle
+                        cx="60"
+                        cy="60"
+                        fill="none"
+                        r="52"
+                        stroke="#2E2924"
+                        strokeWidth="10"
+                      />
+                      <circle
+                        cx="60"
+                        cy="60"
+                        fill="none"
+                        r="52"
+                        stroke="#C8460D"
+                        strokeDasharray="230 327"
+                        strokeLinecap="round"
+                        strokeWidth="10"
+                        transform="rotate(-90 60 60)"
+                      />
+                    </svg>
+                    <span className={cx(styles.mono, styles.ringTime)}>6:12</span>
+                  </div>
+                  <span className={styles.clockNote}>
+                    A target, not a guarantee. Actual times vary and are shown honestly.
+                  </span>
+                </div>
+              </div>
+
+              <div className={cx(styles.tile, styles.reveal)} style={{ '--d': '0.12s' }}>
+                <div className={styles.tileHead}>
+                  <h3>Viewings, booked</h3>
+                  <p>Fast Track aims to get you to a viewing within 24 hours.</p>
+                </div>
+                <ul className={styles.days}>
+                  {days.map(([name, num]) => (
+                    <li className={cx(styles.day, name === 'SAT' && styles.dayOn)} key={name}>
+                      <span className={styles.dayName}>{name}</span>
+                      <span className={styles.dayNum}>{num}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ VIDEO + TUTORIALS ============ */}
+        <section
+          aria-labelledby="learn-title"
+          className={styles.section}
           data-analytics-section="overview_video"
           id="overview-video"
         >
-          <div className={styles.videoSectionGrid}>
+          <div className={cx(styles.wrap, styles.videoRow)}>
+            <HomeVideo
+              length={demo.length}
+              poster={demo.poster}
+              src={demo.src}
+              title="See EstoSpaces in 2 minutes."
+            />
+            <div className={styles.learn}>
+              <h3 className={cx(styles.display, styles.h3Learn)} id="learn-title">
+                Learn it live, in the real app.
+              </h3>
+              {[
+                ['For property seekers', 'From account setup to agreement and keys', videos.user],
+                [
+                  'For brokers & managers',
+                  'Listings, leads, Fast Track, documents and viewings',
+                  videos.manager,
+                ],
+              ].map(([who, title, video]) => (
+                <a
+                  className={styles.learnCard}
+                  href={youtube(video.id)}
+                  key={who}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className={styles.learnWho}>{who}</span>
+                  <strong>{title}</strong>
+                  <span className={styles.learnFoot}>
+                    <span>{video.chapters.length} chapters</span>
+                    <span>
+                      Watch <span aria-hidden="true">→</span>
+                      <span className={styles.srOnly}> on YouTube (opens in a new tab)</span>
+                    </span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ PROFESSIONALS ============ */}
+        <section
+          aria-labelledby="pros-title"
+          className={styles.section}
+          data-analytics-section="professionals"
+          id="pros"
+        >
+          <span aria-hidden="true" id="brokers" />
+          <div className={styles.wrap}>
+            <div className={cx(styles.pros, styles.onDark)}>
+              <div className={styles.prosCopy}>
+                <span className={styles.prosKicker}>For brokers &amp; property managers</span>
+                <h2 className={cx(styles.display, styles.h2)} id="pros-title">
+                  Turn enquiries into viewings —{' '}
+                  <span className={styles.prosAccent}>not WhatsApp chaos.</span>
+                </h2>
+                <p className={styles.prosLede}>
+                  Enquiries arrive with a real brief. Your queue shows who&apos;s waiting and for
+                  how long. Documents and viewings stay on one case — so nothing depends on whose
+                  phone it landed on.
+                </p>
+                <div className={styles.btnRow}>
+                  <TrackedLink
+                    className={styles.accentBtn}
+                    eventName="broker_join_clicked"
+                    eventProperties={{ placement: 'professionals' }}
+                    href={paths.brokerRegister}
+                  >
+                    List your properties
+                  </TrackedLink>
+                  <TrackedLink
+                    className={styles.ghostBtn}
+                    eventName="login_clicked"
+                    eventProperties={{ placement: 'professionals' }}
+                    href={paths.login}
+                  >
+                    Partner log in
+                  </TrackedLink>
+                </div>
+              </div>
+
+              <div className={styles.queue}>
+                <div className={styles.queueHead}>
+                  <span className={styles.queueTitle}>
+                    <span aria-hidden="true" className={styles.queueDot} />
+                    Waiting on you
+                  </span>
+                  <span className={styles.queueNote}>Illustrative</span>
+                </div>
+                {leads.map(([initials, bg, color, name, detail, badge], index) => (
+                  <div className={cx(styles.lead, index === 0 && styles.leadHot)} key={initials}>
+                    <span
+                      aria-hidden="true"
+                      className={styles.avatar}
+                      style={{ background: bg, color }}
+                    >
+                      {initials}
+                    </span>
+                    <span className={styles.leadText}>
+                      <strong>{name}</strong>
+                      <span>{detail}</span>
+                    </span>
+                    <span
+                      className={cx(
+                        styles.leadBadge,
+                        index === 2 ? styles.leadBadgePlain : styles.mono,
+                      )}
+                    >
+                      {badge}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============ COMPARISON ============ */}
+        <section
+          aria-labelledby="compare-title"
+          className={styles.section}
+          data-analytics-section="comparison"
+        >
+          <div className={cx(styles.wrap, styles.compare)}>
+            <h2 className={cx(styles.display, styles.h2)} id="compare-title">
+              More than another listings site.
+            </h2>
             <div>
-              <h2 id="overview-video-title">See EstoSpaces in 30 seconds.</h2>
-              <p>
-                A short tour of listings, leads, viewings, and Fast Track in one workspace. Private
-                beta: access, inventory, and coverage vary by area. Press play to load the video
-                from YouTube.
+              <section
+                aria-describedby="comparison-scroll-hint"
+                aria-labelledby="compare-title"
+                className={styles.tableWrap}
+                tabIndex={0}
+              >
+                <table className={styles.table}>
+                  <thead>
+                    <tr>
+                      <th scope="col">What you get</th>
+                      <th scope="col">Typical portal</th>
+                      <th className={styles.us} scope="col">
+                        EstoSpaces
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparison.map(([feature, portal]) => (
+                      <tr key={feature}>
+                        <td>{feature}</td>
+                        <td className={portal === 'Yes' ? undefined : styles.muted}>
+                          {portal === '—' ? (
+                            <>
+                              <span aria-hidden="true">—</span>
+                              <span className={styles.srOnly}>No</span>
+                            </>
+                          ) : (
+                            portal
+                          )}
+                        </td>
+                        <td className={styles.usCell}>Yes</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+              <p className={styles.scrollHint} id="comparison-scroll-hint">
+                Swipe or use the left and right arrow keys to see the whole table.
               </p>
             </div>
-            <VideoEmbed placement="overview" video={siteConfig.videos.overview} />
           </div>
         </section>
 
-        {siteConfig.features.showTutorial ? <ProductTutorial /> : null}
-
-        <JourneyRoute stages={workflow} />
-
-        <section className={styles.relaySection} data-analytics-section="audiences" id="relay">
-          <div className={styles.sectionIntro}>
-            <h2>One journey. Clear responsibility on both sides.</h2>
-            <p>
-              EstoSpaces connects the seeker’s next action with the professional’s operating
-              context. It does not blur who is responsible for the property information or service.
-            </p>
-          </div>
-
-          <div className={styles.relayGrid}>
-            <SectionReveal className={styles.relayPanel}>
-              <div className={styles.relayHeader}>
-                <p>Property seeker</p>
-                <span>01 / 02</span>
-              </div>
-              <h3>Understand what happens next.</h3>
-              <ol className={styles.relayList}>
-                {seekerSteps.map(([title, body], index) => (
-                  <li key={title}>
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    <div>
-                      <strong>{title}</strong>
-                      <p>{body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className={styles.relayActions}>
-                <a className={styles.textAction} href="#tutorial-user">
-                  Watch the seeker tutorial <ArrowUpRight aria-hidden="true" size={17} />
-                </a>
-                <TrackedLink
-                  className={styles.textAction}
-                  eventName="create_account_clicked"
-                  eventProperties={{ placement: 'seeker_journey' }}
-                  href={siteConfig.paths.register}
-                >
-                  Create seeker account <ArrowUpRight aria-hidden="true" size={17} />
-                </TrackedLink>
-              </div>
-            </SectionReveal>
-
-            <SectionReveal className={styles.relayPanel} delay={0.08}>
-              <div className={styles.relayHeader}>
-                <p>Broker or manager</p>
-                <span>02 / 02</span>
-              </div>
-              <h3>Respond with the right context.</h3>
-              <ol className={styles.relayList}>
-                {professionalSteps.map(([title, body], index) => (
-                  <li key={title}>
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    <div>
-                      <strong>{title}</strong>
-                      <p>{body}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-              <div className={styles.relayActions}>
-                <a className={styles.textAction} href="#tutorial-manager">
-                  Watch the manager tutorial <ArrowUpRight aria-hidden="true" size={17} />
-                </a>
-                <TrackedLink
-                  className={styles.textAction}
-                  eventName="broker_join_clicked"
-                  eventProperties={{ placement: 'professional_journey' }}
-                  href={siteConfig.paths.brokerRegister}
-                >
-                  Create manager account <ArrowUpRight aria-hidden="true" size={17} />
-                </TrackedLink>
-              </div>
-            </SectionReveal>
-          </div>
-        </section>
-
+        {/* ============ FAQ ============ */}
         <section
-          className={styles.differenceSection}
-          data-analytics-section="difference"
-          id="difference"
+          aria-labelledby="faq-title"
+          className={styles.section}
+          data-analytics-section="faq"
+          id="faq"
         >
-          <SectionReveal className={styles.sectionIntro}>
-            <h2>More than another property portal.</h2>
-            <p>
-              Most portals are built to help people discover properties. EstoSpaces is being built
-              to keep the work after discovery connected: professional contact, response context,
-              documents, viewings, and the next action in one case record.
-            </p>
-          </SectionReveal>
-
-          <SectionReveal className={styles.comparisonBlock}>
-            <div className={styles.comparisonHeading}>
-              <div>
-                <h3>Compare the public product shape.</h3>
-              </div>
-              <div className={styles.comparisonCaveat}>
-                <p>
-                  &ldquo;Not confirmed&rdquo; means an equivalent capability was not found in the
-                  public materials reviewed. It does not mean the competitor cannot offer it
-                  privately or in another service.
-                </p>
-                <span>Public materials reviewed July 2026</span>
-              </div>
-            </div>
-
-            <section
-              aria-label="Scrollable comparison of public property-platform capabilities"
-              aria-describedby="comparison-scroll-hint"
-              className={styles.comparisonScroll}
-              data-analytics-section="comparison"
-              tabIndex={0}
-            >
-              <table className={styles.comparisonTable}>
-                <caption>
-                  EstoSpaces and named property platforms, based on public product materials
-                  reviewed in July 2026
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Capability</th>
-                    <th className={styles.estoColumn} scope="col">
-                      EstoSpaces
-                    </th>
-                    <th scope="col">MagicBricks</th>
-                    <th scope="col">99acres</th>
-                    <th scope="col">Housing.com</th>
-                    <th scope="col">NoBroker</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonRows.map((row) => (
-                    <tr key={row.feature}>
-                      <th scope="row">{row.feature}</th>
-                      <td className={styles.estoColumn}>{row.estoSpaces}</td>
-                      <td>{row.magicBricks}</td>
-                      <td>{row.acres}</td>
-                      <td>{row.housing}</td>
-                      <td>{row.noBroker}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section>
-            <p className={styles.comparisonScrollHint} id="comparison-scroll-hint">
-              Swipe or use the left and right arrow keys to compare every platform.
-            </p>
-
-            <div className={styles.comparisonSources}>
-              <p>
-                First-party EstoSpaces entries describe the intended private-beta workflow, not
-                unrestricted general availability. Third-party references:{' '}
-                <TrackedLink
-                  eventName="source_link_clicked"
-                  eventProperties={{ placement: 'comparison', destination: 'magicbricks' }}
-                  href="https://www.magicbricks.com/aboutus.html"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  MagicBricks
-                </TrackedLink>
-                ,{' '}
-                <TrackedLink
-                  eventName="source_link_clicked"
-                  eventProperties={{ placement: 'comparison', destination: '99acres' }}
-                  href="https://play.google.com/store/apps/details?id=com.nnacres.app"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  99acres
-                </TrackedLink>
-                ,{' '}
-                <TrackedLink
-                  eventName="source_link_clicked"
-                  eventProperties={{ placement: 'comparison', destination: 'housing' }}
-                  href="https://housing.com/partners/broker/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Housing.com
-                </TrackedLink>
-                , and{' '}
-                <TrackedLink
-                  eventName="source_link_clicked"
-                  eventProperties={{ placement: 'comparison', destination: 'nobroker' }}
-                  href="https://www.nobroker.in/prophub/property-management/rental-property-management/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  NoBroker
-                </TrackedLink>
+          <div className={cx(styles.wrap, styles.faqRow)}>
+            <div className={styles.faqIntro}>
+              <h2 className={cx(styles.display, styles.h2Faq)} id="faq-title">
+                Details, stated plainly.
+              </h2>
+              <p style={{ fontSize: 16, color: 'var(--ink-2)' }}>
+                Can&apos;t find it?{' '}
+                <a className={styles.inlineLink} href={paths.contact}>
+                  Talk to our team
+                </a>
                 .
               </p>
             </div>
-          </SectionReveal>
-
-          <div className={styles.journeyComparison}>
-            <SectionReveal className={styles.journeyColumn}>
-              <div>
-                <span>Typical portal journey</span>
-                <strong>Disconnected hand-offs</strong>
-              </div>
-              <ol>
-                {traditionalJourney.map((step, index) => (
-                  <li key={step}>
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-            </SectionReveal>
-            <SectionReveal
-              className={`${styles.journeyColumn} ${styles.connectedColumn}`}
-              delay={0.08}
-            >
-              <div>
-                <span>The EstoSpaces journey</span>
-                <strong>One connected case</strong>
-              </div>
-              <ol>
-                {connectedJourney.map((step, index) => (
-                  <li key={step}>
-                    <span>{String(index + 1).padStart(2, '0')}</span>
-                    {step}
-                  </li>
-                ))}
-              </ol>
-            </SectionReveal>
-          </div>
-
-          <SectionReveal className={styles.trustBlock}>
-            <div>
-              <h3>Accountability belongs in the workflow.</h3>
+            <div className={styles.faqList}>
+              {faqs.map(([key, question, answer], index) => (
+                <details
+                  className={styles.faqItem}
+                  data-analytics-item={key}
+                  key={key}
+                  name="home-faq"
+                  open={index === 0}
+                >
+                  <summary className={styles.faqQ}>
+                    <span>{question}</span>
+                    <span aria-hidden="true" className={styles.faqSign} />
+                  </summary>
+                  <p className={styles.faqA}>{answer}</p>
+                </details>
+              ))}
             </div>
-            <ul>
-              {trustSignals.map((signal) => (
-                <li key={signal}>{signal}</li>
-              ))}
-            </ul>
-          </SectionReveal>
-
-          <div className={styles.audienceGrid}>
-            {audienceUseCases.map((group, index) => (
-              <SectionReveal
-                delay={index * 0.06}
-                id={index === 0 ? 'property-seekers' : 'brokers'}
-                key={group.audience}
-              >
-                <span>{String(index + 1).padStart(2, '0')} / 02</span>
-                <h3>For {group.audience}</h3>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </SectionReveal>
-            ))}
-          </div>
-
-          <SectionReveal className={styles.whyExist}>
-            <h3>
-              Property progress should not depend on scattered calls, messages, files, and memory.
-            </h3>
-            <p>
-              EstoSpaces connects the work into one understandable experience: search, connect, Fast
-              Track, and progress toward completion.
-            </p>
-          </SectionReveal>
-
-          <p className={styles.comparisonDisclaimer}>
-            Comparison is based on publicly available product materials at the time of review.
-            Third-party products continue to evolve, feature scope may vary by market or service,
-            and all company names and trademarks belong to their respective owners.
-          </p>
-        </section>
-
-        <section className={styles.evidenceSection} data-analytics-section="evidence" id="evidence">
-          <div className={styles.sectionIntro}>
-            <p className={styles.sectionCode}>Operating limits</p>
-            <h2>The limits belong beside the claim.</h2>
-            <p>
-              Targets can be useful without being presented as promises. This is the operating
-              context behind the numbers used during private beta.
-            </p>
-          </div>
-
-          <table className={styles.evidenceTable}>
-            <caption>Current private-beta operating commitments and limitations</caption>
-            <thead>
-              <tr className={styles.evidenceHead}>
-                <th scope="col">Signal</th>
-                <th scope="col">Current status</th>
-                <th scope="col">What it means</th>
-              </tr>
-            </thead>
-            <tbody>
-              {evidence.map((item) => (
-                <tr className={styles.evidenceRow} key={item.signal}>
-                  <th scope="row">{item.signal}</th>
-                  <td>{item.status}</td>
-                  <td>{item.detail}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          <div className={styles.operatorNote}>
-            <span>Registered companies</span>
-            <p>
-              {siteConfig.legalEntities.india.name} / {siteConfig.legalEntities.unitedKingdom.name}
-            </p>
           </div>
         </section>
 
-        <section className={styles.faqSection} data-analytics-section="faq" id="faq">
-          <div className={styles.faqIntro}>
-            <h2>Details, stated plainly.</h2>
-            <p>
-              Need an answer about your situation?{' '}
-              <TrackedLink
-                eventName="contact_clicked"
-                eventProperties={{ placement: 'faq' }}
-                href={siteConfig.paths.contact}
-              >
-                Contact EstoSpaces
-              </TrackedLink>
-              .
-            </p>
-          </div>
-          <div className={styles.faqList}>
-            {faqs.map((faq, index) => (
-              <details
-                className={styles.faqItem}
-                data-analytics-item={`faq_${String(index + 1).padStart(2, '0')}`}
-                key={faq.question}
-              >
-                <summary>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  {faq.question}
-                  <span aria-hidden="true" className={styles.faqMark}>
-                    +
-                  </span>
-                </summary>
-                <p>{faq.answer}</p>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.finalCta} data-analytics-section="final_cta">
-          <div>
-            <h2>Start with a clearer brief.</h2>
-            <p>
-              Open the private-beta registration route, or return to the application if you already
-              have an account.
-            </p>
-          </div>
-          <div className={styles.finalActions}>
-            <TrackedLink
-              className={styles.primaryAction}
-              eventName="create_account_clicked"
-              eventProperties={{ placement: 'final_cta' }}
-              href={siteConfig.paths.register}
-            >
-              Create account <ArrowRight aria-hidden="true" size={18} />
-            </TrackedLink>
-            <TrackedLink
-              className={styles.secondaryAction}
-              eventName="login_clicked"
-              eventProperties={{ placement: 'final_cta' }}
-              href={siteConfig.paths.login}
-            >
-              Existing user log in
-            </TrackedLink>
+        {/* ============ FINAL CTA ============ */}
+        <section
+          aria-labelledby="cta-title"
+          className={styles.section}
+          data-analytics-section="final_cta"
+          style={{ paddingBottom: 'var(--section)' }}
+        >
+          <div className={styles.wrap}>
+            <div className={cx(styles.cta, styles.onDark)}>
+              <h2 className={cx(styles.display, styles.h2Cta)} id="cta-title">
+                Your next home is one clear brief away.
+              </h2>
+              <p className={styles.ctaLede}>
+                Create a free account, set your brief and start hearing back from verified
+                professionals.
+              </p>
+              <div className={styles.ctaBtnRow}>
+                <TrackedLink
+                  className={styles.whiteBtn}
+                  eventName="create_account_clicked"
+                  eventProperties={{ placement: 'final_cta' }}
+                  href={paths.register}
+                >
+                  Create account
+                </TrackedLink>
+                <a className={styles.outlineWhiteBtn} href="#pros">
+                  I&apos;m a professional
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </main>
-      <Footer />
+
+      {/* ============ FOOTER ============ */}
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <div className={styles.footerGrid}>
+            <div className={styles.footerBrand}>
+              <span className={styles.footerBrandRow}>
+                <BrandMark className={styles.footerMark} iconSize={16} size={30} />
+                <span className={cx(styles.display, styles.footerName)}>estospaces</span>
+              </span>
+              <span>Clear steps for the property journey — from first search to the keys.</span>
+            </div>
+            {footerGroups.map(([heading, links]) => (
+              <nav aria-label={heading} className={styles.footerNav} key={heading}>
+                <h2>{heading}</h2>
+                {links.map(([label, href, eventName, destination]) => {
+                  const external = href.startsWith('http') && !href.includes('app.estospaces.com');
+                  return (
+                    <TrackedLink
+                      className={styles.footerLink}
+                      eventName={eventName}
+                      eventProperties={{ placement: 'footer', destination }}
+                      href={href}
+                      key={label}
+                      rel={external ? 'noreferrer' : undefined}
+                      target={external ? '_blank' : undefined}
+                    >
+                      {label}
+                    </TrackedLink>
+                  );
+                })}
+              </nav>
+            ))}
+          </div>
+          <div className={styles.footerBase}>
+            <span>
+              © {new Date().getFullYear()} EstoSpaces · {siteConfig.legalEntities.india.name}{' '}
+              (India) · {siteConfig.legalEntities.unitedKingdom.name} (UK)
+            </span>
+            <span className={styles.legal}>
+              <a href={paths.privacy}>Privacy</a>
+              <a href={paths.terms}>Terms</a>
+              <a href={paths.cookies}>Cookies</a>
+              {siteConfig.analyticsMeasurementId || siteConfig.salesIqWidgetUrl ? (
+                <TrackedButton
+                  data-cookie-preferences
+                  eventName="cookie_preferences_opened"
+                  eventProperties={{ placement: 'footer' }}
+                  type="button"
+                >
+                  Cookie preferences
+                </TrackedButton>
+              ) : null}
+            </span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

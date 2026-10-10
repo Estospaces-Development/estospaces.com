@@ -1,6 +1,20 @@
 import LandingPage from './landing-page';
 import { serializeJsonLd } from '../lib/json-ld';
-import { siteConfig } from '../config/site';
+import { buildPageMetadata, siteConfig } from '../config/site';
+
+const homeTitle = 'EstoSpaces — Homes that answer back';
+
+export const metadata = {
+  ...buildPageMetadata({
+    title: homeTitle,
+    description: siteConfig.metadata.description,
+    path: '/',
+  }),
+  // The page title already names the brand, so skip the "| EstoSpaces" template from the layout.
+  title: { absolute: homeTitle },
+  // Pre-launch builds (LANDING_PREVIEW=1 at build time) must not be indexed; production is unchanged.
+  ...(process.env.LANDING_PREVIEW === '1' ? { robots: { index: false, follow: false } } : {}),
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',

@@ -59,7 +59,6 @@ test('homepage exposes real access paths and omits unsupported launch claims', a
   assert.match(home, /<main id="main-content">/);
   assert.match(publicSurface, /siteConfig\.paths\.login/);
   assert.match(publicSurface, /siteConfig\.paths\.register/);
-  assert.match(publicSurface, /Property search is not available in this public beta yet/);
   assert.match(publicSurface, /Create account/);
   assert.doesNotMatch(publicSurface, /Account creation open|Registration open/);
   assert.doesNotMatch(home, /PropertySearchForm/);
@@ -70,7 +69,9 @@ test('homepage exposes real access paths and omits unsupported launch claims', a
     /Coming Soon|Loved by Thousands|100% Verified|70%|40%|Dream Home|waitlist/i,
   );
   assert.doesNotMatch(home, /hero-section-video|<video|Testimonials|Countdown/);
-  assert.match(home, /<ProductTutorial \/>/);
+  // the redesigned home links both role tutorials straight to their videos
+  assert.match(home, /videos\.user/);
+  assert.match(home, /videos\.manager/);
   assert.match(tutorial, /id="product-proof"/);
   assert.match(tutorial, /fictional\s+training data/);
 });
@@ -134,8 +135,10 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
 test('audience anchors and comparison overflow guidance are explicit', async () => {
   const home = await read('./src/components/landing/Home.jsx');
 
-  assert.match(home, /'property-seekers'/);
-  assert.match(home, /'brokers'/);
+  // legacy deep links used by the shared navbar (/#property-seekers, /#brokers, /#journey) still resolve
+  assert.match(home, /id="property-seekers"/);
+  assert.match(home, /id="brokers"/);
+  assert.match(home, /id="journey"/);
   assert.match(home, /aria-describedby="comparison-scroll-hint"/);
   assert.match(home, /Swipe or use the left and right arrow keys/);
 });
@@ -190,7 +193,12 @@ test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP
     Object.values(siteConfig.videos).map((video) => video.id),
     ['iX_gHgIUHhs', 'xM140AfjOBA', 'hi-H7D164NA'],
   );
-  assert.match(home, /siteConfig\.videos\.overview/);
+  // the home overview is the self-hosted demo: click-to-play, nothing downloads before the visitor asks
+  const homeVideo = await read('./src/components/landing/HomeVideo.jsx');
+  assert.match(home, /\/assets\/landing\/estospaces-demo\.mp4/);
+  assert.match(home, /\/assets\/landing\/estospaces-demo-poster\.jpg/);
+  assert.match(homeVideo, /preload="none"/);
+  assert.match(homeVideo, /\bcontrols\b/);
   assert.match(tutorial, /siteConfig\.videos\.user/);
   assert.match(tutorial, /siteConfig\.videos\.manager/);
   assert.doesNotMatch(embed, /<iframe/); // nothing loads from YouTube before the visitor clicks

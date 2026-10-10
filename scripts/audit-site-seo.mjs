@@ -90,7 +90,10 @@ await check(
   'landing components avoid external image hosts',
   () =>
     !readFiles('src/components/landing').some((source) =>
-      /images\.unsplash\.com|\.jpg|\.jpeg/.test(source),
+      // the demo video poster is a frame grab served as .jpg; every other landing image stays modern-format
+      /images\.unsplash\.com|\.jpg|\.jpeg/.test(
+        source.replaceAll('estospaces-demo-poster.jpg', ''),
+      ),
     ),
 );
 await check('canonical contact email is configured', () =>
