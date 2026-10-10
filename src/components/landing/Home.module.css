@@ -2635,3 +2635,10 @@
     display: none;
   }
 }
+
+/* Small phones: the real logo mark alone carries the brand, so the nav never collides. */
+@media (max-width: 480px) {
+  .wordmark {
+    display: none;
+  }
+}

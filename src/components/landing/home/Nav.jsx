@@ -19,6 +19,7 @@ export function BrandMark({ size = 36 }) {
       height={Math.round(size * 0.84)}
       priority
       src="/assets/logo-mark.png"
+      unoptimized
       width={Math.round(size * 1.6)}
     />
   );

@@ -142,12 +142,17 @@ export default function Hero({ loop, registerUrl, brokerUrl }) {
       const o = el.getBoundingClientRect();
       const d = dot.getBoundingClientRect();
       const r = reply.getBoundingClientRect();
+      // Run down the page margin, left of the headline, so the line never crosses any text.
+      const head = el.querySelector('h1')?.getBoundingClientRect();
       const sx = d.left + d.width / 2 - o.left;
       const sy = d.top + d.height / 2 - o.top;
+      const gx = Math.max(10, (head ? head.left : d.left) - o.left - 22);
       const ey = r.top + r.height / 2 - o.top;
       const ex = r.left - o.left - 6;
-      const c = 20;
-      setThread(`M${sx} ${sy} V${ey - c} Q${sx} ${ey} ${sx + c} ${ey} H${ex}`);
+      const c = 16;
+      setThread(
+        `M${sx} ${sy} H${gx + c} Q${gx} ${sy} ${gx} ${sy + c} V${ey - c} Q${gx} ${ey} ${gx + c} ${ey} H${ex}`,
+      );
     };
     measure();
     const observer = new ResizeObserver(measure);
