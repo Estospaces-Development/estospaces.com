@@ -161,7 +161,7 @@ export default function Hero({ registerUrl, brokerUrl }) {
       a = window.setInterval(() => setStill((i) => (i + 1) % stills.length), STILL_MS);
       b = window.setInterval(() => {
         beat = (beat + 1) % (steps.length + HOLD_STEPS + 1);
-        setShown(Math.min(beat, steps.length));
+        setShown(Math.max(1, Math.min(beat, steps.length)));
       }, STEP_MS);
     };
     const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop()));
