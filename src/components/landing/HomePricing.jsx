@@ -2,7 +2,7 @@
 
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import TrackedLink from '../site/TrackedLink';
 import styles from './Home.module.css';
@@ -47,13 +47,45 @@ const plans = [
 const allPlans = 'One image up to 52 MB';
 
 const currencies = [
-  ['INR', '₹ INR'],
   ['GBP', '£ GBP'],
+  ['INR', '₹ INR'],
 ];
 
 export default function HomePricing({ registerUrl }) {
-  // Plain toggle, INR first. The market is never guessed from the browser language.
-  const [currency, setCurrency] = useState('INR');
+  // Plain toggle, GBP first (owner, 10 Oct). The market is never guessed from the browser language;
+  // the real price is set by the verified billing market at checkout.
+  const [currency, setCurrency] = useState('GBP');
+  const row = useRef(null);
+  const [active, setActive] = useState(1);
+
+  // Phones: the plans become a swipeable row that opens on Growth; dots follow the card in view.
+  useEffect(() => {
+    const el = row.current;
+    if (!el || !window.matchMedia('(max-width: 899px)').matches) return undefined;
+    const cards = [...el.children];
+    const growth = cards[1];
+    if (growth) el.scrollLeft = growth.offsetLeft - (el.clientWidth - growth.clientWidth) / 2;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(cards.indexOf(entry.target));
+        }
+      },
+      { root: el, threshold: 0.6 },
+    );
+    for (const card of cards) io.observe(card);
+    return () => io.disconnect();
+  }, []);
+
+  const goTo = (index) => {
+    const el = row.current;
+    const card = el?.children[index];
+    if (!el || !card) return;
+    el.scrollTo({
+      left: card.offsetLeft - (el.clientWidth - card.clientWidth) / 2,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <section
@@ -98,7 +130,7 @@ export default function HomePricing({ registerUrl }) {
           </LayoutGroup>
         </Reveal>
 
-        <div className={styles.plans}>
+        <div className={styles.plans} ref={row}>
           {plans.map((plan, index) => (
             <Reveal
               as="article"
@@ -145,6 +177,22 @@ export default function HomePricing({ registerUrl }) {
             </Reveal>
           ))}
         </div>
+
+        <fieldset className={styles.planDots}>
+          <legend className={styles.srOnly}>Choose a plan</legend>
+          {plans.map((plan, index) => (
+            <button
+              aria-current={active === index ? 'true' : undefined}
+              aria-label={`Show the ${plan.name} plan`}
+              className={styles.planDot}
+              key={plan.id}
+              onClick={() => goTo(index)}
+              type="button"
+            >
+              <span aria-hidden="true" />
+            </button>
+          ))}
+        </fieldset>
 
         <p className={styles.pricingTerms}>
           After 60 days you move to Free unless you choose a plan. Your price is set by your

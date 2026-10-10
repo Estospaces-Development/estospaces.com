@@ -1999,9 +1999,83 @@
   color: var(--muted);
 }
 
+/* dots only exist for the phone carousel */
+.planDots {
+  display: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
 @media (max-width: 899px) {
+  /* Phones and small tablets: a swipeable, snapping row of plans that opens on Growth. */
   .plans {
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(84%, 380px);
+    gap: 14px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding: 6px var(--gutter) 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .plans::-webkit-scrollbar {
+    display: none;
+  }
+
+  .plans > * {
+    scroll-snap-align: center;
+  }
+
+  .plan {
+    padding: 26px 22px;
+  }
+
+  .planDots {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 12px;
+  }
+
+  .planDot {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .planDot span {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--line-strong);
+    transition:
+      width 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .planDot[aria-current='true'] span {
+    width: 24px;
+    background: var(--accent);
+  }
+
+  .toggleWrap {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planDot span {
+    transition: none;
   }
 }
 
