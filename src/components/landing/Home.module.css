@@ -2842,7 +2842,7 @@
   padding: 18px 18px 16px;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(18px) saturate(140%);
   color: #111110;
   box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.55);
@@ -2866,7 +2866,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #1f8a4c;
+  color: #146b37;
 }
 
 .liveBrief {
@@ -2945,7 +2945,7 @@
 .liveMeta {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 14px;
-  color: #6b6b66;
+  color: #55554f;
 }
 
 .liveRing {
@@ -2958,13 +2958,13 @@
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 14px;
   font-weight: 600;
-  color: #1f8a4c;
+  color: #146b37;
 }
 
 .liveFoot {
   margin-top: 12px;
-  font-size: 13px;
-  color: #6b6b66;
+  font-size: 14px;
+  color: #55554f;
 }
 
 @media (max-width: 900px) {
@@ -3132,10 +3132,10 @@
 
   .liveMiniLabel {
     font-family: var(--font-mono), ui-monospace, monospace;
-    font-size: 11.5px;
+    font-size: 12.5px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #1f8a4c;
+    color: #146b37;
   }
 
   .liveMiniMeta {

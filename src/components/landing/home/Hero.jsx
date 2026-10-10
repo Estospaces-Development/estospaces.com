@@ -109,9 +109,9 @@ export default function Hero({ registerUrl, brokerUrl }) {
 
   // Scroll: the photo drifts and the copy lifts away as the hero leaves.
   const { scrollYProgress } = useScroll({ target: panel, offset: ['start start', 'end start'] });
-  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const copyFade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', reduce ? '0%' : '12%']);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -60]);
+  const copyFade = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
 
   // Pointer: the live card floats a little against the photo (desktop pointers only).
   const px = useSpring(useMotionValue(0), spring);
@@ -180,7 +180,7 @@ export default function Hero({ registerUrl, brokerUrl }) {
         <motion.div
           aria-hidden="true"
           className={styles.heroStills}
-          style={reduce ? undefined : { y: photoY, x: photoX }}
+          style={{ y: photoY, x: photoX }}
         >
           {stills.map(([src], i) => (
             // biome-ignore lint/performance/noImgElement: animated cross-fade stills, already sized WebP
@@ -207,10 +207,7 @@ export default function Hero({ registerUrl, brokerUrl }) {
         </motion.div>
         <span aria-hidden="true" className={styles.heroShade} />
 
-        <motion.div
-          className={styles.heroCopy}
-          style={reduce ? undefined : { y: copyY, opacity: copyFade }}
-        >
+        <motion.div className={styles.heroCopy} style={{ y: copyY, opacity: copyFade }}>
           <motion.p
             animate={{ opacity: 1, y: 0 }}
             className={styles.heroPill}
@@ -303,7 +300,7 @@ export default function Hero({ registerUrl, brokerUrl }) {
           className={styles.liveCard}
           data-m
           initial={reduce ? false : { opacity: 0, y: 40 }}
-          style={reduce ? undefined : { x: cardX, translateY: cardY }}
+          style={{ x: cardX, translateY: cardY }}
           transition={{ duration: 1, ease, delay: 0.6 }}
         >
           <header className={styles.liveHead}>
