@@ -3383,3 +3383,28 @@
     );
   }
 }
+
+/* Phones: share link and walkthrough links never break mid-phrase. */
+.filmLinks a {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .shareLink,
+  .ctaShare {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .filmLinks {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 350px) {
+  .shareLink,
+  .ctaShare {
+    white-space: normal;
+  }
+}
