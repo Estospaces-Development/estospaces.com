@@ -268,10 +268,34 @@ export default function Hero({ registerUrl, brokerUrl }) {
               eventProperties={{ placement: 'hero' }}
               href={brokerUrl}
             >
-              List your properties
+              <span className={styles.onWide}>List your properties</span>
+              <span className={styles.onNarrow}>For professionals</span>
             </TrackedLink>
           </motion.div>
         </motion.div>
+
+        {/* Phones: the live case plays as a single push notification at the top of the photo. */}
+        <div aria-hidden="true" className={styles.liveMini}>
+          <AnimatePresence initial={false} mode="popLayout">
+            {shown > 0 ? (
+              <motion.div
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                className={styles.liveMiniCard}
+                exit={{ opacity: 0, y: -12, scale: 0.96 }}
+                initial={reduce ? false : { opacity: 0, y: -16, scale: 0.96 }}
+                key={steps[shown - 1].title}
+                transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+              >
+                <StepIcon step={steps[shown - 1]} />
+                <span className={styles.liveMiniText}>
+                  <span className={styles.liveMiniLabel}>Live case</span>
+                  <strong>{steps[shown - 1].title}</strong>
+                </span>
+                <span className={styles.liveMiniMeta}>{steps[shown - 1].meta}</span>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
 
         <motion.aside
           animate={{ opacity: 1, y: 0 }}
