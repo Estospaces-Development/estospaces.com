@@ -3,14 +3,14 @@ import { buildPageMetadata, siteConfig } from '../../config/site';
 
 export const metadata = buildPageMetadata({
   title: `${siteConfig.name} Privacy Notice`,
-  description: `How ${siteConfig.name} handles website, contact, account, enquiry, and optional analytics information during the private beta.`,
+  description: `How ${siteConfig.name} handles website, contact, account, enquiry, and optional analytics information.`,
   path: '/privacy',
 });
 
 export default function PrivacyPage() {
   return (
     <PolicyPage
-      description="This notice explains how the EstoSpaces companies handle information connected with the public website and private-beta product."
+      description="This notice explains how the EstoSpaces companies handle information connected with the public website and product."
       eyebrow="Privacy"
       title="Privacy notice"
     >
@@ -57,9 +57,7 @@ export default function PrivacyPage() {
         <PolicyList>
           <li>Provide, secure, troubleshoot, and improve the website and product.</li>
           <li>Respond to enquiries and support requests.</li>
-          <li>
-            Operate property enquiries and the private-beta workflow requested by an account holder.
-          </li>
+          <li>Operate property enquiries and the workflow requested by an account holder.</li>
           <li>Meet legal obligations and protect the service against misuse.</li>
           <li>Understand aggregate website use when optional analytics consent is given.</li>
         </PolicyList>
@@ -91,8 +89,8 @@ export default function PrivacyPage() {
       </PolicySection>
       <PolicySection title="Changes">
         <p>
-          We may update this notice as the private beta and operating processes change. The date at
-          the top identifies the current public notice.
+          We may update this notice as the product and operating processes change. The date at the
+          top identifies the current public notice.
         </p>
       </PolicySection>
     </PolicyPage>

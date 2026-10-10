@@ -29,9 +29,9 @@ export default function ContactPage() {
       </PolicySection>
       <PolicySection title="Product and professional access">
         <p>
-          Private-beta access, property inventory, and participating-professional coverage remain
-          limited and vary by area. Sending an enquiry does not guarantee product access, property
-          availability, or a response within a particular period.
+          Property inventory and participating-professional coverage vary by area. Sending an
+          enquiry does not guarantee product access, property availability, or a response within a
+          particular period.
         </p>
       </PolicySection>
       <PolicySection title="Registered companies">

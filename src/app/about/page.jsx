@@ -4,7 +4,7 @@ import { serializeJsonLd } from '../../lib/json-ld';
 
 export const metadata = buildPageMetadata({
   title: `About ${siteConfig.name}`,
-  description: `${siteConfig.name} is private-beta property-technology software backed by registered companies in India and the United Kingdom.`,
+  description: `${siteConfig.name} is property-technology software backed by registered companies in India and the United Kingdom.`,
   path: '/about',
 });
 
@@ -41,21 +41,20 @@ export default function AboutPage() {
       >
         <PolicySection title="What we are building">
           <p>
-            The private-beta product brings property discovery, professional connection, response
-            tracking, Fast Track cases, documents, messages, and support context into a role-based
-            software experience.
+            The product brings property discovery, professional connection, response tracking, Fast
+            Track cases, documents, messages, and support context into a role-based software
+            experience.
           </p>
           <p>
-            Availability, property inventory, and professional coverage vary by area while the
-            operating model is validated. EstoSpaces is described as software and does not claim to
-            be a licensed estate agency.
+            Availability, property inventory, and professional coverage vary by area. EstoSpaces is
+            described as software and does not claim to be a licensed estate agency.
           </p>
         </PolicySection>
-        <PolicySection title="Why private beta">
+        <PolicySection title="How we grow">
           <p>
-            Property decisions carry real financial and personal consequences. The private beta is
-            intended to validate reliability, response processes, support coverage, and user
-            understanding before making broader availability claims.
+            Property decisions carry real financial and personal consequences. EstoSpaces is live in
+            India and the UK and opens area by area, so reliability, response processes and support
+            coverage keep pace with availability.
           </p>
         </PolicySection>
         <PolicySection title="How timing is described">

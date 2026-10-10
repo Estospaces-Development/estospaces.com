@@ -1,4 +1,9 @@
 (() => {
+  // Bound before the menu check so pages without a mobile menu (the home page) still get it.
+  document.querySelector('[data-cookie-preferences]')?.addEventListener('click', () => {
+    window.dispatchEvent(new Event('estospaces:open-cookie-preferences'));
+  });
+
   const toggle = document.querySelector('[data-mobile-menu-toggle]');
   const menu = document.querySelector('[data-mobile-menu]');
   if (!toggle || !menu) return;
@@ -37,10 +42,6 @@
     if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
       setOpen(false, true);
     }
-  });
-
-  document.querySelector('[data-cookie-preferences]')?.addEventListener('click', () => {
-    window.dispatchEvent(new Event('estospaces:open-cookie-preferences'));
   });
 
   setOpen(false);

@@ -52,7 +52,7 @@ export const siteConfig = {
   legalEntities,
   foundingTeam,
   category: 'Property-technology software platform',
-  status: 'Private beta',
+  status: 'Live',
   marketWording: 'Initial launch areas; availability varies by area',
   siteUrl,
   appBaseUrl,
@@ -146,9 +146,9 @@ export const siteConfig = {
     analytics: Boolean(analyticsMeasurementId),
   },
   metadata: {
-    title: 'EstoSpaces | Property enquiries with a clearer next step',
+    title: 'EstoSpaces | Homes that answer back',
     description:
-      'EstoSpaces is a private-beta property-technology platform for discovering properties when available, connecting with participating property professionals, and tracking the next step toward a viewing or application.',
+      'Send one brief to verified professionals, hear back on a live clock, and keep viewing, documents and keys in one case. Live in India and the UK.',
     image: '/assets/estospaces-og.webp',
   },
 } as const;
