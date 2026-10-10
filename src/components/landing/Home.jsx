@@ -27,7 +27,7 @@ const mono = Geist_Mono({ subsets: ['latin'], display: 'swap', variable: '--font
 const demo = {
   src: '/assets/landing/estospaces-demo.mp4',
   poster: '/assets/landing/estospaces-demo-poster.jpg',
-  length: '2:17',
+  length: '1:54',
 };
 
 const { paths, videos } = siteConfig;

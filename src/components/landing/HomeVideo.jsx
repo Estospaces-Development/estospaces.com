@@ -5,14 +5,14 @@ import { useRef, useState } from 'react';
 import { ShareButton } from './HomeMotion';
 import styles from './Home.module.css';
 
-// Placeholder chapter marks for the demo film (label, seconds). Correct these in one place when the final
-// film replaces the file; the buttons seek the video and play from there.
+// Chapter marks of the v3 demo film (label, seconds), from marketing-videos demo3 timing. Update them with
+// the file; the buttons seek the video and play from there.
 const chapters = [
-  ['Sign up & verify', 12],
-  ['List a home', 33],
+  ['Sign up & verify', 14],
+  ['List a home', 38],
   ['Answer leads', 49],
-  ['Fast Track', 60],
-  ['Find a home', 73],
+  ['Fast Track', 61],
+  ['Find a home', 74],
   ['Move in', 88],
 ];
 

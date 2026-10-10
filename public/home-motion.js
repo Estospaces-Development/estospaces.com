@@ -31,9 +31,11 @@
     const r = (n) => Math.round(n * 10) / 10;
     let d;
     if (E.x - S.x > 300) {
-      // Two columns: a long S-curve through the headline, arriving horizontally at the card.
-      const dx = E.x - S.x;
-      d = `M${r(S.x)} ${r(S.y)} C${r(S.x + dx * 0.55)} ${r(S.y)} ${r(E.x - dx * 0.55)} ${r(E.y)} ${r(E.x)} ${r(E.y)}`;
+      // Two columns: rise just above the pill, run right along the top, drop down the gutter between the
+      // copy and the photo, then turn into the card - the line never crosses the headline or body text.
+      const top = S.y - 24;
+      const gx = E.x - 56;
+      d = `M${r(S.x)} ${r(S.y)} C${r(S.x)} ${r(top + 8)} ${r(S.x + 8)} ${r(top)} ${r(S.x + 24)} ${r(top)} L${r(gx - 24)} ${r(top)} C${r(gx - 8)} ${r(top)} ${r(gx)} ${r(top + 8)} ${r(gx)} ${r(top + 24)} L${r(gx)} ${r(E.y - 24)} C${r(gx)} ${r(E.y - 8)} ${r(gx + 8)} ${r(E.y)} ${r(gx + 24)} ${r(E.y)} L${r(E.x)} ${r(E.y)}`;
     } else {
       // One column: slide down the left gutter, then step into the card from its left edge.
       const g = 4;
