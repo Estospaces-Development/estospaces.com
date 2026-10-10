@@ -27,6 +27,7 @@
   --e: cubic-bezier(0.16, 1, 0.3, 1);
   --gutter: 32px;
   --nav: 68px;
+  --sec: clamp(72px, 9vw, 128px);
 
   position: relative;
   min-height: 100vh;
@@ -70,6 +71,15 @@
 @media (max-width: 640px) {
   .page {
     --gutter: 20px;
+
+    font-size: 17px;
+  }
+
+  .cellText,
+  .planList,
+  .panelLines,
+  .faqInner p {
+    font-size: 17px;
   }
 }
 
@@ -129,7 +139,7 @@
 
 .section {
   scroll-margin-top: var(--nav);
-  padding-block: clamp(96px, 12vw, 168px) 0;
+  padding-block: var(--sec) 0;
 }
 
 .h2 {
@@ -722,73 +732,65 @@
   }
 }
 
-/* ---------- proof strip ---------- */
+/* ---------- stats (big numbers under the hero) ---------- */
 
-.proof {
-  padding-bottom: clamp(24px, 4vw, 56px);
+.stats {
+  padding-top: clamp(20px, 2.4vw, 32px);
 }
 
-.proofGrid {
+.statGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding-block: 8px;
-  border-block: 1px solid var(--line);
+  gap: 16px;
 }
 
-.proofItem {
+.stat {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 28px clamp(16px, 2vw, 32px);
-  border-left: 1px solid var(--line);
+  gap: 12px;
+  padding: clamp(24px, 2.6vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
 }
 
-.proofItem:first-child {
-  padding-left: 0;
-  border-left: 0;
+.statNum {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
 }
 
-.proofLabel {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.statUnit {
+  margin-left: 0.14em;
+  font-size: 0.42em;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.statLabel {
+  font-size: 16px;
+  line-height: 1.4;
   color: var(--muted);
 }
 
-.proofText {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
 @media (max-width: 899px) {
-  .proofGrid {
+  .statGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .proofItem:nth-child(odd) {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .proofItem:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
-  }
 }
 
-@media (max-width: 560px) {
-  .proofItem {
-    gap: 6px;
-    padding: 18px 0 18px 14px;
+@media (max-width: 640px) {
+  .statGrid {
+    gap: 12px;
   }
 
-  .proofLabel {
-    font-size: 12px;
-  }
-
-  .proofText {
-    font-size: 15px;
+  .stat {
+    gap: 8px;
+    padding: 20px 18px;
+    border-radius: 20px;
   }
 }
 
@@ -898,12 +900,12 @@
 
 .chapter {
   position: relative;
-  min-height: 44px;
-  padding: 0 18px;
+  min-height: 48px;
+  padding: 0 22px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: var(--surface);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   transition: border-color 0.2s var(--e);
@@ -981,8 +983,7 @@
 
 .storyPinned {
   position: relative;
-  height: 500vh;
-  margin-top: clamp(96px, 12vw, 168px);
+  height: 350vh;
 }
 
 .storyAnchor {
@@ -1010,8 +1011,10 @@
 }
 
 .storyLeft {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .storyLabel {
@@ -1023,9 +1026,16 @@
   color: var(--muted);
 }
 
+/* bottom-aligned, so short titles sit right above the step list instead of leaving a gap */
 .storyCopy {
-  min-height: clamp(240px, 32dvh, 300px);
-  margin-top: 28px;
+  display: grid;
+  align-items: end;
+  min-height: clamp(220px, 30dvh, 280px);
+  margin-top: 24px;
+}
+
+.storyCopyItem {
+  grid-area: 1 / 1;
 }
 
 .storyTitle {
@@ -1109,6 +1119,8 @@
   position: relative;
   width: 100%;
   height: min(78dvh, 780px);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
 }
 
 .stageCard {
@@ -1116,7 +1128,11 @@
   inset: 0;
   overflow: hidden;
   border-radius: 24px;
-  box-shadow: var(--shadow);
+}
+
+.stageImg {
+  position: absolute;
+  inset: 0;
 }
 
 .stageScrim {
@@ -1136,8 +1152,8 @@
 
 .storyList {
   display: none;
-  gap: 64px;
-  padding-block: clamp(80px, 12vw, 140px);
+  gap: 56px;
+  padding-block: var(--sec) 0;
 }
 
 .storyCard {
@@ -1228,7 +1244,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -1268,6 +1284,7 @@
 
 .day,
 .dayOn {
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1364,7 +1381,7 @@
 }
 
 .trackCaption {
-  font-size: 14px;
+  font-size: 15px;
   color: #55554f;
 }
 
@@ -1449,7 +1466,7 @@
   display: flex;
   gap: 16px;
   height: 620px;
-  margin-top: clamp(40px, 5vw, 64px);
+  margin-top: 40px;
 }
 
 .panel {
@@ -1532,7 +1549,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 17px;
+  font-size: 18px;
   color: rgba(255, 255, 255, 0.85);
 }
 
@@ -1624,7 +1641,7 @@
 .cellText {
   max-width: 44ch;
   margin-top: 8px;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--ink-2);
 }
 
@@ -1935,7 +1952,7 @@
   padding: 6px 12px;
   border-radius: 999px;
   background: var(--bg-2);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--ink-2);
 }
@@ -1973,7 +1990,7 @@
   flex: 1;
   flex-direction: column;
   gap: 12px;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .planList li {
@@ -2081,7 +2098,7 @@
 /* ---------- faq ---------- */
 
 .faqWrap {
-  padding-bottom: clamp(96px, 12vw, 168px);
+  padding-bottom: clamp(56px, 6vw, 80px);
 }
 
 .faqList {
@@ -3166,5 +3183,175 @@
 @media (max-width: 900px) {
   .heroCopy .ctaRow .magnet {
     display: flex;
+  }
+}
+
+/* ---------- polish pass: film head, story counter, one dark chapter ---------- */
+
+.filmHead {
+  text-align: left;
+}
+
+.filmHead .h2 {
+  max-width: none;
+}
+
+.filmMeta {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.rail {
+  justify-content: flex-start;
+}
+
+@media (max-width: 640px) {
+  .filmHead {
+    text-align: center;
+  }
+
+  .filmHead .lede {
+    margin-inline: auto;
+  }
+
+  .filmMeta {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.storyTop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.storyCount {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.storyCountNow {
+  color: var(--ink);
+}
+
+/* a giant, faint numeral sits behind the copy and changes with the step */
+.storyGhost {
+  position: absolute;
+  top: 50%;
+  left: -0.06em;
+  z-index: 0;
+  margin-top: -0.55em;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(260px, 30vw, 440px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--ink);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
+.storyGhostNum {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+}
+
+.storyCopy,
+.stepList {
+  position: relative;
+  z-index: 1;
+}
+
+.ink {
+  --bg: #0f0e0d;
+  --bg-2: #1a1917;
+  --surface: #1a1917;
+  --ink: #f3f3ef;
+  --ink-2: #d2d2cc;
+  --muted: #a3a39c;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --accent-soft: #2a1710;
+  --accent-deep: #f0a27a;
+  --green: #3fb36f;
+  --green-text: #5ccf8b;
+  --ink-tile: #1a1917;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+
+  position: relative;
+  margin-top: var(--sec);
+  padding-bottom: clamp(56px, 6vw, 80px);
+  overflow: hidden;
+  border-radius: 32px;
+  background: #0f0e0d;
+  color: var(--ink);
+  color-scheme: dark;
+  isolation: isolate;
+}
+
+/* soft orange glow where the chapter begins */
+.ink::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 520px;
+  background: radial-gradient(60% 100% at 50% 0%, rgba(200, 70, 13, 0.3), rgba(200, 70, 13, 0) 72%);
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ink {
+    --bg: #151413;
+    --bg-2: #1f1d1b;
+    --surface: #1f1d1b;
+    --ink-tile: #1f1d1b;
+
+    background: #151413;
+  }
+}
+
+.ink .cell {
+  border: 1px solid var(--line);
+}
+
+.ink .lead {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ink .leadClock {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ink .plan:not(.planGrowth) .planBadge {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ink .toggle {
+  background: #1a1917;
+}
+
+.ink .toggleThumb {
+  background: #2e2c29;
+}
+
+.ink .planGrowth {
+  box-shadow: 0 30px 80px -30px rgba(200, 70, 13, 0.5);
+}
+
+@media (max-width: 640px) {
+  .ink {
+    border-radius: 24px;
   }
 }

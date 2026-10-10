@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  useMotionValueEvent,
-  useScroll,
-  useSpring,
-} from 'framer-motion';
+import { motion, useInView, useMotionValueEvent, useScroll, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 
@@ -54,7 +47,7 @@ const steps = [
   },
 ];
 
-// Pinned scroll story (desktop). A 500vh track holds a sticky 100dvh stage; scroll progress picks the step
+// Pinned scroll story (desktop). A 350vh track holds a sticky 100dvh stage; scroll progress picks the step
 // and fills the thread rail. The same five steps render as a plain list on small screens, with reduced
 // motion and without JavaScript (see StoryList and the display rules in Home.module.css).
 export default function Story() {
@@ -74,7 +67,6 @@ export default function Story() {
   });
 
   const go = (i) => anchors.current[i]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  const current = steps[step];
 
   return (
     <section
@@ -94,29 +86,56 @@ export default function Story() {
             ref={(el) => {
               anchors.current[i] = el;
             }}
-            style={{ top: `calc(${i + 0.5} * 80vh)` }}
+            style={{ top: `calc(${i + 0.5} * 50vh)` }}
           />
         ))}
         <div className={styles.storySticky}>
           <div className={`${styles.container} ${styles.storyGrid}`}>
             <div className={styles.storyLeft}>
-              <h2 className={styles.storyLabel} id="how-title">
-                How it works
-              </h2>
+              <span aria-hidden="true" className={styles.storyGhost}>
+                {steps.map((s, i) => (
+                  <motion.span
+                    animate={{
+                      opacity: i === step ? 1 : 0,
+                      y: i === step ? 0 : i < step ? -30 : 30,
+                    }}
+                    className={styles.storyGhostNum}
+                    initial={false}
+                    key={s.title}
+                    transition={{ duration: 0.7, ease }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </motion.span>
+                ))}
+              </span>
+
+              <div className={styles.storyTop}>
+                <h2 className={styles.storyLabel} id="how-title">
+                  How it works
+                </h2>
+                <p className={styles.storyCount}>
+                  <span className={styles.storyCountNow}>{String(step + 1).padStart(2, '0')}</span>{' '}
+                  / {String(steps.length).padStart(2, '0')}
+                </p>
+              </div>
 
               <div aria-live="polite" className={styles.storyCopy}>
-                <AnimatePresence initial={false} mode="wait">
+                {steps.map((s, i) => (
                   <motion.div
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -18 }}
-                    initial={{ opacity: 0, y: 24 }}
-                    key={step}
-                    transition={{ duration: 0.45, ease }}
+                    animate={{
+                      opacity: i === step ? 1 : 0,
+                      y: i === step ? 0 : i < step ? -18 : 18,
+                    }}
+                    aria-hidden={i !== step}
+                    className={styles.storyCopyItem}
+                    initial={false}
+                    key={s.title}
+                    transition={{ duration: 0.5, ease, delay: i === step ? 0.12 : 0 }}
                   >
-                    <h3 className={styles.storyTitle}>{current.title}</h3>
-                    <p className={styles.storyBody}>{current.body}</p>
+                    <h3 className={styles.storyTitle}>{s.title}</h3>
+                    <p className={styles.storyBody}>{s.body}</p>
                   </motion.div>
-                </AnimatePresence>
+                ))}
               </div>
 
               <ol className={styles.stepList}>
@@ -148,29 +167,43 @@ export default function Story() {
               {steps.map((s, i) => (
                 <motion.div
                   animate={{
-                    opacity: i === step ? 1 : 0,
-                    y: i === step ? 0 : i < step ? -28 : 28,
-                    scale: i === step ? 1 : 0.97,
+                    clipPath: i <= step ? 'inset(0% 0% 0% 0%)' : 'inset(0% 0% 0% 100%)',
                   }}
                   aria-hidden={i !== step}
                   className={styles.stageCard}
                   initial={false}
                   key={s.title}
-                  style={{ pointerEvents: i === step ? 'auto' : 'none' }}
-                  transition={{ duration: 0.7, ease }}
+                  style={{ zIndex: i, pointerEvents: i === step ? 'auto' : 'none' }}
+                  transition={{ duration: 0.8, ease }}
                 >
-                  <Image
-                    alt={s.alt}
-                    className={styles.cover}
-                    fill
-                    sizes="(min-width: 900px) 52vw, 100vw"
-                    src={s.photo}
-                    unoptimized
-                  />
+                  <motion.div
+                    animate={{ scale: i <= step ? 1 : 1.06 }}
+                    className={styles.stageImg}
+                    initial={false}
+                    transition={{ duration: 1.3, ease }}
+                  >
+                    <Image
+                      alt={s.alt}
+                      className={styles.cover}
+                      fill
+                      sizes="(min-width: 900px) 52vw, 100vw"
+                      src={s.photo}
+                      unoptimized
+                    />
+                  </motion.div>
                   <span aria-hidden="true" className={styles.stageScrim} />
-                  <div className={styles.stageUi}>
+                  <motion.div
+                    animate={i === step ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+                    className={styles.stageUi}
+                    initial={false}
+                    transition={
+                      i === step
+                        ? { type: 'spring', stiffness: 130, damping: 20, delay: 0.55 }
+                        : { duration: 0.2 }
+                    }
+                  >
                     <s.Ui play={live && i === step} />
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>

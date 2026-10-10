@@ -1,4 +1,3 @@
-import { CalendarClock, FileCheck2, ShieldCheck, Timer } from 'lucide-react';
 import { Bricolage_Grotesque, Geist, Geist_Mono } from 'next/font/google';
 
 import { siteConfig } from '../../config/site';
@@ -12,7 +11,7 @@ import FinalCta from './home/FinalCta';
 import Hero from './home/Hero';
 import Nav, { BrandMark } from './home/Nav';
 import Pros from './home/Pros';
-import Reveal from './home/Reveal';
+import Stats from './home/Stats';
 import Story from './home/Story';
 import { StickyCta } from './HomeMotion';
 import HomePricing from './HomePricing';
@@ -36,13 +35,6 @@ const demo = {
 
 const { paths, videos } = siteConfig;
 const youtube = (id) => `https://www.youtube.com/watch?v=${id}`;
-
-const proof = [
-  [ShieldCheck, 'Verified', 'Verified professionals only'],
-  [Timer, 'Live clock', '10-minute reply target, shown live'],
-  [CalendarClock, 'Fast Track', '24-hour Fast Track to a viewing'],
-  [FileCheck2, 'One case', 'Every document stays on your case'],
-];
 
 const footerGroups = [
   [
@@ -96,17 +88,7 @@ export default function Home() {
       <main id="main-content">
         <Hero brokerUrl={paths.brokerRegister} registerUrl={paths.register} />
 
-        <section aria-label="What you can rely on" className={styles.proof}>
-          <ul className={`${styles.container} ${styles.proofGrid}`}>
-            {proof.map(([Icon, label, text], i) => (
-              <Reveal as="li" className={styles.proofItem} delay={i * 0.07} key={label}>
-                <Icon aria-hidden="true" size={22} strokeWidth={1.75} />
-                <span className={styles.proofLabel}>{label}</span>
-                <span className={styles.proofText}>{text}</span>
-              </Reveal>
-            ))}
-          </ul>
-        </section>
+        <Stats />
 
         <Film
           length={demo.length}
@@ -117,8 +99,11 @@ export default function Home() {
         />
         <Story />
         <Audiences brokerUrl={paths.brokerRegister} seekerUrl={paths.register} />
-        <Pros brokerUrl={paths.brokerRegister} loginUrl={paths.login} />
-        <HomePricing registerUrl={paths.brokerRegister} />
+        {/* One deliberate dark chapter: the professionals section and pricing share a single ink block. */}
+        <div className={styles.ink}>
+          <Pros brokerUrl={paths.brokerRegister} loginUrl={paths.login} />
+          <HomePricing registerUrl={paths.brokerRegister} />
+        </div>
         <Faq contactUrl={paths.contact} />
         <FinalCta brokerUrl={paths.brokerRegister} registerUrl={paths.register} />
       </main>

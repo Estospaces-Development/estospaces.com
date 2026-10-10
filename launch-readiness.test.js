@@ -14,9 +14,19 @@ const homeFiles = [
   'Home.jsx',
   'HomeMotion.jsx',
   'HomePricing.jsx',
-  ...['Audiences', 'Faq', 'Film', 'FinalCta', 'Hero', 'Nav', 'Pros', 'Reveal', 'Story', 'ui'].map(
-    (name) => `home/${name}.jsx`,
-  ),
+  ...[
+    'Audiences',
+    'Faq',
+    'Film',
+    'FinalCta',
+    'Hero',
+    'Nav',
+    'Pros',
+    'Reveal',
+    'Stats',
+    'Story',
+    'ui',
+  ].map((name) => `home/${name}.jsx`),
 ];
 const readHome = async () =>
   (await Promise.all(homeFiles.map((file) => read(`./src/components/landing/${file}`)))).join('\n');
@@ -77,7 +87,7 @@ test('homepage exposes real access paths and omits unsupported launch claims', a
   assert.doesNotMatch(publicSurface, /Account creation open|Registration open/);
   assert.doesNotMatch(home, /PropertySearchForm/);
   // launch copy: the reply target is stated as a target, never as a guarantee
-  assert.match(everything, /10-minute reply target/);
+  assert.match(everything, /reply target, shown live/);
   assert.match(everything, /No\. Ten minutes is the target/);
   assert.doesNotMatch(
     publicSurface,

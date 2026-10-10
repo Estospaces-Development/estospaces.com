@@ -159,9 +159,12 @@ export default function Film({ src, poster, userUrl, managerUrl }) {
       data-analytics-section="film"
       id="film"
     >
-      <div className={styles.container}>
-        <Reveal as="h2" className={`${styles.h2} ${styles.center}`} id="film-title">
+      <div className={`${styles.container} ${styles.filmHead}`}>
+        <Reveal as="h2" className={styles.h2} id="film-title">
           See EstoSpaces in two minutes.
+        </Reveal>
+        <Reveal as="p" className={styles.lede} delay={0.08}>
+          The whole journey, from first brief to the keys.
         </Reveal>
       </div>
 
