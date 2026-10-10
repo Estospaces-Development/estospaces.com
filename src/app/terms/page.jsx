@@ -3,14 +3,14 @@ import { buildPageMetadata, siteConfig } from '../../config/site';
 
 export const metadata = buildPageMetadata({
   title: `${siteConfig.name} Terms of Use`,
-  description: `Terms for using the ${siteConfig.name} public website and private-beta property-technology software platform.`,
+  description: `Terms for using the ${siteConfig.name} public website and property-technology software platform.`,
   path: '/terms',
 });
 
 export default function TermsPage() {
   return (
     <PolicyPage
-      description={`These terms apply to the ${siteConfig.name} website and private-beta software.`}
+      description={`These terms apply to the ${siteConfig.name} website and software.`}
       eyebrow="Legal"
       title="Terms of use"
     >
@@ -21,11 +21,11 @@ export default function TermsPage() {
           Property professionals and other third parties remain responsible for their own services.
         </p>
       </PolicySection>
-      <PolicySection title="2. Private-beta status">
+      <PolicySection title="2. Service availability">
         <p>
-          Access, inventory, coverage, and features may be limited, changed, paused, or withdrawn
-          during the private beta. A 10-minute broker response is an operating target during
-          supported periods, not a guarantee.
+          Access, inventory, coverage, and features vary by area and may be changed, paused, or
+          withdrawn. A 10-minute broker response is an operating target during supported periods,
+          not a guarantee.
         </p>
         <p>
           Fast Track is designed to help move an enquiry toward a viewing or application within 24
