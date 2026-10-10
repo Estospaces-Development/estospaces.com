@@ -55,10 +55,7 @@ export default function Footer() {
             <Image alt="" height={96} src="/assets/logo-icon-96.webp" unoptimized width={96} />
             <strong>{siteConfig.name}</strong>
           </div>
-          <p>
-            Private-beta property software for a clearer route from enquiry to the next useful
-            action.
-          </p>
+          <p>Property software for a clearer route from enquiry to the next useful action.</p>
           <span>
             {siteConfig.legalEntities.india.name} · {siteConfig.legalEntities.unitedKingdom.name}
           </span>
@@ -107,7 +104,7 @@ export default function Footer() {
         <p>
           © {new Date().getFullYear()} {siteConfig.name}
         </p>
-        <p>Private beta / Availability varies by area</p>
+        <p>Live in India and the UK / Availability varies by area</p>
       </div>
     </footer>
   );

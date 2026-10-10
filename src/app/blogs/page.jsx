@@ -111,8 +111,7 @@ export default async function BlogsPage({ searchParams }) {
         <section className="container mx-auto px-4 pb-14">
           <aside className="mb-7 border-l-4 border-primary bg-orange-50 p-5 text-sm leading-6 text-gray-700">
             Blog content is general information, not legal, financial, tax, surveying, or safety
-            advice. Product-related articles may discuss workflows that are limited or still being
-            evaluated during private beta.
+            advice. Product-related articles may discuss workflows that vary by area.
           </aside>
           <nav className="mb-6 flex flex-wrap gap-2" aria-label="Browse blog categories">
             <a
