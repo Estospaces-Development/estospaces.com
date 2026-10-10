@@ -91,7 +91,7 @@ For external audit tools, configure these production-only items outside the code
 
 Production runs on Google Cloud Run (`estospaces-landing-www`), built from the `Dockerfile`. `.github/workflows/cd.yml` builds and deploys on every push to `main`.
 
-The workflow currently pushes to the Mumbai (`asia-south1`) Artifact Registry, which no longer exists, so it fails at "Build and Push". Until it targets the `europe-west2` registry, production deploys use Cloud Build (`gcloud builds submit --region=europe-west2`), then `gcloud run services update --no-traffic --tag=...`, a canary, and `update-traffic` to 100%.
+The workflow pushes the image to the `europe-west2` Artifact Registry (`estospaces` repository), updates `estospaces-landing-www` in `us-central1`, and checks `/health` on the service and on estospaces.com. For a gradual release instead, build with Cloud Build (`gcloud builds submit --region=europe-west2`), deploy with `gcloud run services update --no-traffic --tag=...`, run a canary, then `update-traffic` to 100%.
 
 ## Documentation
 

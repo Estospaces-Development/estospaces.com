@@ -18,12 +18,14 @@ jobs:
     runs-on: ubuntu-24.04
     environment: production
     env:
-      SERVICE_NAME: estospaces-landing
-      REGION: asia-south1
-      FALLBACK_SERVICE_NAME: estospaces-landing-www
-      FALLBACK_REGION: us-central1
+      # Images live in the europe-west2 Artifact Registry repository "estospaces"
+      # (the old asia-south1 registry no longer exists).
+      REGISTRY_REGION: europe-west2
+      IMAGE_NAME: estospaces-landing
+      # estospaces.com is served by this Cloud Run service.
+      DEPLOY_SERVICE: estospaces-landing-www
+      DEPLOY_REGION: us-central1
       PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      TARGET_ENV: prod
       LANDING_APP_BASE_URL: ${{ vars.APP_BASE_URL }}
       LANDING_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID || secrets.GA_MEASUREMENT_ID }}
 
@@ -37,52 +39,36 @@ jobs:
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Configure Docker
-        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+        run: gcloud auth configure-docker "${REGISTRY_REGION}-docker.pkg.dev" --quiet
 
       - name: Build and Push
         run: |
           APP_BASE_URL="${LANDING_APP_BASE_URL:-https://app.estospaces.com}"
-          IMAGE_BASE="${REGION}-docker.pkg.dev/${PROJECT_ID}/estospaces/${SERVICE_NAME}"
+          IMAGE="${REGISTRY_REGION}-docker.pkg.dev/${PROJECT_ID}/estospaces/${IMAGE_NAME}:${GITHUB_SHA}"
           docker build \
             --build-arg NEXT_PUBLIC_APP_BASE_URL="$APP_BASE_URL" \
             --build-arg NEXT_PUBLIC_GA_MEASUREMENT_ID="$LANDING_GA_MEASUREMENT_ID" \
-            -t "${IMAGE_BASE}:${GITHUB_SHA}" .
-          docker push "${IMAGE_BASE}:${GITHUB_SHA}"
+            -t "$IMAGE" .
+          docker push "$IMAGE"
+          echo "DEPLOY_IMAGE=$IMAGE" >> "$GITHUB_ENV"
 
       - name: Deploy to Cloud Run
         run: |
-          IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/estospaces/${SERVICE_NAME}:${GITHUB_SHA}"
-          SERVICE_TARGET="${SERVICE_NAME}-${TARGET_ENV}"
-          if DEPLOY_OUTPUT="$(gcloud run services update "$SERVICE_TARGET" \
-            --image="$IMAGE" \
-            --region="${REGION}" \
-            --project="${PROJECT_ID}" 2>&1)"; then
-            printf '%s\n' "$DEPLOY_OUTPUT"
-            DEPLOY_SERVICE="$SERVICE_TARGET"
-            DEPLOY_REGION="$REGION"
-          else
-            printf '%s\n' "$DEPLOY_OUTPUT"
-            QUOTA_ERROR='Project failed to initialize in this region due to quota exceeded.'
-            if [[ "$DEPLOY_OUTPUT" != *"$QUOTA_ERROR"* ]]; then
-              exit 1
-            fi
-
-            echo "::warning::Mumbai Cloud Run initialization is quota-blocked; deploying the checked image to the existing public landing service."
-            gcloud run services update "$FALLBACK_SERVICE_NAME" \
-              --image="$IMAGE" \
-              --region="$FALLBACK_REGION" \
-              --project="$PROJECT_ID"
-            DEPLOY_SERVICE="$FALLBACK_SERVICE_NAME"
-            DEPLOY_REGION="$FALLBACK_REGION"
-          fi
-
-          echo "DEPLOY_IMAGE=$IMAGE" >> "$GITHUB_ENV"
-          echo "DEPLOY_SERVICE=$DEPLOY_SERVICE" >> "$GITHUB_ENV"
-          echo "DEPLOY_REGION=$DEPLOY_REGION" >> "$GITHUB_ENV"
+          gcloud run services update "$DEPLOY_SERVICE" \
+            --image="$DEPLOY_IMAGE" \
+            --region="$DEPLOY_REGION" \
+            --project="$PROJECT_ID"
 
       - name: Health check
         run: |
           READY_REVISION="$(gcloud run services describe "$DEPLOY_SERVICE" --region="$DEPLOY_REGION" --project="$PROJECT_ID" --format='value(status.latestReadyRevisionName)')"
           READY_IMAGE="$(gcloud run services describe "$DEPLOY_SERVICE" --region="$DEPLOY_REGION" --project="$PROJECT_ID" --format='value(spec.template.spec.containers[0].image)')"
+          SERVICE_URL="$(gcloud run services describe "$DEPLOY_SERVICE" --region="$DEPLOY_REGION" --project="$PROJECT_ID" --format='value(status.url)')"
+          echo "Ready revision: ${READY_REVISION:-none}"
           test -n "$READY_REVISION"
           test "$READY_IMAGE" = "$DEPLOY_IMAGE"
+          for url in "${SERVICE_URL}/health" "https://estospaces.com/health"; do
+            code="$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "$url" || echo 000)"
+            echo "$url -> HTTP $code"
+            test "$code" = "200"
+          done
