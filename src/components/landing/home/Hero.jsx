@@ -9,7 +9,6 @@ import {
   useTransform,
 } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
-import Image from 'next/image';
 import { Fragment, useEffect, useRef, useState } from 'react';
 
 import TrackedLink from '../../site/TrackedLink';
@@ -64,35 +63,39 @@ function MagneticLink({ href, children, eventProperties }) {
   );
 }
 
-export default function Hero({ photo, registerUrl, brokerUrl }) {
+// Hero: big headline over a tilted product stage. The stage plays a silent, caption-free loop of the film's
+// key moments (verified seal, reply clock, Fast Track, keys); it flattens and grows as the page scrolls.
+export default function Hero({ loop, registerUrl, brokerUrl }) {
   const reduce = useReducedMotion();
+  const root = useRef(null);
   const stage = useRef(null);
-  const textRef = useRef(null);
-  const mediaRef = useRef(null);
+  const video = useRef(null);
   const dotRef = useRef(null);
   const replyRef = useRef(null);
   const [thread, setThread] = useState('');
 
-  // Photo parallax: drifts up 40px and settles from 1.08 to 1 as the hero scrolls away.
-  const { scrollYProgress } = useScroll({ target: mediaRef, offset: ['start start', 'end start'] });
-  const drift = useTransform(scrollYProgress, [0, 1], [0, -40]);
-  const zoom = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
+  // Scroll: the stage tilts from 16deg to flat and scales up as it rises into view.
+  const { scrollYProgress } = useScroll({ target: stage, offset: ['start end', 'start 20%'] });
+  const tilt = useTransform(scrollYProgress, [0, 1], [16, 0]);
+  const grow = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
+  const glow = useTransform(scrollYProgress, [0, 1], [0.55, 1]);
 
-  // Pointer parallax for the two cards (desktop with a real pointer only).
+  // Pointer parallax for the floating cards and a gentle tilt of the stage (desktop pointers only).
   const px = useSpring(useMotionValue(0), spring);
   const py = useSpring(useMotionValue(0), spring);
-  const cardAx = useTransform(px, (v) => v * -10);
+  const cardAx = useTransform(px, (v) => v * -14);
   const cardAy = useTransform(py, (v) => v * -10);
-  const cardBx = useTransform(px, (v) => v * 10);
+  const cardBx = useTransform(px, (v) => v * 14);
   const cardBy = useTransform(py, (v) => v * 10);
+  const turn = useTransform(px, (v) => v * 3);
 
   useEffect(() => {
-    const media = mediaRef.current;
-    if (!media || reduce) return undefined;
+    const el = root.current;
+    if (!el || reduce) return undefined;
     const query = window.matchMedia('(hover: hover) and (min-width: 900px)');
     const move = (event) => {
       if (!query.matches) return;
-      const box = media.getBoundingClientRect();
+      const box = el.getBoundingClientRect();
       px.set(((event.clientX - box.left) / box.width - 0.5) * 2);
       py.set(((event.clientY - box.top) / box.height - 0.5) * 2);
     };
@@ -100,19 +103,35 @@ export default function Hero({ photo, registerUrl, brokerUrl }) {
       px.set(0);
       py.set(0);
     };
-    media.addEventListener('pointermove', move);
-    media.addEventListener('pointerleave', leave);
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerleave', leave);
     return () => {
-      media.removeEventListener('pointermove', move);
-      media.removeEventListener('pointerleave', leave);
+      el.removeEventListener('pointermove', move);
+      el.removeEventListener('pointerleave', leave);
     };
   }, [reduce, px, py]);
 
-  // The thread: from the eyebrow dot, along the eyebrow line (under the pill), down the gutter between the
-  // text and the photo, into the reply row. Re-measured whenever the layout changes. Hidden under 900px.
+  // The loop only plays while the hero is on screen, never under reduced motion.
   useEffect(() => {
-    const root = stage.current;
-    if (!root) return undefined;
+    const node = video.current;
+    const el = stage.current;
+    if (!node || !el) return undefined;
+    if (reduce) {
+      node.pause();
+      return undefined;
+    }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) node.play().catch(() => {});
+      else node.pause();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduce]);
+
+  // The thread: from the live dot straight down the left gutter beside the stage, into the reply row.
+  useEffect(() => {
+    const el = root.current;
+    if (!el) return undefined;
     const measure = () => {
       const dot = dotRef.current;
       const reply = replyRef.current;
@@ -120,47 +139,52 @@ export default function Hero({ photo, registerUrl, brokerUrl }) {
         setThread('');
         return;
       }
-      const o = root.getBoundingClientRect();
+      const o = el.getBoundingClientRect();
       const d = dot.getBoundingClientRect();
       const r = reply.getBoundingClientRect();
-      const textRight = textRef.current.getBoundingClientRect().right;
-      const photoLeft = mediaRef.current.getBoundingClientRect().left;
       const sx = d.left + d.width / 2 - o.left;
       const sy = d.top + d.height / 2 - o.top;
-      const gx = (textRight + photoLeft) / 2 - o.left;
       const ey = r.top + r.height / 2 - o.top;
       const ex = r.left - o.left - 6;
-      const c = 18;
-      setThread(
-        `M${sx} ${sy} H${gx - c} Q${gx} ${sy} ${gx} ${sy + c} V${ey - c} Q${gx} ${ey} ${gx + c} ${ey} H${ex}`,
-      );
+      const c = 20;
+      setThread(`M${sx} ${sy} V${ey - c} Q${sx} ${ey} ${sx + c} ${ey} H${ex}`);
     };
     measure();
     const observer = new ResizeObserver(measure);
-    observer.observe(root);
+    observer.observe(el);
     document.fonts?.ready.then(measure);
-    return () => observer.disconnect();
+    const late = window.setTimeout(measure, 2400);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(late);
+    };
   }, []);
 
   return (
-    <section className={styles.hero} data-analytics-section="hero" data-hero id="product">
-      <div className={`${styles.container} ${styles.heroGrid}`} ref={stage}>
-        {thread ? (
-          <svg aria-hidden="true" className={styles.thread} focusable="false">
-            <motion.path
-              animate={{ pathLength: 1 }}
-              d={thread}
-              fill="none"
-              initial={{ pathLength: reduce ? 1 : 0 }}
-              stroke="var(--accent)"
-              strokeLinecap="round"
-              strokeWidth="2.5"
-              transition={{ duration: 1.5, ease, delay: 1.3 }}
-            />
-          </svg>
-        ) : null}
+    <section
+      className={styles.heroX}
+      data-analytics-section="hero"
+      data-hero
+      id="product"
+      ref={root}
+    >
+      {thread ? (
+        <svg aria-hidden="true" className={styles.thread} focusable="false">
+          <motion.path
+            animate={{ pathLength: 1 }}
+            d={thread}
+            fill="none"
+            initial={{ pathLength: reduce ? 1 : 0 }}
+            stroke="var(--accent)"
+            strokeLinecap="round"
+            strokeWidth="2.5"
+            transition={{ duration: 1.6, ease, delay: 1.2 }}
+          />
+        </svg>
+      ) : null}
 
-        <div className={styles.heroText} ref={textRef}>
+      <div className={`${styles.container} ${styles.heroTop}`}>
+        <div className={styles.heroHead}>
           <motion.p
             animate={{ opacity: 1, y: 0 }}
             className={styles.eyebrow}
@@ -172,42 +196,38 @@ export default function Hero({ photo, registerUrl, brokerUrl }) {
             Now live in India and the UK
           </motion.p>
 
-          <h1 className={styles.h1}>
+          <h1 className={`${styles.h1} ${styles.h1X}`}>
             {words.map(([word, accent], i) => (
               <Fragment key={word}>
                 <span className={styles.word}>
                   <motion.span
-                    animate={{ y: '0%' }}
+                    animate={{ y: '0%', rotate: 0 }}
                     className={accent ? styles.accentWord : styles.wordIn}
                     data-m
-                    initial={reduce ? false : { y: '110%' }}
-                    transition={{ duration: 0.9, ease, delay: 0.1 + i * 0.07 }}
+                    initial={reduce ? false : { y: '115%', rotate: 4 }}
+                    transition={{ duration: 1, ease, delay: 0.1 + i * 0.08 }}
                   >
                     {word}
                   </motion.span>
-                </span>{' '}
+                </span>
+                {i === 1 ? <br className={styles.heroBreak} /> : ' '}
               </Fragment>
             ))}
           </h1>
+        </div>
 
-          <motion.p
-            animate={{ opacity: 1, y: 0 }}
-            className={styles.heroSub}
-            data-m
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.8, ease, delay: 0.55 }}
-          >
+        <motion.div
+          animate={{ opacity: 1, y: 0 }}
+          className={styles.heroAside}
+          data-m
+          initial={reduce ? false : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.8, ease, delay: 0.55 }}
+        >
+          <p className={styles.heroSub}>
             Send one brief. Verified agents reply on a live clock. Viewing, documents and keys stay
             in one case.
-          </motion.p>
-
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            className={styles.ctaRow}
-            data-m
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.8, ease, delay: 0.7 }}
-          >
+          </p>
+          <div className={styles.ctaRow}>
             <MagneticLink eventProperties={{ placement: 'hero' }} href={registerUrl}>
               Find a home
             </MagneticLink>
@@ -219,111 +239,112 @@ export default function Hero({ photo, registerUrl, brokerUrl }) {
             >
               List your properties
             </TrackedLink>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
+      </div>
 
-        <div className={styles.heroMedia} ref={mediaRef}>
+      <div className={`${styles.container} ${styles.heroStageWrap}`}>
+        <motion.span
+          aria-hidden="true"
+          className={styles.heroGlow}
+          style={reduce ? undefined : { opacity: glow }}
+        />
+        <motion.div
+          animate={{ opacity: 1, y: 0 }}
+          className={styles.heroStage}
+          data-m
+          initial={reduce ? false : { opacity: 0, y: 60 }}
+          ref={stage}
+          style={reduce ? undefined : { rotateX: tilt, rotateY: turn, scale: grow }}
+          transition={{ duration: 1.2, ease, delay: 0.35 }}
+        >
+          <video
+            aria-label="EstoSpaces in motion: a verified seal, a live reply clock, a Fast Track case and the keys"
+            autoPlay={!reduce}
+            className={styles.heroVideo}
+            loop
+            muted
+            playsInline
+            poster={loop.poster}
+            preload="auto"
+            ref={video}
+          >
+            <source src={loop.webm} type="video/webm" />
+            <source src={loop.mp4} type="video/mp4" />
+          </video>
+        </motion.div>
+
+        <motion.div
+          className={`${styles.glass} ${styles.briefCardX}`}
+          style={reduce ? undefined : { x: cardAx, y: cardAy }}
+        >
+          <p className={styles.glassTitle}>Your brief</p>
+          <p className={styles.glassLine}>2BHK to rent · Anna Nagar · ₹35-40k</p>
           <motion.div
-            animate={{ clipPath: 'inset(0% 0% 0% 0% round 24px)' }}
-            className={styles.heroPhoto}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className={styles.replyLive}
             data-m
-            initial={reduce ? false : { clipPath: 'inset(100% 0% 0% 0% round 24px)' }}
-            transition={{ duration: 1.1, ease, delay: 0.15 }}
+            initial={reduce ? false : { opacity: 0, y: 18, scale: 0.94 }}
+            ref={replyRef}
+            transition={{ type: 'spring', stiffness: 160, damping: 20, delay: 1.5 }}
           >
-            <motion.div
-              className={styles.heroImgWrap}
-              style={reduce ? undefined : { y: drift, scale: zoom }}
-            >
-              <Image
-                alt="A sunlit living room in a modern apartment"
-                className={styles.cover}
-                fill
-                priority
-                sizes="(max-width: 900px) 100vw, 44vw"
-                src={photo}
-                unoptimized
-              />
-            </motion.div>
-            <span aria-hidden="true" className={styles.heroScrim} />
-          </motion.div>
-
-          <motion.div
-            className={`${styles.glass} ${styles.briefCard}`}
-            style={{ x: cardAx, y: cardAy }}
-          >
-            <p className={styles.glassTitle}>Your brief</p>
-            <p className={styles.glassLine}>2BHK to rent · Anna Nagar · ₹35-40k</p>
-            <motion.div
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              className={styles.replyLive}
-              data-m
-              initial={reduce ? false : { opacity: 0, y: 18, scale: 0.94 }}
-              ref={replyRef}
-              transition={{ type: 'spring', stiffness: 160, damping: 20, delay: 0.8 + 0.9 }}
-            >
-              <span aria-hidden="true" className={styles.avatar}>
-                RK
-              </span>
-              <span className={styles.replyCopy}>
-                <strong>Rahul K. replied</strong>
-                <span>10-min target</span>
-              </span>
-              <span className={styles.replyRing}>
-                <svg aria-hidden="true" height="32" viewBox="0 0 40 40" width="32">
-                  <circle
-                    className={styles.ringTrack}
-                    cx="20"
-                    cy="20"
-                    fill="none"
-                    r="16"
-                    strokeWidth="4"
-                  />
-                  <motion.circle
-                    animate={{ pathLength: 0.6 }}
-                    className={styles.ringFill}
-                    cx="20"
-                    cy="20"
-                    fill="none"
-                    initial={{ pathLength: reduce ? 0.6 : 0 }}
-                    r="16"
-                    strokeLinecap="round"
-                    strokeWidth="4"
-                    transform="rotate(-90 20 20)"
-                    transition={{ duration: 1.2, ease, delay: 2 }}
-                  />
-                </svg>
-                <b>6 min</b>
-              </span>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className={`${styles.glass} ${styles.trackChip}`}
-            style={{ x: cardBx, y: cardBy }}
-          >
-            <p className={styles.glassTitle}>Fast Track</p>
-            <span aria-hidden="true" className={styles.dots}>
-              {[0, 1, 2, 3, 4, 5].map((i) => (
-                <motion.i
-                  animate={{ scale: 1 }}
-                  className={i < 3 ? styles.dotOn : styles.dotOff}
-                  data-m
-                  initial={reduce ? false : { scale: i < 3 ? 0.4 : 1 }}
-                  key={i}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 220,
-                    damping: 14,
-                    delay: 1.2 + i * 0.12,
-                  }}
-                />
-              ))}
+            <span aria-hidden="true" className={styles.avatar}>
+              RK
             </span>
-            <p className={styles.glassLine}>
-              <Check aria-hidden="true" size={15} strokeWidth={2.25} /> Viewing booked · Sat 11:00
-            </p>
+            <span className={styles.replyCopy}>
+              <strong>Rahul K. replied</strong>
+              <span>10-min target</span>
+            </span>
+            <span className={styles.replyRing}>
+              <svg aria-hidden="true" height="32" viewBox="0 0 40 40" width="32">
+                <circle
+                  className={styles.ringTrack}
+                  cx="20"
+                  cy="20"
+                  fill="none"
+                  r="16"
+                  strokeWidth="4"
+                />
+                <motion.circle
+                  animate={{ pathLength: 0.6 }}
+                  className={styles.ringFill}
+                  cx="20"
+                  cy="20"
+                  fill="none"
+                  initial={{ pathLength: reduce ? 0.6 : 0 }}
+                  r="16"
+                  strokeLinecap="round"
+                  strokeWidth="4"
+                  transform="rotate(-90 20 20)"
+                  transition={{ duration: 1.2, ease, delay: 1.9 }}
+                />
+              </svg>
+              <b>6 min</b>
+            </span>
           </motion.div>
-        </div>
+        </motion.div>
+
+        <motion.div
+          className={`${styles.glass} ${styles.trackChipX}`}
+          style={reduce ? undefined : { x: cardBx, y: cardBy }}
+        >
+          <p className={styles.glassTitle}>Fast Track</p>
+          <span aria-hidden="true" className={styles.dots}>
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <motion.i
+                animate={{ scale: 1 }}
+                className={i < 3 ? styles.dotOn : styles.dotOff}
+                data-m
+                initial={reduce ? false : { scale: i < 3 ? 0.4 : 1 }}
+                key={i}
+                transition={{ type: 'spring', stiffness: 220, damping: 14, delay: 1.2 + i * 0.12 }}
+              />
+            ))}
+          </span>
+          <p className={styles.glassLine}>
+            <Check aria-hidden="true" size={15} strokeWidth={2.25} /> Viewing booked · Sat 11:00
+          </p>
+        </motion.div>
       </div>
     </section>
   );

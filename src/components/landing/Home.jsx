@@ -96,7 +96,11 @@ export default function Home() {
       <main id="main-content">
         <Hero
           brokerUrl={paths.brokerRegister}
-          photo="/assets/landing/photos/hero-lounge.webp"
+          loop={{
+            mp4: '/assets/landing/hero-loop.mp4',
+            webm: '/assets/landing/hero-loop.webm',
+            poster: '/assets/landing/hero-loop-poster.webp',
+          }}
           registerUrl={paths.register}
         />
 

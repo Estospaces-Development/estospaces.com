@@ -209,7 +209,7 @@ test('security reporting publishes the verified domain mailbox as security.txt',
   assert.match(securityTxt, /Policy: https:\/\/estospaces\.com\/security/);
 });
 
-test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP', async () => {
+test('product videos are muted-autoplay or click-to-play, privacy-enhanced, and allowed by the CSP', async () => {
   const home = await read('./src/components/landing/Home.jsx');
   const embed = await read('./src/components/site/VideoEmbed.jsx');
   const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
@@ -220,12 +220,15 @@ test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP
     Object.values(siteConfig.videos).map((video) => video.id),
     ['iX_gHgIUHhs', 'xM140AfjOBA', 'hi-H7D164NA'],
   );
-  // the home overview is the self-hosted demo: click-to-play, nothing downloads before the visitor asks
+  // the home film is self-hosted (owner, 10 Oct: autoplay): muted, plays only while on screen, never under
+  // reduced motion, and sound only after the visitor asks for it
   const homeVideo = await read('./src/components/landing/home/Film.jsx');
   assert.match(home, /\/assets\/landing\/estospaces-demo\.mp4/);
   assert.match(home, /\/assets\/landing\/estospaces-demo-poster\.jpg/);
-  assert.match(homeVideo, /preload="none"/);
-  assert.match(homeVideo, /controls=\{started\}/); // no native controls until the visitor presses play
+  assert.match(homeVideo, /preload="metadata"/);
+  assert.match(homeVideo, /muted/);
+  assert.match(homeVideo, /IntersectionObserver/);
+  assert.match(homeVideo, /if \(!node \|\| !box \|\| reduce\) return/);
   assert.match(tutorial, /siteConfig\.videos\.user/);
   assert.match(tutorial, /siteConfig\.videos\.manager/);
   assert.doesNotMatch(embed, /<iframe/); // nothing loads from YouTube before the visitor clicks

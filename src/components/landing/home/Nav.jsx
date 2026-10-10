@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -8,24 +10,17 @@ import TrackedLink from '../../site/TrackedLink';
 import styles from '../Home.module.css';
 import { ease } from './motion';
 
+// The real EstoSpaces mark (roof, window and wave), trimmed from public/assets/logo-icon.png.
 export function BrandMark({ size = 36 }) {
   return (
-    <span className={styles.brandMark} style={{ width: size, height: size }}>
-      <svg
-        aria-hidden="true"
-        fill="none"
-        height={size * 0.52}
-        stroke="#FFFFFF"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.2"
-        viewBox="0 0 24 24"
-        width={size * 0.52}
-      >
-        <path d="M4 11.5 12 5l8 6.5V20H4z" />
-        <path d="M10 20v-5h4v5" />
-      </svg>
-    </span>
+    <Image
+      alt=""
+      className={styles.brandMark}
+      height={Math.round(size * 0.84)}
+      priority
+      src="/assets/logo-mark.png"
+      width={Math.round(size * 1.6)}
+    />
   );
 }
 

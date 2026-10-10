@@ -7,14 +7,14 @@ import {
   useScroll,
   useTransform,
 } from 'framer-motion';
-import { Play } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { Maximize2, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { ShareButton } from '../HomeMotion';
 import styles from '../Home.module.css';
 import Reveal from './Reveal';
 
-// Placeholder chapter marks (label, seconds). Correct them in this one place when the final film lands.
+// Chapter marks of the v3 film (label, seconds), from the marketing-videos demo3 timing.
 const chapters = [
   ['Sign up & verify', 14],
   ['List a home', 38],
@@ -23,58 +23,134 @@ const chapters = [
   ['Find a home', 74],
   ['Move in', 88],
 ];
+const LENGTH = 114;
 
-const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+const clock = (seconds) => {
+  const s = Math.max(0, Math.floor(seconds));
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+};
 
-export default function Film({ src, poster, length, userUrl, managerUrl }) {
+export default function Film({ src, poster, userUrl, managerUrl }) {
   const reduce = useReducedMotion();
   const frame = useRef(null);
   const video = useRef(null);
-  const [started, setStarted] = useState(false);
+  const idle = useRef(0);
+  const userPaused = useRef(false);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const [time, setTime] = useState(0);
+  const [duration, setDuration] = useState(LENGTH);
   const [current, setCurrent] = useState(-1);
+  const [chrome, setChrome] = useState(true);
 
-  // Scroll-linked entrance: the frame grows from 0.86 to full size and its corners tighten.
+  // Scroll-linked entrance: the frame grows from 0.88 to full size and its corners tighten.
   const { scrollYProgress } = useScroll({ target: frame, offset: ['start end', 'center center'] });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.86, 1]);
-  const radius = useTransform(scrollYProgress, [0, 1], [32, 16]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.88, 1]);
+  const radius = useTransform(scrollYProgress, [0, 1], [32, 18]);
   const borderRadius = useMotionTemplate`${radius}px`;
 
-  const play = () => {
+  // Autoplay muted while at least half the frame is on screen; pause when it leaves.
+  // Reduced motion: never autoplay. A visitor who pressed pause stays paused.
+  useEffect(() => {
+    const node = video.current;
+    const box = frame.current;
+    if (!node || !box || reduce) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !userPaused.current) node.play().catch(() => {});
+        else if (!entry.isIntersecting) node.pause();
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(box);
+    return () => io.disconnect();
+  }, [reduce]);
+
+  // Controls fade out after 2.5 s without pointer movement while playing.
+  const wake = useCallback(() => {
+    setChrome(true);
+    window.clearTimeout(idle.current);
+    idle.current = window.setTimeout(() => setChrome(false), 2500);
+  }, []);
+  useEffect(() => () => window.clearTimeout(idle.current), []);
+
+  const toggle = () => {
     const node = video.current;
     if (!node) return;
-    setStarted(true);
-    node.muted = false;
-    node.play().catch(() => {});
-    node.focus({ preventScroll: true });
-    window.dispatchEvent(
-      new CustomEvent('estospaces:video-play', { detail: { placement: 'film' } }),
-    );
+    if (node.paused) {
+      userPaused.current = false;
+      node.play().catch(() => {});
+    } else {
+      userPaused.current = true;
+      node.pause();
+    }
+    wake();
   };
 
-  const seek = (seconds) => {
+  const toggleSound = () => {
+    const node = video.current;
+    if (!node) return;
+    node.muted = !node.muted;
+    setMuted(node.muted);
+    if (!node.muted) {
+      userPaused.current = false;
+      node.play().catch(() => {});
+      window.dispatchEvent(
+        new CustomEvent('estospaces:video-play', { detail: { placement: 'film' } }),
+      );
+    }
+    wake();
+  };
+
+  const seek = (seconds, withSound = false) => {
     const node = video.current;
     if (!node) return;
     const go = () => {
       node.currentTime = seconds;
-      play();
+      if (withSound) {
+        node.muted = false;
+        setMuted(false);
+      }
+      userPaused.current = false;
+      node.play().catch(() => {});
     };
     if (node.readyState >= 1) go();
-    else {
-      // preload="none": begin loading, then jump once the duration is known
-      node.addEventListener('loadedmetadata', go, { once: true });
-      setStarted(true);
-      node.play().catch(() => {});
-    }
+    else node.addEventListener('loadedmetadata', go, { once: true });
+    wake();
+  };
+
+  const onBar = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    seek(((event.clientX - rect.left) / rect.width) * duration);
+  };
+
+  const onBarKey = (event) => {
+    const node = video.current;
+    if (!node) return;
+    if (event.key === 'ArrowRight') seek(Math.min(duration, node.currentTime + 5));
+    if (event.key === 'ArrowLeft') seek(Math.max(0, node.currentTime - 5));
+  };
+
+  const fullscreen = () => {
+    const box = frame.current;
+    const node = video.current;
+    if (!box || !node) return;
+    if (document.fullscreenElement) document.exitFullscreen?.();
+    else if (box.requestFullscreen) box.requestFullscreen();
+    else node.webkitEnterFullscreen?.();
   };
 
   const onTime = () => {
     const t = video.current?.currentTime ?? 0;
+    setTime(t);
     let index = -1;
     chapters.forEach(([, start], i) => {
       if (t >= start) index = i;
     });
     setCurrent((prev) => (prev === index ? prev : index));
   };
+
+  const showChrome = chrome || !playing;
 
   return (
     <section
@@ -91,35 +167,105 @@ export default function Film({ src, poster, length, userUrl, managerUrl }) {
 
       <motion.div
         className={styles.filmFrame}
+        data-chrome={showChrome ? 'on' : 'off'}
         data-m
+        onPointerMove={wake}
         ref={frame}
         style={reduce ? undefined : { scale, borderRadius }}
       >
-        {/* biome-ignore lint/a11y/useMediaCaption: captions are burned into the film */}
         <video
           className={styles.filmVideo}
-          controls={started}
-          onEnded={() => setStarted(false)}
+          muted
+          onClick={toggle}
+          onEnded={() => {
+            userPaused.current = true;
+            setPlaying(false);
+          }}
+          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || LENGTH)}
+          onPause={() => setPlaying(false)}
+          onPlay={() => {
+            setPlaying(true);
+            wake();
+          }}
           onTimeUpdate={onTime}
           playsInline
           poster={poster}
-          preload="none"
+          preload="metadata"
           ref={video}
         >
           <source src={src} type="video/mp4" />
         </video>
-        {started ? null : (
+
+        {muted ? (
+          <button className={styles.soundChip} onClick={toggleSound} type="button">
+            <VolumeX aria-hidden="true" size={18} strokeWidth={1.75} />
+            Tap for sound
+          </button>
+        ) : null}
+
+        <div className={styles.ctrls}>
           <button
-            aria-label="Play the EstoSpaces film"
-            className={styles.playBtn}
-            onClick={play}
+            aria-label={playing ? 'Pause the film' : 'Play the film'}
+            className={styles.ctrlBtn}
+            onClick={toggle}
             type="button"
           >
-            <span aria-hidden="true" className={styles.playRing} />
-            <Play aria-hidden="true" fill="currentColor" size={34} strokeWidth={1.75} />
+            {playing ? (
+              <Pause aria-hidden="true" fill="currentColor" size={18} strokeWidth={1.75} />
+            ) : (
+              <Play aria-hidden="true" fill="currentColor" size={18} strokeWidth={1.75} />
+            )}
           </button>
-        )}
-        {started ? null : <span className={styles.durationChip}>{length}</span>}
+          <div
+            aria-label="Film progress"
+            aria-valuemax={Math.round(duration)}
+            aria-valuemin={0}
+            aria-valuenow={Math.round(time)}
+            aria-valuetext={`${clock(time)} of ${clock(duration)}`}
+            className={styles.bar}
+            onClick={onBar}
+            onKeyDown={onBarKey}
+            role="slider"
+            tabIndex={0}
+          >
+            <span className={styles.barTrack} />
+            <span
+              className={styles.barFill}
+              style={{ transform: `scaleX(${Math.min(1, time / duration)})` }}
+            />
+            {chapters.map(([label, start]) => (
+              <span
+                aria-hidden="true"
+                className={styles.barTick}
+                key={label}
+                style={{ left: `${(start / duration) * 100}%` }}
+              />
+            ))}
+          </div>
+          <span className={styles.ctrlTime}>
+            {clock(time)} / {clock(duration)}
+          </span>
+          <button
+            aria-label={muted ? 'Turn sound on' : 'Mute'}
+            className={styles.ctrlBtn}
+            onClick={toggleSound}
+            type="button"
+          >
+            {muted ? (
+              <VolumeX aria-hidden="true" size={18} strokeWidth={1.75} />
+            ) : (
+              <Volume2 aria-hidden="true" size={18} strokeWidth={1.75} />
+            )}
+          </button>
+          <button
+            aria-label="Full screen"
+            className={styles.ctrlBtn}
+            onClick={fullscreen}
+            type="button"
+          >
+            <Maximize2 aria-hidden="true" size={18} strokeWidth={1.75} />
+          </button>
+        </div>
       </motion.div>
 
       <div className={styles.container}>
@@ -131,7 +277,7 @@ export default function Film({ src, poster, length, userUrl, managerUrl }) {
                 aria-current={current === index ? 'true' : undefined}
                 className={styles.chapter}
                 key={label}
-                onClick={() => seek(start)}
+                onClick={() => seek(start, true)}
                 type="button"
               >
                 {current === index ? (
