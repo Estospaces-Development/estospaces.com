@@ -94,15 +94,7 @@ export default function Home() {
       <Nav loginUrl={paths.login} registerUrl={paths.register} />
 
       <main id="main-content">
-        <Hero
-          brokerUrl={paths.brokerRegister}
-          loop={{
-            mp4: '/assets/landing/hero-loop.mp4',
-            webm: '/assets/landing/hero-loop.webm',
-            poster: '/assets/landing/hero-loop-poster.webp',
-          }}
-          registerUrl={paths.register}
-        />
+        <Hero brokerUrl={paths.brokerRegister} registerUrl={paths.register} />
 
         <section aria-label="What you can rely on" className={styles.proof}>
           <ul className={`${styles.container} ${styles.proofGrid}`}>
