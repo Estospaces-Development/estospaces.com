@@ -3408,3 +3408,20 @@
     white-space: normal;
   }
 }
+
+/* Phones (owner, 10 Oct): no chapter timings and no control bar on the small frame.
+   The film autoplays muted; tap the film to pause or play, tap the chip for sound. */
+@media (max-width: 640px) {
+  .rail,
+  .ctrls {
+    display: none;
+  }
+
+  .soundChip {
+    top: 10px;
+    right: 10px;
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 14px;
+  }
+}
