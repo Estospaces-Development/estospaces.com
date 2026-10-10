@@ -283,3 +283,58 @@ test('role tutorial: real chapters, works without JavaScript, deep-linkable', as
   const launchCheck = await read('./scripts/verify-launch.mjs');
   assert.doesNotMatch(launchCheck, /product-proof img|1120/);
 });
+
+test('home pricing follows the QA guide and never guesses the market from browser language', async () => {
+  const pricing = await read('./src/components/landing/HomePricing.jsx');
+  const home = await read('./src/components/landing/Home.jsx');
+
+  for (const text of [
+    '₹0',
+    '£0',
+    '₹999',
+    '£49',
+    '₹2,499',
+    '£99',
+    '2 published properties',
+    '8 published properties',
+    '20 published properties',
+    '2 active Fast Track cases',
+    '10 active Fast Track cases',
+    '50 active Fast Track cases',
+    'Dedicated support routing',
+    'One image up to 52 MB',
+    'per month, tax included',
+    'Start 60-day Growth trial',
+  ]) {
+    assert.ok(pricing.includes(text), `pricing is missing "${text}"`);
+  }
+  assert.doesNotMatch(pricing, /navigator\.language|plus tax/i);
+  assert.match(home, /id="pricing"/);
+  assert.match(home, /won&apos;t charge you automatically/);
+  assert.match(home, /Secure checkout by Razorpay/);
+  assert.doesNotMatch(`${home}${pricing}`, /boost fee|broker fee|guaranteed leads/i);
+});
+
+test('home motion is progressive: reduced motion and no-JS keep every final state', async () => {
+  const script = await read('./public/home-motion.js');
+  const css = await read('./src/components/landing/Home.module.css');
+  const home = await read('./src/components/landing/Home.jsx');
+
+  // the script never switches motion on when the visitor prefers reduced motion
+  assert.match(script, /prefers-reduced-motion: reduce/);
+  assert.match(script, /if \(reduce\) return;/);
+  assert.match(home, /src="\/home-motion\.js"/);
+  // scripted "from" states only exist behind the attribute the script sets; plain CSS motion is motion-safe
+  assert.match(css, /\[data-motion='on'\]/);
+  assert.match(css, /prefers-reduced-motion: no-preference/);
+  assert.doesNotMatch(css, /^\.reveal\b/m);
+});
+
+test('sharing is plain and ethical: WhatsApp link, native share sheet, utm_source=share only', async () => {
+  const motion = await read('./src/components/landing/HomeMotion.jsx');
+
+  assert.match(motion, /utm_source=share/);
+  assert.match(motion, /https:\/\/wa\.me\/\?text=/);
+  assert.match(motion, /navigator\.share/);
+  assert.doesNotMatch(motion, /utm_(medium|campaign)|referral|reward|discount/i);
+});

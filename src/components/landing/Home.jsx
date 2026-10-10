@@ -1,12 +1,15 @@
 // biome-ignore-all lint/a11y/noNoninteractiveTabindex: The horizontal comparison region must be keyboard-scrollable.
 import { Bricolage_Grotesque, Geist, Geist_Mono } from 'next/font/google';
+import Image from 'next/image';
 
 import { siteConfig } from '../../config/site';
 import { buildPropertySearchUrl } from '../../lib/search-url';
 import PageActivityTracker from '../site/PageActivityTracker';
 import TrackedButton from '../site/TrackedButton';
 import TrackedLink from '../site/TrackedLink';
-import { ApartmentArt, FloorPlan } from './HomeArt';
+import { FloorPlan } from './HomeArt';
+import { LiveClock, ShareButton, StickyCta } from './HomeMotion';
+import HomePricing from './HomePricing';
 import HomeSearch from './HomeSearch';
 import HomeVideo from './HomeVideo';
 import styles from './Home.module.css';
@@ -37,6 +40,7 @@ const navLinks = [
   ['Buy', buyUrl],
   ['How it works', '#how'],
   ['For professionals', '#pros'],
+  ['Pricing', '#pricing'],
   ['Security', paths.security],
 ];
 
@@ -57,6 +61,8 @@ const listings = [
     avail: 'Available Nov',
     reply: '~6 min',
     plan: 'p2',
+    photo: 'card-2bhk',
+    alt: 'Sample photo: bright living room in a 2BHK apartment',
     sky: '#F7E4D3',
     ink: '#6B2C12',
     room: '#EFCBAB',
@@ -70,6 +76,8 @@ const listings = [
     avail: 'Available now',
     reply: '~9 min',
     plan: 'p1',
+    photo: 'card-1bed',
+    alt: 'Sample photo: brick terrace with coloured front doors in Didsbury',
     sky: '#E2E8F1',
     ink: '#2F3B52',
     room: '#C8D3E4',
@@ -83,6 +91,8 @@ const listings = [
     avail: 'New launch',
     reply: '~12 min',
     plan: 'pv',
+    photo: 'card-villa',
+    alt: 'Sample photo: modern villa lit at dusk',
     sky: '#E3EDDF',
     ink: '#2F4A35',
     room: '#C6DABF',
@@ -96,6 +106,8 @@ const listings = [
     avail: 'From 15 Nov',
     reply: '~8 min',
     plan: 'ps',
+    photo: 'card-studio',
+    alt: 'Sample photo: painted terrace houses in Edinburgh',
     sky: '#EAE4F1',
     ink: '#3E3A4C',
     room: '#D4CAE2',
@@ -144,10 +156,12 @@ const steps = [
   ],
 ];
 
+const photo = (name) => `/assets/landing/photos/${name}.webp`;
+
 const shortlist = [
-  ['#D9632B', '2BHK · Anna Nagar', 'Viewing Sat', '#E5F2EA', '#1F6A44'],
-  ['#5D6F8C', '1-bed · Didsbury', 'Replied', '#FBE9DD', '#9A3A0A'],
-  ['#4F7A5A', '3BHK villa · Whitefield', 'Docs sent', '#EEEBE6', '#4A443D'],
+  ['thumb-2bhk', '2BHK · Anna Nagar', 'Viewing Sat', '#E5F2EA', '#1F6A44'],
+  ['thumb-1bed', '1-bed · Didsbury', 'Replied', '#FBE9DD', '#9A3A0A'],
+  ['thumb-villa', '3BHK villa · Whitefield', 'Docs sent', '#EEEBE6', '#4A443D'],
 ];
 
 const days = [
@@ -170,6 +184,9 @@ const leads = [
   ['TH', '#DCE3EF', '#2F3B52', 'Tom H. · 1-bed flat', '£1,150 pcm · Didsbury', '8:15'],
   ['FZ', '#DDEBDF', '#1F6A44', 'Farhan & Zoya · 3BHK to buy', '₹1.6 Cr · Whitefield', 'Docs in'],
 ];
+
+// Starting values for the illustrative "Waiting on you" timers (mm:ss as shown in the design).
+const clockSeconds = { '6:42': 6 * 60 + 42, '8:15': 8 * 60 + 15 };
 
 const comparison = [
   ['Browse homes', 'Yes'],
@@ -259,9 +276,9 @@ function BrandMark({ size, iconSize, className }) {
   );
 }
 
-function Tick({ className }) {
+function Tick({ className, ...props }) {
   return (
-    <span className={className}>
+    <span className={className} {...props}>
       <svg
         aria-hidden="true"
         fill="none"
@@ -273,16 +290,23 @@ function Tick({ className }) {
         viewBox="0 0 24 24"
         width="12"
       >
-        <path d="m5 12 5 5 9-10" />
+        <path d="m5 12 5 5 9-10" pathLength="1" />
       </svg>
     </span>
   );
 }
 
+const tickRow = (k) => ({ '--k': k });
+
 export default function Home() {
   return (
-    <div className={cx(styles.page, display.variable, body.variable, mono.variable)}>
+    <div
+      className={cx(styles.page, display.variable, body.variable, mono.variable)}
+      data-home
+      suppressHydrationWarning
+    >
       <PageActivityTracker />
+      <script defer src="/home-motion.js" />
 
       {/* ============ NAV ============ */}
       <header className={styles.header}>
@@ -321,30 +345,85 @@ export default function Home() {
 
       <main id="main-content">
         {/* ============ HERO ============ */}
-        <section className={styles.hero} data-analytics-section="hero" id="product">
+        <section
+          className={styles.hero}
+          data-analytics-section="hero"
+          data-hero
+          data-live-only
+          suppressHydrationWarning
+          id="product"
+        >
+          {/* The thread: drawn by /home-motion.js from the beta dot into the case card. */}
+          <div
+            aria-hidden="true"
+            className={styles.threadLayer}
+            data-thread
+            suppressHydrationWarning
+          >
+            <svg aria-hidden="true" className={styles.threadSvg} focusable="false">
+              <path
+                className={styles.threadPath}
+                data-thread-path
+                pathLength="1"
+                suppressHydrationWarning
+              />
+            </svg>
+            <span className={styles.bead} data-thread-bead suppressHydrationWarning />
+          </div>
+
           <div className={styles.heroGrid}>
             <div className={styles.heroCopy}>
-              <div className={cx(styles.badgeRow, styles.rise)}>
+              <div className={cx(styles.badgeRow, styles.fade)}>
                 <span className={styles.badge}>
-                  <span aria-hidden="true" className={styles.badgeDot} />
+                  <span aria-hidden="true" className={styles.badgeDot} data-thread-start />
                   Private beta · India &amp; the UK
                 </span>
               </div>
-              <h1 className={cx(styles.display, styles.h1, styles.rise)} style={{ '--d': '0.08s' }}>
-                Homes that <span className={styles.accentText}>answer&nbsp;back.</span>
+              <h1 className={cx(styles.display, styles.h1)}>
+                <span className={styles.word}>
+                  <span className={styles.wordIn} style={{ '--w': 0 }}>
+                    Homes
+                  </span>
+                </span>{' '}
+                <span className={styles.word}>
+                  <span className={styles.wordIn} style={{ '--w': 1 }}>
+                    that
+                  </span>
+                </span>{' '}
+                <span className={styles.accentText}>
+                  <span className={styles.word}>
+                    <span className={styles.wordIn} style={{ '--w': 2 }}>
+                      answer
+                    </span>
+                  </span>
+                  &nbsp;
+                  <span className={styles.word}>
+                    <span className={styles.wordIn} style={{ '--w': 3 }}>
+                      back.
+                    </span>
+                  </span>
+                </span>
               </h1>
-              <p className={cx(styles.lede, styles.rise)} style={{ '--d': '0.16s' }}>
+              <p className={cx(styles.lede, styles.rise)} style={{ '--d': '0.45s' }}>
                 Send one clear brief to verified professionals. See who replied, what they need, and
                 when your viewing is — in one place, not scattered across calls and chats.
               </p>
-              <dl className={cx(styles.stats, styles.rise)} style={{ '--d': '0.24s' }}>
+              <dl
+                className={cx(styles.stats, styles.rise)}
+                data-reveal="group"
+                suppressHydrationWarning
+                style={{ '--d': '0.55s' }}
+              >
                 {[
-                  ['10 min', 'reply target, shown live'],
-                  ['24 h', 'Fast Track aim to a viewing'],
-                  ['1 case', 'brief, docs & viewing'],
-                ].map(([value, label]) => (
-                  <div className={styles.stat} key={value}>
-                    <dt className={cx(styles.mono, styles.statValue)}>{value}</dt>
+                  [10, ' min', 'reply target, shown live'],
+                  [24, ' h', 'Fast Track aim to a viewing'],
+                  [1, ' case', 'brief, docs & viewing'],
+                ].map(([value, unit, label]) => (
+                  <div className={styles.stat} key={label}>
+                    <dt className={cx(styles.mono, styles.statValue)}>
+                      <span className={styles.num} style={{ '--to': value }} />
+                      {unit}
+                    </dt>
                     <dd className={styles.statLabel} style={{ margin: 0 }}>
                       {label}
                     </dd>
@@ -353,9 +432,17 @@ export default function Home() {
               </dl>
             </div>
 
-            <div className={cx(styles.heroVisual, styles.rise)} style={{ '--d': '0.12s' }}>
+            <div className={cx(styles.heroVisual, styles.fade)} style={{ '--d': '0.2s' }}>
               <div className={styles.heroArt}>
-                <ApartmentArt />
+                <Image
+                  unoptimized
+                  alt="Sample photo: apartment towers in Chennai"
+                  className={styles.photo}
+                  priority
+                  height={1050}
+                  src={photo('hero-anna-nagar')}
+                  width={1200}
+                />
                 <span className={styles.heroPlace}>Anna Nagar, Chennai</span>
               </div>
 
@@ -368,29 +455,32 @@ export default function Home() {
                   <span className={cx(styles.mono, styles.casePrice)}>₹38,000/mo</span>
                 </div>
                 <div className={styles.caseSteps}>
-                  <div className={styles.caseStep}>
-                    <Tick className={styles.stepDone} />
+                  <div className={styles.caseStep} style={tickRow(0)}>
+                    <Tick className={styles.stepDone} data-thread-end />
                     <span className={styles.caseStepGrow}>Brief sent</span>
                     <span className={cx(styles.mono, styles.caseTime)}>7:02 pm</span>
                   </div>
-                  <div className={styles.caseStep}>
+                  <div className={styles.caseStep} style={tickRow(1)}>
                     <Tick className={styles.stepDone} />
                     <span className={styles.caseStepGrow}>Rahul replied</span>
                     <span
                       className={styles.mono}
                       style={{ color: 'var(--green)', fontSize: 12, fontWeight: 600 }}
                     >
-                      in 6 min
+                      in <span className={styles.num} style={{ '--to': 6 }} /> min
                     </span>
                   </div>
-                  <div className={styles.caseStep}>
+                  <div className={styles.caseStep} style={tickRow(2)}>
                     <span aria-hidden="true" className={styles.stepNow} />
-                    <span className={styles.caseStepGrow} style={{ fontWeight: 600 }}>
-                      Upload ID &amp; income proof
+                    <span className={styles.caseStepGrow}>
+                      <span style={{ fontWeight: 600 }}>Upload ID &amp; income proof</span>
+                      <span aria-hidden="true" className={styles.progress}>
+                        <span className={styles.progressFill} />
+                      </span>
                     </span>
                     <span className={styles.caseTime}>2 of 3</span>
                   </div>
-                  <div className={styles.caseStep} style={{ color: 'var(--ink-3)' }}>
+                  <div className={styles.caseStep} style={{ ...tickRow(3), color: 'var(--ink-3)' }}>
                     <span aria-hidden="true" className={styles.stepNext} />
                     <span className={styles.caseStepGrow}>Viewing</span>
                     <span className={cx(styles.mono, styles.caseTime)}>Sat · 11:00</span>
@@ -454,18 +544,31 @@ export default function Home() {
             <div className={styles.cards}>
               {listings.map((l, index) => (
                 <article
-                  className={cx(styles.card, styles.reveal)}
+                  className={styles.card}
+                  data-reveal="rise"
+                  suppressHydrationWarning
                   key={l.title}
                   style={{ '--d': `${index * 0.06}s` }}
                 >
                   <div className={styles.thumb} style={{ background: l.sky }}>
-                    <FloorPlan
-                      ink={l.ink}
-                      plan={l.plan}
-                      room={l.room}
-                      sky={l.sky}
-                      title={l.title}
+                    <Image
+                      unoptimized
+                      alt={l.alt}
+                      className={styles.photo}
+                      height={720}
+                      src={photo(l.photo)}
+                      width={900}
                     />
+                    <span className={styles.photoTag}>Sample photo</span>
+                    <div className={styles.floorLayer} style={{ background: l.sky }}>
+                      <FloorPlan
+                        ink={l.ink}
+                        plan={l.plan}
+                        room={l.room}
+                        sky={l.sky}
+                        title={l.title}
+                      />
+                    </div>
                     <a className={styles.saveBtn} href={paths.register}>
                       <span className={styles.srOnly}>Save {l.title} (create an account)</span>
                       <svg
@@ -495,7 +598,10 @@ export default function Home() {
                         <strong>{l.price}</strong>{' '}
                         <span className={styles.priceUnit}>{l.unit}</span>
                       </span>
-                      <span className={styles.reply}>Replies in {l.reply}</span>
+                      <span className={styles.reply}>
+                        <span aria-hidden="true" className={styles.liveDot} />
+                        Replies in {l.reply}
+                      </span>
                     </div>
                   </div>
                 </article>
@@ -545,9 +651,11 @@ export default function Home() {
               </div>
 
               <div
-                className={styles.map}
-                role="img"
                 aria-label="Illustrative map of homes with price pins"
+                className={styles.map}
+                data-reveal="group"
+                suppressHydrationWarning
+                role="img"
               >
                 <svg
                   aria-hidden="true"
@@ -577,24 +685,26 @@ export default function Home() {
                   <path d="M140 -10 L 160 620" stroke="#F7F4EF" strokeWidth="6" />
                   <path d="M560 -10 L 540 620" stroke="#F7F4EF" strokeWidth="6" />
                 </svg>
-                {pins.map(([left, top, price]) => (
+                {pins.map(([left, top, price], index) => (
                   <span
                     className={cx(styles.mono, styles.pin)}
                     key={price}
-                    style={{ left: `${left}%`, top: `${top}%` }}
+                    style={{ left: `${left}%`, top: `${top}%`, '--i': index }}
                   >
                     {price}
                   </span>
                 ))}
                 <div className={styles.pinGroup}>
-                  <span
-                    className={cx(styles.mono, styles.pin, styles.pinOn)}
-                    style={{ position: 'static' }}
-                  >
-                    ₹38k
-                  </span>
+                  <span className={cx(styles.mono, styles.pin, styles.pinOn)}>₹38k</span>
                   <div className={styles.pinCard}>
-                    <span aria-hidden="true" className={styles.pinCardSwatch} />
+                    <Image
+                      unoptimized
+                      alt=""
+                      className={styles.pinCardSwatch}
+                      height={56}
+                      src={photo('thumb-2bhk')}
+                      width={56}
+                    />
                     <span className={styles.pinCardText}>
                       <strong>2BHK · Anna Nagar</strong>
                       <span>Replies in ~6 min</span>
@@ -627,14 +737,15 @@ export default function Home() {
               </p>
             </div>
 
-            <ol className={styles.steps}>
+            <ol className={styles.steps} data-journey suppressHydrationWarning>
               {steps.map(([num, title, text], index) => (
-                <li className={styles.step} key={num}>
-                  <span
-                    className={cx(styles.mono, styles.stepNum, index === 2 && styles.stepNumOn)}
-                  >
-                    {num}
-                  </span>
+                <li
+                  className={styles.step}
+                  key={num}
+                  style={{ '--at': (index * 0.2 + 0.03).toFixed(2) }}
+                >
+                  <span aria-hidden="true" className={styles.stepDot} />
+                  <span className={cx(styles.mono, styles.stepNum)}>{num}</span>
                   <strong>{title}</strong>
                   <span>{text}</span>
                 </li>
@@ -642,18 +753,21 @@ export default function Home() {
             </ol>
 
             <div className={styles.bento}>
-              <div className={cx(styles.tile, styles.reveal)}>
+              <div className={styles.tile} data-reveal="rise" suppressHydrationWarning>
                 <div className={styles.tileHead}>
                   <h3>Shortlist, compare, decide</h3>
                   <p>Every saved home shows exactly where it stands.</p>
                 </div>
                 <ul className={styles.shortlist}>
-                  {shortlist.map(([color, name, tag, tagBg, tagColor]) => (
-                    <li className={styles.shortRow} key={name}>
-                      <span
-                        aria-hidden="true"
+                  {shortlist.map(([thumb, name, tag, tagBg, tagColor], index) => (
+                    <li className={styles.shortRow} key={name} style={{ '--i': index }}>
+                      <Image
+                        unoptimized
+                        alt=""
                         className={styles.shortThumb}
-                        style={{ background: color }}
+                        height={36}
+                        src={photo(thumb)}
+                        width={36}
                       />
                       <span className={styles.shortName}>{name}</span>
                       <span className={styles.tag} style={{ background: tagBg, color: tagColor }}>
@@ -665,7 +779,9 @@ export default function Home() {
               </div>
 
               <div
-                className={cx(styles.tile, styles.tileDark, styles.onDark, styles.reveal)}
+                className={cx(styles.tile, styles.tileDark, styles.onDark)}
+                data-reveal="rise"
+                suppressHydrationWarning
                 style={{ '--d': '0.06s' }}
               >
                 <div className={styles.tileHead}>
@@ -689,6 +805,7 @@ export default function Home() {
                         cx="60"
                         cy="60"
                         fill="none"
+                        className={styles.arc}
                         r="52"
                         stroke="#C8460D"
                         strokeDasharray="230 327"
@@ -705,7 +822,12 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className={cx(styles.tile, styles.reveal)} style={{ '--d': '0.12s' }}>
+              <div
+                className={styles.tile}
+                data-reveal="rise"
+                suppressHydrationWarning
+                style={{ '--d': '0.12s' }}
+              >
                 <div className={styles.tileHead}>
                   <h3>Viewings, booked</h3>
                   <p>Fast Track aims to get you to a viewing within 24 hours.</p>
@@ -812,7 +934,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className={styles.queue}>
+              <div className={styles.queue} data-reveal="group" suppressHydrationWarning>
                 <div className={styles.queueHead}>
                   <span className={styles.queueTitle}>
                     <span aria-hidden="true" className={styles.queueDot} />
@@ -821,7 +943,11 @@ export default function Home() {
                   <span className={styles.queueNote}>Illustrative</span>
                 </div>
                 {leads.map(([initials, bg, color, name, detail, badge], index) => (
-                  <div className={cx(styles.lead, index === 0 && styles.leadHot)} key={initials}>
+                  <div
+                    className={cx(styles.lead, index === 0 && styles.leadHot)}
+                    key={initials}
+                    style={{ '--i': index }}
+                  >
                     <span
                       aria-hidden="true"
                       className={styles.avatar}
@@ -833,18 +959,44 @@ export default function Home() {
                       <strong>{name}</strong>
                       <span>{detail}</span>
                     </span>
-                    <span
-                      className={cx(
-                        styles.leadBadge,
-                        index === 2 ? styles.leadBadgePlain : styles.mono,
-                      )}
-                    >
-                      {badge}
-                    </span>
+                    {index === 2 ? (
+                      <span className={cx(styles.leadBadge, styles.leadBadgePlain)}>{badge}</span>
+                    ) : (
+                      <LiveClock
+                        className={cx(styles.leadBadge, styles.mono)}
+                        from={clockSeconds[badge]}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ============ PRICING ============ */}
+        <section
+          aria-labelledby="pricing-title"
+          className={styles.section}
+          data-analytics-section="pricing"
+          id="pricing"
+        >
+          <div className={cx(styles.wrap, styles.pricing)}>
+            <div className={styles.pricingHead}>
+              <span className={styles.pricingKicker}>For brokers &amp; property managers</span>
+              <h2 className={cx(styles.display, styles.h2)} id="pricing-title">
+                Pricing
+              </h2>
+              <p className={styles.pricingLede}>
+                Every new manager gets Growth free for 60 days. We don&apos;t take card details and
+                won&apos;t charge you automatically.
+              </p>
+            </div>
+            <HomePricing registerUrl={paths.brokerRegister} />
+            <p className={styles.pricingTerms}>
+              After 60 days you move to Free unless you choose a plan. Your price is set by your
+              verified billing market at checkout. Secure checkout by Razorpay.
+            </p>
           </div>
         </section>
 
@@ -865,7 +1017,7 @@ export default function Home() {
                 className={styles.tableWrap}
                 tabIndex={0}
               >
-                <table className={styles.table}>
+                <table className={styles.table} data-reveal="group" suppressHydrationWarning>
                   <thead>
                     <tr>
                       <th scope="col">What you get</th>
@@ -876,8 +1028,8 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    {comparison.map(([feature, portal]) => (
-                      <tr key={feature}>
+                    {comparison.map(([feature, portal], index) => (
+                      <tr key={feature} style={{ '--i': index }}>
                         <td>{feature}</td>
                         <td className={portal === 'Yes' ? undefined : styles.muted}>
                           {portal === '—' ? (
@@ -889,7 +1041,23 @@ export default function Home() {
                             portal
                           )}
                         </td>
-                        <td className={styles.usCell}>Yes</td>
+                        <td className={styles.usCell}>
+                          <svg
+                            aria-hidden="true"
+                            className={styles.yesTick}
+                            fill="none"
+                            height="14"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="3"
+                            viewBox="0 0 24 24"
+                            width="14"
+                          >
+                            <path d="m5 12 5 5 9-10" pathLength="1" />
+                          </svg>
+                          Yes
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -947,10 +1115,32 @@ export default function Home() {
           aria-labelledby="cta-title"
           className={styles.section}
           data-analytics-section="final_cta"
+          data-hide-sticky
           style={{ paddingBottom: 'var(--section)' }}
         >
           <div className={styles.wrap}>
-            <div className={cx(styles.cta, styles.onDark)}>
+            <div
+              className={cx(styles.cta, styles.onDark)}
+              data-reveal="group"
+              suppressHydrationWarning
+            >
+              {/* The same house as the logo, drawn by the thread (white here: the panel is the accent colour). */}
+              <svg
+                aria-hidden="true"
+                className={styles.house}
+                fill="none"
+                focusable="false"
+                height="72"
+                stroke="#FFFFFF"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1"
+                viewBox="0 0 24 24"
+                width="72"
+              >
+                <path d="M4 11.5 12 5l8 6.5V20H4z" pathLength="1" />
+                <path d="M10 20v-5h4v5" pathLength="1" />
+              </svg>
               <h2 className={cx(styles.display, styles.h2Cta)} id="cta-title">
                 Your next home is one clear brief away.
               </h2>
@@ -971,13 +1161,14 @@ export default function Home() {
                   I&apos;m a professional
                 </a>
               </div>
+              <ShareButton className={styles.ctaShare} />
             </div>
           </div>
         </section>
       </main>
 
       {/* ============ FOOTER ============ */}
-      <footer className={styles.footer}>
+      <footer className={styles.footer} data-hide-sticky>
         <div className={styles.footerInner}>
           <div className={styles.footerGrid}>
             <div className={styles.footerBrand}>
@@ -1032,6 +1223,8 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <StickyCta registerUrl={paths.register} />
     </div>
   );
 }

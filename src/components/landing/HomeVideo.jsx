@@ -2,11 +2,51 @@
 
 import { useRef, useState } from 'react';
 
+import { ShareButton } from './HomeMotion';
 import styles from './Home.module.css';
+
+// Placeholder chapter marks for the demo film (label, seconds). Correct these in one place when the final
+// film replaces the file; the buttons seek the video and play from there.
+const chapters = [
+  ['Sign up & verify', 12],
+  ['List a home', 33],
+  ['Answer leads', 49],
+  ['Fast Track', 60],
+  ['Find a home', 73],
+  ['Move in', 88],
+];
+
+const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
 export default function HomeVideo({ src, poster, title, length }) {
   const video = useRef(null);
   const [playing, setPlaying] = useState(false);
+  const [current, setCurrent] = useState(-1);
+
+  const seek = (seconds) => {
+    const node = video.current;
+    if (!node) return;
+    const go = () => {
+      node.currentTime = seconds;
+      node.play().catch(() => {});
+    };
+    if (node.readyState >= 1) {
+      go();
+      return;
+    }
+    // preload="none": start loading, then jump once the duration is known.
+    node.addEventListener('loadedmetadata', go, { once: true });
+    node.play().catch(() => {});
+  };
+
+  const onTime = () => {
+    const t = video.current?.currentTime ?? 0;
+    let index = -1;
+    chapters.forEach(([, start], i) => {
+      if (t >= start) index = i;
+    });
+    setCurrent((prev) => (prev === index ? prev : index));
+  };
 
   return (
     <div className={styles.videoCard}>
@@ -23,6 +63,7 @@ export default function HomeVideo({ src, poster, title, length }) {
               new CustomEvent('estospaces:video-play', { detail: { placement: 'overview' } }),
             );
           }}
+          onTimeUpdate={onTime}
           playsInline
           poster={poster}
           preload="none"
@@ -43,12 +84,30 @@ export default function HomeVideo({ src, poster, title, length }) {
           </button>
         )}
       </div>
+      <fieldset className={styles.chapters}>
+        <legend className={styles.srOnly}>Jump to a chapter</legend>
+        {chapters.map(([label, start], index) => (
+          <button
+            aria-current={current === index ? 'true' : undefined}
+            className={`${styles.chapter} ${current === index ? styles.chapterOn : ''}`}
+            key={label}
+            onClick={() => seek(start)}
+            type="button"
+          >
+            {label}
+            <span className={styles.mono}>{clock(start)}</span>
+          </button>
+        ))}
+      </fieldset>
       <div className={styles.videoCaption}>
         <span className={`${styles.display} ${styles.videoTitle}`}>{title}</span>
         <span className={`${styles.mono} ${styles.videoLength}`}>
           <span className={styles.srOnly}>Length </span>
           {length}
         </span>
+      </div>
+      <div className={styles.videoShare}>
+        <ShareButton className={styles.shareLink} />
       </div>
     </div>
   );
