@@ -11,7 +11,7 @@ const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export const formatClock = (seconds) =>
-  `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+  `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
 
 // Live mm:ss countdown. Server render and first client render show `from`, so there is no mismatch;
 // it only ticks while on screen and never when the visitor prefers reduced motion.
@@ -74,7 +74,7 @@ export function StickyCta({ registerUrl }) {
         eventProperties={{ placement: 'sticky_bar' }}
         href={registerUrl}
       >
-        Create account
+        Find a home
       </TrackedLink>
       <a className={styles.stickySecondary} href="#pros">
         For professionals
@@ -83,7 +83,7 @@ export function StickyCta({ registerUrl }) {
   );
 }
 
-const shareText = 'Homes that answer back — one brief, verified replies, one case to the keys.';
+const shareText = 'Homes that answer back: one brief, verified replies, one case to the keys.';
 
 // Ethical sharing: a plain WhatsApp link everywhere, upgraded to the native share sheet where it exists.
 // No incentives; the only parameter added is utm_source=share.

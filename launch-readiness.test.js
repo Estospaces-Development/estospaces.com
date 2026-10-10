@@ -8,6 +8,19 @@ import sitemap from './src/app/sitemap.js';
 
 const read = (path) => readFile(path, 'utf8');
 
+// The home page is split into client leaves under landing/home plus a few siblings; tests that look for
+// page copy read them together.
+const homeFiles = [
+  'Home.jsx',
+  'HomeMotion.jsx',
+  'HomePricing.jsx',
+  ...['Audiences', 'Faq', 'Film', 'FinalCta', 'Hero', 'Nav', 'Pros', 'Reveal', 'Story', 'ui'].map(
+    (name) => `home/${name}.jsx`,
+  ),
+];
+const readHome = async () =>
+  (await Promise.all(homeFiles.map((file) => read(`./src/components/landing/${file}`)))).join('\n');
+
 test('canonical site configuration exposes verified public product routes', () => {
   assert.equal(siteConfig.name, 'EstoSpaces');
   assert.equal(siteConfig.legalOperator, 'Estospaces Solutions Private Limited');
@@ -51,10 +64,11 @@ test('landing search serializes empty, partial, encoded, and market queries to t
 
 test('homepage exposes real access paths and omits unsupported launch claims', async () => {
   const home = await read('./src/components/landing/Home.jsx');
+  const everything = await readHome();
   const nav = await read('./src/components/landing/Navbar.jsx');
   const footer = await read('./src/components/landing/Footer.jsx');
   const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
-  const publicSurface = `${home}\n${nav}\n${footer}`;
+  const publicSurface = `${everything}\n${nav}\n${footer}`;
 
   assert.match(home, /<main id="main-content">/);
   assert.match(publicSurface, /siteConfig\.paths\.login/);
@@ -62,14 +76,18 @@ test('homepage exposes real access paths and omits unsupported launch claims', a
   assert.match(publicSurface, /Create account/);
   assert.doesNotMatch(publicSurface, /Account creation open|Registration open/);
   assert.doesNotMatch(home, /PropertySearchForm/);
-  assert.match(publicSurface, /10-minute response target/);
-  assert.match(publicSurface, /not a guarantee/i);
+  // launch copy: the reply target is stated as a target, never as a guarantee
+  assert.match(everything, /10-minute reply target/);
+  assert.match(everything, /No\. Ten minutes is the target/);
   assert.doesNotMatch(
     publicSurface,
     /Coming Soon|Loved by Thousands|100% Verified|70%|40%|Dream Home|waitlist/i,
   );
+  // this is the launch page: no beta, preview or early-access wording, and no em or en dashes in copy
+  assert.doesNotMatch(everything, /private[- ]beta|\bbeta\b|early access|coming soon/i);
+  assert.doesNotMatch(everything, /[\u2013\u2014]/);
   assert.doesNotMatch(home, /hero-section-video|<video|Testimonials|Countdown/);
-  // the redesigned home links both role tutorials straight to their videos
+  // both role walkthroughs stay linked from the film section
   assert.match(home, /videos\.user/);
   assert.match(home, /videos\.manager/);
   assert.match(tutorial, /id="product-proof"/);
@@ -108,7 +126,7 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   const pageActivityTracker = await read('./src/components/site/PageActivityTracker.jsx');
   const consentManager = await read('./src/components/site/ConsentManager.jsx');
   const footer = await read('./src/components/landing/Footer.jsx');
-  const home = await read('./src/components/landing/Home.jsx');
+  const home = await read('./src/components/landing/home/FinalCta.jsx');
   const nav = await read('./src/components/landing/Navbar.jsx');
   const hero = await read('./src/components/landing/LandingMotion.jsx');
   const tutorial = await read('./src/components/landing/ProductTutorial.jsx');
@@ -132,15 +150,24 @@ test('privacy-aware funnel analytics is allowlisted, consent-gated, and wired to
   assert.match(nav, /navigation_clicked/);
 });
 
-test('audience anchors and comparison overflow guidance are explicit', async () => {
-  const home = await read('./src/components/landing/Home.jsx');
+test('legacy deep links and the section ids used by the nav still resolve', async () => {
+  const everything = await readHome();
 
-  // legacy deep links used by the shared navbar (/#property-seekers, /#brokers, /#journey) still resolve
-  assert.match(home, /id="property-seekers"/);
-  assert.match(home, /id="brokers"/);
-  assert.match(home, /id="journey"/);
-  assert.match(home, /aria-describedby="comparison-scroll-hint"/);
-  assert.match(home, /Swipe or use the left and right arrow keys/);
+  // ids used by the shared navbar on other routes (/#property-seekers, /#brokers, /#journey) and by this nav
+  for (const id of [
+    'product',
+    'journey',
+    'property-seekers',
+    'brokers',
+    'how',
+    'pros',
+    'pricing',
+    'faq',
+  ]) {
+    assert.match(everything, new RegExp(`id="${id}"`), `missing #${id}`);
+  }
+  // the search bar, fake listings and comparison table are gone from the launch page
+  assert.doesNotMatch(everything, /comparison-scroll-hint|Fresh on EstoSpaces|Search homes/);
 });
 
 test('static homepage optimization preserves progressive enhancement and structured data', async () => {
@@ -194,11 +221,11 @@ test('product videos are click-to-play, privacy-enhanced, and allowed by the CSP
     ['iX_gHgIUHhs', 'xM140AfjOBA', 'hi-H7D164NA'],
   );
   // the home overview is the self-hosted demo: click-to-play, nothing downloads before the visitor asks
-  const homeVideo = await read('./src/components/landing/HomeVideo.jsx');
+  const homeVideo = await read('./src/components/landing/home/Film.jsx');
   assert.match(home, /\/assets\/landing\/estospaces-demo\.mp4/);
   assert.match(home, /\/assets\/landing\/estospaces-demo-poster\.jpg/);
   assert.match(homeVideo, /preload="none"/);
-  assert.match(homeVideo, /\bcontrols\b/);
+  assert.match(homeVideo, /controls=\{started\}/); // no native controls until the visitor presses play
   assert.match(tutorial, /siteConfig\.videos\.user/);
   assert.match(tutorial, /siteConfig\.videos\.manager/);
   assert.doesNotMatch(embed, /<iframe/); // nothing loads from YouTube before the visitor clicks
@@ -286,7 +313,7 @@ test('role tutorial: real chapters, works without JavaScript, deep-linkable', as
 
 test('home pricing follows the QA guide and never guesses the market from browser language', async () => {
   const pricing = await read('./src/components/landing/HomePricing.jsx');
-  const home = await read('./src/components/landing/Home.jsx');
+  const home = pricing;
 
   for (const text of [
     '₹0',
@@ -304,7 +331,7 @@ test('home pricing follows the QA guide and never guesses the market from browse
     'Dedicated support routing',
     'One image up to 52 MB',
     'per month, tax included',
-    'Start 60-day Growth trial',
+    'Start free trial',
   ]) {
     assert.ok(pricing.includes(text), `pricing is missing "${text}"`);
   }
@@ -316,18 +343,33 @@ test('home pricing follows the QA guide and never guesses the market from browse
 });
 
 test('home motion is progressive: reduced motion and no-JS keep every final state', async () => {
-  const script = await read('./public/home-motion.js');
   const css = await read('./src/components/landing/Home.module.css');
   const home = await read('./src/components/landing/Home.jsx');
+  const motion = await read('./src/components/landing/home/motion.js');
+  const reveal = await read('./src/components/landing/home/Reveal.jsx');
+  const story = await read('./src/components/landing/home/Story.jsx');
+  const leaves = await Promise.all(
+    ['Hero', 'Film', 'Story', 'Audiences', 'Pros', 'FinalCta', 'Nav', 'Reveal'].map((name) =>
+      read(`./src/components/landing/home/${name}.jsx`),
+    ),
+  );
 
-  // the script never switches motion on when the visitor prefers reduced motion
-  assert.match(script, /prefers-reduced-motion: reduce/);
-  assert.match(script, /if \(reduce\) return;/);
-  assert.match(home, /src="\/home-motion\.js"/);
-  // scripted "from" states only exist behind the attribute the script sets; plain CSS motion is motion-safe
-  assert.match(css, /\[data-motion='on'\]/);
-  assert.match(css, /prefers-reduced-motion: no-preference/);
-  assert.doesNotMatch(css, /^\.reveal\b/m);
+  // motion is framer-motion client leaves: scroll links via useScroll, never raw scroll listeners
+  for (const source of leaves) {
+    assert.match(source, /^'use client';/);
+    assert.doesNotMatch(source, /addEventListener\('scroll'/);
+  }
+  assert.match(motion, /useReducedMotion/);
+  assert.match(reveal, /useReducedMotion/);
+  assert.match(story, /useScroll/);
+  // without JavaScript, or with reduced motion, the hidden "from" states and the pinned story are overridden
+  assert.match(home, /<noscript>/);
+  assert.match(home, /data-story-pinned/);
+  assert.match(css, /prefers-reduced-motion: reduce/);
+  assert.match(css, /\[data-m\]/);
+  assert.match(css, /\[data-story-list\]/);
+  // the old scripted motion layer is gone
+  await assert.rejects(read('./public/home-motion.js'));
 });
 
 test('sharing is plain and ethical: WhatsApp link, native share sheet, utm_source=share only', async () => {

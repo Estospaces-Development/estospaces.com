@@ -1,9 +1,12 @@
-# Sample photo credits (Unsplash License: free for commercial use, attribution not required)
+# Photo credits (Unsplash License: free for commercial use, attribution not required)
 
-Illustrative sample imagery, labelled "Sample photo" on the page; these are not Estospaces listings.
+Source files live in marketing-videos/public/photos (see CREDITS.md there).
 
-- hero-anna-nagar: complex-in-1, Ishaan Sen (vGV8U2CuA-8)
-- card-2bhk / thumb-2bhk: living-2, Lotus Design N Print (4-7s995Kv1U)
-- card-1bed / thumb-1bed: uk-flat-1, Gonzalo Facello (khVRKwFwpsw)
-- card-villa / thumb-villa: villa-1, Elite prop (hmlP-v0vJ5o)
-- card-studio: uk-terrace-2, Matt Pictures (jsotO6-hBsM)
+- hero-lounge: living-3, Franco Debartolo (Wkqs3XD8JPk)
+- story-brief: bedroom-1, Francesca Tosolini (w1RE0lBbREo)
+- story-replies, bento-listing: living-1, Huy Nguyen (AB-q9lwCVv8)
+- story-viewing: kitchen-2, Alina Tramontana (Uv2llANteFI)
+- story-track: complex-1, Sony (aYzAXOe7Grk)
+- story-keys, cta-villa: villa-1, Elite prop (hmlP-v0vJ5o)
+- aud-seekers: uk-terrace-2, Matt Pictures (jsotO6-hBsM)
+- aud-pros: tower-2, VD Photography (0Y9MUSDRatc)
