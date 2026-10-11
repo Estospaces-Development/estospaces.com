@@ -14,6 +14,7 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 
 import TrackedLink from '../../site/TrackedLink';
 import styles from '../Home.module.css';
+import { SAMPLE, useMarket } from './market';
 import { ease, spring } from './motion';
 
 const words = [
@@ -32,13 +33,19 @@ const stills = [
 const STILL_MS = 6500;
 
 // The live case: what happens after one brief, revealed step by step on a loop.
-const steps = [
+const buildSteps = (replies) => [
   { icon: 'send', title: 'Brief sent', meta: '9:41' },
-  { icon: 'reply', title: 'Rahul K. replied', meta: '6 min', ring: 0.6, who: 'RK' },
-  { icon: 'reply', title: 'Priya N. replied', meta: '9 min', ring: 0.9, who: 'PN' },
+  ...replies.map(([who, name, meta], i) => ({
+    icon: 'reply',
+    title: `${name} replied`,
+    meta,
+    ring: i === 0 ? 0.6 : 0.9,
+    who,
+  })),
   { icon: 'check', title: 'Viewing booked', meta: 'Sat 11:00' },
   { icon: 'key', title: 'Fast Track started', meta: '24h aim' },
 ];
+const STEP_COUNT = 5;
 const STEP_MS = 1500;
 const HOLD_STEPS = 3; // extra beats with every step shown before the loop restarts
 
@@ -103,9 +110,11 @@ function StepIcon({ step }) {
 // and a glass "live case" card plays out what one brief triggers. Same look in light and dark mode.
 export default function Hero({ registerUrl, brokerUrl }) {
   const reduce = useReducedMotion();
+  const sample = SAMPLE[useMarket()];
+  const steps = buildSteps(sample.replies);
   const panel = useRef(null);
   const [still, setStill] = useState(0);
-  const [shown, setShown] = useState(reduce ? steps.length : 0);
+  const [shown, setShown] = useState(reduce ? STEP_COUNT : 0);
 
   // Scroll: the photo drifts and the copy lifts away as the hero leaves.
   const { scrollYProgress } = useScroll({ target: panel, offset: ['start start', 'end start'] });
@@ -146,7 +155,7 @@ export default function Hero({ registerUrl, brokerUrl }) {
   useEffect(() => {
     const el = panel.current;
     if (!el || reduce) {
-      setShown(steps.length);
+      setShown(STEP_COUNT);
       return undefined;
     }
     let a = 0;
@@ -160,8 +169,8 @@ export default function Hero({ registerUrl, brokerUrl }) {
       stop();
       a = window.setInterval(() => setStill((i) => (i + 1) % stills.length), STILL_MS);
       b = window.setInterval(() => {
-        beat = (beat + 1) % (steps.length + HOLD_STEPS + 1);
-        setShown(Math.max(1, Math.min(beat, steps.length)));
+        beat = (beat + 1) % (STEP_COUNT + HOLD_STEPS + 1);
+        setShown(Math.max(1, Math.min(beat, STEP_COUNT)));
       }, STEP_MS);
     };
     const io = new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop()));
@@ -296,12 +305,12 @@ export default function Hero({ registerUrl, brokerUrl }) {
             <span className={styles.liveLabel}>
               <span aria-hidden="true" className={styles.liveDot} /> Live case
             </span>
-            <span className={styles.liveBrief}>2BHK to rent · Anna Nagar · ₹35-40k</span>
+            <span className={styles.liveBrief}>{sample.briefLine}</span>
           </header>
           <div className={styles.liveBody}>
             <span aria-hidden="true" className={styles.liveSpine}>
               <motion.span
-                animate={{ scaleY: shown / steps.length }}
+                animate={{ scaleY: shown / STEP_COUNT }}
                 className={styles.liveSpineFill}
                 initial={false}
                 transition={{ duration: 0.6, ease }}
