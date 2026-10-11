@@ -46,15 +46,29 @@ const plans = [
 // Shown on every plan.
 const allPlans = 'One image up to 52 MB';
 
+// Display only (owner, 11 Oct): show rupees to visitors in India and pounds to visitors in the UK, using the
+// device time zone (no network call, nothing stored). Anyone else sees pounds, and the toggle always works.
+// The price actually charged is set by the verified billing market at checkout, never by this guess.
+const INDIA_ZONES = new Set(['Asia/Kolkata', 'Asia/Calcutta']);
+const visitorCurrency = () => {
+  try {
+    return INDIA_ZONES.has(Intl.DateTimeFormat().resolvedOptions().timeZone) ? 'INR' : 'GBP';
+  } catch {
+    return 'GBP';
+  }
+};
+
 const currencies = [
   ['GBP', '£ GBP'],
   ['INR', '₹ INR'],
 ];
 
 export default function HomePricing({ registerUrl }) {
-  // Plain toggle, GBP first (owner, 10 Oct). The market is never guessed from the browser language;
-  // the real price is set by the verified billing market at checkout.
+  // Server render and first paint use GBP; after mount the visitor's region picks the currency.
   const [currency, setCurrency] = useState('GBP');
+  useEffect(() => {
+    setCurrency(visitorCurrency());
+  }, []);
   const row = useRef(null);
   const [active, setActive] = useState(1);
 

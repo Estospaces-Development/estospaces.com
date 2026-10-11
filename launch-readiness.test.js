@@ -324,7 +324,7 @@ test('role tutorial: real chapters, works without JavaScript, deep-linkable', as
   assert.doesNotMatch(launchCheck, /product-proof img|1120/);
 });
 
-test('home pricing follows the QA guide and never guesses the market from browser language', async () => {
+test('home pricing follows the QA guide and picks the display currency from the visitor time zone only', async () => {
   const pricing = await read('./src/components/landing/HomePricing.jsx');
   const home = pricing;
 
@@ -349,6 +349,10 @@ test('home pricing follows the QA guide and never guesses the market from browse
     assert.ok(pricing.includes(text), `pricing is missing "${text}"`);
   }
   assert.doesNotMatch(pricing, /navigator\.language|plus tax/i);
+  assert.match(pricing, /Asia\/Kolkata/); // India sees rupees, everyone else pounds
+  assert.match(pricing, /verified billing market at checkout/);
+  assert.match(pricing, /Asia\/Kolkata/); // India sees rupees, everyone else pounds
+  assert.match(pricing, /verified billing market at checkout/);
   assert.match(home, /id="pricing"/);
   assert.match(home, /won&apos;t charge you automatically/);
   assert.match(home, /Secure checkout by Razorpay/);
