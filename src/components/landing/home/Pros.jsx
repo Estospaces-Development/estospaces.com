@@ -9,16 +9,12 @@ import { LiveClock } from '../HomeMotion';
 import TrackedLink from '../../site/TrackedLink';
 import styles from '../Home.module.css';
 import { ease } from './motion';
+import { SAMPLE, useMarket } from './market';
 import Reveal from './Reveal';
 import { TrackUi } from './ui';
 
-const leads = [
-  { initials: 'AR', name: 'Ananya R.', detail: '2BHK to rent · ₹35-40k · Nov', from: 6 * 60 + 41 },
-  { initials: 'TH', name: 'Tom H.', detail: '1-bed flat · £1,150 pcm', from: 8 * 60 + 14 },
-  { initials: 'FZ', name: 'Farhan & Zoya', detail: '3BHK to buy · ₹1.6 Cr', badge: 'Docs in' },
-];
-
 function QueueCell() {
+  const { leads } = SAMPLE[useMarket()];
   return (
     <Reveal className={`${styles.cell} ${styles.cellA}`}>
       <h3 className={styles.cellTitle}>Leads that arrive ready</h3>
