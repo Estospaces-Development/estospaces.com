@@ -1,12 +1,12 @@
 'use client';
 
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import TrackedLink from '../site/TrackedLink';
 import styles from './Home.module.css';
-import { ease, spring } from './home/motion';
+import { ease } from './home/motion';
 import Reveal from './home/Reveal';
 
 // Source of truth: Estospaces-Pricing-Payments-QA-Guide-v2 / the live payment catalog (monthly, tax included).
@@ -46,15 +46,24 @@ const plans = [
 // Shown on every plan.
 const allPlans = 'One image up to 52 MB';
 
-const currencies = [
-  ['GBP', '£ GBP'],
-  ['INR', '₹ INR'],
-];
+// Display only (owner, 11 Oct): show rupees to visitors in India and pounds to visitors in the UK, using the
+// device time zone (no network call, nothing stored). Anyone else sees pounds. There is no currency switch.
+// The price actually charged is set by the verified billing market at checkout, never by this guess.
+const INDIA_ZONES = new Set(['Asia/Kolkata', 'Asia/Calcutta']);
+const visitorCurrency = () => {
+  try {
+    return INDIA_ZONES.has(Intl.DateTimeFormat().resolvedOptions().timeZone) ? 'INR' : 'GBP';
+  } catch {
+    return 'GBP';
+  }
+};
 
 export default function HomePricing({ registerUrl }) {
-  // Plain toggle, GBP first (owner, 10 Oct). The market is never guessed from the browser language;
-  // the real price is set by the verified billing market at checkout.
+  // Server render and first paint use GBP; after mount the visitor's region picks the currency.
   const [currency, setCurrency] = useState('GBP');
+  useEffect(() => {
+    setCurrency(visitorCurrency());
+  }, []);
   const row = useRef(null);
   const [active, setActive] = useState(1);
 
@@ -101,33 +110,6 @@ export default function HomePricing({ registerUrl }) {
         <Reveal as="p" className={styles.lede} delay={0.08}>
           Every new manager gets Growth free for 60 days. We don&apos;t take card details and
           won&apos;t charge you automatically.
-        </Reveal>
-
-        <Reveal className={styles.toggleWrap} delay={0.12}>
-          <LayoutGroup id="currency">
-            <fieldset className={styles.toggle}>
-              <legend className={styles.srOnly}>Currency</legend>
-              {currencies.map(([code, label]) => (
-                <button
-                  aria-pressed={currency === code}
-                  className={styles.toggleBtn}
-                  key={code}
-                  onClick={() => setCurrency(code)}
-                  type="button"
-                >
-                  {currency === code ? (
-                    <motion.span
-                      aria-hidden="true"
-                      className={styles.toggleThumb}
-                      layoutId="currency-thumb"
-                      transition={spring}
-                    />
-                  ) : null}
-                  <span className={styles.toggleText}>{label}</span>
-                </button>
-              ))}
-            </fieldset>
-          </LayoutGroup>
         </Reveal>
 
         <div className={styles.plans} ref={row}>
