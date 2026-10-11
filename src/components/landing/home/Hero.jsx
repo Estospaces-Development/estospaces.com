@@ -208,17 +208,6 @@ export default function Hero({ registerUrl, brokerUrl }) {
         <span aria-hidden="true" className={styles.heroShade} />
 
         <motion.div className={styles.heroCopy} style={{ y: copyY, opacity: copyFade }}>
-          <motion.p
-            animate={{ opacity: 1, y: 0 }}
-            className={styles.heroPill}
-            data-m
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            transition={{ duration: 0.7, ease, delay: 0.2 }}
-          >
-            <span aria-hidden="true" className={styles.liveDot} />
-            Now live in India and the UK
-          </motion.p>
-
           <h1 className={styles.heroTitle}>
             {words.map(([word, accent], i) => (
               <Fragment key={word}>
