@@ -349,9 +349,9 @@ test('home pricing follows the QA guide and picks the display currency from the 
     assert.ok(pricing.includes(text), `pricing is missing "${text}"`);
   }
   assert.doesNotMatch(pricing, /navigator\.language|plus tax/i);
-  assert.match(pricing, /Asia\/Kolkata/); // India sees rupees, everyone else pounds
-  assert.match(pricing, /verified billing market at checkout/);
-  assert.match(pricing, /Asia\/Kolkata/); // India sees rupees, everyone else pounds
+  const market = await read('./src/components/landing/home/market.js');
+  assert.match(market, /Asia\/Kolkata/); // India sees rupees and Indian samples, everyone else the UK version
+  assert.match(pricing, /useMarket\(\) === 'IN' \? 'INR' : 'GBP'/);
   assert.match(pricing, /verified billing market at checkout/);
   assert.match(home, /id="pricing"/);
   assert.match(home, /won&apos;t charge you automatically/);

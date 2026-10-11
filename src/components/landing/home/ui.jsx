@@ -5,6 +5,7 @@ import { Check, KeyRound } from 'lucide-react';
 import { useLayoutEffect } from 'react';
 
 import styles from '../Home.module.css';
+import { SAMPLE, useMarket } from './market';
 import { ease, useSweep } from './motion';
 
 // Small, crisp product moments used over photos (story, hero, bento). Each takes `play`: true starts its
@@ -70,10 +71,11 @@ export function Ring({ play, value = 0.6, label, delay = 0.2 }) {
 }
 
 export function BriefUi({ play }) {
+  const { brief } = SAMPLE[useMarket()];
   const fields = [
-    ['Area', 'Anna Nagar, Chennai'],
-    ['Budget', '₹35-40k / month'],
-    ['Move-in', 'November'],
+    ['Area', brief.area],
+    ['Budget', brief.budget],
+    ['Move-in', brief.moveIn],
   ];
   return (
     <div className={styles.ui}>
@@ -91,10 +93,7 @@ export function BriefUi({ play }) {
 }
 
 export function RepliesUi({ play }) {
-  const rows = [
-    ['RK', 'Rahul K.', '6 min'],
-    ['PN', 'Priya N.', '9 min'],
-  ];
+  const rows = SAMPLE[useMarket()].replies;
   return (
     <div className={styles.ui}>
       <div className={styles.uiHeadRow}>

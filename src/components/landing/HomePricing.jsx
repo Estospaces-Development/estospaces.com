@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import TrackedLink from '../site/TrackedLink';
 import styles from './Home.module.css';
 import { ease } from './home/motion';
+import { useMarket } from './home/market';
 import Reveal from './home/Reveal';
 
 // Source of truth: Estospaces-Pricing-Payments-QA-Guide-v2 / the live payment catalog (monthly, tax included).
@@ -49,21 +50,9 @@ const allPlans = 'One image up to 52 MB';
 // Display only (owner, 11 Oct): show rupees to visitors in India and pounds to visitors in the UK, using the
 // device time zone (no network call, nothing stored). Anyone else sees pounds. There is no currency switch.
 // The price actually charged is set by the verified billing market at checkout, never by this guess.
-const INDIA_ZONES = new Set(['Asia/Kolkata', 'Asia/Calcutta']);
-const visitorCurrency = () => {
-  try {
-    return INDIA_ZONES.has(Intl.DateTimeFormat().resolvedOptions().timeZone) ? 'INR' : 'GBP';
-  } catch {
-    return 'GBP';
-  }
-};
-
 export default function HomePricing({ registerUrl }) {
   // Server render and first paint use GBP; after mount the visitor's region picks the currency.
-  const [currency, setCurrency] = useState('GBP');
-  useEffect(() => {
-    setCurrency(visitorCurrency());
-  }, []);
+  const currency = useMarket() === 'IN' ? 'INR' : 'GBP';
   const row = useRef(null);
   const [active, setActive] = useState(1);
 
